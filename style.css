@@ -1,0 +1,223 @@
+/* Configurações Gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f6f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Cabeçalho */
+header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo h1 {
+    font-size: 28px;
+    color: #1a1a1a;
+}
+
+.logo h1 span {
+    color: #007bff; /* Azul Destaque */
+}
+
+.logo p {
+    font-size: 12px;
+    color: #777;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover, nav ul li a.active {
+    color: #007bff;
+}
+
+/* Notícia Principal */
+.main-news {
+    background: #ffffff;
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.news-image-placeholder {
+    background-color: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+    font-size: 20px;
+    min-height: 300px;
+}
+
+.news-content {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.category {
+    background-color: #007bff;
+    color: #fff;
+    padding: 3px 8px;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 4px;
+    width: fit-content;
+    margin-bottom: 15px;
+}
+
+.news-content h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: #111;
+    line-height: 1.3;
+}
+
+.news-content p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.read-more {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+/* Grade de Notícias */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.news-card {
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-image {
+    background-color: #eee;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-content h3 {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #222;
+}
+
+.card-content p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.card-content a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Rodapé */
+footer {
+    background-color: #111;
+    color: #bbb;
+    padding: 30px 0;
+    margin-top: 60px;
+    font-size: 14px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Responsividade (Telas menores) */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    nav ul {
+        margin-top: 15px;
+    }
+    
+    .main-news {
+        grid-template-columns: 1fr;
+    }
+    
+    .news-content {
+        padding: 20px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+}
