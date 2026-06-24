@@ -1,106 +1,409 @@
-
 <!DOCTYPE html>
-<html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <link href="https://media.base44.com/images/public/69eba34ad220c1834bc27a08/c797bdb3e_Gemini_Generated_Image_2agh9q2agh9q2agh.png" rel="icon" type="image/svg+xml"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <link href="/manifest.json" rel="manifest"/>
-  <title>
-   Rede Bolha
-  </title>
-  <script crossorigin="" src="/assets/index-BJEkx0OD.js" type="module">
-  </script>
-  <link crossorigin="" href="/assets/index-DSBE74Un.css" rel="stylesheet"/>
-  <script type="module">
-   if (window.self === window.top) {
-  let lastPath = "";
-  function getPageNameFromPath(path) {
-    const segments = path.split("/").filter(Boolean);
-    return segments[0] || null;
-  }
-  function trackPageView() {
-    const path = window.location.pathname;
-    if (path === lastPath) return;
-    lastPath = path;
-    const pageName = getPageNameFromPath(path) || "home";
-    const appId = "69eba34ad220c1834bc27a08";
-    if (!appId) return;
-    fetch(`/api/app-logs/${appId}/log-user-in-app/${pageName}`, {
-      method: "POST",
-    }).catch(() => {});
-  }
-  const originalPushState = history.pushState.bind(history);
-  history.pushState = function (...args) {
-    originalPushState(...args);
-    trackPageView();
-  };
-  const originalReplaceState = history.replaceState.bind(history);
-  history.replaceState = function (...args) {
-    originalReplaceState(...args);
-    trackPageView();
-  };
-  window.addEventListener("popstate", trackPageView);
-  trackPageView();
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homem, Você Não É Ridículo — Adm. Romário Cruz</title>
+<meta name="description" content="A identidade masculina que Deus criou — e o mundo tenta destruir. Um livro de homem para homem, com honestidade e sem condescendência. Lançamento 25/06/2026.">
+<!-- Pré-visualização ao compartilhar no WhatsApp / redes -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Homem, Você Não É Ridículo">
+<meta property="og:description" content="A identidade masculina que Deus criou — e o mundo tenta destruir. Um livro de homem para homem, com honestidade e sem condescendência. Lançamento 25/06/2026.">
+<meta property="og:image" content="https://blogger.googleusercontent.com/img/a/AVvXsEhvlTidb2ODSFFw6j4tB7rfNAZ_2sxvYS7Po-H_cxVCXozW177G-_hOPE0KFZiZsKl_N8z86RxK_jbRx7GIjZLutgFWhOW0MxO3Lb-ScOea1FXaftJYe7W0kF0NbmQDyIvXiQK4Yw7UDiI-EFlldWMA3BYEc896vRnL6Hc4CqRs0ml53L1hBuas0vPkK18">
+<meta property="og:url" content="https://redebolha.com.br/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600&display=swap');
+.hyr{
+  --bg:#0A0A0C;--bg2:#121013;--card:#1A171B;--gold:#C9A24B;--gold-l:#E7CE8A;--gold-d:#9A7A30;
+  --wine:#6B2737;--wine-l:#9A3a4c;--txt:#F1ECE3;--body:#C6C0B5;--dim:#857F75;--line:rgba(201,162,75,.18);
+  --maxw:1120px;background:var(--bg);color:var(--body);font-family:'Inter',system-ui,sans-serif;
+  font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  overflow-x:hidden;position:relative;}
+.hyr ,.hyr ::before,.hyr *::after{box-sizing:border-box;}
+.hyr p{margin:0 0 1.1em;}
+.hyr a{color:inherit;text-decoration:none;}
+.hyr img{max-width:100%;display:block;}
+.hyr::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.045;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+.hyr .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;position:relative;z-index:2;}
+.hyr .sec{padding:clamp(72px,11vw,140px) 0;position:relative;z-index:1;}
+.hyr .sec--tight{padding:clamp(56px,8vw,96px) 0;}
+.hyr .eyebrow{font-family:'Oswald',sans-serif;font-weight:500;font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);display:inline-block;margin-bottom:1.4rem;}
+.hyr h1,.hyr h2,.hyr h3{font-family:'Oswald',sans-serif;color:var(--txt);text-transform:uppercase;font-weight:600;letter-spacing:-.005em;line-height:1.02;margin:0 0 .6em;}
+.hyr h2{font-size:clamp(1.95rem,4.6vw,3.25rem);}
+.hyr h3{font-size:clamp(1.2rem,2.4vw,1.55rem);letter-spacing:.01em;}
+.hyr .lead{font-size:clamp(1.08rem,1.9vw,1.32rem);color:var(--txt);line-height:1.62;}
+.hyr .gold{color:var(--gold);}
+.hyr .serif{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:600;color:var(--gold-l);line-height:1.25;}
+.hyr .rule{width:64px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin:0 0 2rem;}
+.hyr .center{text-align:center;}
+.hyr .center .rule{margin-left:auto;margin-right:auto;}
+.hyr .narrow{max-width:720px;}
+.hyr .center.narrow{margin-left:auto;margin-right:auto;}
+.hyr .btn{display:inline-flex;align-items:center;gap:.6em;cursor:pointer;font-family:'Oswald',sans-serif;font-weight:600;font-size:.96rem;letter-spacing:.06em;text-transform:uppercase;padding:1rem 1.9rem;border-radius:3px;border:1px solid transparent;background:linear-gradient(135deg,var(--gold-l),var(--gold) 55%,var(--gold-d));color:#0A0A0C;transition:transform .25s ease,box-shadow .25s ease,filter .25s ease;box-shadow:0 10px 30px -10px rgba(201,162,75,.55);}
+.hyr .btn:hover{transform:translateY(-3px);box-shadow:0 18px 40px -12px rgba(201,162,75,.7);filter:brightness(1.05);}
+.hyr .btn svg{width:1.05em;height:1.05em;flex:0 0 auto;}
+.hyr .btn--ghost{background:transparent;color:var(--gold-l);border:1px solid rgba(201,162,75,.45);box-shadow:none;}
+.hyr .btn--ghost:hover{background:rgba(201,162,75,.08);box-shadow:none;}
+.hyr .btn--block{width:100%;justify-content:center;}
+.hyr .btn--lg{font-size:1.08rem;padding:1.15rem 2.2rem;}
+.hyr .hero{position:relative;overflow:hidden;padding:clamp(96px,13vw,170px) 0 clamp(72px,9vw,120px);}
+.hyr .hero::before{content:"";position:absolute;z-index:0;width:90vw;height:90vw;max-width:1000px;max-height:1000px;right:-22%;top:-30%;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(201,162,75,.22),rgba(154,122,48,.08) 40%,transparent 66%);filter:blur(8px);}
+.hyr .hero::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(120% 80% at 50% 0%,transparent 55%,rgba(0,0,0,.55) 100%);}
+.hyr .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(36px,5vw,72px);align-items:center;}
+.hyr .hero h1{font-size:clamp(2.7rem,8.4vw,5.6rem);font-weight:700;line-height:.92;margin-bottom:.35em;}
+.hyr .hero h1 .l2{display:block;color:var(--gold);}
+.hyr .hero .lead{max-width:30ch;margin-bottom:.8em;}
+.hyr .hero .micro{font-size:.95rem;color:var(--dim);max-width:36ch;margin-bottom:2rem;}
+.hyr .hero .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:1.8rem;}
+.hyr .badge{display:inline-flex;align-items:center;gap:.7em;font-family:'Oswald',sans-serif;font-weight:500;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-l);border:1px solid var(--line);background:rgba(201,162,75,.05);padding:.55rem 1rem;border-radius:100px;}
+.hyr .badge .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 rgba(201,162,75,.6);animation:pulse 2.4s infinite;}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(201,162,75,.5);}70%{box-shadow:0 0 0 9px rgba(201,162,75,0);}100%{box-shadow:0 0 0 0 rgba(201,162,75,0);}}
+.hyr .countdown{margin-top:1rem;font-family:'Oswald',sans-serif;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);}
+.hyr .countdown b{color:var(--gold-l);font-weight:600;}
+.hyr .cover-wrap{position:relative;perspective:1400px;}
+.hyr .cover{position:relative;border-radius:6px;overflow:hidden;box-shadow:0 40px 80px -24px rgba(0,0,0,.85),0 0 0 1px rgba(201,162,75,.18),-22px 22px 60px -30px rgba(201,162,75,.25);transform:rotateY(-9deg) rotateX(2deg);transition:transform .6s cubic-bezier(.2,.7,.2,1);}
+.hyr .cover:hover{transform:rotateY(-3deg) rotateX(1deg) translateY(-6px);}
+.hyr .cover::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.10),transparent 32%);}
+.hyr .price-flag{position:absolute;z-index:3;left:-14px;top:24px;font-family:'Oswald',sans-serif;font-weight:600;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;background:var(--wine);color:#F4E9DC;padding:.5rem .9rem;border-radius:3px;box-shadow:0 12px 24px -10px rgba(107,39,55,.8);}
+.hyr .price-flag b{color:var(--gold-l);}
+.hyr .qlist{list-style:none;padding:0;margin:2.2rem 0 0;max-width:760px;}
+.hyr .qlist li{font-family:'Oswald',sans-serif;font-weight:400;font-size:clamp(1.25rem,3vw,1.85rem);color:var(--txt);line-height:1.28;padding:1.1rem 0 1.1rem 2.4rem;position:relative;border-bottom:1px solid rgba(255,255,255,.05);}
+.hyr .qlist li::before{content:"?";position:absolute;left:0;top:1.05rem;color:var(--gold);font-weight:600;font-size:1.4rem;}
+.hyr .hook-close{margin-top:2.2rem;font-size:1.15rem;color:var(--body);}
+.hyr .hook-close b{color:var(--gold-l);font-weight:600;}
+.hyr .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:2.6rem;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.hyr .stat{padding:2.4rem 1.4rem;text-align:center;border-right:1px solid rgba(255,255,255,.05);}
+.hyr .stat:last-child{border-right:none;}
+.hyr .stat .num{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(2.4rem,5vw,3.4rem);color:var(--gold);line-height:1;letter-spacing:-.01em;}
+.hyr .stat .lbl{margin-top:.8rem;font-size:.92rem;color:var(--dim);line-height:1.45;}
+.hyr .stat-note{display:flex;gap:.7rem;align-items:flex-start;margin-top:2rem;font-size:.86rem;color:var(--dim);max-width:620px;}
+.hyr .stat-note svg{width:1.1em;height:1.1em;flex:0 0 auto;margin-top:.2em;color:var(--gold-d);}
+.hyr .stat-line{margin-top:1.8rem;font-size:1.2rem;color:var(--txt);}
+.hyr .reframe{background:linear-gradient(180deg,#0E0C0F,#0A0A0C);border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04);}
+.hyr .reframe .faith{margin-top:2rem;padding-left:1.5rem;border-left:2px solid var(--wine-l);color:var(--body);max-width:640px;}
+.hyr .bigquote{margin-top:clamp(40px,6vw,72px);text-align:center;}
+.hyr .bigquote .serif{font-size:clamp(2rem,5.5vw,3.6rem);display:block;max-width:18ch;margin:0 auto;}
+.hyr .bigquote .by{margin-top:1.4rem;font-family:'Oswald',sans-serif;font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:var(--dim);}
+.hyr .ex-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:2.8rem;}
+.hyr .ex{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:clamp(28px,3.4vw,42px);position:relative;overflow:hidden;}
+.hyr .ex::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--gold),transparent);}
+.hyr .ex .tag{font-family:'Oswald',sans-serif;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-d);margin-bottom:1.1rem;display:block;}
+.hyr .ex p{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.25rem,2.4vw,1.5rem);font-style:italic;line-height:1.45;color:var(--txt);margin:0;}
+.hyr .ex--prayer{grid-column:1 / -1;background:linear-gradient(135deg,#16131a,#120f14);border-color:rgba(154,58,76,.25);}
+.hyr .ex--prayer::before{background:linear-gradient(180deg,var(--wine-l),transparent);}
+.hyr .ex--prayer p{font-size:clamp(1.35rem,2.8vw,1.75rem);}
+.hyr .ex-close{text-align:center;margin-top:2.6rem;}
+.hyr .ex-close .serif{font-size:clamp(1.3rem,2.6vw,1.7rem);display:block;margin-bottom:1.8rem;color:var(--gold-l);}
+.hyr .themes{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:2.8rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.05);border-radius:8px;overflow:hidden;}
+.hyr .theme{background:var(--bg);padding:1.8rem 1.4rem;transition:background .3s ease;}
+.hyr .theme:hover{background:var(--card);}
+.hyr .theme .n{font-family:'Oswald',sans-serif;font-size:.78rem;color:var(--gold-d);letter-spacing:.1em;}
+.hyr .theme .t{font-family:'Oswald',sans-serif;font-weight:500;text-transform:uppercase;color:var(--txt);font-size:1.02rem;margin-top:.5rem;line-height:1.15;}
+.hyr .themes-line{margin-top:1.8rem;font-size:1.08rem;color:var(--body);}
+.hyr .bonus-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:2.8rem;}
+.hyr .bcard{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:clamp(28px,3.4vw,40px);position:relative;}
+.hyr .bcard .kicker{font-family:'Oswald',sans-serif;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-d);}
+.hyr .bcard.is-bonus{border-color:rgba(201,162,75,.4);background:linear-gradient(160deg,#1d1913,#161310);}
+.hyr .bcard .ribbon{position:absolute;top:18px;right:-8px;background:var(--gold);color:#0A0A0C;font-family:'Oswald',sans-serif;font-weight:600;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;padding:.4rem .8rem;border-radius:3px;}
+.hyr .bcard h3{margin:.8rem 0 .6rem;}
+.hyr .bcard p{font-size:.98rem;margin:0;}
+.hyr .bonus-line{text-align:center;margin-top:2.4rem;font-size:1.1rem;color:var(--txt);}
+.hyr .author-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:clamp(32px,5vw,64px);align-items:center;}
+.hyr .author-photo{position:relative;}
+.hyr .author-photo img{border-radius:10px;box-shadow:0 30px 60px -24px rgba(0,0,0,.8),0 0 0 1px rgba(201,162,75,.16);}
+.hyr .author-photo::after{content:"";position:absolute;inset:0;border-radius:10px;box-shadow:inset 0 0 60px rgba(0,0,0,.4);pointer-events:none;}
+.hyr .author-name{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;color:var(--txt);font-size:clamp(1.5rem,3vw,2rem);line-height:1;margin:.3rem 0 .4rem;}
+.hyr .author-role{font-family:'Oswald',sans-serif;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.6rem;}
+.hyr .author-quote{margin-top:1.8rem;padding-left:1.4rem;border-left:2px solid var(--gold-d);}
+.hyr .author-quote .serif{font-size:clamp(1.2rem,2.4vw,1.5rem);}
+.hyr .cred{background:var(--bg2);border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04);}
+.hyr .offer{position:relative;overflow:hidden;}
+.hyr .offer::before{content:"";position:absolute;z-index:0;width:80vw;height:80vw;max-width:760px;max-height:760px;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(201,162,75,.14),transparent 62%);pointer-events:none;}
+.hyr .offer-card{max-width:760px;margin:2.4rem auto 0;background:linear-gradient(165deg,#1b1712,#121013);border:1px solid rgba(201,162,75,.3);border-radius:16px;padding:clamp(34px,5vw,60px);box-shadow:0 50px 90px -40px rgba(0,0,0,.8);text-align:center;}
+.hyr .price{font-family:'Oswald',sans-serif;font-weight:700;color:var(--gold);font-size:clamp(3.2rem,11vw,5.2rem);line-height:.9;letter-spacing:-.02em;}
+.hyr .price small{display:block;font-size:.9rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:.4rem;}
+.hyr .price-after{font-size:.92rem;color:var(--dim);margin-top:.8rem;}
+.hyr .buy-stack{display:flex;flex-direction:column;gap:14px;max-width:440px;margin:2.2rem auto 0;}
+.hyr .pix-box{margin-top:1.8rem;padding:1.2rem 1.4rem;border:1px dashed rgba(201,162,75,.35);border-radius:8px;background:rgba(201,162,75,.04);font-size:.92rem;color:var(--body);text-align:left;}
+.hyr .pix-box .k{font-family:'Oswald',sans-serif;letter-spacing:.06em;color:var(--gold-l);font-size:1.05rem;}
+.hyr .other-buy{margin-top:1.8rem;display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
+.hyr .other-buy a{display:inline-flex;align-items:center;gap:.5em;font-family:'Oswald',sans-serif;font-size:.86rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-l);border:1px solid rgba(201,162,75,.3);padding:.7rem 1.2rem;border-radius:4px;transition:background .25s ease;}
+.hyr .other-buy a:hover{background:rgba(201,162,75,.08);}
+.hyr .guarantee{margin-top:1.6rem;font-size:.82rem;color:var(--dim);}
+.hyr .final{text-align:center;position:relative;overflow:hidden;background:#08080A;}
+.hyr .final::before{content:"";position:absolute;z-index:0;inset:0;background:radial-gradient(70% 60% at 50% 30%,rgba(201,162,75,.10),transparent 70%);}
+.hyr .final h2{font-size:clamp(2.2rem,6vw,4rem);line-height:1;}
+.hyr .final h2 .l2{display:block;color:var(--gold);}
+.hyr .final .sub{font-size:clamp(1.1rem,2.2vw,1.4rem);color:var(--body);margin:1.4rem auto 2.4rem;max-width:24ch;}
+.hyr .sig{margin-top:2.6rem;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;color:var(--gold-l);}
+.hyr .foot{border-top:1px solid var(--line);padding:48px 0;text-align:center;}
+.hyr .foot .links{display:flex;flex-wrap:wrap;gap:1.4rem;justify-content:center;font-size:.92rem;color:var(--body);margin-bottom:1.4rem;}
+.hyr .foot .links a:hover{color:var(--gold-l);}
+.hyr .foot .copy{font-size:.8rem;color:var(--dim);}
+.hyr .foot .copy b{color:var(--body);font-weight:500;}
+.hyr.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1);}
+.hyr.js .reveal.in{opacity:1;transform:none;}
+@media(max-width:880px){
+  .hyr .hero-grid{grid-template-columns:1fr;}
+  .hyr .cover-wrap{max-width:300px;margin:8px auto 0;order:-1;}
+  .hyr .cover{transform:none;}
+  .hyr .cover:hover{transform:translateY(-4px);}
+  .hyr .stats{grid-template-columns:1fr 1fr;}
+  .hyr .stat:nth-child(2){border-right:none;}
+  .hyr .stat{border-bottom:1px solid rgba(255,255,255,.05);}
+  .hyr .ex-grid,.hyr .bonus-grid{grid-template-columns:1fr;}
+  .hyr .themes{grid-template-columns:1fr 1fr;}
+  .hyr .author-grid{grid-template-columns:1fr;text-align:center;}
+  .hyr .author-photo{max-width:260px;margin:0 auto;}
+  .hyr .author-quote,.hyr .reframe .faith{border-left:none;border-top:2px solid var(--gold-d);padding-left:0;padding-top:1.2rem;}
 }
-  </script>
-  <meta content="Um navegador consciente que permite escolher sua intenção de busca, eliminando algoritmos de recomendação e protegendo sua privacidade mental." name="description"/>
-  <meta content="Rede Bolha" property="og:title"/>
-  <meta content="Um navegador consciente que permite escolher sua intenção de busca, eliminando algoritmos de recomendação e protegendo sua privacidade mental." property="og:description"/>
-  <meta content="https://media.base44.com/images/public/69eba34ad220c1834bc27a08/c797bdb3e_Gemini_Generated_Image_2agh9q2agh9q2agh.png/v1/fill/w_1200,h_630/c797bdb3e_Gemini_Generated_Image_2agh9q2agh9q2agh.png" property="og:image"/>
-  <meta content="https://rede-bolha-4bc27a08.base44.app" property="og:url"/>
-  <meta content="website" property="og:type"/>
-  <meta content="Rede Bolha" property="og:site_name"/>
-  <meta content="Rede Bolha" name="twitter:title"/>
-  <meta content="Um navegador consciente que permite escolher sua intenção de busca, eliminando algoritmos de recomendação e protegendo sua privacidade mental." name="twitter:description"/>
-  <meta content="https://media.base44.com/images/public/69eba34ad220c1834bc27a08/c797bdb3e_Gemini_Generated_Image_2agh9q2agh9q2agh.png/v1/fill/w_1200,h_630/c797bdb3e_Gemini_Generated_Image_2agh9q2agh9q2agh.png" name="twitter:image"/>
-  <meta content="summary_large_image" name="twitter:card"/>
-  <meta content="https://rede-bolha-4bc27a08.base44.app" name="twitter:url"/>
-  <meta content="yes" name="mobile-web-app-capable"/>
-  <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
-  <meta content="Rede Bolha" name="apple-mobile-web-app-title"/>
-  <link href="https://rede-bolha-4bc27a08.base44.app" rel="canonical"/>
-  <script data-seo-source="builder" type="application/ld+json">
-   {"name": "Saia da Bolha", "@context": "https://schema.org", "@type": "WebSite", "url": "https://saia-da-bolha-4bc27a08.base44.app"}
-  </script>
-  <script data-seo-source="builder" type="application/ld+json">
-   {"name": "Saia da Bolha", "logo": "https://media.base44.com/images/public/69eba34ad220c1834bc27a08/8d9134e98_logo.png", "@context": "https://schema.org", "@type": "Organization", "url": "https://saia-da-bolha-4bc27a08.base44.app"}
-  </script>
-  <script async="true" data-app-id="69eba34ad220c1834bc27a08" data-platform-url="https://app.base44.com" src="/static/js/badge.js">
-  </script>
- </head>
- <body>
-  <div id="root">
-   <div data-seo-source="builder" id="seo-snapshot" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">
-    <h1>
-     Rede Bolha
-    </h1>
-    <p>
-     Um navegador consciente que permite escolher sua intenção de busca, eliminando algoritmos de recomendação e protegendo sua privacidade mental.
-    </p>
-    <nav aria-label="Pages">
-     <h2>
-      Pages
-     </h2>
-     <ul>
-      <li>
-       <a href="/profile">
-        Profile
-       </a>
-      </li>
-      <li>
-       <a href="/app">
-        Home
-       </a>
-      </li>
-      <li>
-       <a href="/browser">
-        Browser
-       </a>
-      </li>
-     </ul>
-    </nav>
-   </div>
-  </div>
- </body>
+@media(max-width:460px){
+  .hyr{font-size:16px;}
+  .hyr .stats{grid-template-columns:1fr;}
+  .hyr .stat{border-right:none;}
+  .hyr .themes{grid-template-columns:1fr;}
+}
+@media(prefers-reduced-motion:reduce){
+  .hyr ,.hyr ::before{animation:none!important;transition:none!important;}
+  .hyr.js .reveal{opacity:1;transform:none;}
+}
+</style>
+</head>
+<body style="background:#0A0A0C;margin:0;">
+<div class="hyr" id="livro-homem">
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Identidade · Fé · Masculinidade</span>
+          <h1>Homem,<span class="l2">você não é ridículo</span></h1>
+          <p class="lead">A identidade masculina que Deus criou — e o mundo tenta destruir.</p>
+          <p class="micro">Um livro escrito de homem para homem. Com honestidade. Sem condescendência.</p>
+          <div class="cta-row">
+            <a class="btn btn--lg" href="#comprar">Garantir meu e-book — R$ 9,90
+              <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </a>
+            <a class="btn btn--ghost btn--lg" href="#trecho">Ler um trecho</a>
+          </div>
+          <span class="badge"><span class="dot"></span>Lançamento do e-book · 25 de junho de 2026</span>
+          <div class="countdown" id="hyr-cd"></div>
+        </div>
+        <div class="cover-wrap reveal">
+          <span class="price-flag">Lançamento<br /><b>R$ 9,90</b></span>
+          <div class="cover"><img alt="Capa do livro Homem, Você Não É Ridículo, de Adm. Romário Cruz" src="https://blogger.googleusercontent.com/img/a/AVvXsEhvlTidb2ODSFFw6j4tB7rfNAZ_2sxvYS7Po-H_cxVCXozW177G-_hOPE0KFZiZsKl_N8z86RxK_jbRx7GIjZLutgFWhOW0MxO3Lb-ScOea1FXaftJYe7W0kF0NbmQDyIvXiQK4Yw7UDiI-EFlldWMA3BYEc896vRnL6Hc4CqRs0ml53L1hBuas0vPkK18" /></div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- HOOK -->
+  <section class="sec">
+    <div class="wrap">
+      <span class="eyebrow reveal">Antes de qualquer coisa</span>
+      <h2 class="reveal">Você já se sentiu assim?</h2>
+      <div class="rule reveal"></div>
+      <ul class="qlist">
+        <li class="reveal">Já se sentiu ridículo por sentir demais</li>
+        <li class="reveal">Já quis pedir ajuda — e não conseguiu abrir a boca</li>
+        <li class="reveal">Já carregou o peso do mundo nos ombros, em silêncio</li>
+        <li class="reveal">Já chegou em casa cansado, calado, sem saber com quem falar</li>
+      </ul>
+      <p class="hook-close reveal">Se você respondeu "sim" a alguma delas, <b>este livro foi escrito para você.</b></p>
+    </div>
+  </section>
+  <!-- STATS -->
+  <section class="sec sec--tight">
+    <div class="wrap">
+      <span class="eyebrow reveal">O que ninguém te contou</span>
+      <h2 class="reveal">O silêncio do homem tem um preço.</h2>
+      <div class="rule reveal"></div>
+      <div class="stats reveal">
+        <div class="stat"><div class="num">−7</div><div class="lbl">anos a menos de expectativa de vida que a mulher</div></div>
+        <div class="stat"><div class="num">95%</div><div class="lbl">das mortes por acidente de trabalho são de homens</div></div>
+        <div class="stat"><div class="num">4 em 5</div><div class="lbl">suicídios no Brasil são de homens</div></div>
+        <div class="stat"><div class="num">½</div><div class="lbl">dos amigos próximos que a mulher costuma ter</div></div>
+      </div>
+      <p class="stat-line reveal">Isso não é fraqueza. Na maioria das vezes, é <span class="gold">falta de direção.</span></p>
+      <div class="stat-note reveal">
+        <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4M12 16h.01"></path></svg>
+        <span>Se você está passando por um momento muito difícil, ligue <b>188 (CVV)</b> — atendimento gratuito e sigiloso, 24 horas. Você não está sozinho.</span>
+      </div>
+    </div>
+  </section>
+  <!-- REFRAME -->
+  <section class="sec reframe">
+    <div class="wrap">
+      <span class="eyebrow reveal">Uma nova definição de força</span>
+      <h2 class="reveal">Engolir o choro não é força.</h2>
+      <div class="rule reveal"></div>
+      <p class="lead reveal narrow">Você engole tudo pra parecer forte. Mas isso não é força — é uma bomba-relógio. Força de verdade tem raiz. Dobra no vento. E não quebra.</p>
+      <div class="faith reveal">O maior homem que já existiu chorou. Sentir te faz inteiro — não menos homem.</div>
+      <div class="bigquote reveal">
+        <span class="serif">"Você não é ridículo. Você é necessário."</span>
+        <div class="by">— Adm. Romário Cruz</div>
+      </div>
+    </div>
+  </section>
+  <!-- EXCERPTS -->
+  <section class="sec" id="trecho">
+    <div class="wrap">
+      <span class="eyebrow reveal">Trechos do livro</span>
+      <h2 class="reveal">Abra em qualquer página.<br />Vai doer um pouco — e curar também.</h2>
+      <div class="rule reveal"></div>
+      <div class="ex-grid">
+        <div class="ex reveal"><span class="tag">Sobre a máscara</span><p>"Todo homem constrói uma máscara. Não uma máscara de vilão — mas a do 'estou bem', a do 'consigo sozinho', a do 'sou forte'. E ninguém te avisa o preço de usá-la todo dia."</p></div>
+        <div class="ex reveal"><span class="tag">Sobre a herança</span><p>"Toda criança herda mais que genes. Herda silêncios. Herda padrões. Herda a maneira de lidar com a emoção — ou de não lidar. Você carrega o DNA emocional do homem que seu pai foi."</p></div>
+        <div class="ex reveal"><span class="tag">Sobre os padrões</span><p>"A raiva, o silêncio, o trabalho que nunca termina — tudo é um padrão. E padrão nenhum vem do nada. Quando você descobre de onde vem, começa a poder mudar."</p></div>
+        <div class="ex reveal"><span class="tag">Sobre o perdão</span><p>"Perdoar seu pai não significa concordar com o que ele fez. Significa soltar o peso que você vem carregando sozinho — às vezes há trinta anos."</p></div>
+        <div class="ex ex--prayer reveal"><span class="tag">A oração da manhã</span><p>"Senhor, hoje eu reconheço que sou criado à Tua imagem. Não sou produto dos meus erros. Não sou minha dor. Não sou minha máscara."</p></div>
+      </div>
+      <div class="ex-close reveal">
+        <span class="serif">O resto está esperando por você nas próximas páginas.</span>
+        <a class="btn btn--lg" href="#comprar">Quero ler o livro inteiro — R$ 9,90
+          <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- THEMES -->
+  <section class="sec cred">
+    <div class="wrap">
+      <span class="eyebrow reveal">O que você vai encontrar</span>
+      <h2 class="reveal">25 capítulos. Um homem inteiro.</h2>
+      <div class="rule reveal"></div>
+      <p class="lead reveal narrow">Da ferida que ninguém viu ao propósito que ninguém te ensinou. O livro caminha por temas que a gente sente todo dia — e quase nunca fala em voz alta.</p>
+      <div class="themes reveal">
+        <div class="theme"><div class="n">01</div><div class="t">A herança do pai</div></div>
+        <div class="theme"><div class="n">02</div><div class="t">As máscaras que cansam</div></div>
+        <div class="theme"><div class="n">03</div><div class="t">A raiva e o que ela esconde</div></div>
+        <div class="theme"><div class="n">04</div><div class="t">O perdão que liberta</div></div>
+        <div class="theme"><div class="n">05</div><div class="t">Paternidade presente</div></div>
+        <div class="theme"><div class="n">06</div><div class="t">Casamento de verdade</div></div>
+        <div class="theme"><div class="n">07</div><div class="t">Fé sem máscara</div></div>
+        <div class="theme"><div class="n">08</div><div class="t">Propósito e legado</div></div>
+      </div>
+      <p class="themes-line reveal">Tudo com linguagem simples. Sem julgamento. Sem enrolação.</p>
+    </div>
+  </section>
+  <!-- BONUS -->
+  <section class="sec">
+    <div class="wrap">
+      <span class="eyebrow reveal">Bônus de lançamento</span>
+      <h2 class="reveal">Você leva o livro — e ainda ganha o mapa.</h2>
+      <div class="rule reveal"></div>
+      <div class="bonus-grid">
+        <div class="bcard reveal"><span class="kicker">O livro</span><h3>Homem, Você Não É Ridículo</h3><p>25 capítulos sobre identidade, raiva, perdão, paternidade, casamento, fé e propósito. E-book pronto para você começar a ler hoje.</p></div>
+        <div class="bcard is-bonus reveal"><span class="ribbon">Brinde</span><span class="kicker">O bônus</span><h3>Workbook "Homem, Reconheça-se"</h3><p>30 exercícios de autoconhecimento — o passo a passo para aplicar, na sua vida real, o que você acabou de ler. Só para quem garante no lançamento.</p></div>
+      </div>
+      <p class="bonus-line reveal">Dois materiais. Um único objetivo: <span class="gold">te devolver inteiro.</span></p>
+    </div>
+  </section>
+  <!-- AUTHOR -->
+  <section class="sec cred">
+    <div class="wrap">
+      <span class="eyebrow reveal">Sobre o autor</span>
+      <div class="author-grid">
+        <div class="author-photo reveal"><img alt="Adm. Romário Cruz" src="https://blogger.googleusercontent.com/img/a/AVvXsEhvbGhFnQn7BIJG7NxDbQvwo3Z-two5Ua2M0hKF2gCH2uwkgvDXMd7-Rb8lc9845e7cTiejPEKCVeFLGzmvVUbb6EYJmxXRG6iuHcrIYmM38SlpL-HUZJlSYCRb7fIqpy8f4SPdRZ4TEZwZ9oXxeXB3QwqAMY5vy2I3mB4zb16NS1MQESTezZcxllhQ584" /></div>
+        <div class="reveal">
+          <div class="author-name">Adm. Romário Cruz</div>
+          <div class="author-role">Escritor · Administrador · Criador de conteúdo</div>
+          <p>Administrador, especialista em Marketing Digital e apaixonado pelo desenvolvimento humano. Depois de anos vendo homens calados, cansados e perdidos — inclusive olhando no espelho —, ele decidiu escrever o livro que gostaria de ter lido.</p>
+          <p>Mora em Eldorado do Sul (RS), é casado e encontra na família a sua maior motivação.</p>
+          <div class="author-quote"><span class="serif">"Não escrevi como especialista distante. Escrevi como alguém que esteve dos dois lados da máscara — e aprendeu que tirá-la é muito mais corajoso do que usá-la."</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- CREDIBILITY -->
+  <section class="sec sec--tight">
+    <div class="wrap center narrow">
+      <span class="eyebrow reveal">Psicologia e fé, lado a lado</span>
+      <h2 class="reveal">Não é um sermão.<br />É uma conversa honesta.</h2>
+      <div class="rule reveal"></div>
+      <p class="lead reveal">O livro traz o prefácio do psicanalista <span class="gold">Roque Noli Bakof</span> e une, em linguagem simples, a teologia evangélica e o olhar da psicologia moderna — para falar do que significa ser homem hoje.</p>
+    </div>
+  </section>
+  <!-- OFFER -->
+  <section class="sec offer" id="comprar">
+    <div class="wrap center">
+      <span class="eyebrow reveal">Garanta o seu</span>
+      <h2 class="reveal">E-book por R$ 9,90 — só no lançamento.</h2>
+      <div class="offer-card reveal">
+        <div class="price"><small>Preço de lançamento</small>R$ 9,90</div>
+        <p class="price-after">Depois do lançamento, o valor sobe. Garanta agora e comece a ler hoje — e ainda leve o workbook de bônus.</p>
+        <div class="buy-stack">
+          <a class="btn btn--lg btn--block" href="https://wa.me/5551980482820?text=Ol%C3%A1!%20Quero%20garantir%20o%20e-book%20%22Homem%2C%20Voc%C3%AA%20N%C3%A3o%20%C3%89%20Rid%C3%ADculo%22%20pelo%20pre%C3%A7o%20de%20lan%C3%A7amento%20de%20R%24%209%2C90." rel="noopener" target="_blank">
+            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.6-.8-2.7-1.5-3.7-3.3-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5 0-.1-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.3 5.2 4.6 1.9.8 2.6.9 3.6.8.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2"></path></svg>
+            Comprar pelo WhatsApp
+          </a>
+        </div>
+        <div class="pix-box">Prefere <b class="gold">Pix</b>? Use a chave (celular) <span class="k">(51) 98048-2820</span> — valor <b>R$ 9,90</b>. Depois, é só mandar o comprovante no WhatsApp que você recebe o e-book e o bônus na hora.</div>
+        <div class="other-buy">
+          <a href="https://www.amazon.com.br" rel="noopener" target="_blank">
+            <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 7v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7M3 7l9 6 9-6M3 7l9-4 9 4"></path></svg>
+            Comprar na Amazon
+          </a>
+          <a href="https://www.hotmart.com" rel="noopener" target="_blank">
+            <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+            Comprar na Hotmart
+          </a>
+        </div>
+        <p class="guarantee">Pagamento via WhatsApp/Pix com atendimento direto do autor · Entrega digital imediata.</p>
+      </div>
+    </div>
+  </section>
+  <!-- FINAL -->
+  <section class="sec final">
+    <div class="wrap">
+      <h2 class="reveal">Você não é ridículo.<span class="l2">Você é necessário.</span></h2>
+      <p class="sub reveal">E o mundo precisa de você inteiro.</p>
+      <a class="btn btn--lg reveal" href="#comprar">Garantir meu e-book — R$ 9,90
+        <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+      </a>
+      <div class="sig reveal">— Adm. Romário Cruz</div>
+    </div>
+  </section>
+  <!-- FOOTER -->
+  <footer class="foot">
+    <div class="wrap">
+      <div class="links">
+        <a href="https://wa.me/5551980482820" rel="noopener" target="_blank">WhatsApp: (51) 98048-2820</a>
+        <a href="mailto:admromariocruz@gmail.com">admromariocruz@gmail.com</a>
+        <a href="https://redebolha.com.br" rel="noopener" target="_blank">redebolha.com.br</a>
+      </div>
+      <div class="copy">© 2026 <b>Adm. Romário Cruz</b> · Eldorado do Sul, RS · Identidade · Fé · Masculinidade</div>
+    </div>
+  </footer>
+</div>
+<script>
+(function(){
+  var root=document.getElementById('livro-homem');
+  if(!root) return;
+  root.classList.add('js');
+  var els=root.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(ents){
+      ents.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+    },{threshold:.12, rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(el){ io.observe(el); });
+  } else { els.forEach(function(el){ el.classList.add('in'); }); }
+  setTimeout(function(){ els.forEach(function(el){ el.classList.add('in'); }); }, 1600);
+  var cd=document.getElementById('hyr-cd');
+  if(cd){
+    var deadline=new Date('2026-06-25T00:00:00-03:00').getTime();
+    var tick=function(){
+      var d=deadline-Date.now();
+      if(d<=0){ cd.innerHTML='<b>Já disponível</b> — garanta o seu agora.'; return; }
+      var dd=Math.floor(d/864e5), hh=Math.floor(d%864e5/36e5), mm=Math.floor(d%36e5/6e4);
+      cd.innerHTML='Faltam <b>'+dd+'d</b> · <b>'+hh+'h</b> · <b>'+mm+'min</b> para o lançamento';
+    };
+    tick(); setInterval(tick,60000);
+  }
+})();
+</script>
+</body>
 </html>
