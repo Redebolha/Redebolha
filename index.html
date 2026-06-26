@@ -172,15 +172,22 @@
   .hyr.js .reveal{opacity:1;transform:none;}
 }
 
-  .hyr .outros-livros { background: var(--bg2); border-top: 1px solid rgba(255,255,255,.06); }
-  .hyr .book-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px,5vw,64px); margin-top: 2.8rem; }
-  .hyr .book-card { background: var(--card); border: 1px solid rgba(201,162,75,.2); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; transition: transform .3s ease, box-shadow .3s ease; }
-  .hyr .book-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -16px rgba(0,0,0,.7); }
-  .hyr .book-card-img { width: 100%; height: 320px; object-fit: cover; object-position: center top; }
-  .hyr .book-card-body { padding: clamp(24px,3.5vw,36px); flex: 1; display: flex; flex-direction: column; }
-  .hyr .book-card-body h3 { font-size: clamp(1.3rem,2.6vw,1.7rem); margin-bottom: .5rem; }
-  .hyr .book-card-body p { font-size: .97rem; color: var(--body); flex: 1; margin-bottom: 1.4rem; }
-  @media(max-width:880px){ .hyr .book-grid { grid-template-columns: 1fr; } }
+  /* LIVROS */
+  .hyr .outros-livros{background:linear-gradient(180deg,#0e0c0f,#0a0a0c);border-top:1px solid rgba(255,255,255,.06);}
+  .hyr .book-showcase{display:grid;grid-template-columns:1fr 1fr 1fr;gap:clamp(20px,3.5vw,40px);margin-top:2.8rem;align-items:start;}
+  .hyr .bk{display:flex;flex-direction:column;align-items:center;text-align:center;}
+  .hyr .bk-cover-wrap{position:relative;width:100%;max-width:260px;margin:0 auto 1.4rem;}
+  .hyr .bk-cover-wrap img{width:100%;border-radius:8px;box-shadow:0 30px 60px -20px rgba(0,0,0,.85),0 0 0 1px rgba(201,162,75,.18);display:block;transition:transform .4s ease,box-shadow .4s ease;}
+  .hyr .bk-cover-wrap img:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 44px 80px -24px rgba(0,0,0,.9),0 0 0 1px rgba(201,162,75,.35);}
+  .hyr .bk--destaque .bk-cover-wrap img{box-shadow:0 40px 80px -24px rgba(201,162,75,.35),0 0 0 2px rgba(201,162,75,.5);}
+  .hyr .bk-tag{font-family:'Oswald',sans-serif;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-d);margin-bottom:.5rem;display:block;}
+  .hyr .bk-tag--promo{color:var(--wine-l);}
+  .hyr .bk-title{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;color:var(--txt);font-size:clamp(1rem,2vw,1.25rem);line-height:1.1;margin:0 0 .5rem;}
+  .hyr .bk-price{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(1.6rem,3.5vw,2.2rem);color:var(--gold);line-height:1;margin:.4rem 0 1rem;}
+  .hyr .bk-price small{display:block;font-size:.72rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:.2rem;}
+  .hyr .bk-price--promo{color:var(--gold-l);}
+  .hyr .bk-badge{display:inline-block;background:var(--wine);color:#f4e9dc;font-family:'Oswald',sans-serif;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;padding:.3rem .7rem;border-radius:100px;margin-bottom:.8rem;}
+  @media(max-width:760px){.hyr .book-showcase{grid-template-columns:1fr;max-width:320px;margin-left:auto;margin-right:auto;}}
 </style>
 </head>
 <body style="background:#0A0A0C;margin:0;">
@@ -385,34 +392,32 @@
 
   <!-- OUTROS LIVROS -->
   <section class="sec outros-livros">
-    <div class="wrap">
-      <span class="eyebrow reveal">Mais obras de Romário Cruz</span>
-      <h2 class="reveal">Outros livros do autor</h2>
+    <div class="wrap center">
+      <span class="eyebrow reveal">Obras de Adm. Romário Cruz</span>
+      <h2 class="reveal">Nossos livros</h2>
       <div class="rule reveal"></div>
-      <div class="book-grid">
-        <div class="book-card reveal">
-          <img class="book-card-img" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjcamanha-outro-agora" alt="Capa do livro Amanhã É Outro Agora, de Romário Cruz" onerror="this.style.background='linear-gradient(135deg,#2a1f0a,#1a1305)';this.style.height='320px';" />
-          <div class="book-card-body">
-            <span class="eyebrow">Novo lançamento</span>
-            <h3>Amanhã É Outro Agora</h3>
-            <p>15 caminhos para recomeçar com propósito, presença e paz. Um convite para quem sabe que a vida nem sempre segue o caminho planejado, mas ainda assim escolhe continuar.</p>
-            <a class="btn btn--ghost" href="https://wa.me/5551980482820?text=Ol%C3%A1!%20Tenho%20interesse%20no%20livro%20Amanh%C3%A3%20%C3%89%20Outro%20Agora" rel="noopener" target="_blank">
-              Quero saber mais
-              <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
-            </a>
-          </div>
+      <div class="book-showcase">
+        <div class="bk bk--destaque reveal">
+          <div class="bk-cover-wrap"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEhvlTidb2ODSFFw6j4tB7rfNAZ_2sxvYS7Po-H_cxVCXozW177G-_hOPE0KFZiZsKl_N8z86RxK_jbRx7GIjZLutgFWhOW0MxO3Lb-ScOea1FXaftJYe7W0kF0NbmQDyIvXiQK4Yw7UDiI-EFlldWMA3BYEc896vRnL6Hc4CqRs0ml53L1hBuas0vPkK18" alt="Capa do livro Homem, Você Não É Ridículo" /></div>
+          <span class="bk-badge">Promoção especial</span>
+          <span class="bk-tag bk-tag--promo">E-book · Disponível agora</span>
+          <h3 class="bk-title">Homem, Você Não É Ridículo</h3>
+          <div class="bk-price bk-price--promo"><small>Preço promocional</small>R$ 9,90</div>
+          <a class="btn btn--lg btn--block" href="https://wa.me/5551980482820?text=Ol%C3%A1!%20Quero%20garantir%20o%20e-book%20%22Homem%2C%20Voc%C3%AA%20N%C3%A3o%20%C3%89%20Rid%C3%ADculo%22%20pelo%20pre%C3%A7o%20de%20lan%C3%A7amento%20de%20R%24%209%2C90." rel="noopener" target="_blank">Garantir por R$ 9,90 <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
         </div>
-        <div class="book-card reveal">
-          <img class="book-card-img" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjcpoderdadecisao" alt="Capa do livro O Poder da Decisão, de Adm. Romário Cruz" onerror="this.style.background='linear-gradient(135deg,#0a0a05,#111109)';this.style.height='320px';" />
-          <div class="book-card-body">
-            <span class="eyebrow">1ª Edição 2026</span>
-            <h3>O Poder da Decisão</h3>
-            <p>Como as escolhas que você faz — e as que você evita — constroem ou destroem quem você é. Um guia honesto para viver com mais coragem, clareza e propósito.</p>
-            <a class="btn btn--ghost" href="https://wa.me/5551980482820?text=Ol%C3%A1!%20Tenho%20interesse%20no%20livro%20O%20Poder%20da%20Decis%C3%A3o" rel="noopener" target="_blank">
-              Quero saber mais
-              <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
-            </a>
-          </div>
+        <div class="bk reveal">
+          <div class="bk-cover-wrap"><img src="https://raw.githubusercontent.com/Redebolha/Redebolha/main/amanha-outro-agora.jpg" alt="Capa do livro Amanhã É Outro Agora" /></div>
+          <span class="bk-tag">E-book · 2026</span>
+          <h3 class="bk-title">Amanhã É Outro Agora</h3>
+          <div class="bk-price"><small>Preço</small>R$ 19,90</div>
+          <a class="btn btn--ghost btn--block" href="https://wa.me/5551980482820?text=Ol%C3%A1!%20Tenho%20interesse%20no%20livro%20%22Amanh%C3%A3%20%C3%89%20Outro%20Agora%22%20por%20R%24%2019%2C90" rel="noopener" target="_blank">Garantir por R$ 19,90 <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        </div>
+        <div class="bk reveal">
+          <div class="bk-cover-wrap"><img src="https://raw.githubusercontent.com/Redebolha/Redebolha/main/poder-da-decisao.jpg" alt="Capa do livro O Poder da Decisão" /></div>
+          <span class="bk-tag">E-book · 1ª Ed. 2026</span>
+          <h3 class="bk-title">O Poder da Decisão</h3>
+          <div class="bk-price"><small>Preço</small>R$ 19,90</div>
+          <a class="btn btn--ghost btn--block" href="https://wa.me/5551980482820?text=Ol%C3%A1!%20Tenho%20interesse%20no%20livro%20%22O%20Poder%20da%20Decis%C3%A3o%22%20por%20R%24%2019%2C90" rel="noopener" target="_blank">Garantir por R$ 19,90 <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
         </div>
       </div>
     </div>
