@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- redeploy trigger 2026-07-05T23:02:13.106Z -->
+<!DOCTYPE html><!-- redeploy trigger 2026-07-05T23:07:38.139Z -->
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -181,7 +181,9 @@
   .hyr .bk-cover-wrap{position:relative;width:100%;max-width:260px;margin:0 auto 1.4rem;}
   .hyr .bk-cover-wrap img{width:100%;border-radius:8px;box-shadow:0 30px 60px -20px rgba(0,0,0,.85),0 0 0 1px rgba(201,162,75,.18);display:block;transition:transform .4s ease,box-shadow .4s ease;}
   .hyr .bk-cover-wrap img:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 44px 80px -24px rgba(0,0,0,.9),0 0 0 1px rgba(201,162,75,.35);}
-  .hyr .bk--destaque .bk-cover-wrap img{box-shadow:0 40px 80px -24px rgba(201,162,75,.35),0 0 0 2px rgba(201,162,75,.5);}
+  .hyr .bk--destaque .bk-cover-wrap{perspective:1600px;}
+.hyr .bk--destaque .bk-cover-wrap img{box-shadow:0 40px 80px -24px rgba(201,162,75,.35),0 0 0 2px rgba(201,162,75,.5);transform-style:preserve-3d;animation:spinCover3d 8s linear infinite;}
+.hyr .bk--destaque .bk-cover-wrap img:hover{animation-play-state:paused;transform:none;}
   .hyr .bk-tag{font-family:'Oswald',sans-serif;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-d);margin-bottom:.5rem;display:block;}
   .hyr .bk-tag--promo{color:var(--wine-l);}
   .hyr .bk-title{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;color:var(--txt);font-size:clamp(1rem,2vw,1.25rem);line-height:1.1;margin:0 0 .5rem;}
