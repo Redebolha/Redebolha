@@ -65,9 +65,10 @@
   
 .hyr .countdown{margin-top:1rem;font-family:'Oswald',sans-serif;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);}
 .hyr .countdown b{color:var(--gold-l);font-weight:600;}
-.hyr .cover-wrap{position:relative;perspective:1400px;}
-.hyr .cover{position:relative;border-radius:6px;overflow:hidden;box-shadow:0 40px 80px -24px rgba(0,0,0,.85),0 0 0 1px rgba(201,162,75,.18),-22px 22px 60px -30px rgba(201,162,75,.25);transform:rotateY(-9deg) rotateX(2deg);transition:transform .6s cubic-bezier(.2,.7,.2,1);}
-.hyr .cover:hover{transform:rotateY(-3deg) rotateX(1deg) translateY(-6px);}
+.hyr .cover-wrap{position:relative;perspective:1600px;}
+.hyr .cover{position:relative;border-radius:6px;overflow:hidden;box-shadow:0 40px 80px -24px rgba(0,0,0,.85),0 0 0 1px rgba(201,162,75,.18),-22px 22px 60px -30px rgba(201,162,75,.25);transform-style:preserve-3d;animation:spinCover3d 8s linear infinite;}
+.hyr .cover:hover{animation-play-state:paused;}
+@keyframes spinCover3d{0%{transform:rotateY(0deg);}100%{transform:rotateY(360deg);}}
 .hyr .cover::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.10),transparent 32%);}
 .hyr .price-flag{position:absolute;z-index:3;left:-14px;top:24px;font-family:'Oswald',sans-serif;font-weight:600;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;background:var(--wine);color:#F4E9DC;padding:.5rem .9rem;border-radius:3px;box-shadow:0 12px 24px -10px rgba(107,39,55,.8);}
 .hyr .price-flag b{color:var(--gold-l);}
