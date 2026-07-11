@@ -2,38 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://redebolha.com.br/</loc>
-        <lastmod>2026-07-05</lastmod>
+        <lastmod>2026-07-11</lastmod>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://redebolha.com.br/artigos/</loc>
-        <lastmod>2026-07-05</lastmod>
-        <priority>0.9</priority>
-    </url>
-    <url>
         <loc>https://redebolha.com.br/sobre-o-autor.html</loc>
-        <lastmod>2026-07-05</lastmod>
+        <lastmod>2026-07-11</lastmod>
         <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://redebolha.com.br/artigos/crise-dos-40.html</loc>
-        <lastmod>2026-07-05</lastmod>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://redebolha.com.br/artigos/solidao-masculina.html</loc>
-        <lastmod>2026-07-05</lastmod>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://redebolha.com.br/artigos/por-que-homem-nao-chora.html</loc>
-        <lastmod>2026-07-05</lastmod>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://redebolha.com.br/artigos/cansaco-emocional-do-provedor.html</loc>
-        <lastmod>2026-07-05</lastmod>
-        <priority>0.8</priority>
     </url>
     <url>
         <loc>https://redebolha.com.br/livros/</loc>
@@ -43,7 +18,7 @@
     <url>
         <loc>https://redebolha.com.br/livros/homem-voce-nao-e-ridiculo.html</loc>
         <lastmod>2026-07-11</lastmod>
-        <priority>0.9</priority>
+        <priority>0.8</priority>
     </url>
     <url>
         <loc>https://redebolha.com.br/livros/amanha-e-outro-agora.html</loc>
@@ -54,5 +29,65 @@
         <loc>https://redebolha.com.br/livros/o-poder-da-decisao.html</loc>
         <lastmod>2026-07-11</lastmod>
         <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://redebolha.com.br/artigos/</loc>
+        <lastmod>2026-07-11</lastmod>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://redebolha.com.br/artigos/crise-dos-40.html</loc>
+        <lastmod>2026-07-11</lastmod>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://redebolha.com.br/artigos/solidao-masculina.html</loc>
+        <lastmod>2026-07-11</lastmod>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://redebolha.com.br/artigos/por-que-homem-nao-chora.html</loc>
+        <lastmod>2026-07-11</lastmod>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://redebolha.com.br/artigos/cansaco-emocional-do-provedor.html</loc>
+        <lastmod>2026-07-11</lastmod>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://redebolha.com.br/masculinidade/</loc>
+        <lastmod>2026-07-11</lastmod>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://redebolha.com.br/saude-emocional-masculina/</loc>
+        <lastmod>2026-07-11</lastmod>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://redebolha.com.br/paternidade/</loc>
+        <lastmod>2026-07-11</lastmod>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://redebolha.com.br/relacionamentos/</loc>
+        <lastmod>2026-07-11</lastmod>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://redebolha.com.br/proposito/</loc>
+        <lastmod>2026-07-11</lastmod>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://redebolha.com.br/fe-e-identidade/</loc>
+        <lastmod>2026-07-11</lastmod>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://redebolha.com.br/contato/</loc>
+        <lastmod>2026-07-11</lastmod>
+        <priority>0.6</priority>
     </url>
 </urlset>
