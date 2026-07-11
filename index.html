@@ -243,6 +243,31 @@
     </script>
   </head>
 <body style="background:#0A0A0C;margin:0;">
+<!-- SITE NAV (editorial hub) -->
+<style>
+.rb-nav{position:sticky;top:0;z-index:50;background:rgba(10,10,12,.86);backdrop-filter:blur(10px);border-bottom:1px solid rgba(201,162,75,.18);}
+.rb-nav .inner{max-width:1180px;margin:0 auto;padding:.7rem 1.2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+.rb-nav .brand{font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:.9rem;color:#C9A24B;text-decoration:none;white-space:nowrap;}
+.rb-nav ul{list-style:none;display:flex;flex-wrap:wrap;gap:1.15rem;margin:0;padding:0;}
+.rb-nav a.lnk{font-family:'Oswald',sans-serif;font-weight:400;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:#D8CFC4;text-decoration:none;transition:color .2s;}
+.rb-nav a.lnk:hover{color:#E6C879;}
+.rb-nav .cta{font-family:'Oswald',sans-serif;font-weight:600;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:#0A0A0C;background:linear-gradient(135deg,#E6C879,#C9A24B);padding:.5rem 1rem;border-radius:3px;text-decoration:none;white-space:nowrap;}
+@media(max-width:860px){.rb-nav .inner{flex-direction:column;align-items:flex-start;}.rb-nav ul{gap:.8rem 1rem;}}
+</style>
+<nav class="rb-nav" aria-label="Navegação principal">
+  <div class="inner">
+    <a class="brand" href="/">Rede Bolha</a>
+    <ul>
+      <li><a class="lnk" href="/sobre-o-autor.html">Sobre</a></li>
+      <li><a class="lnk" href="/livros/">Livros</a></li>
+      <li><a class="lnk" href="/artigos/">Artigos</a></li>
+      <li><a class="lnk" href="#temas">Temas</a></li>
+      <li><a class="lnk" href="#contato">Contato</a></li>
+    </ul>
+    <a class="cta" href="#comprar">Comprar</a>
+  </div>
+</nav>
+
 <div class="hyr" id="livro-homem">
   <!-- HERO -->
   <header class="hero">
@@ -461,7 +486,58 @@
   </section>
 
   <!-- OUTROS LIVROS -->
-  <section class="sec outros-livros">
+  
+<!-- EDITORIAL HUB: Temas + Sobre + Contato -->
+<style>
+.rb-hub{background:linear-gradient(180deg,#0A0A0C,#0E0C0F);border-top:1px solid rgba(255,255,255,.05);padding:clamp(64px,8vw,110px) 0;}
+.rb-hub .wrap{max-width:1180px;margin:0 auto;padding:0 1.2rem;}
+.rb-hub .rule{width:64px;height:2px;background:linear-gradient(90deg,#C9A24B,transparent);margin:0 auto 1.6rem;}
+.rb-hub h2{font-family:'Oswald',sans-serif;text-align:center;color:#F4EFE7;font-size:clamp(1.8rem,4vw,2.8rem);margin:0 0 .5rem;}
+.rb-hub .sub{text-align:center;color:#A79E92;max-width:60ch;margin:0 auto 2.8rem;line-height:1.6;}
+.rb-temas{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+@media(max-width:860px){.rb-temas{grid-template-columns:1fr;}}
+.rb-tema{display:block;background:#141216;border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:1.6rem 1.5rem;text-decoration:none;transition:border-color .25s,transform .25s;}
+.rb-tema:hover{border-color:rgba(201,162,75,.45);transform:translateY(-3px);}
+.rb-tema .t{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.06em;color:#E6C879;font-size:1.08rem;margin:0 0 .4rem;}
+.rb-tema .d{color:#A79E92;font-size:.92rem;line-height:1.5;margin:0;}
+.rb-cols{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:2.6rem;}
+@media(max-width:860px){.rb-cols{grid-template-columns:1fr;}}
+.rb-card{background:#141216;border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:clamp(24px,3vw,36px);}
+.rb-card h3{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.06em;color:#F4EFE7;font-size:1.2rem;margin:0 0 .8rem;}
+.rb-card p{color:#A79E92;line-height:1.6;margin:0 0 1.2rem;}
+.rb-card a.link{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:.82rem;color:#E6C879;text-decoration:none;border-bottom:1px solid rgba(201,162,75,.4);padding-bottom:2px;}
+.rb-card a.link:hover{color:#fff;}
+</style>
+<section id="temas" class="rb-hub">
+  <div class="wrap">
+    <div class="rule"></div>
+    <h2>Os temas da Rede Bolha</h2>
+    <p class="sub">Conversas honestas de homem para homem sobre o que costuma ficar em silêncio. Explore por tema.</p>
+    <div class="rb-temas">
+      <a class="rb-tema" href="/artigos/"><p class="t">Masculinidade</p><p class="d">O que significa ser homem hoje, sem caricatura e sem culpa.</p></a>
+      <a class="rb-tema" href="/artigos/"><p class="t">Saúde emocional</p><p class="d">Nomear o que se sente antes que o silêncio cobre o preço.</p></a>
+      <a class="rb-tema" href="/artigos/"><p class="t">Paternidade</p><p class="d">Ser presença, não só provedor, na vida dos filhos.</p></a>
+      <a class="rb-tema" href="/artigos/"><p class="t">Relacionamentos</p><p class="d">Vínculos reais exigem coragem para se mostrar.</p></a>
+      <a class="rb-tema" href="/artigos/"><p class="t">Propósito</p><p class="d">Encontrar direção quando o automático já não basta.</p></a>
+      <a class="rb-tema" href="/artigos/"><p class="t">Fé e identidade</p><p class="d">Quem você é diante de Deus e de si mesmo.</p></a>
+    </div>
+
+    <div class="rb-cols">
+      <div class="rb-card">
+        <h3>Sobre Romário Cruz</h3>
+        <p>Administrador, escritor e criador da Rede Bolha. Escreve para homens que cansaram de fingir que está tudo bem — de homem para homem, sem condescendência.</p>
+        <a class="link" href="/sobre-o-autor.html">Conhecer o autor</a>
+      </div>
+      <div class="rb-card" id="contato">
+        <h3>Contato</h3>
+        <p>Dúvidas, convites ou uma conversa direta? Fale pelo WhatsApp ou por e-mail.</p>
+        <a class="link" href="https://wa.me/5551980482820">WhatsApp</a>&nbsp;&nbsp;&nbsp;
+        <a class="link" href="mailto:admromariocruz@gmail.com">E-mail</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="sec outros-livros">
     <div class="wrap center">
       <span class="eyebrow reveal">Obras de Adm. Romário Cruz</span>
       <h2 class="reveal">Nossos livros</h2>
