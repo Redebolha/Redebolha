@@ -1,0 +1,20 @@
+{
+  "name": "Rede Bolha — Painel Administrativo",
+  "short_name": "RB Painel",
+  "description": "Painel para gerenciar o conteúdo do site Rede Bolha.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0A0A0C",
+  "theme_color": "#0A0A0C",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "../hotmart-logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
