@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+  <html lang="pt-BR">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#111113">
+  <link rel="apple-touch-icon" href="/icon-192.png">
+  <title>Instalar o App | Rede Bolha</title>
+<meta name="description" content="Instale o app da Rede Bolha no seu celular e tenha acesso rapido, direto da tela inicial.">
+<link rel="canonical" href="https://redebolha.com.br/instalar-app.html">
+  </head>
+  <body>
+  <style>
+  body{background:#0A0A0C;color:#C6C0B5;font-family:system-ui,sans-serif;margin:0;padding:0;}
+.wrap{max-width:640px;margin:0 auto;padding:64px 24px;}
+h1{color:#F1ECE3;text-transform:uppercase;font-size:2rem;margin-bottom:.3em;letter-spacing:.02em;}
+  .icon{width:96px;height:96px;border-radius:20px;display:block;margin:0 auto 24px;box-shadow:0 10px 30px rgba(0,0,0,.5);}
+.rule{width:64px;height:2px;background:linear-gradient(90deg,#C9A24B,transparent);margin:0 auto 2rem;}
+  .step{background:#1A171B;border:1px solid rgba(201,162,75,.18);border-radius:10px;padding:24px;margin-bottom:20px;}
+.step h2{color:#C9A24B;font-size:1rem;text-transform:uppercase;letter-spacing:.08em;margin:0 0 12px;}
+.step ol{margin:0;padding-left:20px;line-height:1.8;}
+#installBtn{display:none;width:100%;padding:16px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;background:linear-gradient(135deg,#E6C879,#C9A24B);color:#0A0A0C;border:none;border-radius:6px;cursor:pointer;font-size:1rem;margin-bottom:24px;}
+a.back{color:#C9A24B;text-decoration:none;font-size:.85rem;text-transform:uppercase;letter-spacing:.06em;}
+.center{text-align:center;}
+</style>
+  <div class="wrap">
+  <div class="center">
+  <img class="icon" src="/icon-192.png" alt="Icone Rede Bolha">
+  <h1>Instale o App da Rede Bolha</h1>
+  <div class="rule"></div>
+  </div>
+  <button id="installBtn">Instalar agora</button>
+  <div class="step">
+  <h2>Android (Chrome)</h2>
+  <ol>
+  <li>Toque no botao "Instalar agora" acima (se aparecer), ou</li>
+<li>Toque nos tres pontinhos no canto superior direito do navegador</li>
+  <li>Escolha "Instalar app" ou "Adicionar a tela inicial"</li>
+  </ol>
+  </div>
+  <div class="step">
+  <h2>iPhone (Safari)</h2>
+  <ol>
+  <li>Abra este link no Safari (nao funciona pelo Chrome no iPhone)</li>
+<li>Toque no icone de compartilhar (quadrado com seta para cima)</li>
+<li>Escolha "Adicionar a Tela de Inicio"</li>
+  </ol>
+  </div>
+  <div class="center" style="margin-top:32px;">
+  <a class="back" href="/">Voltar para o site</a>
+  </div>
+  </div>
+  <script>
+  let deferredPrompt;
+const btn = document.getElementById('installBtn');
+window.addEventListener('beforeinstallprompt', (e) => {
+e.preventDefault();
+deferredPrompt = e;
+btn.style.display = 'block';
+});
+btn.addEventListener('click', async () => {
+if (!deferredPrompt) return;
+deferredPrompt.prompt();
+await deferredPrompt.userChoice;
+deferredPrompt = null;
+btn.style.display = 'none';
+});
+window.addEventListener('appinstalled', () => {
+btn.style.display = 'none';
+});
+if ('serviceWorker' in navigator) {
+navigator.serviceWorker.register('/service-worker.js').catch(function(){});
+}
+</script>
+</body>
+</html>
