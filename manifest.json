@@ -1,0 +1,46 @@
+{
+  "name": "Rede Bolha — Adm. Romário Cruz",
+  "short_name": "Rede Bolha",
+  "description": "Identidade, fé e masculinidade. Conversas honestas de homem para homem.",
+  "lang": "pt-BR",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#111113",
+  "theme_color": "#111113",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Artigos",
+      "url": "/artigos/"
+    },
+    {
+      "name": "Livros",
+      "url": "/livros/"
+    },
+    {
+      "name": "Falar no WhatsApp",
+      "url": "https://wa.me/5551980482820"
+    }
+  ]
+}
