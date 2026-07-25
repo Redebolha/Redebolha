@@ -12,6 +12,9 @@
     <!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-JDV0ZGBPV9"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-JDV0ZGBPV9');</script></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#111113">
+    <link rel="apple-touch-icon" href="/icon-192.png">
 <title>Homem, Você Não É Ridículo | Masculinidade, Saúde Emocional e Propósito — Romário Cruz</title>
 <meta name="description" content="Livros e conversas honestas de Romário Cruz sobre masculinidade, saúde emocional, paternidade, relacionamentos, fé e propósito. De homem para homem, sem condescendência.">
 <!-- Pré-visualização ao compartilhar no WhatsApp / redes -->
@@ -788,5 +791,14 @@
   
 })();
 </script>
+<script>
+    if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                        navigator.serviceWorker.register('/service-worker.js').catch(function (err) {
+                                        console.warn('Falha ao registrar o service worker:', err);
+                        });
+            });
+    }
+        </script>
 </body>
 </html>
