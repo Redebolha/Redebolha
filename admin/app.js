@@ -785,22 +785,106 @@ function viewTags(v){
 /* ===================================================================
    BIBLIOTECA DE MIDIA (lista imagens do repositorio)
    =================================================================== */
-function viewMedia(v){
-  v.innerHTML='<div class="toolbar"><input type="search" id="mq" placeholder="Buscar mídia…"><span style="color:var(--dim);font-size:.85rem">Imagens hospedadas no repositório do site</span></div><div id="mediaGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px"></div>';
-  var grid=$("#mediaGrid"); grid.innerHTML='<p class="empty">Carregando…</p>';
-  ghListDir("").then(function(items){
-    var imgs=items.filter(function(f){return /\.(jpe?g|png|gif|webp|svg)$/i.test(f.name);});
-    grid.innerHTML="";
-    if(!imgs.length){grid.innerHTML='<p class="empty">Nenhuma imagem no diretório raiz.</p>';return;}
-    imgs.forEach(function(f){
-      var card=el("div",{class:"panel",style:"padding:8px"});
-      card.innerHTML='<img src="'+SITE+'/'+f.name+'" alt="'+esc(f.name)+'" style="width:100%;height:110px;object-fit:cover;border-radius:6px"><div style="font-size:.72rem;color:var(--dim);margin-top:6px;word-break:break-all">'+esc(f.name)+'</div>';
-      var copy=el("button",{class:"btn ghost sm",style:"margin-top:6px;width:100%"},"Copiar URL");
-      copy.onclick=function(){navigator.clipboard.writeText(SITE+"/"+f.name);toast("URL copiada.","ok");};
-      card.appendChild(copy); grid.appendChild(card);
-    });
-  }).catch(function(e){grid.innerHTML='<p class="empty">Erro: '+esc(e.message)+'</p>';});
-}
+
+   function viewMedia(v){
+        v.innerHTML='<div class="toolbar"><input type="search" id="mq" placeholder="Buscar mídia…"><span style="color:var(--dim);font-size:.85rem">Fotos da galeria (/fotos) — clique para ajustar o enquadramento</span><label class="btn ghost sm" style="margin-left:auto;cursor:pointer">Enviar fotos<input type="file" id="mUpload" accept="image/*" multiple style="display:none"></label></div><div id="mediaGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px"></div>';
+        var grid=$("#mediaGrid"); grid.innerHTML='<p class="empty">Carregando…</p>';
+        function loadGrid(){
+               grid.innerHTML='<p class="empty">Carregando…</p>';
+               Promise.all([ghListDir("fotos"),ghContent("fotos/index.html")]).then(function(res){
+                        var items=res[0], fd=res[1];
+                        var html=b64decode(fd.content);
+                        var imgs=items.filter(function(f){return /\.(jpe?g|png|gif|webp)$/i.test(f.name);});
+                        grid.innerHTML="";
+                        if(!imgs.length){grid.innerHTML='<p class="empty">Nenhuma foto em /fotos.</p>';return;}
+                        imgs.sort(function(a,b){return a.name.localeCompare(b.name);});
+                        imgs.forEach(function(f){
+                                   var re=new RegExp("/fotos/"+f.name.replace(/\./g,"\\.")+'"[^>]*?object-position:([^;]+);');
+                                   var m=re.exec(html);
+                                   var pos=m?m[1].trim():"top";
+                                   var card=el("div",{class:"panel",style:"padding:8px;cursor:pointer"});
+                                   card.innerHTML='<img src="'+SITE+'/fotos/'+f.name+'" alt="'+esc(f.name)+'" style="width:100%;aspect-ratio:1/1;object-fit:cover;object-position:'+esc(pos)+';border-radius:6px;pointer-events:none"><div style="font-size:.72rem;color:var(--dim);margin-top:6px;word-break:break-all">'+esc(f.name)+'</div>';
+                                   card.onclick=function(){openCropEditor(f.name,pos);};
+                                   grid.appendChild(card);
+                        });
+               }).catch(function(e){grid.innerHTML='<p class="empty">Erro: '+esc(e.message)+'</p>';});
+        }
+        loadGrid();
+        $("#mq").oninput=function(){
+               var q=this.value.toLowerCase();
+               $all("#mediaGrid .panel").forEach(function(c){c.style.display=c.textContent.toLowerCase().indexOf(q)>-1?"":"none";});
+        };
+        $("#mUpload").onchange=function(e){
+               var files=Array.prototype.slice.call(e.target.files||[]);
+               if(!files.length)return;
+               uploadPhotos(files);
+               e.target.value="";
+        };
+        function openCropEditor(filename,currentPos){
+               var py=50;
+               var mPos=/center\s+(\d+)%/.exec(currentPos||"");
+               if(mPos)py=parseInt(mPos[1],10);
+               else if((currentPos||"").trim()==="top")py=0;
+               var inner='<h3 style="margin-top:0">Ajustar enquadramento</h3><p style="color:var(--dim);font-size:.85rem;margin-top:-8px">'+esc(filename)+'</p><div style="display:flex;justify-content:center;margin:14px 0"><img id="cropPreview" src="'+SITE+'/fotos/'+filename+'" style="width:280px;height:280px;object-fit:cover;object-position:center '+py+'%;border-radius:8px;background:#000"></div><label style="font-size:.8rem;color:var(--dim)">Posição vertical (rosto e livro visíveis)</label><input type="range" id="cropRange" min="0" max="100" value="'+py+'" style="width:100%"><div style="text-align:center;font-size:.8rem;color:var(--dim);margin-top:4px" id="cropVal">'+py+'%</div><div style="display:flex;gap:8px;justify-content:flex-end;margin-top:16px"><button class="btn ghost" id="cropCancel">Cancelar</button><button class="btn" id="cropSave">Salvar</button></div>';
+               openModal(inner,function(m){
+                        var range=$("#cropRange",m),preview=$("#cropPreview",m),val=$("#cropVal",m);
+                        range.oninput=function(){preview.style.objectPosition="center "+range.value+"%";val.textContent=range.value+"%";};
+                        $("#cropCancel",m).onclick=closeModal;
+                        $("#cropSave",m).onclick=function(){
+                                   var btn=$("#cropSave",m); btn.disabled=true; btn.textContent="Salvando…";
+                                   var newPos="center "+range.value+"%";
+                                   ghContent("fotos/index.html").then(function(fd){
+                                                var html=b64decode(fd.content);
+                                                var re=new RegExp('(/fotos/'+filename.replace(/\./g,"\\.")+'"[^>]*?object-position:)[^;]+(;)');
+                                                if(!re.test(html))throw new Error("Não encontrei a foto no arquivo.");
+                                                var newHtml=html.replace(re,"$1"+newPos+"$2");
+                                                return ghPut("fotos/index.html",newHtml,"Ajusta enquadramento de "+filename+" (via Painel Rede Bolha)",fd.sha);
+                                   }).then(function(){
+                                                toast("Enquadramento atualizado.","ok");
+                                                closeModal();
+                                                loadGrid();
+                                   }).catch(function(e){
+                                                toast("Falha ao salvar: "+e.message,"err");
+                                                btn.disabled=false; btn.textContent="Salvar";
+                                   });
+                        };
+               });
+        }
+        function uploadPhotos(files){
+               toast("Enviando "+files.length+" foto(s)…","");
+               var chain=Promise.resolve();
+               files.forEach(function(file){
+                        chain=chain.then(function(){
+                                   return new Promise(function(resolve,reject){
+                                                var reader=new FileReader();
+                                                reader.onload=function(){
+                                                               var base64=String(reader.result).split(",")[1];
+                                                               var filename=file.name.replace(/[^a-zA-Z0-9._-]/g,"-");
+                                                               gh("/repos/"+REPO.owner+"/"+REPO.name+"/contents/fotos/"+filename,{method:"PUT",body:{message:"Adiciona foto "+filename+" (via Painel Rede Bolha)",content:base64,branch:REPO.branch}}).then(function(){
+                                                                                return ghContent("fotos/index.html");
+                                                               }).then(function(fd){
+                                                                                var html=b64decode(fd.content);
+                                                                                var marker="\n</div>\n</article>";
+                                                                                if(html.indexOf(marker)===-1)throw new Error("Não encontrei o final da galeria.");
+                                                                                var img='\n<img src="/fotos/'+filename+'" alt="Adm. Romário Cruz com leitor segurando o livro Homem, Você Não É Ridículo" loading="lazy" decoding="async" style="width:100%;aspect-ratio:1/1;object-fit:cover;object-position:center 35%;border-radius:4px;display:block;">';
+                                                                                var newHtml=html.replace(marker,img+marker);
+                                                                                return ghPut("fotos/index.html",newHtml,"Adiciona foto "+filename+" à galeria (via Painel Rede Bolha)",fd.sha);
+                                                               }).then(resolve).catch(reject);
+                                                };
+                                                reader.onerror=function(){reject(new Error("Falha ao ler arquivo."));};
+                                                reader.readAsDataURL(file);
+                                   });
+                        });
+               });
+               chain.then(function(){
+                        toast("Fotos enviadas. Clique em cada uma para ajustar o enquadramento.","ok");
+                        loadGrid();
+               }).catch(function(e){
+                        toast("Falha no envio: "+e.message,"err");
+                        loadGrid();
+               });
+        }
+   }
 
 /* ===================================================================
    PAGINAS (lista arquivos .html institucionais)
