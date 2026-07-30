@@ -140,6 +140,7 @@ var NAV=[
   ["categories","Categorias","❏"],
   ["tags","Tags","#"],
   ["media","Biblioteca de Mídia","▣"],
+  ["dedications","Dedicatórias","❝"],
   ["comments","Comentários","💬"],
   ["forms","Formulários","✉"],
   ["menus","Menus","☰"],
@@ -189,11 +190,11 @@ function enterApp(){
 function go(route){
   state.route=route;
   $all("#nav a").forEach(function(a){a.classList.toggle("active",a.getAttribute("data-route")===route);});
-  var titles={dashboard:"Visão Geral",articles:"Artigos",pages:"Páginas",categories:"Categorias",tags:"Tags",media:"Biblioteca de Mídia",comments:"Comentários",forms:"Formulários",menus:"Menus",authors:"Autores",users:"Usuários",reports:"Relatórios",settings:"Configurações",security:"Segurança",help:"Ajuda"};
+  var titles={dashboard:"Visão Geral",articles:"Artigos",pages:"Páginas",categories:"Categorias",tags:"Tags",media:"Biblioteca de Mídia",dedications:"Dedicatórias",comments:"Comentários",forms:"Formulários",menus:"Menus",authors:"Autores",users:"Usuários",reports:"Relatórios",settings:"Configurações",security:"Segurança",help:"Ajuda"};
   $("#pageTitle").textContent=titles[route]||"Painel";
   location.hash=route;
   var v=$("#view"); v.innerHTML="";
-  ({dashboard:viewDashboard,articles:viewArticles,categories:viewCategories,tags:viewTags,media:viewMedia,pages:viewPages,comments:viewSimple,forms:viewSimple,menus:viewSimple,authors:viewSimple,users:viewUsers,reports:viewReports,settings:viewSettings,security:viewSecurity,help:viewHelp}[route]||viewDashboard)(v,route);
+  ({dashboard:viewDashboard,articles:viewArticles,categories:viewCategories,tags:viewTags,media:viewMedia,dedications:viewDedications,pages:viewPages,comments:viewSimple,forms:viewSimple,menus:viewSimple,authors:viewSimple,users:viewUsers,reports:viewReports,settings:viewSettings,security:viewSecurity,help:viewHelp}[route]||viewDashboard)(v,route);
 }
 
 /* ===================================================================
@@ -885,6 +886,133 @@ function viewTags(v){
                });
         }
    }
+
+/* ==================================================================
+   DEDICATÓRIAS (carrossel "Bônus exclusivo" da página inicial)
+   ================================================================== */
+function viewDedications(v){
+  v.innerHTML = '<div class="toolbar"><span style="color:var(--dim);font-size:.85rem">Imagens do carrossel de dedicatórias (seção &quot;Bônus exclusivo&quot; da Home)</span><label class="btn ghost sm" style="margin-left:auto;cursor:pointer">Enviar dedicatória<input type="file" id="dedUpload" accept="image/*" multiple style="display:none"></label></div><div id="dedGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px"></div>';
+  var grid = $("#dedGrid"); grid.innerHTML = '<p class="empty">Carregando…</p>';
+
+  function parseTrack(html){
+    var trackIdx = html.indexOf('id="dedTrack"');
+    if(trackIdx < 0) throw new Error("Bloco do carrossel (id=dedTrack) não encontrado na index.html.");
+    var openEnd = html.indexOf(">", trackIdx) + 1;
+    var closeIdx = html.indexOf("</div>", openEnd);
+    return { before: html.slice(0, openEnd), imgs: (html.slice(openEnd, closeIdx).match(/<img[^>]*>/g) || []), after: html.slice(closeIdx) };
+  }
+
+  function nextFilename(imgs){
+    var max = -1;
+    imgs.forEach(function(tag){
+      var m = /dedicatoria-(\d+)/.exec(tag);
+      if(m) max = Math.max(max, parseInt(m[1], 10));
+    });
+    var n = max + 1;
+    return "dedicatoria-" + (n < 10 ? "0" + n : String(n)) + ".jpg";
+  }
+
+  function saveTrack(t, sha, message){
+    var newHtml = t.before + "\n      " + t.imgs.join("\n      ") + "\n    " + t.after;
+    toast("Salvando alterações no carrossel…","");
+    ghPut("index.html", newHtml, message + " (via Painel Rede Bolha)", sha).then(function(){
+      toast("Carrossel atualizado.","ok");
+      loadDedGrid();
+    }).catch(function(e){ toast("Falha ao salvar: "+e.message,"err"); loadDedGrid(); });
+  }
+
+  function loadDedGrid(){
+    grid.innerHTML = '<p class="empty">Carregando…</p>';
+    ghContent("index.html").then(function(fd){
+      var html = b64decode(fd.content);
+      var t = parseTrack(html);
+      grid.innerHTML = "";
+      if(!t.imgs.length){ grid.innerHTML = '<p class="empty">Nenhuma dedicatória no carrossel.</p>'; return; }
+      t.imgs.forEach(function(tag, idx){
+        var srcM = /src="([^"]+)"/.exec(tag);
+        var src = srcM ? srcM[1] : "";
+        var card = el("div", {class:"panel", style:"padding:8px"});
+        card.innerHTML = '<img src="'+SITE+'/'+src+'" alt="'+esc(src)+'" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:6px;pointer-events:none">'+
+          '<div style="font-size:.72rem;color:var(--dim);margin-top:6px;word-break:break-all">'+esc(src)+"</div>"+
+          '<div style="display:flex;gap:4px;margin-top:6px;justify-content:space-between">'+
+            '<button class="btn ghost sm" data-act="up" data-i="'+idx+'"'+(idx===0?" disabled":"")+'>\u2191</button>'+
+            '<button class="btn ghost sm" data-act="down" data-i="'+idx+'"'+(idx===t.imgs.length-1?" disabled":"")+'>\u2193</button>'+
+            '<button class="btn ghost sm" data-act="del" data-i="'+idx+'" style="color:#c0392b">Remover</button>'+
+          "</div>";
+        grid.appendChild(card);
+      });
+      grid.onclick = function(e){
+        var b = e.target.closest("button[data-act]");
+        if(!b) return;
+        var i = parseInt(b.getAttribute("data-i"), 10);
+        var act = b.getAttribute("data-act");
+        if(act === "up" && i > 0){
+          var tmp = t.imgs[i-1]; t.imgs[i-1] = t.imgs[i]; t.imgs[i] = tmp;
+          saveTrack(t, fd.sha, "Reordena carrossel de dedicatórias");
+        } else if(act === "down" && i < t.imgs.length-1){
+          var tmp2 = t.imgs[i+1]; t.imgs[i+1] = t.imgs[i]; t.imgs[i] = tmp2;
+          saveTrack(t, fd.sha, "Reordena carrossel de dedicatórias");
+        } else if(act === "del"){
+          openModal('<h3>Remover dedicatória do carrossel?</h3><p style="color:var(--body);margin:10px 0 18px">A imagem deixa de aparecer no site, mas continua no repositório e pode ser restaurada pelo histórico.</p>'+
+            '<div style="display:flex;gap:10px;justify-content:flex-end"><button class="btn ghost" id="cDD">Cancelar</button><button class="btn danger" id="okDD">Sim, remover</button></div>',
+            function(m){ $("#cDD",m).onclick = closeModal; $("#okDD",m).onclick = function(){ closeModal(); t.imgs.splice(i,1); saveTrack(t, fd.sha, "Remove dedicatória do carrossel"); }; });
+        }
+      };
+    }).catch(function(e){ grid.innerHTML = '<p class="empty">Erro ao carregar: '+esc(e.message)+"</p>"; });
+  }
+
+  function readImage(file){
+    return new Promise(function(resolve, reject){
+      var reader = new FileReader();
+      reader.onload = function(){
+        var dataUrl = String(reader.result);
+        var img = new Image();
+        img.onload = function(){ resolve({ base64: dataUrl.split(",")[1], width: img.naturalWidth, height: img.naturalHeight }); };
+        img.onerror = function(){ reject(new Error("Não foi possível ler a imagem "+file.name)); };
+        img.src = dataUrl;
+      };
+      reader.onerror = function(){ reject(new Error("Falha ao ler o arquivo "+file.name)); };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function uploadDedications(files){
+    toast("Enviando "+files.length+" dedicatória(s)…","");
+    var chain = Promise.resolve();
+    files.forEach(function(file){
+      chain = chain.then(function(){
+        return ghContent("index.html").then(function(fd){
+          var html = b64decode(fd.content);
+          var t = parseTrack(html);
+          var filename = nextFilename(t.imgs);
+          return readImage(file).then(function(img){
+            return gh("/repos/"+REPO.owner+"/"+REPO.name+"/contents/"+filename, { method:"PUT", body:{ message:"Adiciona dedicatória "+filename+" (via Painel Rede Bolha)", content: img.base64, branch: REPO.branch } }).then(function(){
+              var tag = '<img src="'+filename+'" width="'+img.width+'" height="'+img.height+'" alt="Exemplo de página de dedicatória personalizada" loading="lazy">';
+              t.imgs.push(tag);
+              var newHtml = t.before + "\n      " + t.imgs.join("\n      ") + "\n    " + t.after;
+              return ghPut("index.html", newHtml, "Adiciona "+filename+" ao carrossel de dedicatórias (via Painel Rede Bolha)", fd.sha);
+            });
+          });
+        });
+      });
+    });
+    chain.then(function(){
+      toast("Dedicatória(s) publicada(s) no carrossel.","ok");
+      loadDedGrid();
+    }).catch(function(e){
+      toast("Falha no envio: "+e.message,"err");
+      loadDedGrid();
+    });
+  }
+
+  $("#dedUpload").onchange = function(e){
+    var files = Array.prototype.slice.call(e.target.files || []);
+    if(files.length) uploadDedications(files);
+    e.target.value = "";
+  };
+
+  loadDedGrid();
+}
 
 /* ===================================================================
    PAGINAS (lista arquivos .html institucionais)
