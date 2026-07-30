@@ -902,13 +902,18 @@ function viewDedications(v){
     return { before: html.slice(0, openEnd), imgs: (html.slice(openEnd, closeIdx).match(/<img[^>]*>/g) || []), after: html.slice(closeIdx) };
   }
 
-  function nextFilename(imgs){
-    var max = -1;
+  function nextFilename(imgs, repoFiles){
+    var used = {};
     imgs.forEach(function(tag){
       var m = /dedicatoria-(\d+)/.exec(tag);
-      if(m) max = Math.max(max, parseInt(m[1], 10));
+      if(m) used[parseInt(m[1], 10)] = true;
     });
-    var n = max + 1;
+    (repoFiles || []).forEach(function(name){
+      var m = /^dedicatoria-(\d+)\.jpg$/i.exec(name);
+      if(m) used[parseInt(m[1], 10)] = true;
+    });
+    var n = 0;
+    while(used[n]) n++;
     return "dedicatoria-" + (n < 10 ? "0" + n : String(n)) + ".jpg";
   }
 
@@ -978,20 +983,27 @@ function viewDedications(v){
 
   function uploadDedications(files){
     toast("Enviando "+files.length+" dedicatória(s)…","");
-    var chain = Promise.resolve();
+    var chain = ghListDir("").then(function(items){
+      return items.filter(function(f){ return f.type==="file" && /^dedicatoria-\d+\.jpg$/i.test(f.name); }).map(function(f){ return f.name; });
+    }).catch(function(){ return []; });
     files.forEach(function(file){
-      chain = chain.then(function(){
+      chain = chain.then(function(repoFiles){
         return ghContent("index.html").then(function(fd){
           var html = b64decode(fd.content);
           var t = parseTrack(html);
-          var filename = nextFilename(t.imgs);
+          var filename = nextFilename(t.imgs, repoFiles);
+          repoFiles = repoFiles.concat([filename]);
           return readImage(file).then(function(img){
-            return gh("/repos/"+REPO.owner+"/"+REPO.name+"/contents/"+filename, { method:"PUT", body:{ message:"Adiciona dedicatória "+filename+" (via Painel Rede Bolha)", content: img.base64, branch: REPO.branch } }).then(function(){
+            return ghContent(filename).then(function(existing){
+              return gh("/repos/"+REPO.owner+"/"+REPO.name+"/contents/"+filename, { method:"PUT", body:{ message:"Adiciona dedicatória "+filename+" (via Painel Rede Bolha)", content: img.base64, branch: REPO.branch, sha: existing.sha } });
+            }).catch(function(){
+              return gh("/repos/"+REPO.owner+"/"+REPO.name+"/contents/"+filename, { method:"PUT", body:{ message:"Adiciona dedicatória "+filename+" (via Painel Rede Bolha)", content: img.base64, branch: REPO.branch } });
+            }).then(function(){
               var tag = '<img src="'+filename+'" width="'+img.width+'" height="'+img.height+'" alt="Exemplo de página de dedicatória personalizada" loading="lazy">';
               t.imgs.push(tag);
-              var newHtml = t.before + "\n      " + t.imgs.join("\n      ") + "\n    " + t.after;
+              var newHtml = t.before + "\n      " + t.imgs.join("\n      ") + "\n      " + t.after;
               return ghPut("index.html", newHtml, "Adiciona "+filename+" ao carrossel de dedicatórias (via Painel Rede Bolha)", fd.sha);
-            });
+            }).then(function(){ return repoFiles; });
           });
         });
       });
@@ -1122,3 +1134,4 @@ window.addEventListener("beforeunload",function(e){ if(edState.dirty){ e.prevent
 
 window.__RB={state:state,go:go};
 })();
+Page_UpPage_UpPage_UpPage_UpPage_UpPage_Up
