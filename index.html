@@ -824,6 +824,19 @@
                 });
             });
         });
+        <script>
+            (function () {
+                var LIVROS = { 'B0H59NTYV9': 'Homem, Voce Nao E Ridiculo', 'B0GXSNXT3J': 'Amanha E Outro Agora', 'B0H66VZDN4': 'O Poder da Decisao' };
+                document.addEventListener('click', function (e) {
+                    var a = e.target.closest('a');
+                    if (!a || a.href.indexOf('amazon.com.br') === -1) return;
+                    var m = a.href.match(/dp\/([A-Z0-9]+)/);
+                    var asin = m ? m[1] : 'desconhecido';
+                    var livro = LIVROS[asin] || asin;
+                    if (typeof gtag === 'function') { gtag('event', 'clique_amazon', { livro: livro, asin: asin }); }
+                    if (typeof fbq === 'function') { fbq('trackCustom', 'CliqueAmazon', { livro: livro, asin: asin }); }
+                }, true);
+            })();
     </script>
 
 </body>
