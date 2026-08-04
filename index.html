@@ -814,5 +814,17 @@
             });
     }
         </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('a[href*="amazon.com.br"]').forEach(function (link) {
+                link.addEventListener('click', function () {
+                    if (typeof fbq === 'function') {
+                        fbq('track', 'InitiateCheckout', { content_name: (link.textContent || '').trim().slice(0, 80), content_category: 'ebook-amazon', value: 1.99, currency: 'BRL' });
+                    }
+                });
+            });
+        });
+    </script>
+
 </body>
 </html>
