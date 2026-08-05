@@ -1,0 +1,166 @@
+/* ====================================
+   COMPONENTS.CSS - Botões, Cards, Badges
+      ==================================== */
+
+/* Botões */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.96rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 1rem 1.9rem;
+    border-radius: var(--radius);
+    border: 1px solid transparent;
+    background: linear-gradient(135deg, var(--gold-l), var(--gold) 55%, var(--gold-d));
+    color: #0A0A0C;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+    box-shadow: 0 10px 30px -10px rgba(201, 162, 75, 0.55);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px -12px rgba(201, 162, 75, 0.7);
+    filter: brightness(1.05);
+}
+
+.btn svg {
+    width: 1.05em;
+    height: 1.05em;
+    flex: 0 0 auto;
+}
+
+.btn--ghost {
+    background: transparent;
+    color: var(--gold-l);
+    border: 1px solid rgba(201, 162, 75, 0.45);
+    box-shadow: none;
+}
+
+.btn--ghost:hover {
+    background: rgba(201, 162, 75, 0.08);
+    box-shadow: none;
+}
+
+.btn--block {
+    width: 100%;
+    justify-content: center;
+}
+
+.btn--lg {
+    font-size: 1.08rem;
+    padding: 1.15rem 2.2rem;
+}
+
+/* Cards */
+.card {
+    background: var(--card);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.75rem, 3.4vw, 2.5rem);
+    transition: border-color 0.25s, transform 0.25s;
+}
+
+.card:hover {
+    border-color: rgba(201, 162, 75, 0.45);
+    transform: translateY(-3px);
+}
+
+.card__tag {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-d);
+    margin-bottom: 0.6rem;
+    display: block;
+}
+
+.card__title {
+    font-family: var(--font-display);
+    color: var(--txt);
+    font-size: 1.05rem;
+    line-height: 1.3;
+    margin: 0 0 0.6rem;
+    text-transform: none;
+}
+
+.card__description {
+    color: var(--dim);
+    font-size: 0.92rem;
+    line-height: 1.5;
+    margin: 0 0 0.8rem;
+}
+
+.card__link {
+    font-family: var(--font-display);
+    font-size: 0.76rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold-l);
+}
+
+.card__link:hover {
+    color: var(--txt);
+}
+
+/* Badges */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7em;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-l);
+    border: 1px solid var(--line);
+    background: rgba(201, 162, 75, 0.05);
+    padding: 0.55rem 1rem;
+    border-radius: 100px;
+}
+
+.badge .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 0 rgba(201, 162, 75, 0.6);
+    animation: pulse 2.4s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(201, 162, 75, 0.5); }
+    70% { box-shadow: 0 0 0 9px rgba(201, 162, 75, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(201, 162, 75, 0); }
+}
+
+/* Eyebrow */
+.eyebrow {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 0.72rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: inline-block;
+    margin-bottom: 1.4rem;
+}
+
+/* Rule (decorative line) */
+.rule {
+    width: 64px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    margin: 0 0 2rem;
+}
+
+.center .rule {
+    margin-left: auto;
+    margin-right: auto;
+}
