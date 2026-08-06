@@ -567,7 +567,8 @@
           az.setAttribute("target","_blank");
           az.setAttribute("rel","noopener");
           az.removeAttribute("hidden");
-        } else { az.setAttribute("hidden",""); }
+          az.style.display="";
+        } else { az.setAttribute("hidden",""); az.style.display="none"; }
       }
       var img=document.querySelector('[data-rb="imagemCapa"]');
       if(img && c.imagemCapa){ img.setAttribute("src", c.imagemCapa); if(c.imagemAlt) img.setAttribute("alt", c.imagemAlt); }
