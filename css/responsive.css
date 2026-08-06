@@ -1,0 +1,21 @@
+/* ===== RESPONSIVE.CSS — Ajustes para tablet e celular =====
+   OBS: A navbar responsiva é tratada por css/fase-3-navbar-banner.css,
+   por isso não é redefinida aqui. */
+
+@media (max-width:900px){
+  .hero .hero-grid{grid-template-columns:1fr;gap:32px;}
+  .cover-wrap{order:-1;}
+  .cover{transform:none;}
+  .stats{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:560px){
+  .stats{grid-template-columns:1fr 1fr;}
+  .foot .wrap{flex-direction:column;text-align:center;}
+  .foot .links{justify-content:center;}
+  .cta-row{flex-direction:column;}
+  .cta-row .btn{width:100%;text-align:center;}
+  #buybar .bb-title{display:none;}
+}
+@media (max-width:400px){
+  .stats{grid-template-columns:1fr;}
+}
