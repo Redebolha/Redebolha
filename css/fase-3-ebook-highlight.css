@@ -1,0 +1,388 @@
+/* ====================================
+   FASE 3 - E-BOOK HIGHLIGHT CSS
+      Destaque para "Homem, Você Não É Ridículo"
+         ==================================== */
+
+/* ===== CONTAINER DE DESTAQUE DO E-BOOK ===== */
+.bk--destaque {
+    border: 3px solid #C4A365;
+    border-radius: 10px;
+    box-shadow: 
+      0 0 20px rgba(196, 163, 101, 0.4),
+      0 0 40px rgba(196, 163, 101, 0.2),
+      inset 0 0 20px rgba(196, 163, 101, 0.1);
+    position: relative;
+    background-color: rgba(26, 26, 26, 0.9);
+    padding: 3rem;
+    margin: 3rem 0;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+/* Pseudo-elemento de fundo animado */
+.bk--destaque::before {
+    content: '⭐ DESTAQUE EXCLUSIVO ⭐';
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #C4A365 0%, #8B7246 100%);
+    color: #0a0a0c;
+    padding: 0.7rem 2rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: 25px;
+    z-index: 10;
+    letter-spacing: 1.5px;
+    box-shadow: 0 4px 15px rgba(196, 163, 101, 0.3);
+    transition: all 0.3s ease;
+}
+
+/* Efeito ao passar o mouse */
+.bk--destaque:hover {
+    transform: scale(1.02);
+    box-shadow: 
+      0 0 30px rgba(196, 163, 101, 0.6),
+      0 0 50px rgba(196, 163, 101, 0.3),
+      inset 0 0 30px rgba(196, 163, 101, 0.15);
+    border-color: #E6D7B8;
+}
+
+.bk--destaque:hover::before {
+    transform: translateX(-50%) translateY(-5px);
+    box-shadow: 0 6px 20px rgba(196, 163, 101, 0.5);
+}
+
+/* Títulos dentro do destaque */
+.bk--destaque h1,
+.bk--destaque h2,
+.bk--destaque h3 {
+    color: #C4A365;
+    position: relative;
+    margin-top: 1.5rem;
+    font-weight: 700;
+}
+
+.bk--destaque h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(196, 163, 101, 0.2);
+}
+
+.bk--destaque h2::before {
+    content: '✨ ';
+    margin-right: 0.5rem;
+}
+
+/* Parágrafos dentro do destaque */
+.bk--destaque p {
+    color: #E5DDD6;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+}
+
+.bk--destaque strong {
+    color: #C4A365;
+    font-weight: 700;
+}
+
+/* Badge de destaque */
+.ebook-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #C4A365 0%, #8B7246 100%);
+    color: #0a0a0c;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 12px rgba(196, 163, 101, 0.3);
+    transition: all 0.3s ease;
+}
+
+.ebook-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(196, 163, 101, 0.4);
+}
+
+/* ===== DESTACAR CARACTERÍSTICAS DO E-BOOK ===== */
+.bk--destaque .ebook-features {
+    display: grid;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.bk--destaque .ebook-feature,
+.bk--destaque .feature {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background-color: rgba(196, 163, 101, 0.05);
+    border-left: 4px solid #C4A365;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.bk--destaque .ebook-feature:hover,
+.bk--destaque .feature:hover {
+    background-color: rgba(196, 163, 101, 0.1);
+    border-left-color: #E6D7B8;
+    transform: translateX(5px);
+}
+
+.bk--destaque .ebook-feature .icon,
+.bk--destaque .feature .icon {
+    color: #C4A365;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+.bk--destaque .feature span:last-child {
+    color: #E5DDD6;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* ===== PRICING ===== */
+.bk--destaque .ebook-pricing {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: rgba(196, 163, 101, 0.1);
+    border-radius: 8px;
+    flex-wrap: wrap;
+}
+
+.bk--destaque .price-old {
+    text-decoration: line-through;
+    color: #8B7246;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.bk--destaque .price-current {
+    font-size: 2.2rem;
+    color: #C4A365;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(196, 163, 101, 0.2);
+}
+
+.bk--destaque .discount-badge {
+    background-color: #FF4444;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+}
+
+/* ===== BOTÃO CTA NO E-BOOK ===== */
+.bk--destaque .btn-primary,
+.bk--destaque button {
+    background-color: #C4A365;
+    color: #0a0a0c;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    margin-top: 1rem;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+.bk--destaque .btn-primary:hover,
+.bk--destaque button:hover {
+    background-color: #E6D7B8;
+    color: #0a0a0c;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(196, 163, 101, 0.4);
+}
+
+.bk--destaque .btn-primary:active,
+.bk--destaque button:active {
+    transform: translateY(-1px);
+}
+
+/* ===== SEPARADOR VISUAL ===== */
+.bk--destaque::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #C4A365, transparent);
+}
+
+/* ===== IMAGEM DO EBOOK ===== */
+.bk--destaque .ebook-image,
+.bk--destaque .ebook-cover {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.bk--destaque .ebook-cover {
+    background: linear-gradient(135deg, #C4A365 0%, #8B7246 100%);
+    padding: 3rem;
+    border-radius: 10px;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #0a0a0c;
+    box-shadow: 0 10px 40px rgba(196, 163, 101, 0.3);
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.bk--destaque:hover .ebook-cover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 50px rgba(196, 163, 101, 0.4);
+}
+
+/* ===== RESPONSIVO PARA TABLET ===== */
+@media (max-width: 768px) {
+    .bk--destaque {
+          padding: 2rem;
+          margin: 2rem 0;
+    }
+
+    .bk--destaque h2 {
+          font-size: 1.8rem;
+    }
+
+    .bk--destaque p {
+          font-size: 1rem;
+    }
+
+    .bk--destaque .ebook-pricing {
+          flex-direction: column;
+          align-items: flex-start;
+    }
+
+    .bk--destaque .btn-primary,
+    .bk--destaque button {
+          width: 100%;
+          padding: 12px 30px;
+          font-size: 1rem;
+    }
+
+    .bk--destaque .ebook-cover {
+          padding: 2rem;
+          min-height: 200px;
+          font-size: 2rem;
+    }
+}
+
+/* ===== RESPONSIVO PARA MOBILE ===== */
+@media (max-width: 480px) {
+    .bk--destaque {
+          padding: 1.5rem;
+          margin: 1.5rem 0;
+          border-radius: 8px;
+    }
+
+    .bk--destaque::before {
+          font-size: 0.85rem;
+          padding: 0.5rem 1.5rem;
+          top: -18px;
+    }
+
+    .bk--destaque h2 {
+          font-size: 1.5rem;
+          margin-top: 0.5rem;
+    }
+
+    .bk--destaque p {
+          font-size: 0.95rem;
+          line-height: 1.6;
+    }
+
+    .ebook-badge {
+          font-size: 0.85rem;
+          padding: 8px 15px;
+    }
+
+    .bk--destaque .ebook-feature,
+    .bk--destaque .feature {
+          padding: 0.8rem;
+    }
+
+    .bk--destaque .ebook-feature .icon,
+    .bk--destaque .feature .icon {
+          font-size: 1.2rem;
+          margin-right: 0.8rem;
+    }
+
+    .bk--destaque .price-current {
+          font-size: 1.8rem;
+    }
+
+    .bk--destaque .ebook-pricing {
+          padding: 1rem;
+    }
+
+    .bk--destaque .btn-primary,
+    .bk--destaque button {
+          padding: 10px 20px;
+          font-size: 0.95rem;
+    }
+
+    .bk--destaque .ebook-cover {
+          padding: 1.5rem;
+          min-height: 150px;
+          font-size: 1.5rem;
+    }
+
+    .bk--destaque:hover {
+          transform: scale(1);
+    }
+}
+
+/* ===== ACESSIBILIDADE ===== */
+@media (prefers-reduced-motion: reduce) {
+    .bk--destaque,
+    .bk--destaque::before,
+    .ebook-badge,
+    .bk--destaque .ebook-feature {
+          transition: none;
+          animation: none;
+    }
+}
+
+/* Focus states para teclado */
+.bk--destaque .btn-primary:focus-visible,
+.bk--destaque button:focus-visible {
+    outline: 2px solid #C4A365;
+    outline-offset: 2px;
+}
+
+/* ===== ANIMAÇÃO DE ENTRADA ===== */
+@keyframes slideInUp {
+    from {
+          opacity: 0;
+          transform: translateY(30px);
+    }
+    to {
+          opacity: 1;
+          transform: translateY(0);
+    }
+}
+
+.bk--destaque {
+    animation: slideInUp 0.6s ease-out;
+}
