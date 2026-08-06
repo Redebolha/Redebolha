@@ -164,22 +164,23 @@
     <div class="wrap">
       <div class="hero-grid">
         <div class="hero-copy">
-          <span class="eyebrow">Identidade · Fé · Masculinidade</span>
-          <h1>Homem,<span class="l2">você não é ridículo</span></h1>
-          <p class="lead">A identidade masculina que Deus criou — e o mundo tenta destruir.</p>
-          <p class="micro">Um livro escrito de homem para homem. Com honestidade. Sem condescendência.</p>
+          <span class="eyebrow" data-rb="eyebrow">Identidade · Fé · Masculinidade</span>
+          <h1><span data-rb="titulo">Homem,</span><span class="l2" data-rb="tituloDestaque">você não é ridículo</span></h1>
+          <p class="lead" data-rb="lead">A identidade masculina que Deus criou — e o mundo tenta destruir.</p>
+          <p class="micro" data-rb="micro">Um livro escrito de homem para homem. Com honestidade. Sem condescendência.</p>
           <div class="cta-row">
-            <a class="btn btn--lg" href="#comprar">Garantir livro físico — R$ 19,90 + frete
+            <a class="btn btn--lg" data-rb="botaoPrincipal" href="#comprar">Garantir livro físico — R$ 19,90 + frete
               <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
             </a>
-            <a class="btn btn--ghost btn--lg" href="#trecho">Ler um trecho</a> <a class="btn btn--ghost btn--lg" href="/artigos/">Artigos</a>
+            <a class="btn btn--ghost btn--lg" data-rb="botaoSecundario" href="#trecho">Ler um trecho</a> <a class="btn btn--ghost btn--lg" data-rb="botaoTerceiro" href="/artigos/">Artigos</a>
+            <a class="btn btn--ghost btn--lg" data-rb="botaoAmazon" href="#" hidden>Comprar na Amazon</a>
           </div>
-          <span class="badge"><span class="dot"></span>Lançamento oficial · leitura imediata após a confirmação</span>
+          <span class="badge"><span class="dot"></span><span data-rb="selo">Lançamento oficial · leitura imediata após a confirmação</span></span>
 
         </div>
         <div class="cover-wrap reveal">
-          <span class="price-flag">Promoção<br /><b>R$ 19,90 + frete</b></span>
-          <div class="cover"><img alt="Capa do livro Homem, Você Não É Ridículo, de Adm. Romário Cruz" src="https://blogger.googleusercontent.com/img/a/AVvXsEhvlTidb2ODSFFw6j4tB7rfNAZ_2sxvYS7Po-H_cxVCXozW177G-_hOPE0KFZiZsKl_N8z86RxK_jbRx7GIjZLutgFWhOW0MxO3Lb-ScOea1FXaftJYe7W0kF0NbmQDyIvXiQK4Yw7UDiI-EFlldWMA3BYEc896vRnL6Hc4CqRs0ml53L1hBuas0vPkK18" width="620" height="925" /></div>
+          <span class="price-flag"><span data-rb="promoLabel">Promoção</span><br /><b data-rb="badge">R$ 19,90 + frete</b></span>
+          <div class="cover"><img data-rb="imagemCapa" alt="Capa do livro Homem, Você Não É Ridículo, de Adm. Romário Cruz" src="https://blogger.googleusercontent.com/img/a/AVvXsEhvlTidb2ODSFFw6j4tB7rfNAZ_2sxvYS7Po-H_cxVCXozW177G-_hOPE0KFZiZsKl_N8z86RxK_jbRx7GIjZLutgFWhOW0MxO3Lb-ScOea1FXaftJYe7W0kF0NbmQDyIvXiQK4Yw7UDiI-EFlldWMA3BYEc896vRnL6Hc4CqRs0ml53L1hBuas0vPkK18" width="620" height="925" /></div>
         </div>
       </div>
     </div>
@@ -528,5 +529,51 @@
             })();
     </script>
 
+
+<!-- BANNER EDITAVEL PELO PAINEL (/admin) - le js/home-config.json -->
+<script>
+(function(){
+  "use strict";
+  function setText(sel, val){ if(!val) return; var el=document.querySelector(sel); if(el) el.textContent=val; }
+  function setBtn(name, texto, link){
+    var el=document.querySelector('[data-rb="'+name+'"]');
+    if(!el) return;
+    if(texto){
+      var svg=el.querySelector("svg");
+      el.textContent=texto;
+      if(svg) el.appendChild(svg);
+    }
+    if(link) el.setAttribute("href", link);
+  }
+  fetch("js/home-config.json", {cache:"no-cache"})
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(c){
+      if(!c) return;
+      setText('[data-rb="eyebrow"]', c.eyebrow);
+      setText('[data-rb="titulo"]', c.titulo);
+      setText('[data-rb="tituloDestaque"]', c.tituloDestaque);
+      setText('[data-rb="lead"]', c.lead);
+      setText('[data-rb="micro"]', c.micro);
+      setText('[data-rb="badge"]', c.badge);
+      setText('[data-rb="selo"]', c.selo);
+      setBtn("botaoPrincipal", c.botaoPrincipalTexto, c.botaoPrincipalLink);
+      setBtn("botaoSecundario", c.botaoSecundarioTexto, c.botaoSecundarioLink);
+      setBtn("botaoTerceiro", c.botaoTerceiroTexto, c.botaoTerceiroLink);
+      var az=document.querySelector('[data-rb="botaoAmazon"]');
+      if(az){
+        if(c.linkAmazon){
+          az.textContent=c.botaoAmazonTexto||"Comprar na Amazon";
+          az.setAttribute("href", c.linkAmazon);
+          az.setAttribute("target","_blank");
+          az.setAttribute("rel","noopener");
+          az.removeAttribute("hidden");
+        } else { az.setAttribute("hidden",""); }
+      }
+      var img=document.querySelector('[data-rb="imagemCapa"]');
+      if(img && c.imagemCapa){ img.setAttribute("src", c.imagemCapa); if(c.imagemAlt) img.setAttribute("alt", c.imagemAlt); }
+    })
+    .catch(function(){});
+})();
+</script>
 </body>
 </html>
