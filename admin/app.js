@@ -135,6 +135,7 @@ function logout(){
    =================================================================== */
 var NAV=[
   ["dashboard","Visão Geral","▦"],
+  ["home","Página Inicial","★"],
   ["articles","Artigos","✎"],
   ["pages","Páginas","▤"],
   ["categories","Categorias","❏"],
@@ -190,11 +191,11 @@ function enterApp(){
 function go(route){
   state.route=route;
   $all("#nav a").forEach(function(a){a.classList.toggle("active",a.getAttribute("data-route")===route);});
-  var titles={dashboard:"Visão Geral",articles:"Artigos",pages:"Páginas",categories:"Categorias",tags:"Tags",media:"Biblioteca de Mídia",dedications:"Dedicatórias",comments:"Comentários",forms:"Formulários",menus:"Menus",authors:"Autores",users:"Usuários",reports:"Relatórios",settings:"Configurações",security:"Segurança",help:"Ajuda"};
+  var titles={dashboard:"Visão Geral",home:"Página Inicial — Banner",articles:"Artigos",pages:"Páginas",categories:"Categorias",tags:"Tags",media:"Biblioteca de Mídia",dedications:"Dedicatórias",comments:"Comentários",forms:"Formulários",menus:"Menus",authors:"Autores",users:"Usuários",reports:"Relatórios",settings:"Configurações",security:"Segurança",help:"Ajuda"};
   $("#pageTitle").textContent=titles[route]||"Painel";
   location.hash=route;
   var v=$("#view"); v.innerHTML="";
-  ({dashboard:viewDashboard,articles:viewArticles,categories:viewCategories,tags:viewTags,media:viewMedia,dedications:viewDedications,pages:viewPages,comments:viewSimple,forms:viewSimple,menus:viewSimple,authors:viewSimple,users:viewUsers,reports:viewReports,settings:viewSettings,security:viewSecurity,help:viewHelp}[route]||viewDashboard)(v,route);
+  ({dashboard:viewDashboard,home:viewHome,articles:viewArticles,categories:viewCategories,tags:viewTags,media:viewMedia,dedications:viewDedications,pages:viewPages,comments:viewSimple,forms:viewSimple,menus:viewSimple,authors:viewSimple,users:viewUsers,reports:viewReports,settings:viewSettings,security:viewSecurity,help:viewHelp}[route]||viewDashboard)(v,route);
 }
 
 /* ===================================================================
@@ -1072,6 +1073,82 @@ function viewReports(v){
 /* ===================================================================
    CONFIGURACOES
    =================================================================== */
+
+/* ===================================================================
+   PAGINA INICIAL - BANNER EDITAVEL (js/home-config.json)
+   =================================================================== */
+var HOME_CFG_PATH = "js/home-config.json";
+var HOME_FIELDS = [
+  ["eyebrow","Chapeu (linha pequena acima do titulo)","text"],
+  ["titulo","Titulo (1a parte)","text"],
+  ["tituloDestaque","Titulo (parte destacada)","text"],
+  ["lead","Frase principal","area"],
+  ["micro","Frase de apoio (menor)","area"],
+  ["selo","Selo abaixo dos botoes","text"],
+  ["promoLabel","Rotulo da etiqueta de preco","text"],
+  ["badge","Preco na etiqueta","text"],
+  ["botaoPrincipalTexto","Botao 1 - texto","text"],
+  ["botaoPrincipalLink","Botao 1 - link","text"],
+  ["botaoSecundarioTexto","Botao 2 - texto","text"],
+  ["botaoSecundarioLink","Botao 2 - link","text"],
+  ["botaoTerceiroTexto","Botao 3 - texto","text"],
+  ["botaoTerceiroLink","Botao 3 - link","text"],
+  ["botaoAmazonTexto","Botao Amazon - texto","text"],
+  ["linkAmazon","Botao Amazon - link (deixe vazio para ocultar)","text"],
+  ["imagemCapa","Imagem da capa (URL)","text"],
+  ["imagemAlt","Descricao da imagem (acessibilidade)","text"]
+];
+
+function viewHome(v){
+  v.innerHTML = '<div class="panel"><h3>Banner da p&aacute;gina inicial</h3>'+
+    '<p class="muted">Altere os textos, os bot&otilde;es e a imagem do banner. Ao salvar, o site &eacute; atualizado em 1 a 2 minutos.</p>'+
+    '<div id="homeForm">Carregando...</div></div>';
+  var box = document.getElementById("homeForm");
+  ghContent(HOME_CFG_PATH).then(function(c){
+    var cfg = {};
+    try { cfg = JSON.parse(b64decode(c.content)); } catch(e){ cfg = {}; }
+    window.__homeSha = c.sha;
+    renderHomeForm(box, cfg);
+  }).catch(function(e){
+    box.innerHTML = '<p class="muted">N&atilde;o foi poss&iacute;vel carregar o arquivo de configura&ccedil;&atilde;o.</p>';
+    toast("Erro ao carregar: "+e.message,"err");
+  });
+}
+
+function renderHomeForm(box, cfg){
+  var html = "";
+  for(var i=0;i<HOME_FIELDS.length;i++){
+    var f = HOME_FIELDS[i], key=f[0], label=f[1], type=f[2];
+    var val = cfg[key]==null ? "" : String(cfg[key]);
+    html += '<div class="field"><label for="hf_'+key+'">'+esc(label)+'</label>';
+    if(type==="area"){
+      html += '<textarea id="hf_'+key+'" rows="2">'+esc(val)+'</textarea>';
+    } else {
+      html += '<input id="hf_'+key+'" value="'+esc(val)+'">';
+    }
+    html += '</div>';
+  }
+  html += '<button class="btn" id="saveHome">Salvar banner</button>';
+  box.innerHTML = html;
+  document.getElementById("saveHome").onclick = function(){
+    var btn = this;
+    var out = {};
+    for(var i=0;i<HOME_FIELDS.length;i++){
+      var key = HOME_FIELDS[i][0];
+      var el = document.getElementById("hf_"+key);
+      out[key] = el ? el.value : "";
+    }
+    btn.disabled = true; btn.textContent = "Salvando...";
+    ghPut(HOME_CFG_PATH, JSON.stringify(out,null,2), "Atualiza banner da pagina inicial (pelo painel)", window.__homeSha)
+      .then(function(r){
+        if(r && r.content && r.content.sha) window.__homeSha = r.content.sha;
+        toast("Banner salvo. O site atualiza em 1-2 minutos.","ok");
+      })
+      .catch(function(e){ toast("Erro ao salvar: "+e.message,"err"); })
+      .then(function(){ btn.disabled=false; btn.textContent="Salvar banner"; });
+  };
+}
+
 function viewSettings(v){
   var s=JSON.parse(localStorage.getItem("rb_settings")||'{}');
   v.innerHTML='<div class="panel"><h3>Configurações do site</h3>'+
