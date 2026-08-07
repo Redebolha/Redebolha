@@ -338,3 +338,95 @@
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    background: linear-gradient(135deg, #C4A365 0%, #8B7246 100%);
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      }
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      }
+
+
+/* ============================================================
+   NAVBAR RESPONSIVA - ajuste de agosto/2026
+   Problema anterior: a barra era "position:fixed" presa a
+   max-width:1200px (herdado de uma regra generica "nav{}"), por
+   isso aparecia centralizada em vez de ocupar a largura da tela,
+   cobria o topo do conteudo e, no celular, a regra
+   "flex-direction:column" transformava o menu em uma lista
+   vertical que tomava a tela inteira.
+   Agora: barra "sticky" de largura total, uma unica linha nas
+   telas grandes e duas faixas compactas nas telas menores, com
+   os links quebrando em linhas em vez de empilhar na vertical.
+   ============================================================ */
+
+nav.rb-nav{
+  position:sticky; top:0; left:auto; right:auto;
+  width:100%; max-width:none; margin:0;
+  display:block; padding:0;
+  background-color:rgba(20,20,22,.96);
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+  border-bottom:2px solid #C4A365;
+  box-shadow:0 4px 15px rgba(0,0,0,.3);
+  z-index:1000;
+}
+nav.rb-nav .inner{
+  max-width:1600px; margin:0 auto;
+  padding:0 clamp(12px,1.8vw,26px);
+  min-height:62px;
+  display:flex; flex-direction:row; flex-wrap:nowrap;
+  align-items:center; justify-content:space-between;
+  gap:clamp(10px,1.2vw,20px);
+}
+nav.rb-nav .brand{
+  flex:0 0 auto; white-space:nowrap;
+  font-size:clamp(.95rem,1.15vw,1.15rem);
+}
+nav.rb-nav ul{
+  flex:1 1 auto; min-width:0;
+  display:flex; flex-direction:row; flex-wrap:wrap;
+  align-items:center; justify-content:center;
+  width:auto; margin:0; padding:0; list-style:none;
+  gap:6px clamp(10px,1.25vw,20px);
+}
+nav.rb-nav ul li{ flex:0 0 auto; }
+nav.rb-nav .lnk{
+  white-space:nowrap; width:auto; text-align:left;
+  font-size:clamp(.75rem,.85vw,.92rem);
+  padding-bottom:4px;
+}
+nav.rb-nav .cta, nav.rb-nav .lnk.cta{
+  flex:0 0 auto; white-space:nowrap; width:auto;
+  padding:.5rem 1.05rem;
+  font-size:clamp(.7rem,.82vw,.88rem);
+}
+/* "overflow-x:clip" no lugar de "hidden": o clip continua cortando o
+   estouro horizontal, mas nao cria um container de rolagem, o que
+   permite que a barra sticky continue colada no topo ao rolar */
+html, body{ overflow-x:clip; height:auto; min-height:100%; }
+body{ padding-top:0; margin-top:0; }
+body > *{ scroll-margin-top:80px; }
+
+/* --- notebooks, tablets e celulares: marca + botao na primeira
+       faixa, links centralizados na faixa de baixo --- */
+@media (max-width:1400px){
+  nav.rb-nav .inner{
+    flex-direction:row; flex-wrap:wrap; min-height:0;
+    padding:8px clamp(10px,2.5vw,20px);
+    gap:6px 12px;
+  }
+  nav.rb-nav .brand{ order:1; font-size:1.05rem; }
+  nav.rb-nav .cta, nav.rb-nav .lnk.cta{
+    order:2; padding:.45rem .95rem; font-size:.74rem;
+  }
+  nav.rb-nav ul{
+    order:3; flex:1 0 100%; width:100%;
+    justify-content:center;
+    gap:7px clamp(14px,1.6vw,24px);
+    padding:2px 0 4px;
+  }
+  nav.rb-nav .lnk{ font-size:.8rem; padding-bottom:2px; }
+  nav.rb-nav .lnk::after{ display:none; }
+  section.promotional-banner{ margin-top:1.5rem; }
+}
+
+@media (max-width:480px){
+  nav.rb-nav .brand{ font-size:.98rem; }
+  nav.rb-nav .cta, nav.rb-nav .lnk.cta{ padding:.4rem .8rem; font-size:.7rem; }
+  nav.rb-nav ul{ gap:7px 13px; }
+  nav.rb-nav .lnk{ font-size:.77rem; }
+  section.promotional-banner{ margin-top:1.2rem; }
+}
