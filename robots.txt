@@ -1,4 +1,25 @@
+# robots.txt — https://redebolha.com.br/
+# Rede Bolha · Adm. Romário Cruz
+
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /*?utm_
+Disallow: /*?fbclid=
+Disallow: /*?gclid=
+
+# Rastreadores de IA generativa: liberados (aparecer nas respostas ajuda a marca).
+# Para bloquear algum, troque Allow por Disallow no bloco correspondente.
+User-agent: GPTBot
+Allow: /
+Disallow: /admin/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin/
 
 Sitemap: https://redebolha.com.br/sitemap.xml

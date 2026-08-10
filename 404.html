@@ -3,11 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Instalar o app | Rede Bolha</title>
-<meta name="description" content="Instale a Rede Bolha no seu celular e tenha acesso rápido aos artigos e livros, direto da tela inicial.">
+<title>Página não encontrada (404) | Rede Bolha</title>
+<meta name="description" content="A página que você procurava não existe mais ou mudou de endereço. Veja os livros e os artigos da Rede Bolha.">
 <meta name="author" content="Adm. Romário Cruz">
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<link rel="canonical" href="https://redebolha.com.br/instalar-app.html">
+<meta name="robots" content="noindex, follow">
 <link rel="alternate" type="application/rss+xml" title="Rede Bolha" href="/feed.xml">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#0A0A0C">
@@ -15,8 +14,8 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Rede Bolha">
 <meta property="og:locale" content="pt_BR">
-<meta property="og:title" content="Instalar o app | Rede Bolha">
-<meta property="og:description" content="Instale a Rede Bolha no seu celular e tenha acesso rápido aos artigos e livros, direto da tela inicial.">
+<meta property="og:title" content="Página não encontrada (404) | Rede Bolha">
+<meta property="og:description" content="A página que você procurava não existe mais ou mudou de endereço. Veja os livros e os artigos da Rede Bolha.">
 <meta property="og:image" content="https://redebolha.com.br/icon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -67,31 +66,24 @@
 </nav>
 <main class="pagina">
   <div class="coluna">
-    <p class="migalha"><a href="/">Início</a></p>
-    <article class="corpo">
-      <p class="eyebrow">Aplicativo</p>
-      <h1>Instale a Rede Bolha no seu celular</h1>
-      <p class="lead">O site vira aplicativo: abre direto da tela inicial, carrega mais rápido e funciona mesmo com a internet fraca.</p>
-      <p style="text-align:center;margin:2.4em 0;">
-        <img src="/icon-192.png" width="192" height="192" alt="Ícone da Rede Bolha" style="width:96px;height:96px;border-radius:20px;display:inline-block;margin:0;">
+
+    <article class="corpo" style="text-align:center;">
+      <p class="eyebrow" style="display:inline-block;">Erro 404</p>
+      <p style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(4rem,16vw,8rem);line-height:.9;color:var(--ouro);margin:0 0 .2em;">404</p>
+      <h1 style="text-transform:uppercase;">Essa página a gente não achou</h1>
+      <p class="lead">O endereço mudou, o link veio quebrado ou a página nunca existiu. Acontece. Mas já que você chegou até aqui, tem coisa boa logo abaixo.</p>
+      <p style="margin:2.4em 0;">
+        <a class="btn" href="/">Voltar para a página inicial</a>
       </p>
-      <p style="text-align:center;"><button id="btInstalar" class="btn" type="button" style="display:none;">Instalar agora</button></p>
-      <div class="cta">
-        <h2>No Android, pelo Chrome</h2>
-        <ol>
-          <li>Toque em <b>Instalar agora</b>, se o botão tiver aparecido acima.</li>
-          <li>Se não apareceu, toque nos três pontinhos no canto superior direito do navegador.</li>
-          <li>Escolha <b>Instalar app</b> ou <b>Adicionar à tela inicial</b>.</li>
-        </ol>
+      <div class="cta" style="text-align:left;">
+        <h2>Por onde continuar</h2>
+        <ul>
+          <li><a href="/livros/">Os livros</a> — os três títulos, em e-book e no físico.</li>
+          <li><a href="/artigos/">Os artigos</a> — conversas sobre raiva, solidão, fé e propósito.</li>
+          <li><a href="/sobre-o-autor.html">O autor</a> — quem escreve e por quê.</li>
+        </ul>
       </div>
-      <div class="cta">
-        <h2>No iPhone, pelo Safari</h2>
-        <ol>
-          <li>Abra este endereço no <b>Safari</b> — pelo Chrome do iPhone não funciona.</li>
-          <li>Toque no ícone de compartilhar, o quadrado com a seta para cima.</li>
-          <li>Escolha <b>Adicionar à Tela de Início</b>.</li>
-        </ol>
-      </div>
+      <p class="sign">"Você não é ridículo. Você é necessário."<br>— Adm. Romário Cruz</p>
     </article>
   </div>
 </main>
@@ -145,22 +137,6 @@
   </div>
 </footer>
 <script src="/js/rb.js" defer></script>
-<script>
-(function () {
-  var adiado, bt = document.getElementById('btInstalar');
-  window.addEventListener('beforeinstallprompt', function (e) {
-    e.preventDefault(); adiado = e; bt.style.display = 'inline-flex';
-  });
-  bt.addEventListener('click', function () {
-    if (!adiado) return;
-    adiado.prompt();
-    adiado.userChoice.then(function () { adiado = null; bt.style.display = 'none'; });
-  });
-  window.addEventListener('appinstalled', function () { bt.style.display = 'none'; });
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js').catch(function () {});
-  }
-})();
-</script>
+
 </body>
 </html>
