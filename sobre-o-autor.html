@@ -27,6 +27,14 @@
     .book-item:hover { transform: translateY(-8px); }
     .book-item img { width: 100%; height: auto; display: block; }
     .watermark { position: absolute; bottom: 15px; right: 15px; background: rgba(212, 175, 55, 0.8); color: white; padding: 5px 12px; border-radius: 4px; font-size: 0.75em; font-weight: bold; z-index: 10; }
+    
+    /* Visual Storyteller Design Theme */
+    body { background-color: #3e3a35; color: #e8e8e8; }
+    .author-section h2 { color: #d4af37; border-top: 2px solid #d4af37; padding-top: 20px; }
+    .author-section h2::before { content: ''; display: block; width: 100px; height: 2px; background: #d4af37; margin-bottom: 20px; }
+    article { border-left: 3px solid #d4af37; padding-left: 30px; }
+    .history-grid { border-bottom: 1px solid #d4af37; padding-bottom: 60px; }
+    .book-item { border: 1px solid #d4af37; }
     @media (max-width: 768px) { .history-grid { grid-template-columns: 1fr; gap: 30px; } .author-section h2 { font-size: 1.8em; } }
     </style>
   </style>
