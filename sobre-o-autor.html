@@ -14,6 +14,22 @@
 <meta property="og:url" content="https://redebolha.com.br/sobre-o-autor.html">
 <link rel="stylesheet" href="artigos/blog.css">
 </head>
+  <style>
+    .author-section { margin: 60px 0; }
+    .author-section h2 { font-size: 2.2em; margin-bottom: 40px; color: #d4af37; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; }
+    .history-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; margin-bottom: 80px; }
+    .history-text p { font-size: 1.05em; line-height: 1.8; margin-bottom: 20px; color: #b0b0b0; }
+    .history-image { position: relative; overflow: hidden; border-radius: 8px; }
+    .history-image img { width: 100%; height: auto; display: block; transition: transform 0.3s ease; }
+    .history-image:hover img { transform: scale(1.05); }
+    .book-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 60px; }
+    .book-item { position: relative; overflow: hidden; border-radius: 8px; box-shadow: 0 8px 16px rgba(0,0,0,0.3); transition: transform 0.3s ease; }
+    .book-item:hover { transform: translateY(-8px); }
+    .book-item img { width: 100%; height: auto; display: block; }
+    .watermark { position: absolute; bottom: 15px; right: 15px; background: rgba(212, 175, 55, 0.8); color: white; padding: 5px 12px; border-radius: 4px; font-size: 0.75em; font-weight: bold; z-index: 10; }
+    @media (max-width: 768px) { .history-grid { grid-template-columns: 1fr; gap: 30px; } .author-section h2 { font-size: 1.8em; } }
+    </style>
+  </style>
 <body>
 <header class="topbar"><div class="wrap">
 <a class="brand" href="/"><b>Homem,</b> Você Não É Ridículo</a>
