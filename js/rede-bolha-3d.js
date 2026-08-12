@@ -2,8 +2,8 @@
    Rede Bolha — Logo 3D  <rede-bolha-3d>
    ---------------------------------------------------------------------
    Componente autônomo que desenha o selo da Rede Bolha em 3D, girando,
-   com fundo transparente. Não depende de CDN: o Three.js mora em
-   /js/vendor/three/ e só é baixado quando o elemento aparece na tela.
+   com fundo transparente. O Three.js só é baixado quando o selo chega
+   perto da área visível — página que não usa a tag não paga nada.
 
    Uso básico:
      <script type="module" src="/js/rede-bolha-3d.js"></script>
@@ -28,11 +28,40 @@
    ===================================================================== */
 
 const BASE = new URL('.', import.meta.url);
-const THREE_URL = new URL('vendor/three/three.module.min.js', BASE).href;
 const POSTER_PADRAO = new URL('../logo-rede-bolha.png', BASE).href;
 
+/* De onde vem o Three.js.
+   Padrão: CDN (nada para hospedar, funciona na hora).
+   Para servir do próprio domínio — recomendado em produção — baixe
+   three.module.min.js e three.core.min.js do pacote npm "three" para
+   /js/vendor/three/ e aponte para lá, de uma destas duas formas:
+
+     <script type="module"
+             src="/js/rede-bolha-3d.js?three=/js/vendor/three/three.module.min.js"></script>
+
+   ou, antes de carregar o script:
+
+     <script>window.RB3D_THREE_URL = '/js/vendor/three/three.module.min.js';</script>
+
+   Se a origem escolhida falhar, o componente ainda tenta o CDN antes de
+   desistir e ficar com a imagem PNG. */
+const THREE_CDN = 'https://cdn.jsdelivr.net/npm/three@0.185.1/build/three.module.min.js';
+const THREE_URL =
+  (typeof window !== 'undefined' && window.RB3D_THREE_URL) ||
+  new URL(import.meta.url).searchParams.get('three') ||
+  THREE_CDN;
+
 let _three = null;
-const carregarThree = () => (_three ||= import(THREE_URL));
+function carregarThree() {
+  if (!_three) {
+    _three = import(/* @vite-ignore */ THREE_URL).catch((err) => {
+      if (THREE_URL === THREE_CDN) throw err;
+      console.warn('[rede-bolha-3d] origem local falhou, tentando o CDN:', err);
+      return import(/* @vite-ignore */ THREE_CDN);
+    });
+  }
+  return _three;
+}
 
 const semMovimento = () =>
   window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -248,8 +277,7 @@ function criarCena(THREE, canvas, alta) {
   seta.position.set(0, 0.62, 3.55);
   logo.add(seta);
 
-  // sinal: ponto, halo e ondas
-  // o conjunto do sinal fica no topo da bolha, sempre dentro da moldura
+  // sinal: ponto, halo e ondas — sempre no topo da bolha, dentro da moldura
   const sinal = new THREE.Group();
   sinal.position.set(0, 2.85, 2.05);
   logo.add(sinal);

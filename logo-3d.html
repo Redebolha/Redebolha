@@ -171,15 +171,29 @@
         ou se qualquer coisa falhar. Nunca fica um buraco na página.</li>
     <li><strong>Acessível:</strong> é um <code>&lt;button&gt;</code> ou <code>&lt;a&gt;</code> de verdade, com
         rótulo, foco pelo teclado e setas ← → girando o selo.</li>
-    <li><strong>Sem dependência externa.</strong> O Three.js está hospedado no próprio domínio,
-        em <code>/js/vendor/three/</code>. Nada de CDN de terceiros.</li>
+    <li><strong>Uma origem só para a biblioteca.</strong> Por padrão o Three.js vem do CDN jsDelivr,
+        em versão fixa. Dá para servir do próprio domínio — veja abaixo.</li>
   </ul>
 
+  <h2>Servindo o Three.js do próprio domínio</h2>
+  <p>Funciona direto pelo CDN, mas hospedar no <code>redebolha.com.br</code> tira a dependência de
+     terceiros, deixa o arquivo no cache do PWA e sobrevive a qualquer queda do jsDelivr. São dois passos:</p>
+  <ol>
+    <li>Baixe <code>three.module.min.js</code> e <code>three.core.min.js</code> — os dois juntos, no mesmo
+        diretório — da pasta <code>build/</code> do pacote <code>three</code> (versão 0.185.1) e coloque em
+        <code>/js/vendor/three/</code>.</li>
+    <li>Aponte o componente para lá, acrescentando o parâmetro na tag do script:</li>
+  </ol>
+<pre><code>&lt;script type="module"
+        src="/js/rede-bolha-3d.js?three=/js/vendor/three/three.module.min.js"&gt;&lt;/script&gt;</code></pre>
+  <p>Se esse arquivo faltar ou der erro, o componente ainda tenta o CDN antes de desistir e ficar
+     com a imagem PNG — não quebra a página de jeito nenhum.</p>
+
   <div class="nota">
-    <strong>Service worker:</strong> se quiser que o logo 3D funcione offline junto com o resto do PWA,
-    acrescente <code>/js/rede-bolha-3d.js</code> e <code>/js/vendor/three/three.module.min.js</code>
-    (mais o <code>three.core.min.js</code>) à lista <code>PRE_CACHE</code> do
-    <code>service-worker.js</code> e suba a versão do cache.
+    <strong>Service worker:</strong> para o logo 3D funcionar offline junto com o resto do PWA,
+    acrescente <code>/js/rede-bolha-3d.js</code> (e, se hospedar a biblioteca,
+    <code>/js/vendor/three/three.module.min.js</code> mais o <code>three.core.min.js</code>)
+    à lista <code>PRE_CACHE</code> do <code>service-worker.js</code> e suba a versão do cache.
   </div>
 
   <h2>Onde vale a pena colocar</h2>
