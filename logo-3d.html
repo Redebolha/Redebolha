@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#0A0A0C">
+<title>Logo 3D — Rede Bolha</title>
+<link rel="icon" href="/icon-192.png">
+<style>
+  :root {
+    --bg: #0A0A0C;
+    --bg2: #121013;
+    --card: #1A171B;
+    --gold: #C9A24B;
+    --gold-l: #E7CE8A;
+    --txt: #F1ECE3;
+    --body: #C6C0B5;
+    --dim: #857F75;
+    --line: rgba(201, 162, 75, 0.18);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background:
+      radial-gradient(900px 500px at 70% -10%, rgba(47,95,158,.20), transparent 60%),
+      var(--bg);
+    color: var(--body);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 20px 100px; }
+  header.topo {
+    border-bottom: 1px solid var(--line);
+    padding: 14px 0;
+    margin-bottom: 48px;
+  }
+  header.topo .wrap { padding-bottom: 0; display: flex; gap: 14px; align-items: center; }
+  header.topo a { color: var(--gold); text-decoration: none; font-weight: 600; letter-spacing: .04em; }
+  h1 { font-family: 'Oswald', system-ui, sans-serif; font-weight: 600; color: var(--txt);
+       font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; margin: 0 0 12px; letter-spacing: .01em; }
+  h2 { font-family: 'Oswald', system-ui, sans-serif; color: var(--txt); font-size: 1.5rem;
+       margin: 56px 0 14px; letter-spacing: .02em; }
+  h3 { color: var(--gold-l); font-size: 1.05rem; margin: 28px 0 8px; }
+  p { margin: 0 0 16px; }
+  a { color: var(--gold); }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .92em;
+         background: #241f26; color: var(--gold-l); padding: 2px 6px; border-radius: 4px; }
+  pre {
+    background: #16131a; border: 1px solid var(--line); border-radius: 10px;
+    padding: 18px; overflow-x: auto; font-size: .88rem; line-height: 1.6;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: #d7d1e0;
+  }
+  pre code { background: none; color: inherit; padding: 0; }
+
+  .heroi {
+    display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+    gap: 40px; align-items: center;
+  }
+  @media (max-width: 720px) { .heroi { grid-template-columns: 1fr; text-align: center; } }
+
+  .vitrine {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 22px; margin: 24px 0 8px;
+  }
+  .caixa {
+    background: linear-gradient(180deg, var(--card), #131015);
+    border: 1px solid var(--line); border-radius: 14px;
+    padding: 22px 18px; text-align: center;
+  }
+  .caixa small { display: block; color: var(--dim); font-size: .8rem; margin-top: 12px; letter-spacing: .05em; text-transform: uppercase; }
+  .caixa.claro { background: linear-gradient(180deg, #f4f1ea, #e6e1d6); border-color: #d8d2c4; }
+
+  table { width: 100%; border-collapse: collapse; font-size: .95rem; margin: 8px 0 16px; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--txt); font-weight: 600; }
+  td:first-child { white-space: nowrap; }
+  ul { padding-left: 20px; } li { margin-bottom: 8px; }
+  .nota { border-left: 3px solid var(--gold); background: rgba(201,162,75,.06);
+          padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+  .rolagem { height: 60vh; display: grid; place-items: center; color: var(--dim);
+             border: 1px dashed var(--line); border-radius: 12px; margin-top: 20px; }
+</style>
+<script type="module" src="/js/rede-bolha-3d.js"></script>
+</head>
+<body>
+
+<header class="topo"><div class="wrap"><a href="/">← Rede Bolha</a> <span style="color:var(--dim)">/ logo 3D</span></div></header>
+
+<div class="wrap">
+
+  <section class="heroi">
+    <rede-bolha-3d tamanho="fluido" href="/"></rede-bolha-3d>
+    <div>
+      <h1>O selo da Rede Bolha, agora em 3D</h1>
+      <p>Gira sozinho, responde ao mouse e ao toque, e pesa quase nada até aparecer na tela.
+         Um único arquivo, funciona em qualquer página do site.</p>
+      <p style="color:var(--dim);font-size:.95rem">Arraste para girar. No celular, deslize.</p>
+    </div>
+  </section>
+
+  <h2>Como usar</h2>
+  <p>Carregue o script uma vez (de preferência no <code>&lt;head&gt;</code>) e use a tag onde quiser:</p>
+<pre><code>&lt;script type="module" src="/js/rede-bolha-3d.js"&gt;&lt;/script&gt;
+
+&lt;rede-bolha-3d tamanho="240"&gt;&lt;/rede-bolha-3d&gt;</code></pre>
+
+  <h2>As três formas de usar no site</h2>
+
+  <div class="vitrine">
+    <div class="caixa">
+      <rede-bolha-3d tamanho="150" href="/"></rede-bolha-3d>
+      <small>Marca clicável</small>
+    </div>
+    <div class="caixa">
+      <rede-bolha-3d tamanho="150" velocidade="0"></rede-bolha-3d>
+      <small>Parado, só no arrasto</small>
+    </div>
+    <div class="caixa claro">
+      <rede-bolha-3d tamanho="150" velocidade="2" sem-aura></rede-bolha-3d>
+      <small style="color:#6b6355">Em fundo claro</small>
+    </div>
+  </div>
+
+  <h3>1. Marca do topo ou da capa</h3>
+<pre><code>&lt;rede-bolha-3d tamanho="220" href="/"&gt;&lt;/rede-bolha-3d&gt;</code></pre>
+
+  <h3>2. Ocupando a largura do container</h3>
+<pre><code>&lt;div style="max-width:320px"&gt;
+  &lt;rede-bolha-3d tamanho="fluido"&gt;&lt;/rede-bolha-3d&gt;
+&lt;/div&gt;</code></pre>
+
+  <h3>3. Botão "voltar ao topo" — a seta do logo já aponta pra cima</h3>
+  <p>Coloque uma vez, no fim do <code>&lt;body&gt;</code>. Ele fica escondido e só aparece depois que
+     a pessoa rola a página. Clicou, sobe.</p>
+<pre><code>&lt;rede-bolha-3d modo="topo"&gt;&lt;/rede-bolha-3d&gt;</code></pre>
+  <div class="rolagem">role a página para ver o botão surgir no canto inferior direito ↘</div>
+
+  <h2>Atributos</h2>
+  <table>
+    <tr><th>Atributo</th><th>Valores</th><th>O que faz</th></tr>
+    <tr><td><code>tamanho</code></td><td>número em px ou <code>fluido</code></td>
+        <td>Lado do quadrado. Padrão 240. Com <code>fluido</code>, acompanha a largura do elemento pai.</td></tr>
+    <tr><td><code>modo</code></td><td><code>inline</code> · <code>topo</code></td>
+        <td><code>topo</code> vira botão flutuante de voltar ao topo, com aparecimento automático.</td></tr>
+    <tr><td><code>velocidade</code></td><td>número (padrão 1)</td>
+        <td>Multiplica o giro automático. <code>0</code> deixa parado — ainda dá para arrastar.</td></tr>
+    <tr><td><code>href</code></td><td>URL</td>
+        <td>Transforma o selo em link de verdade (vira uma tag <code>&lt;a&gt;</code> por dentro).</td></tr>
+    <tr><td><code>rotulo</code></td><td>texto</td>
+        <td>Rótulo para leitores de tela e <code>title</code>. Já vem com padrões sensatos.</td></tr>
+    <tr><td><code>qualidade</code></td><td><code>auto</code> · <code>alta</code> · <code>baixa</code></td>
+        <td>Detalhe da geometria e da textura. Em <code>auto</code>, decide pelo tamanho na tela.</td></tr>
+    <tr><td><code>sem-aura</code></td><td>—</td>
+        <td>Remove o halo azul de trás. Bom para fundo claro.</td></tr>
+    <tr><td><code>poster</code></td><td>URL</td>
+        <td>Imagem mostrada antes do 3D carregar e quando não há WebGL. Padrão: <code>/logo-rede-bolha.png</code>.</td></tr>
+  </table>
+
+  <h2>O que ele faz sozinho</h2>
+  <ul>
+    <li><strong>Só carrega quando precisa.</strong> O Three.js (≈180 KB comprimido) só é baixado quando o selo
+        chega perto da área visível. Página que não usa o componente não paga nada.</li>
+    <li><strong>Para de renderizar fora da tela</strong> e quando a aba vai para segundo plano — não fica
+        queimando bateria de celular à toa.</li>
+    <li><strong>Respeita <code>prefers-reduced-motion</code>.</strong> Quem pediu menos animação no sistema
+        recebe o selo parado, ainda girável na mão.</li>
+    <li><strong>Cai para a imagem PNG</strong> se o navegador não tiver WebGL, se o contexto gráfico for perdido
+        ou se qualquer coisa falhar. Nunca fica um buraco na página.</li>
+    <li><strong>Acessível:</strong> é um <code>&lt;button&gt;</code> ou <code>&lt;a&gt;</code> de verdade, com
+        rótulo, foco pelo teclado e setas ← → girando o selo.</li>
+    <li><strong>Sem dependência externa.</strong> O Three.js está hospedado no próprio domínio,
+        em <code>/js/vendor/three/</code>. Nada de CDN de terceiros.</li>
+  </ul>
+
+  <div class="nota">
+    <strong>Service worker:</strong> se quiser que o logo 3D funcione offline junto com o resto do PWA,
+    acrescente <code>/js/rede-bolha-3d.js</code> e <code>/js/vendor/three/three.module.min.js</code>
+    (mais o <code>three.core.min.js</code>) à lista <code>PRE_CACHE</code> do
+    <code>service-worker.js</code> e suba a versão do cache.
+  </div>
+
+  <h2>Onde vale a pena colocar</h2>
+  <ul>
+    <li>No <strong>topo da home</strong>, ao lado do título — dá volume à marca sem pesar como vídeo.</li>
+    <li>Como <strong>botão de voltar ao topo</strong> nos artigos longos: útil e com a cara do site.</li>
+    <li>Na <strong>página "instalar app"</strong>, mostrando o ícone que a pessoa vai colocar na tela inicial.</li>
+    <li>Na tela de <strong>offline</strong> ou 404, como elemento vivo em vez de uma imagem estática.</li>
+  </ul>
+
+</div>
+
+<rede-bolha-3d modo="topo"></rede-bolha-3d>
+
+</body>
+</html>
