@@ -1,812 +1,148 @@
-ê Não É Ridículo<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow">
-    <title>Rede Bolha — Painel Administrativo</title>
-  <link rel="manifest" href="manifest.json">
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Rede Bolha — Comunidade de Aprendizado para Homens</title>
+    <link rel="icon" href="/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- External CSS -->
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/componentes.css">
-    <link rel="stylesheet" href="/css/fase-3-navbar-banner.css">
-    <link rel="stylesheet" href="/css/fase-3-ebook-destaque.css">
     <link rel="stylesheet" href="/css/responsivo.css">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600;700&family=Oswald:wght@300;400;500;600&display=swap');
-    :root {
-        --bg: #0A0A0C;
-        --bg2: #121013;
-        --card: #1A171B;
-        --card2: #221E24;
-        --gold: #C9A24B;
-        --gold-l: #E7CE8A;
-        --gold-d: #9A7A30;
-        --wine: #6B2737;
-        --wine-l: #9A3A4C;
-        --txt: #F1ECE3;
-        --body: #C6C0B5;
-        --dim: #857F75;
-        --line: rgba(201, 162, 75, 0.18);
-        --line2: rgba(201, 162, 75, 0.30);
-        --ok: #4CA36B;
-        --warn: #D9A441;
-        --err: #C25B5B;
-        --radius: 12px;
-        --sidebar: 264px;
-    }
-
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
-
-    html {
-        scroll-behavior: smooth;
-    }
-
-    body {
-        background: var(--bg);
-        color: var(--body);
-        font-family: 'Inter', system-ui, sans-serif;
-        line-height: 1.6;
-        -webkit-font-smoothing: antialiased;
-    }
-
-    a {
-        color: var(--gold-l);
-        text-decoration: none;
-    }
-
-    a:hover {
-        color: var(--gold);
-    }
-
-    img {
-        max-width: 100%;
-    }
-
-    button {
-        font-family: inherit;
-        cursor: pointer;
-    }
-
-    input, textarea, select {
-        font-family: inherit;
-    }
-
-    :focus-visible {
-        outline: 2px solid var(--gold);
-        outline-offset: 2px;
-    }
-
-    .hidden {
-        display: none !important;
-    }
-
-    .serif {
-        font-family: 'Cormorant Garamond', Georgia, serif;
-    }
-
-    .oswald {
-        font-family: 'Oswald', sans-serif;
-        text-transform: uppercase;
-        letter-spacing: 0.14em;
-    }
-
-    /* ---- Buttons ---- */
-    .btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        font-family: 'Oswald', sans-serif;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        font-size: 0.8rem;
-        font-weight: 600;
-        border: none;
-        border-radius: 8px;
-        padding: 13px 22px;
-        background: linear-gradient(180deg, var(--gold-l), var(--gold-d));
-        color: #1a1206;
-        transition: filter 0.2s;
-    }
-
-    .btn:hover {
-        filter: brightness(1.08);
-    }
-
-    .btn.ghost {
-        background: transparent;
-        border: 1px solid var(--line2);
-        color: var(--body);
-    }
-
-    .btn.ghost:hover {
-        color: var(--gold);
-        border-color: var(--gold);
-    }
-
-    .btn.danger {
-        background: transparent;
-        border: 1px solid var(--err);
-        color: var(--err);
-    }
-
-    .btn.danger:hover {
-        background: var(--err);
-        color: #fff;
-    }
-
-    .btn.sm {
-        padding: 8px 14px;
-        font-size: 0.7rem;
-    }
-
-    .btn:disabled {
-        opacity: 0.45;
-        cursor: not-allowed;
-        filter: none;
-    }
-
-    /* ---- Login ---- */
-    #login {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 24px;
-    }
-
-    .login-card {
-        width: 100%;
-        max-width: 420px;
-        background: var(--bg2);
-        border: 1px solid var(--line);
-        border-radius: 16px;
-        padding: 40px 34px;
-    }
-
-    .login-card .brand {
-        font-family: 'Oswald', sans-serif;
-        text-transform: uppercase;
-        letter-spacing: 0.16em;
-        font-size: 0.9rem;
-        color: var(--txt);
-        text-align: center;
-        display: block;
-        margin-bottom: 6px;
-    }
-
-    .login-card .brand b {
-        color: var(--gold);
-    }
-
-    .login-card h1 {
-        font-family: 'Cormorant Garamond', serif;
-        font-weight: 600;
-        font-size: 1.9rem;
-        color: var(--txt);
-        text-align: center;
-        margin-bottom: 6px;
-    }
-
-    .login-card .sub {
-        text-align: center;
-        color: var(--dim);
-        font-size: 0.9rem;
-        margin-bottom: 28px;
-    }
-
-    .field {
-        margin-bottom: 18px;
-    }
-
-    .field label {
-        display: block;
-        font-size: 0.82rem;
-        color: var(--body);
-        margin-bottom: 7px;
-        font-weight: 500;
-    }
-
-    .field input, .field textarea, .field select {
-        width: 100%;
-        background: var(--card);
-        border: 1px solid var(--line);
-        border-radius: 9px;
-        padding: 12px 14px;
-        color: var(--txt);
-        font-size: 0.95rem;
-    }
-
-    .field input:focus, .field textarea:focus, .field select:focus {
-        border-color: var(--gold);
-        outline: none;
-    }
-
-    .pwd-wrap {
-        position: relative;
-    }
-
-    .pwd-wrap button {
-        position: absolute;
-        right: 8px;
-        top: 50%;
-        transform: translateY(-50%);
-        background: none;
-        border: none;
-        color: var(--dim);
-        font-size: 0.75rem;
-        padding: 6px;
-    }
-
-    .remember {
-        display: flex;
-        align-items: center;
-        gap: 9px;
-        font-size: 0.85rem;
-        margin-bottom: 20px;
-        color: var(--body);
-    }
-
-    .remember input {
-        width: auto;
-    }
-
-    .login-help {
-        font-size: 0.8rem;
-        color: var(--dim);
-        margin-top: 18px;
-        line-height: 1.6;
-    }
-
-    .message {
-        border-radius: 9px;
-        padding: 11px 14px;
-        font-size: 0.85rem;
-        margin-bottom: 16px;
-    }
-
-    .message.err {
-        background: rgba(194, 91, 91, 0.12);
-        border: 1px solid var(--err);
-        color: #e79b9b;
-    }
-
-    .message.ok {
-        background: rgba(76, 163, 107, 0.12);
-        border: 1px solid var(--ok);
-        color: #8fd0a6;
-    }
-
-    /* ---- App Layout ---- */
-    #app {
-        display: none;
-        min-height: 100vh;
-    }
-
-    .sidebar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        width: var(--sidebar);
-        background: var(--bg2);
-        border-right: 1px solid var(--line);
-        padding: 22px 0;
-        overflow-y: auto;
-        z-index: 40;
-        transition: transform 0.25s;
-    }
-
-    .sidebar .brand {
-        display: block;
-        padding: 0 24px 20px;
-        font-family: 'Oswald', sans-serif;
-        text-transform: uppercase;
-        letter-spacing: 0.16em;
-        font-size: 0.82rem;
-        color: var(--txt);
-        border-bottom: 1px solid var(--line);
-    }
-
-    .sidebar .brand b {
-        color: var(--gold);
-    }
-
-    .nav {
-        padding: 14px 12px;
-    }
-
-    .nav a {
-        display: flex;
-        align-items: center;
-        gap: 13px;
-        padding: 11px 14px;
-        border-radius: 9px;
-        color: var(--body);
-        font-size: 0.92rem;
-        margin-bottom: 2px;
-        transition: background 0.15s;
-    }
-
-    .nav a.ico {
-        width: 20px;
-        text-align: center;
-        font-size: 1.05rem;
-    }
-
-    .nav a:hover {
-        background: var(--card);
-        color: var(--txt);
-    }
-
-    .nav a.active {
-        background: var(--card2);
-        color: var(--gold);
-        font-weight: 500;
-    }
-
-    .nav.set {
-        border-top: 1px solid var(--line);
-        margin: 12px 6px;
-    }
-
-    .main {
-        margin-left: var(--sidebar);
-        min-height: 100vh;
-    }
-
-    .topbar {
-        position: sticky;
-        top: 0;
-        background: rgba(10, 10, 12, 0.9);
-        backdrop-filter: blur(8px);
-        border-bottom: 1px solid var(--line);
-        padding: 16px 30px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        z-index: 30;
-    }
-
-    .topbar h2 {
-        font-family: 'Cormorant Garamond', serif;
-        font-weight: 600;
-        font-size: 1.5rem;
-        color: var(--txt);
-    }
-
-    .hamburger {
-        display: none;
-        background: none;
-        border: 1px solid var(--line2);
-        border-radius: 8px;
-        color: var(--txt);
-        font-size: 1.2rem;
-        padding: 6px 11px;
-    }
-
-    .content {
-        padding: 30px;
-    }
-
-    /* ---- Cards / Panels ---- */
-    .cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 18px;
-        margin-bottom: 26px;
-    }
-
-    .stat {
-        background: var(--card);
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-        padding: 22px;
-    }
-
-    .stat .number {
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 2.4rem;
-        color: var(--gold-l);
-        line-height: 1;
-        margin-bottom: 6px;
-    }
-
-    .stat .lbl {
-        font-size: 0.82rem;
-        color: var(--dim);
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-    }
-
-    .panel {
-        background: var(--card);
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-        padding: 24px;
-        margin-bottom: 22px;
-    }
-
-    .panel h3 {
-        font-family: 'Cormorant Garamond', serif;
-        font-weight: 600;
-        font-size: 1.3rem;
-        color: var(--txt);
-        margin-bottom: 16px;
-    }
-
-    .hero-cta {
-        background: linear-gradient(135deg, var(--bg2), var(--card2));
-        border: 1px solid var(--line2);
-        border-radius: var(--radius);
-        padding: 28px;
-        margin-bottom: 26px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 18px;
-    }
-
-    .hero-cta h3 {
-        font-family: 'Cormorant Garamond', serif;
-        font-weight: 600;
-        font-size: 1.6rem;
-        color: var(--txt);
-    }
-
-    .hero-cta p {
-        color: var(--dim);
-        font-size: 0.92rem;
-        margin-top: 4px;
-    }
-
-    /* ---- Table / Listing ---- */
-    .toolbar {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-        margin-bottom: 20px;
-        align-items: center;
-    }
-
-    .toolbar input[type=search], .toolbar select {
-        background: var(--card);
-        border: 1px solid var(--line);
-        border-radius: 9px;
-        padding: 10px 14px;
-        color: var(--txt);
-        font-size: 0.9rem;
-    }
-
-    .toolbar input[type=search] {
-        min-width: 220px;
-        flex: 1;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    th, td {
-        text-align: left;
-        padding: 13px 12px;
-        border-bottom: 1px solid var(--line);
-        font-size: 0.9rem;
-    }
-
-    th {
-        font-family: 'Oswald', sans-serif;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        font-size: 0.72rem;
-        color: var(--dim);
-        font-weight: 500;
-    }
-
-    tr:hover td {
-        background: var(--card2);
-    }
-
-    .badge {
-        display: inline-block;
-        font-family: 'Oswald', sans-serif;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        font-size: 0.66rem;
-        padding: 4px 9px;
-        border-radius: 20px;
-        border: 1px solid var(--line2);
-    }
-
-    .badge.pub {
-        color: var(--ok);
-        border-color: var(--ok);
-    }
-
-    .badge.draft {
-        color: var(--dim);
-    }
-
-    .badge.review {
-        color: var(--warn);
-        border-color: var(--warn);
-    }
-
-    .badge.scheduled {
-        color: var(--gold);
-        border-color: var(--gold);
-    }
-
-    .thumb {
-        width: 52px;
-        height: 38px;
-        border-radius: 6px;
-        object-fit: cover;
-        background: var(--card2);
-        border: 1px solid var(--line);
-    }
-
-    .row-actions {
-        position: relative;
-    }
-
-    .row-actions .menu {
-        position: absolute;
-        right: 0;
-        top: 100%;
-        background: var(--card2);
-        border: 1px solid var(--line2);
-        border-radius: 9px;
-        padding: 6px;
-        min-width: 150px;
-        z-index: 20;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-    }
-
-    .row-actions .menu button {
-        display: block;
-        width: 100%;
-        text-align: left;
-        background: none;
-        border: none;
-        color: var(--body);
-        padding: 9px 12px;
-        border-radius: 6px;
-        font-size: 0.85rem;
-    }
-
-    .row-actions .menu button:hover {
-        background: var(--card);
-        color: var(--txt);
-    }
-
-    .row-actions .menu button.del:hover {
-        color: var(--err);
-    }
-
-    .empty {
-        text-align: center;
-        color: var(--dim);
-        padding: 50px 20px;
-    }
-
-    /* ---- Editor ---- */
-    .editor-top {
-        position: sticky;
-        top: 0;
-        background: rgba(10, 10, 12, 0.95);
-        backdrop-filter: blur(8px);
-        border-bottom: 1px solid var(--line);
-        padding: 12px 24px;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        flex-wrap: wrap;
-        z-index: 35;
-    }
-
-    .editor-top .save-status {
-        font-size: 0.8rem;
-        color: var(--dim);
-        margin-left: auto;
-    }
-
-    .editor-top .save-status.saved {
-        color: var(--ok);
-    }
-
-    .editor-wrap {
-        display: grid;
-        grid-template-columns: 1fr 340px;
-        gap: 0;
-        min-height: calc(100vh - 58px);
-    }
-
-    .editor-canvas {
-        padding: 34px 40px;
-        max-width: 820px;
-        margin: 0 auto;
-        width: 100%;
-    }
-
-    .editor-side {
-        border-left: 1px solid var(--line);
-        background: var(--bg2);
-        padding: 24px;
-        overflow-y: auto;
-    }
-
-    .editor-side h4 {
-        font-family: 'Oswald', sans-serif;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        font-size: 0.74rem;
-        color: var(--gold);
-        margin: 22px 0 12px;
-    }
-
-    .editor-side h4:first-child {
-        margin-top: 0;
-    }
-
-    .ti {
-        background: transparent;
-        border: none;
-        color: var(--txt);
-        width: 100%;
-        font-family: 'Cormorant Garamond', serif;
-        font-weight: 600;
-        font-size: 2.2rem;
-        line-height: 1.1;
-        margin-bottom: 10px;
-    }
-
-    .ti::placeholder {
-        color: var(--dim);
-    }
-
-    .ti.eyebrow-em {
-        font-family: 'Oswald', sans-serif;
-        text-transform: uppercase;
-        letter-spacing: 0.2em;
-        font-size: 0.8rem;
-        color: var(--gold);
-    }
-
-    .ti.sub-em {
-        font-size: 1.3rem;
-        font-style: italic;
-        color: var(--body);
-    }
-
-    /* blocks */
-    .block {
-        position: relative;
-        border: 1px solid transparent;
-        border-radius: 8px;
-        padding: 6px 10px;
-        margin-bottom: 6px;
-    }
-    </style>
+    
+    <style>
+          * { box-sizing: border-box; margin: 0; padding: 0; }
+          html { scroll-behavior: smooth; }
+          body { background: #0A0A0C; color: #C6C0B5; font-family: 'Inter', system-ui, sans-serif; line-height: 1.6; }
+
+          /* NAVBAR */
+          nav.rb-nav {
+                  position: fixed; top: 0; left: 0; right: 0; width: 100%;
+                  background: #1a1a1a; border-bottom: 3px solid #C4A365;
+                  z-index: 1000; padding: 1rem 2rem; display: flex;
+                  justify-content: space-between; align-items: center;
+                  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+          }
+          nav.rb-nav .brand { color: #C4A365; font-size: 1.5rem; font-weight: bold; text-decoration: none; }
+          nav.rb-nav ul { display: flex; list-style: none; gap: 2rem; margin: 0; padding: 0; }
+          nav.rb-nav .lnk { color: #E5DDD6; text-decoration: none; font-weight: 500; transition: all 0.3s; }
+          nav.rb-nav .lnk:hover { color: #C4A365; border-bottom: 2px solid #C4A365; padding-bottom: 5px; }
+          nav.rb-nav .cta { background: #C4A365; color: #0a0a0c; padding: 10px 25px; border-radius: 5px; font-weight: bold; }
+          body { padding-top: 90px; }
+
+          /* BANNER */
+          .banner { background: linear-gradient(135deg, #C4A365 0%, #8B7246 100%); padding: 3rem 2rem; text-align: center; color: #0a0a0c; }
+          .banner h2 { font-size: 2rem; margin-bottom: 1rem; font-weight: bold; }
+          .banner p { font-size: 1.1rem; margin-bottom: 1.5rem; }
+          .banner .highlight { font-weight: bold; text-decoration: underline; }
+          .banner-btn { background: #0a0a0c; color: #C4A365; border: none; padding: 12px 30px; border-radius: 5px; cursor: pointer; font-weight: bold; transition: all 0.3s; }
+          .banner-btn:hover { transform: scale(1.05); box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); }
+
+          /* MAIN CONTENT */
+          main { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; }
+
+          /* EBOOKS SECTION */
+          .ebooks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
+          .ebook-card { background: #1A171B; border: 1px solid rgba(201, 162, 75, 0.18); border-radius: 10px; padding: 2rem; text-align: center; transition: transform 0.3s, box-shadow 0.3s; }
+          .ebook-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
+
+          /* DESTAQUE */
+          .destaque { 
+                  border: 3px solid #C4A365; border-radius: 10px;
+                  box-shadow: 0 0 20px rgba(196, 163, 101, 0.4);
+                  background: rgba(26, 26, 26, 0.8); padding: 2rem;
+                  position: relative; margin: 2rem 0;
+          }
+          .destaque::before { 
+                  content: '⭐ DESTAQUE EXCLUSIVO ⭐';
+                  position: absolute; top: -20px; left: 50%; transform: translateX(-50%);
+                  background: #C4A365; color: #0a0a0c; padding: 0.5rem 1.5rem;
+                  font-weight: bold; font-size: 0.9rem; border-radius: 20px;
+                  z-index: 10; letter-spacing: 1px;
+          }
+          .destaque h2 { color: #C4A365; font-size: 2.2rem; margin-top: 1rem; }
+          .destaque p { color: #E5DDD6; font-size: 1.1rem; line-height: 1.8; }
+
+          /* FOOTER */
+          footer { background: #0A0A0C; border-top: 1px solid rgba(201, 162, 75, 0.18); padding: 3rem 2rem; text-align: center; color: #857F75; font-size: 0.9rem; }
+
+          /* RESPONSIVO */
+          @media (max-width: 768px) {
+                  nav.rb-nav { flex-direction: column; padding: 1rem; gap: 1rem; }
+                  nav.rb-nav ul { flex-direction: column; gap: 1rem; width: 100%; }
+                  body { padding-top: 200px; }
+                  .banner h2 { font-size: 1.5rem; }
+                  .destaque h2 { font-size: 1.8rem; }
+          }
+        </style>
   </head>
   <body>
-
-    <!-- Login Section -->
-    <section id="login">
-      <form class="login-card" id="loginForm" autocomplete="on">
-
-        <!-- NAVBAR -->
-        <nav class="rb-nav" aria-label="Navegação principal">
-          <div class="inner">
+      <!-- NAVBAR -->
+      <nav class="rb-nav">
             <a class="brand" href="/">🚀 Rede Bolha</a>a>
             <ul>
-              <li><a class="lnk" href="#home">Início</a>a></li>
-            <li><a class="lnk" href="#livros">Livros</a>a></li>
-            <li><a class="lnk" href="#artigos">Artigos</a>a></li>
-            <li><a class="lnk" href="#sobre">Sobre</a>a></li>
-            <li><a class="lnk cta" href="#contato">Comece Agora</a>a></li>
+                    <li><a class="lnk" href="#livros">Livros</a>a></li>
+                  <li><a class="lnk" href="#sobre">Sobre</a>a></li>
+                  <li><a class="lnk" href="#contato">Contato</a>a></li>
+                  <li><a class="lnk cta" href="#comece">Comece Agora</a>a></li>
             </ul>
-          </div>div>
-        </nav>nav>
-      
-      <!-- BANNER PROMOCIONAL -->
-      <section class="promotional-banner">
-      <h2>⭐ Oferta Especial Limitada</h2>
-      <p>Acesso vitalício a todos os nossos e-books e cursos com <span class="highlight">50% de desconto</span>span></p>
-      <button class="banner-btn">Aproveite Agora</button>button>
-      <div style="margin-top: 1.5rem;">
-      <span class="promo-badge">50% OFF</span>span>
-      </div>div>
-      
-      
-      /* NAVEGAÇÃO MELHORADA */
-      nav.rb-nav { position: fixed; top: 0; left: 0; right: 0; width: 100%; background-color: #1a1a1a; border-bottom: 3px solid #C4A365; z-index: 1000; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); }
-      nav.rb-nav .inner { display: flex; width: 100%; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
-      nav.rb-nav .brand { color: #C4A365; font-size: 1.5rem; font-weight: bold; text-decoration: none; transition: all 0.3s; }
-      nav.rb-nav .brand:hover { color: #E6D7B8; text-shadow: 0 0 10px rgba(196, 163, 101, 0.5); }
-      nav.rb-nav ul { display: flex; list-style: none; gap: 2rem; margin: 0; padding: 0; }
-      nav.rb-nav .lnk { color: #E5DDD6; text-decoration: none; font-weight: 500; transition: all 0.3s; }
-      nav.rb-nav .lnk:hover { color: #C4A365; border-bottom: 2px solid #C4A365; padding-bottom: 5px; }
-      nav.rb-nav .lnk.cta { background-color: #C4A365; color: #0a0a0c; padding: 10px 25px; border-radius: 5px; font-weight: bold; transition: all 0.3s; }
-      nav.rb-nav .lnk.cta:hover { background-color: #E6D7B8; box-shadow: 0 5px 20px rgba(196, 163, 101, 0.4); transform: translateY(-2px); }
-      body { padding-top: 90px; }
-      
-      /* BANNER PROMOCIONAL */
-      section.promotional-banner { background: linear-gradient(135deg, #C4A365 0%, #8B7246 100%); padding: 3rem 2rem; margin-bottom: 3rem; text-align: center; color: #0a0a0c; }
-      section.promotional-banner h2 { font-size: 2rem; margin-bottom: 1rem; font-weight: bold; }
-      section.promotional-banner p { font-size: 1.1rem; margin-bottom: 1.5rem; max-width: 800px; margin-left: auto; margin-right: auto; }
-      section.promotional-banner .highlight { font-weight: bold; text-decoration: underline; }
-      .banner-btn { background-color: #0a0a0c; color: #C4A365; border: none; padding: 12px 30px; font-size: 1em; border-radius: 5px; cursor: pointer; font-weight: bold; transition: all 0.3s; }
-      .banner-btn:hover { transform: scale(1.05); box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); }
-      .promo-badge { background-color: #FF4444; color: white; font-size: 3em; font-weight: bold; padding: 30px 50px; border-radius: 10px; box-shadow: 0 10px 30px rgba(255, 68, 68, 0.3); display: inline-block; }
-      
-      /* DESTAQUE E-BOOK */
-      .bk--destaque { border: 3px solid #C4A365; border-radius: 10px; box-shadow: 0 0 20px rgba(196, 163, 101, 0.4), 0 0 40px rgba(196, 163, 101, 0.2); transform: scale(1.02); position: relative; background-color: rgba(26, 26, 26, 0.8); padding: 2rem; margin: 2rem 0; }
-      .bk--destaque::before { content: '⭐ DESTAQUE EXCLUSIVO ⭐'; position: absolute; top: -20px; left: 50%; transform: translateX(-50%); background-color: #C4A365; color: #0a0a0c; padding: 0.5rem 1.5rem; font-weight: bold; font-size: 0.9rem; border-radius: 20px; z-index: 10; letter-spacing: 1px; }
-      .bk--destaque:hover { transform: scale(1.03); box-shadow: 0 0 30px rgba(196, 163, 101, 0.6), 0 0 50px rgba(196, 163, 101, 0.3); }
-      .bk--destaque h2 { color: #C4A365; font-size: 2.2rem; margin-top: 1rem; }
-      .bk--destaque p { color: #E5DDD6; font-size: 1.1rem; line-height: 1.8; }
-      .ebook-badge { display: inline-block; background-color: #C4A365; color: #0a0a0c; padding: 8px 16px; border-radius: 20px; font-weight: bold; margin-bottom: 15px; font-size: 0.9rem; }
-      
-      /* RESPONSIVO */
-      @media (max-width: 768px) {
-      nav.rb-nav { flex-direction: column; padding: 1rem; gap: 1rem; }
-      nav.rb-nav .inner { flex-direction: column; gap: 1rem; }
-      nav.rb-nav ul { flex-direction: column; gap: 1rem; width: 100%; }
-      body { padding-top: 200px; }
-      section.promotional-banner h2 { font-size: 1.5rem; }
-      .bk--destaque { padding: 1.5rem; }
-      .bk--destaque h2 { font-size: 1.8rem; }
-      .promo-badge { font-size: 2em; padding: 20px 30px; }
-      }
-      
-      @media (max-width: 480px) {
-      nav.rb-nav { padding: 0.8rem; }
-      nav.rb-nav .brand { font-size: 1.2rem; }
-      nav.rb-nav ul { gap: 0.5rem; }
-      nav.rb-nav .lnk { font-size: 0.9rem; }
-      section.promotional-banner { padding: 2rem 1rem; }
-      .bk--destaque { padding: 1rem; transform: scale(1); }
-      .bk--destaque::before { font-size: 0.75rem; padding: 0.3rem 1rem; top: -15px; }
-      }
-      </section>section></p></h2></li></li>
-            </ul>
-        <span class="brand"><b>Rede Bolha</b> — Painel</span>span>
-      <h1 class="serif">Bem-vindo de volta</h1>h1>
-      <p class="sub">Acesse o painel para gerenciar o conteúdo do site.</p>p>
-      <div id="loginMsg"></div>div>
-      
-      <div class="field">
-      <label for="email">E-mail</label>label>
-      <input type="email" id="email" autocomplete="email" placeholder="seu@email.com" required>
-      </div>div>
-      
-      <div class="field">
-      <label for="token">Senha de acesso (token do GitHub)</label>label>
-      <div class="pwd-wrap">
-      <input type="password" id="token" autocomplete="current-password" placeholder="Cole aqui seu token" required>
-      <button type="button" id="togglePwd" aria-label="Mostrar ou ocultar">Mostrar</button>button>
-      </div>div>
-      </div>div>
-      
-      <label class="remember"><input type="checkbox" id="remember"> Lembrar-me neste navegador</label>label>
-      
-      <button type="submit" class="btn" style="width:100%;justify-content:center" id="loginBtn">Entrar com segurança</button>button>
-      
-      <p class="login-help">
-      Esqueceu o acesso? Gere um novo token pessoal em <a href="https://github.com/settings/tokens" target="_blank" rel="noopener">github.com/settings/tokens</a>a>. Seu token fica guardado apenas neste navegador e nunca é enviado a terceiros.
-      </p>p>
-      </form>form>
+      </nav>nav>
+  
+    <!-- BANNER PROMOCIONAL -->
+    <section class="banner">
+        <h2>⭐ Oferta Especial Limitada</h2>
+        <p>Acesso vitalício a todos os nossos e-books e cursos com <span class="highlight">50% de desconto</span>span></p>
+        <button class="banner-btn">Aproveite Agora</button>button>
     </section>section>
   
-  <!-- App is built dynamically by app.js -->
-  <div id="app"></div>div>
-  
-  <div id="modals"></div>div>
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main>
+          <!-- E-BOOKS -->
+          <section id="livros">
+                  <h2 style="text-align: center; color: #C4A365; margin-bottom: 3rem; font-size: 2rem;">Nossos E-books</h2>
+
+                  <!-- DESTAQUE: Homem, Você Não É Ridículo -->
+                  <article class="destaque">
+                            <h2>Homem, Você Não É Ridículo</h2>
+                            <p>Um guia completo para quebrar os mitos sobre masculinidade, superando inseguranças e construindo uma vida autêntica e significativa. Descubra como ser um homem de verdade sem perder sua humanidade.</p>
+                            <button class="banner-btn" style="margin-top: 1.5rem;">Aproveite Agora</button>button>
+                  </article>article>
+
+                  <!-- OUTROS E-BOOKS -->
+                  <div class="ebooks-grid">
+                            <div class="ebook-card">
+                                        <h3 style="color: #C4A365; margin-bottom: 1rem;">Paternidade Consciente</h3>
+                                        <p>Guia prático para pais que querem criar filhos emocionalmente inteligentes e resilientes.</p>
+                                        <button class="banner-btn" style="margin-top: 1rem; width: 100%; justify-content: center;">Saiba Mais</button>button>
+                            </div>div>
+
+                            <div class="ebook-card">
+                                        <h3 style="color: #C4A365; margin-bottom: 1rem;">Saúde Emocional Masculina</h3>
+                                        <p>Entenda e cuide da sua saúde mental com estratégias práticas e cientificamente comprovadas.</p>
+                                        <button class="banner-btn" style="margin-top: 1rem; width: 100%; justify-content: center;">Saiba Mais</button>button>
+                            </div>div>
+
+                            <div class="ebook-card">
+                                        <h3 style="color: #C4A365; margin-bottom: 1rem;">Propósito e Carreira</h3>
+                                        <p>Descubra seu verdadeiro propósito profissional e construa uma carreira significativa.</p>
+                                        <button class="banner-btn" style="margin-top: 1rem; width: 100%; justify-content: center;">Saiba Mais</button>button>
+                            </div>div>
+                  </div>div>
+          </section>section>
+    </main>
+
+      <!-- FOOTER -->
+      <footer>
+            <p>&copy; 2026 Rede Bolha. Todos os direitos reservados. | <a href="/politica-privacidade.html" style="color: #C4A365;">Política de Privacidade</a>a> | <a href="/termos.html" style="color: #C4A365;">Termos de Uso</a>a></p>
+      </footer>
   
   </body>
+</html>html></p>
+      </footer>
+    </main></p></h2></li></li>
+            </ul>
+  </body>
+    </style></title>
+  </head>
