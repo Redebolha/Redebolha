@@ -32,6 +32,7 @@ function $(s,c){return (c||document).querySelector(s);}
 function $all(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s));}
 function el(tag,attrs,html){var e=document.createElement(tag);if(attrs)for(var k in attrs){if(k==="class")e.className=attrs[k];else if(k==="text")e.textContent=attrs[k];else e.setAttribute(k,attrs[k]);}if(html!=null)e.innerHTML=html;return e;}
 function esc(s){return (s==null?"":String(s)).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+function reEsc(s){return (s||"").replace(/[.*+?^${}()|[\]\\]/g,"\\$&");}
 function slugify(s){return (s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,80);}
 function nowISO(){return new Date().toISOString();}
 function fmtDate(iso){if(!iso)return "—";try{return new Intl.DateTimeFormat("pt-BR",{dateStyle:"short",timeStyle:"short",timeZone:TZ}).format(new Date(iso));}catch(e){return iso;}}
@@ -62,6 +63,9 @@ function ghPut(filepath, contentStr, message, sha){
   return gh("/repos/"+REPO.owner+"/"+REPO.name+"/contents/"+filepath, { method:"PUT", body: body });
 }
 function ghListDir(dir){ return gh("/repos/"+REPO.owner+"/"+REPO.name+"/contents/"+dir+"?ref="+REPO.branch); }
+function ghDelete(filepath, message, sha){
+  return gh("/repos/"+REPO.owner+"/"+REPO.name+"/contents/"+filepath, { method:"DELETE", body:{ message: message, sha: sha, branch: REPO.branch } });
+}
 
 /* ===================================================================
    LOGIN / SEGURANCA
@@ -789,7 +793,7 @@ function viewTags(v){
    =================================================================== */
 
    function viewMedia(v){
-        v.innerHTML='<div class="toolbar"><input type="search" id="mq" placeholder="Buscar mídia…"><span style="color:var(--dim);font-size:.85rem">Fotos da galeria (/fotos) — clique para ajustar o enquadramento</span><label class="btn ghost sm" style="margin-left:auto;cursor:pointer">Enviar fotos<input type="file" id="mUpload" accept="image/*" multiple style="display:none"></label></div><div id="mediaGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px"></div>';
+        v.innerHTML='<div class="toolbar"><input type="search" id="mq" placeholder="Buscar mídia…"><span style="color:var(--dim);font-size:.85rem">Fotos da galeria (/fotos) — clique para ajustar o enquadramento, ou no × para excluir</span><label class="btn ghost sm" style="margin-left:auto;cursor:pointer">Enviar fotos<input type="file" id="mUpload" accept="image/*" multiple style="display:none"></label></div><div id="mediaGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px"></div>';
         var grid=$("#mediaGrid"); grid.innerHTML='<p class="empty">Carregando…</p>';
         function loadGrid(){
                grid.innerHTML='<p class="empty">Carregando…</p>';
@@ -804,14 +808,47 @@ function viewTags(v){
                                    var re=new RegExp("/fotos/"+f.name.replace(/\./g,"\\.")+'"[^>]*?object-position:([^;]+);');
                                    var m=re.exec(html);
                                    var pos=m?m[1].trim():"top";
-                                   var card=el("div",{class:"panel",style:"padding:8px;cursor:pointer"});
-                                   card.innerHTML='<img src="'+SITE+'/fotos/'+f.name+'" alt="'+esc(f.name)+'" style="width:100%;aspect-ratio:1/1;object-fit:cover;object-position:'+esc(pos)+';border-radius:6px;pointer-events:none"><div style="font-size:.72rem;color:var(--dim);margin-top:6px;word-break:break-all">'+esc(f.name)+'</div>';
-                                   card.onclick=function(){openCropEditor(f.name,pos);};
+                                   var card=el("div",{class:"panel",style:"padding:8px;position:relative"});
+                                   var delBtn=el("button",{"aria-label":"Excluir "+f.name,title:"Excluir foto",style:"position:absolute;top:6px;right:6px;z-index:2;width:26px;height:26px;border-radius:50%;background:rgba(10,10,12,.72);color:#fff;border:1px solid rgba(255,255,255,.3);font-size:15px;line-height:1;cursor:pointer"},"×");
+                                   delBtn.onclick=function(e){e.stopPropagation();confirmDeletePhoto(f.name,f.sha);};
+                                   var img=el("img",{src:SITE+"/fotos/"+f.name,alt:f.name,style:"width:100%;aspect-ratio:1/1;object-fit:cover;object-position:"+pos+";border-radius:6px;cursor:pointer"});
+                                   img.onclick=function(){openCropEditor(f.name,pos,f.sha);};
+                                   var label=el("div",{style:"font-size:.72rem;color:var(--dim);margin-top:6px;word-break:break-all"},esc(f.name));
+                                   card.appendChild(delBtn); card.appendChild(img); card.appendChild(label);
                                    grid.appendChild(card);
                         });
                }).catch(function(e){grid.innerHTML='<p class="empty">Erro: '+esc(e.message)+'</p>';});
         }
         loadGrid();
+        function deletePhoto(filename,sha){
+               return ghContent("fotos/index.html").then(function(fd){
+                        var html=b64decode(fd.content);
+                        var re=new RegExp('\\n?<img\\b[^>]*\\bsrc="/fotos/'+reEsc(filename)+'"[^>]*>');
+                        if(!re.test(html))return null;
+                        var newHtml=html.replace(re,"");
+                        return ghPut("fotos/index.html",newHtml,"Remove foto "+filename+" da galeria (via Painel Rede Bolha)",fd.sha);
+               }).then(function(){
+                        return ghDelete("fotos/"+filename,"Exclui foto "+filename+" (via Painel Rede Bolha)",sha);
+               });
+        }
+        function confirmDeletePhoto(filename,sha){
+               openModal('<h3>Excluir foto definitivamente?</h3><p style="color:var(--body);margin:10px 0 18px">"'+esc(filename)+'" será removida do repositório e some do site assim que a alteração for publicada. Diferente de "Cancelar", esta ação não fica só no navegador — é possível reverter depois pelo histórico do GitHub, mas não por aqui.</p>'+
+                        '<div style="display:flex;gap:10px;justify-content:flex-end"><button class="btn ghost" id="cMD">Cancelar</button><button class="btn danger" id="okMD">Sim, excluir</button></div>',
+                        function(m){
+                                   $("#cMD",m).onclick=closeModal;
+                                   $("#okMD",m).onclick=function(){
+                                                var btn=$("#okMD",m); btn.disabled=true; btn.textContent="Excluindo…";
+                                                deletePhoto(filename,sha).then(function(){
+                                                               toast("Foto excluída.","ok");
+                                                               closeModal();
+                                                               loadGrid();
+                                                }).catch(function(e){
+                                                               toast("Falha ao excluir: "+e.message,"err");
+                                                               btn.disabled=false; btn.textContent="Sim, excluir";
+                                                });
+                                   };
+                        });
+        }
         $("#mq").oninput=function(){
                var q=this.value.toLowerCase();
                $all("#mediaGrid .panel").forEach(function(c){c.style.display=c.textContent.toLowerCase().indexOf(q)>-1?"":"none";});
@@ -822,16 +859,17 @@ function viewTags(v){
                uploadPhotos(files);
                e.target.value="";
         };
-        function openCropEditor(filename,currentPos){
+        function openCropEditor(filename,currentPos,sha){
                var py=50;
                var mPos=/center\s+(\d+)%/.exec(currentPos||"");
                if(mPos)py=parseInt(mPos[1],10);
                else if((currentPos||"").trim()==="top")py=0;
-               var inner='<h3 style="margin-top:0">Ajustar enquadramento</h3><p style="color:var(--dim);font-size:.85rem;margin-top:-8px">'+esc(filename)+'</p><div style="display:flex;justify-content:center;margin:14px 0"><img id="cropPreview" src="'+SITE+'/fotos/'+filename+'" style="width:280px;height:280px;object-fit:cover;object-position:center '+py+'%;border-radius:8px;background:#000"></div><label style="font-size:.8rem;color:var(--dim)">Posição vertical (rosto e livro visíveis)</label><input type="range" id="cropRange" min="0" max="100" value="'+py+'" style="width:100%"><div style="text-align:center;font-size:.8rem;color:var(--dim);margin-top:4px" id="cropVal">'+py+'%</div><div style="display:flex;gap:8px;justify-content:flex-end;margin-top:16px"><button class="btn ghost" id="cropCancel">Cancelar</button><button class="btn" id="cropSave">Salvar</button></div>';
+               var inner='<h3 style="margin-top:0">Ajustar enquadramento</h3><p style="color:var(--dim);font-size:.85rem;margin-top:-8px">'+esc(filename)+'</p><div style="display:flex;justify-content:center;margin:14px 0"><img id="cropPreview" src="'+SITE+'/fotos/'+filename+'" style="width:280px;height:280px;object-fit:cover;object-position:center '+py+'%;border-radius:8px;background:#000"></div><label style="font-size:.8rem;color:var(--dim)">Posição vertical (rosto e livro visíveis)</label><input type="range" id="cropRange" min="0" max="100" value="'+py+'" style="width:100%"><div style="text-align:center;font-size:.8rem;color:var(--dim);margin-top:4px" id="cropVal">'+py+'%</div><div style="display:flex;gap:8px;justify-content:flex-end;margin-top:16px"><button class="btn danger" id="cropDelete" style="margin-right:auto;white-space:nowrap">Excluir foto</button><button class="btn ghost" id="cropCancel">Cancelar</button><button class="btn" id="cropSave">Salvar</button></div>';
                openModal(inner,function(m){
                         var range=$("#cropRange",m),preview=$("#cropPreview",m),val=$("#cropVal",m);
                         range.oninput=function(){preview.style.objectPosition="center "+range.value+"%";val.textContent=range.value+"%";};
                         $("#cropCancel",m).onclick=closeModal;
+                        $("#cropDelete",m).onclick=function(){closeModal();confirmDeletePhoto(filename,sha);};
                         $("#cropSave",m).onclick=function(){
                                    var btn=$("#cropSave",m); btn.disabled=true; btn.textContent="Salvando…";
                                    var newPos="center "+range.value+"%";
@@ -1211,4 +1249,3 @@ window.addEventListener("beforeunload",function(e){ if(edState.dirty){ e.prevent
 
 window.__RB={state:state,go:go};
 })();
-Page_UpPage_UpPage_UpPage_UpPage_UpPage_Up
