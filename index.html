@@ -867,6 +867,49 @@
 </nav>
 
 <div class="hyr" id="livro-homem">
+<!-- ============================================================
+   GANCHO DE MANCHETE — REDE BOLHA
+   ============================================================ -->
+<section class="rb-gancho" aria-label="Artigo em destaque">
+  <div class="rb-gancho-miolo">
+    <span class="rb-gancho-chapeu">Pare e leia &middot; Na Rede Bolha</span>
+    <h2 class="rb-gancho-titulo" id="rb-manchete">
+      <a href="/artigos/">
+        O silêncio que mata: por que nós, homens, morremos antes — e quase ninguém toca no assunto?
+      </a>
+    </h2>
+    <p class="rb-gancho-apoio">
+      Uma conversa franca, sem juízo e sem clichê — do jeito que a gente
+      deveria ter tido há muito tempo. Leva cinco minutos. Pode mudar o resto.
+    </p>
+    <a class="rb-gancho-botao" href="/artigos/">Ler os artigos &rarr;</a>
+  </div>
+  <script>
+    (function(){
+      var manchetes = [
+        "O silêncio que mata: por que nós, homens, morremos antes — e quase ninguém toca no assunto?",
+        "Quantos amigos você perdeu sem nunca saber que eles estavam mal?",
+        "Homem não chora? Então por que a gente adoece calado?",
+        "A pergunta que nenhum homem faz no churrasco — e deveria."
+      ];
+      var alvo = document.querySelector("#rb-manchete a");
+      if(!alvo || manchetes.length < 2) return;
+      if(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      var i = 0;
+      var titulo = document.getElementById("rb-manchete");
+      setInterval(function(){
+        titulo.style.opacity = 0;
+        setTimeout(function(){
+          i = (i + 1) % manchetes.length;
+          alvo.textContent = manchetes[i];
+          titulo.style.opacity = 1;
+        }, 500);
+      }, 8000);
+    })();
+  </script>
+</section>
+<!-- ============ FIM DO GANCHO DE MANCHETE ============ -->
+
 <section class="sec outros-livros">
 <div class="wrap center">
 <span class="eyebrow reveal">Obras de Adm. Romário Cruz</span>
@@ -933,48 +976,6 @@
       </div>
     </div>
   </header>
-  <!-- ============================================================
-     GANCHO DE MANCHETE — REDE BOLHA
-     ============================================================ -->
-<section class="rb-gancho" aria-label="Artigo em destaque">
-  <div class="rb-gancho-miolo">
-    <span class="rb-gancho-chapeu">Pare e leia &middot; Na Rede Bolha</span>
-    <h2 class="rb-gancho-titulo" id="rb-manchete">
-      <a href="/artigos/">
-        O silêncio que mata: por que nós, homens, morremos antes — e quase ninguém toca no assunto?
-      </a>
-    </h2>
-    <p class="rb-gancho-apoio">
-      Uma conversa franca, sem juízo e sem clichê — do jeito que a gente
-      deveria ter tido há muito tempo. Leva cinco minutos. Pode mudar o resto.
-    </p>
-    <a class="rb-gancho-botao" href="/artigos/">Ler os artigos &rarr;</a>
-  </div>
-  <script>
-    (function(){
-      var manchetes = [
-        "O silêncio que mata: por que nós, homens, morremos antes — e quase ninguém toca no assunto?",
-        "Quantos amigos você perdeu sem nunca saber que eles estavam mal?",
-        "Homem não chora? Então por que a gente adoece calado?",
-        "A pergunta que nenhum homem faz no churrasco — e deveria."
-      ];
-      var alvo = document.querySelector("#rb-manchete a");
-      if(!alvo || manchetes.length < 2) return;
-      if(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-      var i = 0;
-      var titulo = document.getElementById("rb-manchete");
-      setInterval(function(){
-        titulo.style.opacity = 0;
-        setTimeout(function(){
-          i = (i + 1) % manchetes.length;
-          alvo.textContent = manchetes[i];
-          titulo.style.opacity = 1;
-        }, 500);
-      }, 8000);
-    })();
-  </script>
-</section>
-<!-- ============ FIM DO GANCHO DE MANCHETE ============ -->
 <!-- HOOK -->
   <section class="sec">
     <div class="wrap">
