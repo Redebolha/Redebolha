@@ -19,13 +19,13 @@
 <meta property="og:locale" content="pt_BR">
 <meta property="og:title" content="Homem, Você Não É Ridículo">
 <meta property="og:description" content="Masculinidade, saúde emocional, fé e propósito: os livros de Adm. Romário Cruz para homens que cansaram de fingir que está tudo bem. Comece a ler hoje.">
-<meta property="og:image" content="https://blogger.googleusercontent.com/img/a/AVvXsEhvlTidb2ODSFFw6j4tB7rfNAZ_2sxvYS7Po-H_cxVCXozW177G-_hOPE0KFZiZsKl_N8z86RxK_jbRx7GIjZLutgFWhOW0MxO3Lb-ScOea1FXaftJYe7W0kF0NbmQDyIvXiQK4Yw7UDiI-EFlldWMA3BYEc896vRnL6Hc4CqRs0ml53L1hBuas0vPkK18">
+<meta property="og:image" content="https://redebolha.com.br/homem-voce-nao-e-ridiculo-capa-frente.jpg">
 <meta property="og:image:alt" content="Capa do livro Homem, Você Não É Ridículo, de Adm. Romário Cruz">
 <meta property="og:url" content="https://redebolha.com.br/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Homem, Você Não É Ridículo">
 <meta name="twitter:description" content="Masculinidade, saúde emocional, fé e propósito: os livros de Adm. Romário Cruz para homens que cansaram de fingir que está tudo bem. Comece a ler hoje.">
-<meta name="twitter:image" content="https://blogger.googleusercontent.com/img/a/AVvXsEhvlTidb2ODSFFw6j4tB7rfNAZ_2sxvYS7Po-H_cxVCXozW177G-_hOPE0KFZiZsKl_N8z86RxK_jbRx7GIjZLutgFWhOW0MxO3Lb-ScOea1FXaftJYe7W0kF0NbmQDyIvXiQK4Yw7UDiI-EFlldWMA3BYEc896vRnL6Hc4CqRs0ml53L1hBuas0vPkK18">
+<meta name="twitter:image" content="https://redebolha.com.br/homem-voce-nao-e-ridiculo-capa-frente.jpg">
 <meta name="twitter:image:alt" content="Capa do livro Homem, Você Não É Ridículo, de Adm. Romário Cruz">
 <!-- PENDENTE: quando houver perfil no X/Twitter, descomente a linha abaixo e troque pelo @ real.
      Não preenchi com um @ inventado porque a conta pode pertencer a outra pessoa.
@@ -91,9 +91,9 @@
 .hyr .countdown{margin-top:1rem;font-family:'Oswald',sans-serif;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);}
 .hyr .countdown b{color:var(--gold-l);font-weight:600;}
 .hyr .cover-wrap{position:relative;perspective:1600px;}
-.hyr .cover{position:relative;border-radius:6px;overflow:hidden;box-shadow:0 40px 80px -24px rgba(0,0,0,.85),0 0 0 1px rgba(201,162,75,.18),-22px 22px 60px -30px rgba(201,162,75,.25);transform-style:preserve-3d;animation:spinCover3d 8s linear infinite;}
+.hyr .cover{position:relative;border-radius:6px;overflow:hidden;box-shadow:0 40px 80px -24px rgba(0,0,0,.85),0 0 0 1px rgba(201,162,75,.18),-22px 22px 60px -30px rgba(201,162,75,.25);transform-style:preserve-3d;backface-visibility:hidden;-webkit-backface-visibility:hidden;animation:spinCover3d 6s ease-in-out infinite;}
 .hyr .cover:hover{animation-play-state:paused;}
-@keyframes spinCover3d{0%{transform:rotateY(0deg);}100%{transform:rotateY(360deg);}}
+@keyframes spinCover3d{0%,100%{transform:rotateY(-9deg);}50%{transform:rotateY(9deg);}}
 .hyr .cover::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.10),transparent 32%);}
 .hyr .price-flag{position:absolute;z-index:3;left:-14px;top:24px;font-family:'Oswald',sans-serif;font-weight:600;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;background:var(--wine);color:#F4E9DC;padding:.5rem .9rem;border-radius:3px;box-shadow:0 12px 24px -10px rgba(107,39,55,.8);}
 .hyr .price-flag b{color:var(--gold-l);}
@@ -196,7 +196,7 @@
   .hyr .themes{grid-template-columns:1fr;}
 }
 @media(prefers-reduced-motion:reduce){
-  .hyr ,.hyr ::before{animation:none!important;transition:none!important;}
+  .hyr ,.hyr ::before,.hyr .cover,.hyr .bk-cover-wrap img{animation:none!important;transition:none!important;}
   .hyr.js .reveal{opacity:1;transform:none;}
 }
 
@@ -208,7 +208,7 @@
   .hyr .bk-cover-wrap img{width:100%;border-radius:8px;box-shadow:0 30px 60px -20px rgba(0,0,0,.85),0 0 0 1px rgba(201,162,75,.18);display:block;transition:transform .4s ease,box-shadow .4s ease;}
   .hyr .bk-cover-wrap img:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 44px 80px -24px rgba(0,0,0,.9),0 0 0 1px rgba(201,162,75,.35);}
   .hyr .bk--destaque .bk-cover-wrap{perspective:1600px;}
-.hyr .bk--destaque .bk-cover-wrap img{box-shadow:0 40px 80px -24px rgba(201,162,75,.35),0 0 0 2px rgba(201,162,75,.5);transform-style:preserve-3d;animation:spinCover3d 8s linear infinite;}
+.hyr .bk--destaque .bk-cover-wrap img{box-shadow:0 40px 80px -24px rgba(201,162,75,.35),0 0 0 2px rgba(201,162,75,.5);transform-style:preserve-3d;backface-visibility:hidden;-webkit-backface-visibility:hidden;animation:spinCover3d 6s ease-in-out infinite;}
 .hyr .bk--destaque .bk-cover-wrap img:hover{animation-play-state:paused;transform:none;}
   .hyr .bk-tag{font-family:'Oswald',sans-serif;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-d);margin-bottom:.5rem;display:block;}
   .hyr .bk-tag--promo{color:var(--wine-l);}
@@ -413,7 +413,7 @@
       "mainEntityOfPage": "https://redebolha.com.br/sobre-o-autor.html",
       "image": {
         "@type": "ImageObject",
-        "url": "https://blogger.googleusercontent.com/img/a/AVvXsEhvbGhFnQn7BIJG7NxDbQvwo3Z-two5Ua2M0hKF2gCH2uwkgvDXMd7-Rb8lc9845e7cTiejPEKCVeFLGzmvVUbb6EYJmxXRG6iuHcrIYmM38SlpL-HUZJlSYCRb7fIqpy8f4SPdRZ4TEZwZ9oXxeXB3QwqAMY5vy2I3mB4zb16NS1MQESTezZcxllhQ584",
+        "url": "https://redebolha.com.br/fotos/romario-cruz-avatar.jpg",
         "width": 420,
         "height": 420,
         "caption": "Adm. Romário Cruz"
@@ -572,7 +572,7 @@
       "image": {
         "@type": "ImageObject",
         "@id": "https://redebolha.com.br/#capa-homem",
-        "url": "https://blogger.googleusercontent.com/img/a/AVvXsEhvlTidb2ODSFFw6j4tB7rfNAZ_2sxvYS7Po-H_cxVCXozW177G-_hOPE0KFZiZsKl_N8z86RxK_jbRx7GIjZLutgFWhOW0MxO3Lb-ScOea1FXaftJYe7W0kF0NbmQDyIvXiQK4Yw7UDiI-EFlldWMA3BYEc896vRnL6Hc4CqRs0ml53L1hBuas0vPkK18",
+        "url": "https://redebolha.com.br/homem-voce-nao-e-ridiculo-capa-frente.jpg",
         "width": 620,
         "height": 925,
         "caption": "Capa do livro Homem, Você Não É Ridículo, de Adm. Romário Cruz"
@@ -908,7 +908,7 @@
 </div>
 <div class="book-showcase book-showcase--fisico">
 <div class="bk bk--destaque reveal">
-<div class="bk-cover-wrap"><img loading="lazy" decoding="async" src="https://blogger.googleusercontent.com/img/a/AVvXsEhvlTidb2ODSFFw6j4tB7rfNAZ_2sxvYS7Po-H_cxVCXozW177G-_hOPE0KFZiZsKl_N8z86RxK_jbRx7GIjZLutgFWhOW0MxO3Lb-ScOea1FXaftJYe7W0kF0NbmQDyIvXiQK4Yw7UDiI-EFlldWMA3BYEc896vRnL6Hc4CqRs0ml53L1hBuas0vPkK18" width="620" height="925" alt="Capa do livro Homem, Você Não É Ridículo" /></div>
+<div class="bk-cover-wrap"><img loading="lazy" decoding="async" src="/homem-voce-nao-e-ridiculo-capa-frente.jpg" width="620" height="925" alt="Capa do livro Homem, Você Não É Ridículo" /></div>
 <span class="bk-badge">Promoção especial</span>
 <span class="bk-tag bk-tag--promo">Livro Físico</span>
 <h3 class="bk-title"><a href="/livros/homem-voce-nao-e-ridiculo.html" style="color:inherit;text-decoration:none;">Homem, Você Não É Ridículo</a></h3>
@@ -938,7 +938,7 @@
         </div>
         <div class="cover-wrap reveal">
           <span class="price-flag">Promoção<br /><b>R$ 19,90 + frete</b></span>
-          <div class="cover"><img fetchpriority="high" alt="Capa do livro Homem, Você Não É Ridículo, de Adm. Romário Cruz" src="https://blogger.googleusercontent.com/img/a/AVvXsEhvlTidb2ODSFFw6j4tB7rfNAZ_2sxvYS7Po-H_cxVCXozW177G-_hOPE0KFZiZsKl_N8z86RxK_jbRx7GIjZLutgFWhOW0MxO3Lb-ScOea1FXaftJYe7W0kF0NbmQDyIvXiQK4Yw7UDiI-EFlldWMA3BYEc896vRnL6Hc4CqRs0ml53L1hBuas0vPkK18" width="620" height="925" /></div>
+          <div class="cover"><img fetchpriority="high" alt="Capa do livro Homem, Você Não É Ridículo, de Adm. Romário Cruz" src="/homem-voce-nao-e-ridiculo-capa-frente.jpg" width="620" height="925" /></div>
         </div>
       </div>
     </div>
@@ -1081,7 +1081,7 @@
     <div class="wrap">
       <span class="eyebrow reveal">Sobre o autor</span>
       <div class="author-grid">
-        <div class="author-photo reveal"><img loading="lazy" decoding="async" alt="Adm. Romário Cruz" src="https://blogger.googleusercontent.com/img/a/AVvXsEhvbGhFnQn7BIJG7NxDbQvwo3Z-two5Ua2M0hKF2gCH2uwkgvDXMd7-Rb8lc9845e7cTiejPEKCVeFLGzmvVUbb6EYJmxXRG6iuHcrIYmM38SlpL-HUZJlSYCRb7fIqpy8f4SPdRZ4TEZwZ9oXxeXB3QwqAMY5vy2I3mB4zb16NS1MQESTezZcxllhQ584" width="420" height="420" /></div>
+        <div class="author-photo reveal"><img loading="lazy" decoding="async" alt="Adm. Romário Cruz" src="/fotos/romario-cruz-avatar.jpg" width="420" height="420" /></div>
         <div class="reveal">
           <div class="author-name">Adm. Romário Cruz</div>
           <div class="author-role">Escritor · Administrador · Criador de conteúdo</div>
