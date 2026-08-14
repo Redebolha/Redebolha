@@ -687,6 +687,47 @@
         padding: 6px 10px;
         margin-bottom: 6px;
     }
+
+    /* ---- Modal ---- */
+    .modal-bg {
+        position: fixed;
+        inset: 0;
+        background: rgba(6, 5, 6, 0.65);
+        backdrop-filter: blur(3px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        z-index: 200;
+    }
+
+    .modal {
+        width: 100%;
+        max-width: 440px;
+        max-height: calc(100vh - 40px);
+        overflow-y: auto;
+        background: var(--bg2);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 28px;
+        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+    }
+
+    .modal.wide {
+        max-width: 760px;
+    }
+
+    .modal h3 {
+        font-family: 'Cormorant Garamond', serif;
+        font-weight: 600;
+        font-size: 1.4rem;
+        color: var(--txt);
+        margin: 0 0 8px;
+    }
+
+    .modal input[type=range] {
+        accent-color: var(--gold);
+    }
     </style>
   </head>
   <body>
