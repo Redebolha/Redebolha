@@ -70,5 +70,19 @@
 <footer class="foot"><div class="wrap">
 <p>© 2026 Adm. Romário Cruz · Eldorado do Sul, RS · <a href="/">Início</a> · <a href="/sobre-o-autor.html">Sobre o autor</a> · <a href="/politica-de-privacidade.html">Política de Privacidade</a> · <a href="/termos-de-uso.html">Termos de Uso</a></p>
 </div></footer>
+<!-- GA4: evento clique_comprar_livro (Amazon + Hotmart) -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a');
+    if (!a || !a.href) return;
+    var canal = null;
+    if (a.href.indexOf('amazon.com.br') > -1) canal = 'amazon';
+    else if (a.href.indexOf('hotmart.com') > -1) canal = 'hotmart';
+    if (!canal) return;
+    if (typeof gtag === 'function') { gtag('event', 'clique_comprar_livro', { canal: canal, livro: 'Amanha E Outro Agora', pagina: 'livro' }); }
+  }, true);
+})();
+</script>
 </body>
 </html>

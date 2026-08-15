@@ -1288,6 +1288,21 @@
             }, true);
         })();
     </script>
+    <!-- GA4: evento unificado clique_comprar_livro (Amazon + Hotmart + Mercado Livre) -->
+    <script>
+        (function () {
+            document.addEventListener('click', function (e) {
+                var a = e.target.closest('a');
+                if (!a || !a.href) return;
+                var canal = null;
+                if (a.href.indexOf('amazon.com.br') > -1) canal = 'amazon';
+                else if (a.href.indexOf('hotmart.com') > -1) canal = 'hotmart';
+                else if (a.href.indexOf('mercadolivre.com') > -1) canal = 'mercadolivre';
+                if (!canal) return;
+                if (typeof gtag === 'function') { gtag('event', 'clique_comprar_livro', { canal: canal, pagina: 'home' }); }
+            }, true);
+        })();
+    </script>
 
     <!-- Google AdSense — carregado por último, com defer, para não competir com o LCP -->
     <script defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6315134930280019" crossorigin="anonymous"></script>
