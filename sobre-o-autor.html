@@ -60,6 +60,35 @@
       font-size: 1.3rem;
       font-weight: bold;
       text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* ===== LOGOMARCA REDE BOLHA - identidade visual (topo) ===== */
+    :root { --rb-logo: url("/logo-rede-bolha.png"); --rb-blue: #12295a; }
+    .logo::before {
+      content: "";
+      flex: 0 0 40px;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background-color: var(--rb-blue);
+      background-image: var(--rb-logo);
+      background-size: 113%;
+      background-position: center;
+      background-repeat: no-repeat;
+      border: 1px solid rgba(196, 163, 101, .5);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, .55), inset 0 1px 0 rgba(255, 255, 255, .25), inset 0 -10px 16px rgba(0, 0, 0, .35);
+      transform: perspective(650px) rotateX(8deg) rotateY(-10deg);
+      transition: transform .45s cubic-bezier(.2, .8, .3, 1), box-shadow .45s ease;
+    }
+    .logo:hover::before {
+      transform: perspective(650px) rotateX(0deg) rotateY(0deg) translateY(-2px) scale(1.06);
+      box-shadow: 0 14px 26px rgba(0, 0, 0, .6), 0 0 22px rgba(196, 163, 101, .45);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .logo::before { animation: none; transition: none; transform: none; }
     }
 
     nav ul {
