@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-JDV0ZGBPV9"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-JDV0ZGBPV9');</script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6315134930280019" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Carteira de FIIs — Monte sua Renda Passiva | Rede Bolha</title>
+<meta name="description" content="Calculadora gratuita de fundos imobiliários: monte sua carteira de FIIs, veja quantas cotas cabem no seu bolso e quanta renda passiva isso gera por mês. Sem cadastro.">
+<link rel="canonical" href="https://redebolha.com.br/financas/calculadora-fii.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Calculadora de Carteira de FIIs — Monte sua Renda Passiva">
+<meta property="og:description" content="Monte sua carteira de fundos imobiliários e veja, na hora, quanto isso rende de renda passiva por mês. Ferramenta gratuita da Rede Bolha.">
+<meta property="og:url" content="https://redebolha.com.br/financas/calculadora-fii.html">
+<link rel="stylesheet" href="/artigos/blog.css">
+<style>
+:root{ --maxw:1040px; }
+
+.ledger-wrap{margin:34px 0 8px}
+
+.toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:16px}
+.toolbar .spacer{flex:1}
+
+button.btn{border:0;cursor:pointer}
+.btn-ghost{display:inline-flex;align-items:center;gap:6px;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.1em;font-size:.78rem;background:transparent;border:1px solid var(--line);color:var(--body);padding:11px 18px;border-radius:8px;cursor:pointer;font-weight:500}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold-l)}
+.btn-ghost.confirming{border-color:var(--wine-l);color:var(--gold-l);background:rgba(107,39,55,.28)}
+.btn-add{display:inline-flex;align-items:center;gap:6px;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.1em;font-size:.78rem;background:linear-gradient(180deg,var(--gold-l),var(--gold-d));color:#1a1206;padding:11px 20px;border-radius:8px;font-weight:600;border:0;cursor:pointer}
+.btn-add:hover{filter:brightness(1.06)}
+
+.toast{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:.72rem;font-weight:600;color:var(--gold-l);background:rgba(201,162,75,.12);border:1px solid var(--gold-d);padding:8px 14px;border-radius:20px;opacity:0;transform:translateY(-4px);transition:opacity .18s ease,transform .18s ease;pointer-events:none}
+.toast.show{opacity:1;transform:translateY(0)}
+
+.ledger{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden}
+.ledger-scroll{overflow-x:auto}
+table{border-collapse:collapse;table-layout:fixed;width:100%;min-width:860px}
+thead th{position:sticky;top:0;background:var(--bg2);color:var(--gold-l);text-align:left;font-family:'Oswald',sans-serif;font-size:.66rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;padding:13px 14px;white-space:nowrap;border-bottom:1px solid var(--line)}
+thead th.num{text-align:right}
+thead th.center{text-align:center}
+tbody tr{border-bottom:1px solid var(--line)}
+tbody tr:last-child{border-bottom:none}
+tbody tr:nth-child(even){background:rgba(201,162,75,.035)}
+tbody tr.calc-row:hover{background:rgba(201,162,75,.07)}
+td{padding:7px 10px;vertical-align:middle}
+td.num{text-align:right}
+
+.cell-input{width:100%;border:1px solid transparent;background:transparent;color:var(--txt);font-family:'Inter',system-ui,sans-serif;font-size:.92rem;padding:7px 8px;border-radius:6px;min-width:0}
+.cell-input:hover{background:var(--bg2)}
+.cell-input:focus{outline:none;border-color:var(--gold-d);background:var(--bg2);box-shadow:0 0 0 3px rgba(201,162,75,.14)}
+.cell-input.ticker{font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.03em;text-transform:uppercase}
+.cell-input.num,.computed{text-align:right;font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;font-variant-numeric:tabular-nums;font-size:.84rem}
+.cell-input.num{color:var(--txt)}
+.computed{padding:7px 8px;color:var(--body);white-space:nowrap;display:block}
+.computed.income{color:var(--gold-l);font-weight:600}
+
+.cell-input.num{-moz-appearance:textfield;appearance:textfield}
+.cell-input.num::-webkit-outer-spin-button,.cell-input.num::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+
+.unit-pct{position:relative}
+.unit-pct .cell-input{padding-right:22px}
+.unit-pct::after{content:"%";position:absolute;right:10px;top:50%;transform:translateY(-50%);color:var(--dim);font-size:.76rem;pointer-events:none}
+
+.row-remove{display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;border:1px solid transparent;background:transparent;color:var(--dim);cursor:pointer;font-size:1rem;line-height:1}
+.row-remove:hover{background:rgba(107,39,55,.28);color:var(--wine-l);border-color:var(--wine-l)}
+
+tfoot td{background:rgba(201,162,75,.09);border-top:2px solid var(--gold);font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;font-weight:700;color:var(--gold-l);padding:13px 10px;white-space:nowrap}
+tfoot td.label{font-family:'Oswald',sans-serif;text-transform:uppercase;font-size:.66rem;letter-spacing:.09em;color:var(--gold);font-weight:600}
+tfoot td.num{text-align:right}
+
+.empty-state{padding:48px 20px;text-align:center;color:var(--body)}
+.empty-state strong{display:block;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.3rem;color:var(--txt);margin-bottom:6px}
+
+.add-row-bar{padding:10px 14px;border-top:1px solid var(--line)}
+.add-row-bar .btn-ghost{width:100%;justify-content:center;border-style:dashed}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:22px 0 8px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);padding:16px 18px;display:flex;flex-direction:column;gap:4px}
+.stat .label{font-family:'Oswald',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.stat .value{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.6rem;font-variant-numeric:tabular-nums;color:var(--txt)}
+.stat.accent .value{color:var(--gold-l)}
+.stat .sub{font-size:.76rem;color:var(--dim)}
+
+.note-small{font-size:.82rem;color:var(--dim);margin-top:14px}
+
+@media (max-width:620px){
+  .toolbar{gap:8px}
+  .btn-ghost,.btn-add{padding:9px 14px;font-size:.72rem}
+}
+@media print{
+  .toolbar,.row-remove,.add-row-bar{display:none}
+}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+<a class="brand" href="/"><b>Rede</b> Bolha</a>
+<nav class="topnav"><a href="/sobre-o-autor.html">Sobre</a> <a href="/livros/">Livros</a> <a href="/artigos/">Artigos</a> <a href="/financas/">Dinheiro</a> <a href="/contato/">Contato</a></nav>
+</div></header>
+<main class="wrap">
+<article>
+<p class="eyebrow">Ferramenta gratuita · Dinheiro</p>
+<h1>Calculadora de Carteira de FIIs</h1>
+<p class="lead">Digite os fundos imobiliários que você acompanha e veja, na hora, quantas cotas cabem no seu bolso e quanta renda passiva isso gera todo mês.</p>
+<p>Os fundos abaixo são só um exemplo pra você ver a calculadora funcionando. Apague, edite e monte a carteira com os fundos que você já tem — ou está de olho.</p>
+
+<div class="ledger-wrap">
+  <div class="toolbar">
+    <button class="btn-add" id="btn-add">+ Adicionar fundo</button>
+    <button class="btn-ghost" id="btn-example">Carregar exemplo</button>
+    <button class="btn-ghost" id="btn-copy">Copiar resumo</button>
+    <div class="spacer"></div>
+    <span class="toast" id="toast"></span>
+    <button class="btn-ghost" id="btn-clear">Limpar tudo</button>
+  </div>
+
+  <div class="ledger">
+    <div class="ledger-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:14%">FII</th>
+            <th class="num" style="width:11%">Cota (R$)</th>
+            <th class="num" style="width:11%">DY anual</th>
+            <th class="num" style="width:13%">Aporte (R$)</th>
+            <th class="num" style="width:8%">Cotas</th>
+            <th class="num" style="width:11%">Sobra (R$)</th>
+            <th class="num" style="width:12%">Renda mensal</th>
+            <th class="num" style="width:12%">Renda anual</th>
+            <th class="center" style="width:6%"></th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+        <tfoot>
+          <tr>
+            <td class="label">Total</td>
+            <td></td>
+            <td class="num" id="tot-dy">—</td>
+            <td class="num" id="tot-aporte">—</td>
+            <td></td>
+            <td class="num" id="tot-sobra">—</td>
+            <td class="num" id="tot-mensal">—</td>
+            <td class="num" id="tot-anual">—</td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div class="add-row-bar">
+      <button class="btn-ghost" id="btn-add-bottom">+ Adicionar fundo</button>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat accent">
+      <span class="label">Total investido</span>
+      <span class="value" id="stat-investido">R$ 0,00</span>
+      <span class="sub" id="stat-sobra-sub">sem sobra</span>
+    </div>
+    <div class="stat accent">
+      <span class="label">Renda mensal estimada</span>
+      <span class="value" id="stat-mensal">R$ 0,00</span>
+      <span class="sub">média dos próximos 12 meses</span>
+    </div>
+    <div class="stat">
+      <span class="label">Renda anual estimada</span>
+      <span class="value" id="stat-anual">R$ 0,00</span>
+      <span class="sub" id="stat-fundos-sub">0 fundos na carteira</span>
+    </div>
+    <div class="stat">
+      <span class="label">DY médio da carteira</span>
+      <span class="value" id="stat-dy">0,00%</span>
+      <span class="sub">ponderado pelo valor investido</span>
+    </div>
+  </div>
+
+  <p class="note-small">Simulador educacional. Dividend yield passado não garante renda futura — confira sempre as cotações e os relatórios oficiais dos fundos antes de investir. Seus dados ficam salvos só neste navegador, ninguém mais vê sua carteira.</p>
+</div>
+
+<div class="cta">
+<p class="eyebrow">Continue por aqui</p>
+<h3>Renda passiva é ferramenta, não identidade</h3>
+<p>Antes de sair comprando cota, vale entender por que tanto homem confunde saldo bancário com valor próprio — e como prover bem sem deixar o dinheiro virar seu Deus substituto. Eu escrevi sobre isso no artigo <a href="/artigos/homem-e-o-dinheiro.html">O Homem e o Dinheiro</a>.</p>
+<a class="btn" href="/artigos/homem-e-o-dinheiro.html">Ler o artigo</a>
+</div>
+
+<p class="back"><a href="/financas/">← Voltar para Dinheiro</a></p>
+</article>
+</main>
+<footer class="foot"><div class="wrap">
+<a href="/">Início</a> · <a href="/sobre-o-autor.html">Sobre</a> · <a href="/livros/">Livros</a> · <a href="/artigos/">Artigos</a> · <a href="/contato/">Contato</a>
+<p>© 2026 Adm. Romário Cruz · Eldorado do Sul, RS · Rede Bolha</p>
+</div></footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var STORAGE_KEY = "redebolha_carteira_fii_v1";
+
+  var EXAMPLE = [
+    { fii: "GGRC11", cota: 9.98, dy: 12.12, aporte: 20000 },
+    { fii: "GARE11", cota: 8.20, dy: 12.16, aporte: 20000 },
+    { fii: "ALZR11", cota: 9.97, dy: 10.08, aporte: 20000 },
+    { fii: "KNSC11", cota: 9.10, dy: 12.53, aporte: 20000 },
+    { fii: "MXRF11", cota: 9.61, dy: 12.45, aporte: 20000 }
+  ];
+
+  var rowsEl = document.getElementById("rows");
+  var state = [];
+  var uid = 1;
+
+  function currency(n) {
+    if (!isFinite(n)) n = 0;
+    return n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+  }
+
+  function percent(n) {
+    if (!isFinite(n)) n = 0;
+    return n.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + "%";
+  }
+
+  function num(n) {
+    if (!isFinite(n)) n = 0;
+    return n.toLocaleString("pt-BR");
+  }
+
+  function load() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        var parsed = JSON.parse(raw);
+        if (Array.isArray(parsed) && parsed.length) return parsed;
+      }
+    } catch (e) {}
+    return EXAMPLE.slice();
+  }
+
+  function save() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state.map(function (r) {
+        return { fii: r.fii, cota: r.cota, dy: r.dy, aporte: r.aporte };
+      })));
+    } catch (e) {}
+  }
+
+  function addRow(data) {
+    data = data || {};
+    state.push({
+      id: uid++,
+      fii: data.fii || "",
+      cota: data.cota != null ? data.cota : "",
+      dy: data.dy != null ? data.dy : "",
+      aporte: data.aporte != null ? data.aporte : ""
+    });
+  }
+
+  function computeRow(r) {
+    var cota = parseFloat(r.cota) || 0;
+    var dy = parseFloat(r.dy) || 0;
+    var aporte = parseFloat(r.aporte) || 0;
+    var cotas = cota > 0 ? Math.floor(aporte / cota) : 0;
+    var investido = cotas * cota;
+    var sobra = aporte > 0 ? Math.max(aporte - investido, 0) : 0;
+    var rendaAnual = investido * (dy / 100);
+    var rendaMensal = rendaAnual / 12;
+    return { cota: cota, dy: dy, aporte: aporte, cotas: cotas, investido: investido, sobra: sobra, rendaAnual: rendaAnual, rendaMensal: rendaMensal };
+  }
+
+  function render() {
+    rowsEl.innerHTML = "";
+
+    if (state.length === 0) {
+      var emptyRow = document.createElement("tr");
+      var emptyCell = document.createElement("td");
+      emptyCell.colSpan = 9;
+      emptyCell.innerHTML = '<div class="empty-state"><strong>Nenhum fundo ainda</strong>Adicione o primeiro FII da sua carteira para começar.</div>';
+      emptyRow.appendChild(emptyCell);
+      rowsEl.appendChild(emptyRow);
+    }
+
+    var totals = { aporte: 0, investido: 0, sobra: 0, rendaAnual: 0, rendaMensal: 0 };
+
+    state.forEach(function (r) {
+      var c = computeRow(r);
+      totals.aporte += c.aporte;
+      totals.investido += c.investido;
+      totals.sobra += c.sobra;
+      totals.rendaAnual += c.rendaAnual;
+      totals.rendaMensal += c.rendaMensal;
+
+      var tr = document.createElement("tr");
+      tr.className = "calc-row";
+
+      tr.appendChild(makeInputCell(r, "fii", "text", "ticker", "MXRF11"));
+      tr.appendChild(makeInputCell(r, "cota", "number", "num", "0,00"));
+      tr.appendChild(makeInputCell(r, "dy", "number", "num", "0,00", true));
+      tr.appendChild(makeInputCell(r, "aporte", "number", "num", "0,00"));
+
+      tr.appendChild(makeComputedCell(num(c.cotas)));
+      tr.appendChild(makeComputedCell(currency(c.sobra)));
+      tr.appendChild(makeComputedCell(currency(c.rendaMensal), true));
+      tr.appendChild(makeComputedCell(currency(c.rendaAnual), true));
+
+      var tdRemove = document.createElement("td");
+      tdRemove.className = "center";
+      var btnRemove = document.createElement("button");
+      btnRemove.className = "row-remove";
+      btnRemove.type = "button";
+      btnRemove.setAttribute("aria-label", "Remover " + (r.fii || "fundo"));
+      btnRemove.innerHTML = "&times;";
+      btnRemove.addEventListener("click", function () {
+        state = state.filter(function (x) { return x.id !== r.id; });
+        save();
+        render();
+      });
+      tdRemove.appendChild(btnRemove);
+      tr.appendChild(tdRemove);
+
+      rowsEl.appendChild(tr);
+    });
+
+    document.getElementById("tot-aporte").textContent = currency(totals.aporte);
+    document.getElementById("tot-sobra").textContent = currency(totals.sobra);
+    document.getElementById("tot-mensal").textContent = currency(totals.rendaMensal);
+    document.getElementById("tot-anual").textContent = currency(totals.rendaAnual);
+    var dyMedio = totals.investido > 0 ? (totals.rendaAnual / totals.investido) * 100 : 0;
+    document.getElementById("tot-dy").textContent = totals.investido > 0 ? percent(dyMedio) : "—";
+
+    document.getElementById("stat-investido").textContent = currency(totals.investido);
+    document.getElementById("stat-sobra-sub").textContent = totals.sobra > 0.005
+      ? currency(totals.sobra) + " ainda não alocado"
+      : "sem sobra em caixa";
+    document.getElementById("stat-mensal").textContent = currency(totals.rendaMensal);
+    document.getElementById("stat-anual").textContent = currency(totals.rendaAnual);
+    document.getElementById("stat-fundos-sub").textContent = state.length + (state.length === 1 ? " fundo na carteira" : " fundos na carteira");
+    document.getElementById("stat-dy").textContent = percent(dyMedio);
+  }
+
+  function makeInputCell(r, field, type, cls, placeholder, isPercent) {
+    var td = document.createElement("td");
+    if (isPercent) td.className = "unit-pct";
+    var input = document.createElement("input");
+    input.className = "cell-input " + cls;
+    input.type = type;
+    if (type === "number") {
+      input.step = "any";
+      input.inputMode = "decimal";
+    }
+    input.placeholder = placeholder;
+    input.value = r[field];
+    input.addEventListener("input", function () {
+      r[field] = type === "number" ? input.value.replace(",", ".") : input.value;
+      save();
+      renderKeepFocus(input, field, r.id);
+    });
+    td.appendChild(input);
+    return td;
+  }
+
+  function makeComputedCell(text, isIncome) {
+    var td = document.createElement("td");
+    var span = document.createElement("span");
+    span.className = "computed" + (isIncome ? " income" : "");
+    span.textContent = text;
+    td.appendChild(span);
+    return td;
+  }
+
+  var FIELD_ORDER = ["fii", "cota", "dy", "aporte"];
+
+  function renderKeepFocus(input, field, id) {
+    var selStart = input.selectionStart;
+    var selEnd = input.selectionEnd;
+    var idx = state.findIndex(function (x) { return x.id === id; });
+    render();
+    var rowNode = rowsEl.children[idx];
+    if (!rowNode) return;
+    var target = rowNode.querySelectorAll("input")[FIELD_ORDER.indexOf(field)];
+    if (target) {
+      target.focus();
+      try { target.setSelectionRange(selStart, selEnd); } catch (e) {}
+    }
+  }
+
+  function showToast(msg) {
+    var t = document.getElementById("toast");
+    t.textContent = msg;
+    t.classList.add("show");
+    clearTimeout(showToast._timer);
+    showToast._timer = setTimeout(function () { t.classList.remove("show"); }, 2200);
+  }
+
+  function confirmAction(btn, label, confirmLabel, onConfirm) {
+    if (btn.dataset.confirming === "1") {
+      onConfirm();
+      btn.dataset.confirming = "0";
+      btn.textContent = label;
+      btn.classList.remove("confirming");
+      return;
+    }
+    btn.dataset.confirming = "1";
+    btn.textContent = confirmLabel;
+    btn.classList.add("confirming");
+    setTimeout(function () {
+      if (btn.dataset.confirming === "1") {
+        btn.dataset.confirming = "0";
+        btn.textContent = label;
+        btn.classList.remove("confirming");
+      }
+    }, 3000);
+  }
+
+  document.getElementById("btn-add").addEventListener("click", function () {
+    addRow();
+    save();
+    render();
+  });
+  document.getElementById("btn-add-bottom").addEventListener("click", function () {
+    addRow();
+    save();
+    render();
+  });
+
+  var exampleBtn = document.getElementById("btn-example");
+  exampleBtn.addEventListener("click", function () {
+    confirmAction(exampleBtn, "Carregar exemplo", "Confirmar: substituir carteira", function () {
+      state = [];
+      EXAMPLE.forEach(function (d) { addRow(d); });
+      save();
+      render();
+      showToast("Exemplo carregado");
+    });
+  });
+
+  var clearBtn = document.getElementById("btn-clear");
+  clearBtn.addEventListener("click", function () {
+    confirmAction(clearBtn, "Limpar tudo", "Confirmar: apagar tudo", function () {
+      state = [];
+      save();
+      render();
+      showToast("Carteira limpa");
+    });
+  });
+
+  document.getElementById("btn-copy").addEventListener("click", function () {
+    var lines = ["Minha carteira de FIIs — Rede Bolha", ""];
+    state.forEach(function (r) {
+      var c = computeRow(r);
+      lines.push((r.fii || "(sem nome)") + ": " + num(c.cotas) + " cotas · investido " + currency(c.investido) + " · renda mensal " + currency(c.rendaMensal));
+    });
+    var totalInvestido = state.reduce(function (s, r) { return s + computeRow(r).investido; }, 0);
+    var totalMensal = state.reduce(function (s, r) { return s + computeRow(r).rendaMensal; }, 0);
+    lines.push("");
+    lines.push("Total investido: " + currency(totalInvestido));
+    lines.push("Renda mensal total: " + currency(totalMensal));
+    var text = lines.join("\n");
+
+    function fallbackCopy() {
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try { document.execCommand("copy"); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () {
+        showToast("Resumo copiado!");
+      }).catch(function () {
+        fallbackCopy();
+        showToast("Resumo copiado!");
+      });
+    } else {
+      fallbackCopy();
+      showToast("Resumo copiado!");
+    }
+  });
+
+  state = load().map(function (d) {
+    return { id: uid++, fii: d.fii || "", cota: d.cota != null ? d.cota : "", dy: d.dy != null ? d.dy : "", aporte: d.aporte != null ? d.aporte : "" };
+  });
+  render();
+})();
+</script>
+</body>
+</html>
