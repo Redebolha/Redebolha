@@ -3,6 +3,13 @@
 <head>
   <!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-JDV0ZGBPV9"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-JDV0ZGBPV9');</script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6315134930280019" crossorigin="anonymous"></script>
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2570806596755923');
+    fbq('track', 'PageView');
+  </script>
+  <!-- End Meta Pixel Code -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Teste: Qual Máscara Você Usa Sem Perceber? | Adm. Romário Cruz</title>
@@ -261,11 +268,17 @@
     if (typeof gtag === 'function') {
       gtag('event', 'quiz_complete', { quiz_name: 'mascara_masculina', result: winner });
     }
+    if (typeof fbq === 'function') {
+      fbq('trackCustom', 'QuizComplete', { quiz_name: 'mascara_masculina', result: winner });
+    }
   });
 
   document.getElementById('maskWhatsappBtn').addEventListener('click', function(){
     if (typeof gtag === 'function') {
       gtag('event', 'quiz_whatsapp_click', { quiz_name: 'mascara_masculina' });
+    }
+    if (typeof fbq === 'function') {
+      fbq('track', 'Lead', { content_name: 'quiz_mascara_whatsapp_click' });
     }
   });
 
