@@ -49,6 +49,21 @@ Consequência prática: enquanto a venda principal for por Amazon/Mercado Livre,
 o evento de otimização das campanhas deve ser **`InitiateCheckout`** (clique
 pra loja) ou **`Lead`**, não `Purchase`.
 
+### Qual livro vende por onde
+
+| Livro | Canais de compra | `Purchase` rastreável? |
+|---|---|---|
+| Homem, Você Não É Ridículo | Mercado Livre + Amazon | ❌ nunca |
+| O Poder da Decisão | Hotmart `M106424796P` + Amazon | ✅ só a parte Hotmart |
+| Amanhã é Outro Agora | Hotmart `Q106424744D` + Amazon | ✅ só a parte Hotmart |
+
+Atenção: **o livro que os anúncios promovem (HVNR) não passa pela Hotmart.**
+Configurar a Hotmart dá sinal de compra dos outros dois títulos, não do funil
+que está rodando.
+
+O código `R106833548K` aparece só no `js/config.js`, que é código morto
+(nunca é importado por nenhuma página). É um link órfão.
+
 ## O que falta fazer fora do código
 
 ### 1. Vincular o pixel à conta de anúncios ← bloqueia tudo
@@ -67,15 +82,49 @@ Como resolver, no Gerenciador de Negócios:
 Depois disso as campanhas passam a mostrar conversão e dá pra criar públicos
 de site.
 
+**Status: feito em 17/08/2026.**
+
 ### 2. Públicos de retargeting
 
-Com o pixel vinculado, criar em Públicos:
+**Status: feito em 17/08/2026.** Criados na conta:
 
-- Visitantes do site — últimos 30 dias
-- Quem disparou `Lead` (fez o teste) — últimos 30 dias
-- Quem disparou `InitiateCheckout` mas não comprou — últimos 14 dias
+| Público | ID | Janela |
+|---|---|---|
+| Site — Todos os visitantes | `52510458650229` | 30 dias |
+| Fez o teste das máscaras — Lead | `52510458697629` | 30 dias |
+| Clicou pra comprar — InitiateCheckout | `52510458749229` | 14 dias |
 
-### 3. Páginas que não estão neste repositório
+Não é possível criar "clicou mas não comprou": excluir compradores exigiria o
+evento `Purchase`, que não existe para Amazon/Mercado Livre.
+
+### 3. Purchase pela Hotmart
+
+Só vale para *O Poder da Decisão* e *Amanhã é Outro Agora* — ver a tabela de
+canais acima. Fazer **uma vez por produto**, no painel da Hotmart:
+
+1. Entrar em `app.hotmart.com` com a conta de **Produtor**
+2. **Produtos** → escolher o produto → menu lateral **Ferramentas**
+3. Abrir **Pixel de rastreamento** (em algumas contas aparece como
+   "Pixels e Rastreamento" ou dentro de "Integrações")
+4. **Adicionar pixel** → plataforma **Meta Ads / Facebook**
+5. ID do pixel: `2570806596755923`
+6. Marcar os eventos por página:
+   - Página de compra / checkout → `InitiateCheckout`
+   - **Compra aprovada → `Purchase`** ← o que importa
+7. Se aparecer a opção **API de Conversões**, ativar e gerar o token de acesso
+   no Gerenciador de Eventos do Meta (Configurações → API de Conversões →
+   Gerar token de acesso). Isso manda a compra pelo servidor da Hotmart e
+   sobrevive a bloqueador de anúncio.
+8. Salvar e repetir para o segundo produto.
+
+Os nomes de menu da Hotmart mudam de tempos em tempos; o que procurar é a
+seção de pixel/rastreamento dentro das ferramentas do produto.
+
+Para conferir se funcionou: Gerenciador de Eventos do Meta → conjunto
+**HVNR Tracking** → aba **Testar eventos**, e fazer uma compra de teste.
+O `Purchase` deve aparecer com origem `server` (se ativou a API) ou `browser`.
+
+### 4. Páginas que não estão neste repositório
 
 As páginas que os anúncios usam — o teste das máscaras e `/financas/` — foram
 publicadas fora deste repositório e **não estão versionadas aqui**. O pixel
