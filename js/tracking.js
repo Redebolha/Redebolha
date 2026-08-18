@@ -31,6 +31,9 @@
   // Dominios que significam "foi comprar"
   var LOJAS = ['amazon.com.br', 'mercadolivre.com.br', 'mercadolibre.com', 'pay.hotmart.com', 'hotmart.com'];
 
+  // Links que iniciam conversa no WhatsApp
+  var WHATSAPP = ['wa.me', 'api.whatsapp.com', 'web.whatsapp.com'];
+
   // ---------------------------------------------------------------- pixel
   /* eslint-disable */
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
@@ -60,13 +63,16 @@
   }
 
   // ---------------------------------------------------- InitiateCheckout
-  function ehLoja(href) {
+  function bate(href, lista) {
     if (!href) return false;
-    for (var i = 0; i < LOJAS.length; i++) {
-      if (href.indexOf(LOJAS[i]) !== -1) return true;
+    for (var i = 0; i < lista.length; i++) {
+      if (href.indexOf(lista[i]) !== -1) return true;
     }
     return false;
   }
+
+  function ehLoja(href) { return bate(href, LOJAS); }
+  function ehWhatsApp(href) { return bate(href, WHATSAPP); }
 
   function nomeDoLivro(href, texto) {
     var m = href.match(/dp\/([A-Z0-9]+)/);
@@ -83,17 +89,32 @@
 
   document.addEventListener('click', function (e) {
     var a = e.target && e.target.closest ? e.target.closest('a') : null;
-    if (!a || !ehLoja(a.href)) return;
+    if (!a || !a.href) return;
 
-    var livro = nomeDoLivro(a.href, a.textContent);
-    var origem = loja(a.href);
+    // Clique pra loja: e o mais perto de "compra" que da pra medir, porque
+    // o checkout acontece fora do site.
+    if (ehLoja(a.href)) {
+      var livro = nomeDoLivro(a.href, a.textContent);
+      var origem = loja(a.href);
 
-    fbq('track', 'InitiateCheckout', {
-      content_name: livro,
-      content_category: origem,
-      content_type: 'product'
-    });
-    ga('begin_checkout', { item_name: livro, loja: origem });
+      fbq('track', 'InitiateCheckout', {
+        content_name: livro,
+        content_category: origem,
+        content_type: 'product'
+      });
+      ga('begin_checkout', { item_name: livro, loja: origem });
+      return;
+    }
+
+    // Clique pro WhatsApp: unico canal em que a venda pode ser confirmada.
+    if (ehWhatsApp(a.href)) {
+      fbq('track', 'Contact', {
+        content_name: (a.textContent || '').trim().slice(0, 80) || 'whatsapp',
+        content_category: 'whatsapp',
+        source_page: window.location.pathname
+      });
+      ga('contato_whatsapp', { pagina: window.location.pathname });
+    }
   }, true);
 
   // ------------------------------------------------------------- API

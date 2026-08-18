@@ -24,6 +24,7 @@ O `js/tracking.js` é incluído em todas as páginas públicas:
 | `PageView` | toda página |
 | `ViewContent` | páginas de livro (`/livros/*.html`) |
 | `InitiateCheckout` | clique em link de Amazon, Mercado Livre ou Hotmart |
+| `Contact` | clique em link de WhatsApp (`wa.me`) |
 | `Lead` | manual — `window.RBTrack.lead('nome-da-origem')` |
 | `CompleteRegistration` | manual — `window.RBTrack.completeRegistration('...')` |
 
@@ -48,6 +49,16 @@ onde disparar `Purchase`. Só existem duas saídas:
 Consequência prática: enquanto a venda principal for por Amazon/Mercado Livre,
 o evento de otimização das campanhas deve ser **`InitiateCheckout`** (clique
 pra loja) ou **`Lead`**, não `Purchase`.
+
+### O WhatsApp é a exceção
+
+Dos três canais em foco, o WhatsApp é o único em que o Meta enxerga a
+conversão de verdade: ele conta a conversa iniciada nativamente, e anúncios de
+clique-para-WhatsApp podem ser otimizados por `CONVERSATIONS`. Amazon e
+Mercado Livre nunca sairão do clique de saída.
+
+Por isso o clique em `wa.me` dispara `Contact` no `js/tracking.js` — é o sinal
+mais próximo de venda que o site consegue produzir.
 
 ### Qual livro vende por onde
 
