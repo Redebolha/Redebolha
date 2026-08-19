@@ -116,7 +116,7 @@
 <fieldset>
 <legend><span class="qnum">03</span>No fim de semana livre, o que você faz de verdade?</legend>
 <label class="opt"><input type="radio" name="q3" value="provedor" required><span>Aproveito pra adiantar trabalho ou resolver alguma pendência de casa.</span></label>
-<label class="opt"><input type="radio" name="q3" value="estoico"><span>Fico na minha, sem grandes expectativas.</span></label>
+<label class class="opt"><input type="radio" name="q3" value="estoico"><span>Fico na minha, sem grandes expectativas.</span></label>
 <label class="opt"><input type="radio" name="q3" value="furioso"><span>Qualquer imprevisto já me deixa de mau humor o dia todo.</span></label>
 <label class="opt"><input type="radio" name="q3" value="solitario"><span>Prefiro ficar sozinho em casa a sair com alguém.</span></label>
 <label class="opt"><input type="radio" name="q3" value="crise40"><span>Dou uma volta e fico pensando se estou no caminho certo da vida.</span></label>
@@ -163,7 +163,7 @@
   <p id="maskDesc"></p>
   <div class="mask-actions">
     <a class="btn" id="maskArticleBtn" href="#">Ler o artigo completo →</a>
-    <a class="btn btn--ghost" href="/livros/homem-voce-nao-e-ridiculo.html">Conhecer o livro</a>
+    <a class="btn btn--ghost" id="bookBtn" href="/livros/homem-voce-nao-e-ridiculo.html">Conhecer o livro</a>
     <a class="btn btn--wpp" id="maskWhatsappBtn" href="#" target="_blank" rel="noopener" aria-label="Falar com Adm. Romário Cruz no WhatsApp sobre o resultado (abre em nova aba)">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.13c-.25.69-1.44 1.32-1.98 1.36-.53.05-1.02.24-3.45-.72-2.9-1.14-4.75-4.11-4.9-4.3-.14-.19-1.17-1.56-1.17-2.97 0-1.41.74-2.11 1-2.4.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.25.6.84 2.07.91 2.22.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.22 1.37.28.14.44.12.6-.07.16-.19.69-.8.87-1.08.18-.28.36-.23.61-.14.25.09 1.6.75 1.87.89.28.14.46.21.53.32.07.12.07.66-.18 1.35Z"/></svg>
       Falar sobre isso no WhatsApp
@@ -210,41 +210,39 @@
     if (ORIGEM.campaign) partes.push(ORIGEM.campaign);
     if (ORIGEM.content)  partes.push(ORIGEM.content);
     if (!partes.length && ORIGEM.fbclid) partes.push('meta');
-    return partes.length ? '
-
-[ref: ' + partes.join('/') + ']' : '';
+    return partes.length ? '\n\n[ref: ' + partes.join('/') + ']' : '';
   }
 
   var masks = {
     provedor: {
       title: "O Provedor Cansado",
       article: "/artigos/cansaco-emocional-do-provedor.html",
-      desc: "Sua máscara é a do Provedor Cansado. Aquele que carrega a casa, o trabalho e ainda tenta parecer tranquilo enquanto por dentro já não sobra fôlego. Eu conheço essa de perto — já usei ela em fases da minha vida em que achava que descansar era coisa de fraco. Ninguém aguenta ser o pilar de tudo pra sempre sem rachar em algum lugar. Vai lá ler "O cansaço do provedor" — pode ser o texto que faltava pra você entender que pedir ajuda não tira o seu valor, aumenta ele."
+      desc: "Sua máscara é a do Provedor Cansado. Aquele que carrega a casa, o trabalho e ainda tenta parecer tranquilo enquanto por dentro já não sobra fôlego. Eu conheço essa de perto — já usei ela em fases da minha vida em que achava que descansar era coisa de fraco. Ninguém aguenta ser o pilar de tudo pra sempre sem rachar em algum lugar. Vai lá ler “O cansaço do provedor” — pode ser o texto que faltava pra você entender que pedir ajuda não tira o seu valor, aumenta ele."
     },
     estoico: {
       title: "O Estoico que Não Chora",
       article: "/artigos/por-que-homem-nao-chora.html",
-      desc: "Sua máscara é a do Estoico — aquele que aprendeu, lá atrás, que homem forte não chora. Só que engolir choro a vida toda cobra um preço, e ele não aparece na conta do mês: aparece no corpo e na cabeça, anos depois. Eu mesmo levei décadas pra entender que chorar não é o oposto de ser homem, é prova de que ainda dá sinal de vida aí dentro. Vai lá em "Por que o homem não chora?" — tem coisa ali que eu escrevi pensando em mim mesmo, uns anos atrás."
+      desc: "Sua máscara é a do Estoico — aquele que aprendeu, lá atrás, que homem forte não chora. Só que engolir choro a vida toda cobra um preço, e ele não aparece na conta do mês: aparece no corpo e na cabeça, anos depois. Eu mesmo levei décadas pra entender que chorar não é o oposto de ser homem, é prova de que ainda dá sinal de vida aí dentro. Vai lá em “Por que o homem não chora?” — tem coisa ali que eu escrevi pensando em mim mesmo, uns anos atrás."
     },
     furioso: {
       title: "O Furioso Contido",
       article: "/artigos/raiva-masculina.html",
-      desc: "Sua máscara é a do Furioso Contido — aquele que segura a raiva o dia inteiro até ela sair pela porta errada, geralmente em cima de quem menos merece. Raiva represada não desaparece, só espera a brecha. Eu já bati a mão na mesa por motivo pequeno demais pra ser sobre aquilo mesmo — e descobri, depois, que era sobre outra coisa bem mais funda. Em "Raiva masculina" eu conto o que costuma estar escondido atrás dela, e como lidar sem se machucar nem machucar quem você ama."
+      desc: "Sua máscara é a do Furioso Contido — aquele que segura a raiva o dia inteiro até ela sair pela porta errada, geralmente em cima de quem menos merece. Raiva represada não desaparece, só espera a brecha. Eu já bati a mão na mesa por motivo pequeno demais pra ser sobre aquilo mesmo — e descobri, depois, que era sobre outra coisa bem mais funda. Em “Raiva masculina” eu conto o que costuma estar escondido atrás dela, e como lidar sem se machucar nem machucar quem você ama."
     },
     solitario: {
       title: "O Solitário Ocupado",
       article: "/artigos/solidao-masculina.html",
-      desc: "Sua máscara é a do Solitário Ocupado — cheio de gente ao redor, agenda lotada, e mesmo assim sem ninguém a quem realmente contar o que se passa por dentro. É uma solidão disfarçada de correria, e ela é mais comum entre nós, homens, do que qualquer estatística de churrasco de fim de semana consegue esconder. Eu também já fiquei cercado de gente e sozinho ao mesmo tempo — foi uma conversa sincera que quebrou esse ciclo. Em "Solidão masculina" eu falo sobre por que tantos homens não têm com quem falar, e um caminho pra mudar isso."
+      desc: "Sua máscara é a do Solitário Ocupado — cheio de gente ao redor, agenda lotada, e mesmo assim sem ninguém a quem realmente contar o que se passa por dentro. É uma solidão disfarçada de correria, e ela é mais comum entre nós, homens, do que qualquer estatística de churrasco de fim de semana consegue esconder. Eu também já fiquei cercado de gente e sozinho ao mesmo tempo — foi uma conversa sincera que quebrou esse ciclo. Em “Solidão masculina” eu falo sobre por que tantos homens não têm com quem falar, e um caminho pra mudar isso."
     },
     crise40: {
       title: "A Crise Silenciosa",
       article: "/artigos/crise-dos-40.html",
-      desc: "Sua máscara é a da Crise Silenciosa — aquela pergunta que ronda a cabeça sem hora marcada: será que valeu a pena? Quase ninguém fala isso em voz alta, mas ela mora em muito homem depois dos 40. A boa notícia, que eu aprendi na prática, é que essa crise não é sentença, é convocação — um chamado pra reescrever o que ainda dá tempo de reescrever. Em "A crise dos 40 no homem" eu mostro por que isso não é o fim de nada."
+      desc: "Sua máscara é a da Crise Silenciosa — aquela pergunta que ronda a cabeça sem hora marcada: será que valeu a pena? Quase ninguém fala isso em voz alta, mas ela mora em muito homem depois dos 40. A boa notícia, que eu aprendi na prática, é que essa crise não é sentença, é convocação — um chamado pra reescrever o que ainda dá tempo de reescrever. Em “A crise dos 40 no homem” eu mostro por que isso não é o fim de nada."
     },
     fe: {
       title: "A Fé sem Rosto",
       article: "/artigos/fe-sem-mascara.html",
-      desc: "Sua máscara é a da Fé sem Rosto — você acredita, ora, confia em Deus, mas por fora finge que está tudo certo o tempo todo, como se dúvida e fé de verdade não pudessem morar juntas. Fé de verdade não precisa de máscara nenhuma: ela aguenta pergunta, aguenta lágrima, aguenta silêncio também. Foi entendendo isso que eu parei de fingir força na frente de Deus — Ele já sabia de tudo mesmo. Em "Fé sem máscara" eu conto o que é ser homem de fé sem fingir que está tudo bem."
+      desc: "Sua máscara é a da Fé sem Rosto — você acredita, ora, confia em Deus, mas por fora finge que está tudo certo o tempo todo, como se dúvida e fé de verdade não pudessem morar juntas. Fé de verdade não precisa de máscara nenhuma: ela aguenta pergunta, aguenta lágrima, aguenta silêncio também. Foi entendendo isso que eu parei de fingir força na frente de Deus — Ele já sabia de tudo mesmo. Em “Fé sem máscara” eu conto o que é ser homem de fé sem fingir que está tudo bem."
     }
   };
 
@@ -342,8 +340,32 @@
     }
   });
 
+  document.getElementById('maskArticleBtn').addEventListener('click', function(){
+    if (typeof gtag === 'function') {
+      gtag('event', 'quiz_article_click', { quiz_name: 'mascara_masculina' });
+    }
+    if (typeof fbq === 'function') {
+      fbq('track', 'ViewContent', { content_name: 'quiz_article_click' });
+    }
+  });
+
+  document.getElementById('bookBtn').addEventListener('click', function(){
+    if (typeof gtag === 'function') {
+      gtag('event', 'quiz_book_click', { quiz_name: 'mascara_masculina' });
+    }
+    if (typeof fbq === 'function') {
+      fbq('track', 'ViewContent', { content_name: 'quiz_book_click' });
+    }
+  });
+
   document.getElementById('retakeBtn').addEventListener('click', function(e){
     e.preventDefault();
+    if (typeof gtag === 'function') {
+      gtag('event', 'quiz_retake', { quiz_name: 'mascara_masculina' });
+    }
+    if (typeof fbq === 'function') {
+      fbq('trackCustom', 'QuizRetake', { quiz_name: 'mascara_masculina' });
+    }
     form.reset();
     updateProgress();
     resultado.style.display = 'none';
