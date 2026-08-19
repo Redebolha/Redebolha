@@ -9,6 +9,8 @@
     fbq('init', '2570806596755923');
     fbq('track', 'PageView');
   </script>
+  <noscript><img height="1" width="1" style="display:none" alt=""
+    src="https://www.facebook.com/tr?id=2570806596755923&ev=PageView&noscript=1"/></noscript>
   <!-- End Meta Pixel Code -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -180,36 +182,69 @@
 
 <script>
 (function(){
+  /* --- Rastreio de origem: guarda de onde a pessoa veio (UTM / fbclid) --- */
+  var ORIGEM = (function(){
+    try {
+      var p = new URLSearchParams(window.location.search);
+      var atual = {
+        source:   p.get('utm_source')   || '',
+        campaign: p.get('utm_campaign') || '',
+        content:  p.get('utm_content')  || '',
+        fbclid:   p.get('fbclid')       || ''
+      };
+      if (atual.source || atual.campaign || atual.fbclid) {
+        sessionStorage.setItem('rb_origem', JSON.stringify(atual));
+        return atual;
+      }
+      var salvo = sessionStorage.getItem('rb_origem');
+      return salvo ? JSON.parse(salvo) : atual;
+    } catch (e) {
+      return { source:'', campaign:'', content:'', fbclid:'' };
+    }
+  })();
+
+  /* Etiqueta curta e discreta para você identificar a origem no WhatsApp */
+  function etiquetaOrigem(){
+    var partes = [];
+    if (ORIGEM.source)   partes.push(ORIGEM.source);
+    if (ORIGEM.campaign) partes.push(ORIGEM.campaign);
+    if (ORIGEM.content)  partes.push(ORIGEM.content);
+    if (!partes.length && ORIGEM.fbclid) partes.push('meta');
+    return partes.length ? '
+
+[ref: ' + partes.join('/') + ']' : '';
+  }
+
   var masks = {
     provedor: {
       title: "O Provedor Cansado",
       article: "/artigos/cansaco-emocional-do-provedor.html",
-      desc: "Sua máscara é a do Provedor Cansado. Aquele que carrega a casa, o trabalho e ainda tenta parecer tranquilo enquanto por dentro já não sobra fôlego. Eu conheço essa de perto — já usei ela em fases da minha vida em que achava que descansar era coisa de fraco. Ninguém aguenta ser o pilar de tudo pra sempre sem rachar em algum lugar. Vai lá ler “O cansaço do provedor” — pode ser o texto que faltava pra você entender que pedir ajuda não tira o seu valor, aumenta ele."
+      desc: "Sua máscara é a do Provedor Cansado. Aquele que carrega a casa, o trabalho e ainda tenta parecer tranquilo enquanto por dentro já não sobra fôlego. Eu conheço essa de perto — já usei ela em fases da minha vida em que achava que descansar era coisa de fraco. Ninguém aguenta ser o pilar de tudo pra sempre sem rachar em algum lugar. Vai lá ler "O cansaço do provedor" — pode ser o texto que faltava pra você entender que pedir ajuda não tira o seu valor, aumenta ele."
     },
     estoico: {
       title: "O Estoico que Não Chora",
       article: "/artigos/por-que-homem-nao-chora.html",
-      desc: "Sua máscara é a do Estoico — aquele que aprendeu, lá atrás, que homem forte não chora. Só que engolir choro a vida toda cobra um preço, e ele não aparece na conta do mês: aparece no corpo e na cabeça, anos depois. Eu mesmo levei décadas pra entender que chorar não é o oposto de ser homem, é prova de que ainda dá sinal de vida aí dentro. Vai lá em “Por que o homem não chora?” — tem coisa ali que eu escrevi pensando em mim mesmo, uns anos atrás."
+      desc: "Sua máscara é a do Estoico — aquele que aprendeu, lá atrás, que homem forte não chora. Só que engolir choro a vida toda cobra um preço, e ele não aparece na conta do mês: aparece no corpo e na cabeça, anos depois. Eu mesmo levei décadas pra entender que chorar não é o oposto de ser homem, é prova de que ainda dá sinal de vida aí dentro. Vai lá em "Por que o homem não chora?" — tem coisa ali que eu escrevi pensando em mim mesmo, uns anos atrás."
     },
     furioso: {
       title: "O Furioso Contido",
       article: "/artigos/raiva-masculina.html",
-      desc: "Sua máscara é a do Furioso Contido — aquele que segura a raiva o dia inteiro até ela sair pela porta errada, geralmente em cima de quem menos merece. Raiva represada não desaparece, só espera a brecha. Eu já bati a mão na mesa por motivo pequeno demais pra ser sobre aquilo mesmo — e descobri, depois, que era sobre outra coisa bem mais funda. Em “Raiva masculina” eu conto o que costuma estar escondido atrás dela, e como lidar sem se machucar nem machucar quem você ama."
+      desc: "Sua máscara é a do Furioso Contido — aquele que segura a raiva o dia inteiro até ela sair pela porta errada, geralmente em cima de quem menos merece. Raiva represada não desaparece, só espera a brecha. Eu já bati a mão na mesa por motivo pequeno demais pra ser sobre aquilo mesmo — e descobri, depois, que era sobre outra coisa bem mais funda. Em "Raiva masculina" eu conto o que costuma estar escondido atrás dela, e como lidar sem se machucar nem machucar quem você ama."
     },
     solitario: {
       title: "O Solitário Ocupado",
       article: "/artigos/solidao-masculina.html",
-      desc: "Sua máscara é a do Solitário Ocupado — cheio de gente ao redor, agenda lotada, e mesmo assim sem ninguém a quem realmente contar o que se passa por dentro. É uma solidão disfarçada de correria, e ela é mais comum entre nós, homens, do que qualquer estatística de churrasco de fim de semana consegue esconder. Eu também já fiquei cercado de gente e sozinho ao mesmo tempo — foi uma conversa sincera que quebrou esse ciclo. Em “Solidão masculina” eu falo sobre por que tantos homens não têm com quem falar, e um caminho pra mudar isso."
+      desc: "Sua máscara é a do Solitário Ocupado — cheio de gente ao redor, agenda lotada, e mesmo assim sem ninguém a quem realmente contar o que se passa por dentro. É uma solidão disfarçada de correria, e ela é mais comum entre nós, homens, do que qualquer estatística de churrasco de fim de semana consegue esconder. Eu também já fiquei cercado de gente e sozinho ao mesmo tempo — foi uma conversa sincera que quebrou esse ciclo. Em "Solidão masculina" eu falo sobre por que tantos homens não têm com quem falar, e um caminho pra mudar isso."
     },
     crise40: {
       title: "A Crise Silenciosa",
       article: "/artigos/crise-dos-40.html",
-      desc: "Sua máscara é a da Crise Silenciosa — aquela pergunta que ronda a cabeça sem hora marcada: será que valeu a pena? Quase ninguém fala isso em voz alta, mas ela mora em muito homem depois dos 40. A boa notícia, que eu aprendi na prática, é que essa crise não é sentença, é convocação — um chamado pra reescrever o que ainda dá tempo de reescrever. Em “A crise dos 40 no homem” eu mostro por que isso não é o fim de nada."
+      desc: "Sua máscara é a da Crise Silenciosa — aquela pergunta que ronda a cabeça sem hora marcada: será que valeu a pena? Quase ninguém fala isso em voz alta, mas ela mora em muito homem depois dos 40. A boa notícia, que eu aprendi na prática, é que essa crise não é sentença, é convocação — um chamado pra reescrever o que ainda dá tempo de reescrever. Em "A crise dos 40 no homem" eu mostro por que isso não é o fim de nada."
     },
     fe: {
       title: "A Fé sem Rosto",
       article: "/artigos/fe-sem-mascara.html",
-      desc: "Sua máscara é a da Fé sem Rosto — você acredita, ora, confia em Deus, mas por fora finge que está tudo certo o tempo todo, como se dúvida e fé de verdade não pudessem morar juntas. Fé de verdade não precisa de máscara nenhuma: ela aguenta pergunta, aguenta lágrima, aguenta silêncio também. Foi entendendo isso que eu parei de fingir força na frente de Deus — Ele já sabia de tudo mesmo. Em “Fé sem máscara” eu conto o que é ser homem de fé sem fingir que está tudo bem."
+      desc: "Sua máscara é a da Fé sem Rosto — você acredita, ora, confia em Deus, mas por fora finge que está tudo certo o tempo todo, como se dúvida e fé de verdade não pudessem morar juntas. Fé de verdade não precisa de máscara nenhuma: ela aguenta pergunta, aguenta lágrima, aguenta silêncio também. Foi entendendo isso que eu parei de fingir força na frente de Deus — Ele já sabia de tudo mesmo. Em "Fé sem máscara" eu conto o que é ser homem de fé sem fingir que está tudo bem."
     }
   };
 
@@ -233,7 +268,23 @@
     progressLabel.textContent = n + ' de 6 respondidas';
   }
 
-  form.addEventListener('change', updateProgress);
+  /* Dispara uma única vez, na primeira resposta — mede quem começa o teste */
+  var jaComecou = false;
+  form.addEventListener('change', function(){
+    updateProgress();
+    if (jaComecou) return;
+    jaComecou = true;
+    if (typeof gtag === 'function') {
+      gtag('event', 'quiz_start', { quiz_name: 'mascara_masculina' });
+    }
+    if (typeof fbq === 'function') {
+      fbq('trackCustom', 'QuizStart', {
+        quiz_name: 'mascara_masculina',
+        utm_source: ORIGEM.source,
+        utm_campaign: ORIGEM.campaign
+      });
+    }
+  });
   updateProgress();
 
   form.addEventListener('submit', function(e){
@@ -258,7 +309,7 @@
     document.getElementById('maskDesc').textContent = m.desc;
     document.getElementById('maskArticleBtn').setAttribute('href', m.article);
 
-    var wppMsg = 'Oi Romário! Fiz o teste do site e descobri que uso a máscara: ' + m.title + '. Queria entender melhor o que isso significa.';
+    var wppMsg = 'Oi Romário! Fiz o teste do site e descobri que uso a máscara: ' + m.title + '. Queria entender melhor o que isso significa.' + etiquetaOrigem();
     document.getElementById('maskWhatsappBtn').setAttribute('href', 'https://wa.me/5551980482820?text=' + encodeURIComponent(wppMsg));
 
     form.style.display = 'none';
@@ -269,7 +320,12 @@
       gtag('event', 'quiz_complete', { quiz_name: 'mascara_masculina', result: winner });
     }
     if (typeof fbq === 'function') {
-      fbq('trackCustom', 'QuizComplete', { quiz_name: 'mascara_masculina', result: winner });
+      fbq('trackCustom', 'QuizComplete', {
+        quiz_name: 'mascara_masculina',
+        result: winner,
+        utm_source: ORIGEM.source,
+        utm_campaign: ORIGEM.campaign
+      });
     }
   });
 
@@ -278,7 +334,11 @@
       gtag('event', 'quiz_whatsapp_click', { quiz_name: 'mascara_masculina' });
     }
     if (typeof fbq === 'function') {
-      fbq('track', 'Lead', { content_name: 'quiz_mascara_whatsapp_click' });
+      fbq('track', 'Lead', {
+        content_name: 'quiz_mascara_whatsapp_click',
+        utm_source: ORIGEM.source,
+        utm_campaign: ORIGEM.campaign
+      });
     }
   });
 
