@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulador de Renda Passiva — Quanto Tempo Até Viver de Renda | Rede Bolha</title>
+
+<link rel="canonical" href="https://redebolha.com.br/financas/simulador-renda-passiva.html">
+<meta name="description" content="Simulador gratuito de renda passiva: descubra em quanto tempo os juros passam a render mais que o seu aporte mensal. Sem cadastro, sem indicação de investimento.">
+<meta name="author" content="Adm. Romário Cruz">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#111113">
+
+<meta property="og:title" content="Simulador de Renda Passiva — Quanto Tempo Até Viver de Renda">
+<meta property="og:description" content="Descubra em quanto tempo os juros passam a render mais que o seu aporte mensal. Ferramenta gratuita da Rede Bolha.">
+<meta property="og:image" content="https://redebolha.com.br/financas/romario-com-o-livro.jpg">
+<meta property="og:image:alt" content="Romário Cruz lendo Homem, Você Não É Ridículo">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://redebolha.com.br/financas/simulador-renda-passiva.html">
+<meta property="og:site_name" content="Rede Bolha">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Simulador de Renda Passiva — Quanto Tempo Até Viver de Renda">
+<meta name="twitter:description" content="Descubra em quanto tempo os juros passam a render mais que o seu aporte mensal. Ferramenta gratuita da Rede Bolha.">
+<meta name="twitter:image" content="https://redebolha.com.br/financas/romario-com-o-livro.jpg">
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebApplication",
+      "name":"Simulador de Renda Passiva",
+      "url":"https://redebolha.com.br/financas/simulador-renda-passiva.html",
+      "applicationCategory":"FinanceApplication",
+      "operatingSystem":"Web",
+      "inLanguage":"pt-BR",
+      "description":"Simulador educacional de juros compostos que calcula em quanto tempo o rendimento mensal supera o aporte mensal.",
+      "isAccessibleForFree":true,
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"BRL"},
+      "author":{"@type":"Person","name":"Adm. Romário Cruz","url":"https://redebolha.com.br/sobre-o-autor.html"},
+      "publisher":{"@type":"Organization","name":"Rede Bolha","url":"https://redebolha.com.br/"}
+    },
+    {
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Início","item":"https://redebolha.com.br/"},
+        {"@type":"ListItem","position":2,"name":"Dinheiro","item":"https://redebolha.com.br/financas/"},
+        {"@type":"ListItem","position":3,"name":"Simulador de Renda Passiva","item":"https://redebolha.com.br/financas/simulador-renda-passiva.html"}
+      ]
+    },
+    {
+      "@type":"FAQPage",
+      "mainEntity":[
+        {"@type":"Question","name":"O que é o ponto de virada da renda passiva?",
+         "acceptedAnswer":{"@type":"Answer","text":"É o mês em que o rendimento de um único mês passa a superar o valor que você deposita nesse mesmo mês. A partir dele, o dinheiro contribui mais para o crescimento do patrimônio do que o seu próprio esforço de poupar."}},
+        {"@type":"Question","name":"O simulador indica onde investir?",
+         "acceptedAnswer":{"@type":"Answer","text":"Não. A ferramenta é exclusivamente educacional e não indica ativos, produtos ou instituições financeiras. A taxa de rendimento é informada pelo próprio usuário."}},
+        {"@type":"Question","name":"Os dados digitados ficam salvos?",
+         "acceptedAnswer":{"@type":"Answer","text":"Não. O cálculo roda inteiramente no navegador do usuário e nenhum dado é enviado ou armazenado."}}
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','2570806596755923');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2570806596755923&ev=PageView&noscript=1" alt=""></noscript>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --tinta:#111113; --papel:#191A1E; --papel-alto:#212329;
+    --linha:#2E3037; --ouro:#C9A227; --ouro-claro:#E8D48B;
+    --giz:#EDEAE3; --sombra:#8E9098;
+    --suor:#5B7BA8; --seiva:#7FB069;
+    --display:'Fraunces',Georgia,serif;
+    --corpo:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+    --num:'IBM Plex Mono',ui-monospace,monospace;
+    --larg:1000px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--tinta);color:var(--giz);font-family:var(--corpo);
+    font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:var(--ouro-claro)}
+  .wrap{max-width:var(--larg);margin:0 auto;padding:0 18px}
+  .pular{position:absolute;left:-9999px}
+  .pular:focus{left:18px;top:12px;z-index:99;background:var(--ouro);color:#111113;
+    padding:9px 15px;border-radius:6px;font-weight:600}
+
+  .topo{border-bottom:1px solid var(--linha);position:sticky;top:0;z-index:20;
+    background:rgba(17,17,19,.94);backdrop-filter:blur(8px)}
+  .topo .wrap{display:flex;align-items:center;justify-content:space-between;
+    gap:16px;padding-top:14px;padding-bottom:14px;flex-wrap:wrap}
+  .logo{font-family:var(--display);font-size:20px;font-weight:400;
+    text-decoration:none;color:var(--giz);letter-spacing:-.01em}
+  .logo b{font-weight:700;color:var(--ouro)}
+  nav ul{display:flex;gap:20px;list-style:none;flex-wrap:wrap}
+  nav a{font-size:14px;color:var(--sombra);text-decoration:none;transition:color .15s}
+  nav a:hover,nav a[aria-current="page"]{color:var(--ouro-claro)}
+  nav a[aria-current="page"]{font-weight:500}
+
+  .capa{padding:46px 0 34px;text-align:center;border-bottom:1px solid var(--linha)}
+  .selo{font-family:var(--num);font-size:11px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ouro);margin-bottom:16px}
+  h1{font-family:var(--display);font-weight:400;font-size:clamp(28px,5.2vw,42px);
+    line-height:1.08;letter-spacing:-.02em;margin:0 auto 14px;max-width:16ch}
+  h1 em{font-style:italic;color:var(--ouro-claro)}
+  .capa p{color:var(--sombra);font-size:15px;max-width:52ch;margin:0 auto}
+
+  main{padding:32px 0 20px}
+  section{margin-bottom:26px}
+
+  .entradas{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .campo label{display:block;font-family:var(--num);font-size:9.5px;letter-spacing:.11em;
+    text-transform:uppercase;color:var(--sombra);margin-bottom:7px}
+  .cx{position:relative}
+  .cx .pre,.cx .postposition:absolute;top:50%;transform:translateY(-50%);
+    (--num);font-size:12.5px;color:var(--sombra);pointer-events:none}
+  .cx .pre{left:11px} .cx .pos{right:11px}
+  input[type=number]{background:var(--papel-alto);border:1px solid var(--linha);color:var(--giz);
+    font-family:var(--num);font-size:15px;font-weight:500;padding:12px 11px;
+    border-radius:8px;width:100%}
+  .tem-pre input{padding-left:32px}
+  .tem-pos input{padding-right:32px}
+  input:focus-visible{outline:2px solid var(--ouro);outline-offset:2px;border-color:transparent}
+  input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  input[type=number]{-moz-appearance:textfield}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;
+    background:var(--linha);border-radius:2px;margin-top:15px}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;
+    border-radius:50%;background:var(--ouro);cursor:pointer;border:3px solid var(--tinta)}
+  input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;
+    background:var(--ouro);cursor:pointer;border:3px solid var(--tinta)}
+  input[type=range]:focus-visible{outline:2px solid var(--ouro);outline-offset:4px}
+
+  .resultado{background:var(--papel);border:1px solid var(--linha);border-radius:14px;
+    padding:28px 20px;text-align:center;margin-bottom:12px}
+  .res-rot{font-family:var(--num);font-size:10px;letter-spacing:.15em;
+    text-transform:uppercase;color:var(--sombra);margin-bottom:12px}
+  .res-num{font-family:var(--display);font-weight:600;font-size:clamp(36px,8vw,54px);
+    line-height:1;color:var(--ouro-claro);letter-spacing:-.025em}
+  .res-num i{font-style:normal;font-size:.52em;color:var(--ouro)}
+  .res-nota{font-size:13px;color:var(--sombra);margin-top:13px}
+  .res-nota b{color:var(--giz);font-weight:500}
+
+  .trio{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--linha);
+    border:1px solid var(--linha);border-radius:12px;overflow:hidden}
+  .trio div{background:var(--papel);padding:16px 12px;text-align:center}
+  .trio span{display:block;font-family:var(--num);font-size:9.5px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--sombra);margin-bottom:8px}
+  .trio strong{font-family:var(--num);font-size:18px;font-weight:600}
+  .c-suor strong{color:var(--suor)} .c-ouro strong{color:var(--ouro-claro)}
+
+  .grafico{background:var(--papel);border:1px solid var(--linha);border-radius:14px;padding:20px}
+  .g-topo{display:flex;justify-content:space-between;align-items:baseline;
+    flex-wrap:wrap;gap:10px;margin-bottom:16px}
+  .g-topo h2{font-family:var(--display);font-weight:400;font-size:18px}
+  .chaves{display:flex;gap:15px;font-family:var(--num);font-size:10.5px;color:var(--sombra)}
+  .chaves b{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px}
+  svg{width:100%;height:auto;display:block}
+
+  .virada{border:1px solid var(--ouro);border-radius:14px;padding:24px 20px;
+    background:linear-gradient(180deg,rgba(201,162,39,.10),transparent 70%)}
+  .v-rot{font-family:var(--num);font-size:10px;letter-spacing:.15em;
+    text-transform:uppercase;color:var(--ouro);margin-bottom:11px}
+  .virada h2{font-family:var(--display);font-weight:400;font-size:clamp(19px,3.6vw,24px);
+    line-height:1.25;margin-bottom:11px}
+  .virada h2 em{font-style:italic;color:var(--ouro-claro)}
+  .virada p{font-size:14px;color:var(--sombra);line-height:1.65;max-width:62ch}
+  .virada p b{color:var(--giz);font-weight:500}
+
+  .meta-bloco{background:var(--papel);border:1px solid var(--linha);border-radius:14px;padding:20px}
+  .meta-linha{display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+    font-size:15px;color:var(--sombra);margin-bottom:16px}
+  .meta-linha .cx{width:140px}
+  .meta-res{font-family:var(--display);font-size:clamp(17px,3.2vw,21px);font-weight:400;
+    line-height:1.45;padding-top:16px;border-top:1px solid var(--linha)}
+  .meta-res em{font-style:italic;color:var(--ouro-claro)}
+
+  h2.sec{font-family:var(--display);font-weight:400;font-size:22px;margin-bottom:14px}
+  .caixa{background:var(--papel);border:1px solid var(--linha);border-radius:14px;padding:20px}
+  .lin{padding:13px 0;font-size:14px;line-height:1.65;border-bottom:1px solid var(--linha)}
+  .lin:first-child{padding-top:0} .lin:last-child{border:0;padding-bottom:0}
+  .lin b{color:var(--giz);font-weight:600}
+
+  .ponte{background:var(--papel);border:1px solid var(--linha);border-radius:14px;
+    padding:22px;display:flex;gap:20px;align-items:center;justify-content:space-between;
+    flex-wrap:wrap}
+  .ponte-txt{flex:1 1 320px}
+  .ponte .rot{font-family:var(--num);font-size:10px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ouro);margin-bottom:8px}
+  .ponte h3{font-family:var(--display);font-weight:400;font-size:20px;margin-bottom:8px}
+  .ponte p{font-size:14px;color:var(--sombra);max-width:54ch}
+
+  .botao{display:inline-block;font-family:var(--corpo);font-size:15px;font-weight:600;
+    background:var(--ouro);color:#111113;border:0;border-radius:9px;
+    padding:14px 26px;cursor:pointer;text-decoration:none;transition:background .15s;
+    white-space:nowrap}
+  .botao:hover{background:var(--ouro-claro)}
+  .botao:focus-visible{outline:2px solid var(--ouro-claro);outline-offset:3px}
+  .botao.vazado{background:transparent;color:var(--ouro-claro);border:1px solid var(--linha)}
+  .botao.vazado:hover{background:var(--papel-alto);border-color:var(--ouro)}
+
+  .final{text-align:center;padding:38px 20px;border:1px solid var(--linha);
+    border-radius:14px;background:var(--papel)}
+  .final h2{font-family:var(--display);font-weight:400;font-size:clamp(21px,4.2vw,28px);
+    line-height:1.22;margin:0 auto 14px;max-width:22ch}
+  .final h2 em{font-style:italic;color:var(--ouro-claro)}
+  .final p{font-size:15px;color:var(--sombra);max-width:50ch;margin:0 auto 22px}
+  .assina{font-family:var(--num);font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--sombra);margin-top:20px}
+
+  .voltar{display:inline-block;margin-top:26px;font-size:14px;
+    color:var(--sombra);text-decoration:none}
+  .voltar:hover{color:var(--ouro-claro)}
+
+  .legal{font-size:12px;color:var(--sombra);line-height:1.7;margin-top:30px;
+    border-top:1px solid var(--linha);padding-top:20px}
+  .legal b{color:var(--giz);font-weight:600}
+
+  footer{border-top:1px solid var(--linha);margin-top:40px;padding:26px 0 40px;
+    text-align:center;font-size:13.5px;color:var(--sombra)}
+  footer a{color:var(--sombra);text-decoration:none}
+  footer a:hover{color:var(--ouro-claro)}
+  footer .copy{margin-top:12px;font-size:12.5px}
+
+  @media (max-width:700px){
+    .entradas{grid-template-columns:1fr 1fr}
+    .trio{grid-template-columns:1fr}
+    nav ul{gap:14px}
+    nav a{font-size:13px}
+  }
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="topo">
+  <div class="wrap">
+    <a class="logo" href="https://redebolha.com.br/"><b>Rede</b> Bolha</a>
+    <nav aria-label="Principal">
+      <ul>
+        <li><a href="https://redebolha.com.br/sobre-o-autor.html">Sobre</a></li>
+        <li><a href="https://redebolha.com.br/livros/">Livros</a></li>
+        <li><a href="https://redebolha.com.br/artigos/">Artigos</a></li>
+        <li><a href="https://redebolha.com.br/financas/" aria-current="page">Dinheiro</a></li>
+        <li><a href="https://redebolha.com.br/contato/">Contato</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="capa">
+  <div class="wrap">
+    <div class="selo">Ferramenta gratuita · Dinheiro</div>
+    <h1>Quanto tempo até o seu dinheiro <em>trabalhar por você?</em></h1>
+    <p>Mexa nos números e veja o que acontece. Nada é enviado para lugar nenhum — a conta roda aqui no seu aparelho, e nada fica salvo.</p>
+  </div>
+</div>
+
+<main id="conteudo">
+<div class="wrap">
+
+  <section class="entradas" aria-label="Dados da simulação">
+    <div class="campo">
+      <label for="inicial">Já tenho hoje</label>
+      <div class="cx tem-pre"><span class="pre">R$</span>
+        <input type="number" id="inicial" value="1000" step="100" min="0" inputmode="numeric"></div>
+    </div>
+    <div class="campo">
+      <label for="aporte">Guardo por mês</label>
+      <div class="cx tem-pre"><span class="pre">R$</span>
+        <input type="number" id="aporte" value="300" step="50" min="0" inputmode="numeric"></div>
+    </div>
+    <div class="campo">
+      <label for="taxa">Rendimento ao ano</label>
+      <div class="cx tem-pos"><span class="pos">%</span>
+        <input type="number" id="taxa" value="10" step="0.5" min="0" max="60" inputmode="decimal"></div>
+    </div>
+    <div class="campo">
+      <label for="anos">Por quantos anos</label>
+      <input type="number" id="anos" value="20" step="1" min="1" max="50" inputmode="numeric">
+      <input type="range" id="anos-r" value="20" min="1" max="50" step="1" aria-label="Prazo em anos">
+    </div>
+  </section>
+
+  <section aria-label="Resultado">
+    <div class="resultado">
+      <div class="res-rot">Renda por mês ao final do período</div>
+      <div class="res-num" aria-live="polite"><i>R$</i> <span id="renda">—</span></div>
+      <div class="res-nota" id="renda-nota"></div>
+    </div>
+    <div class="trio">
+      <div class="c-suor"><span>Saiu do seu bolso</span><strong id="aportado">—</strong></div>
+      <div class="c-ouro"><span>Veio dos juros</span><strong id="juros">—</strong></div>
+      <div><span>Patrimônio final</span><strong id="total">—</strong></div>
+    </div>
+  </section>
+
+  <section class="grafico">
+    <div class="g-topo">
+      <h2>O suor e a bola de neve</h2>
+      <div class="chaves">
+        <span><b style="background:#5B7BA8"></b>seu esforço</span>
+        <span><b style="background:#C9A227"></b>juros</span>
+      </div>
+    </div>
+    <svg id="svg" viewBox="0 0 700 250" preserveAspectRatio="none" role="img"
+         aria-label="Gráfico da evolução do patrimônio, separando o valor aportado do valor gerado pelos juros"></svg>
+  </section>
+
+  <section class="virada">
+    <div class="v-rot">O ponto de virada</div>
+    <h2 id="virada-titulo">—</h2>
+    <p id="virada-texto"></p>
+  </section>
+
+  <section class="meta-bloco">
+    <div class="meta-linha">
+      <label for="meta">Eu queria receber</label>
+      <div class="cx tem-pre"><span class="pre">R$</span>
+        <input type="number" id="meta" value="2000" step="100" min="0" inputmode="numeric"></div>
+      <span>por mês, todo mês.</span>
+    </div>
+    <div class="meta-res" id="meta-res" aria-live="polite">—</div>
+  </section>
+
+  <section>
+    <h2 class="sec">Três coisas que este simulador não faz</h2>
+    <div class="caixa">
+      <div class="lin"><b>Não promete nada.</b> O rendimento que você digitou é um chute — o seu chute. Investimento de verdade sobe e desce, tem ano ruim e ano bom. A conta aqui usa taxa fixa porque é o único jeito de a matemática caber numa tela, não porque a vida funcione assim.</div>
+      <div class="lin"><b>Não considera a inflação.</b> Dois mil reais daqui a vinte anos compram bem menos que dois mil reais hoje. Se quiser uma leitura mais honesta, desconte a inflação antes de digitar: se você espera 10% ao ano e a inflação roda perto de 4,5%, use 5,5% no campo.</div>
+      <div class="lin"><b>Não indica onde investir.</b> De propósito. Isto é uma calculadora, não um conselho — e quem recomenda investimento no Brasil precisa de credencial da CVM. Eu sou administrador e escritor, não consultor de valores mobiliários. Para saber onde aplicar, procure um profissional autorizado.</div>
+    </div>
+  </section>
+
+  <section class="ponte">
+    <div class="ponte-txt">
+      <div class="rot">Próximo passo</div>
+      <h3>Já sabe quanto tempo leva. E agora, com o quê?</h3>
+      <p>Se você quer ver quanto rende a carteira que já tem — ou a que está de olho —, a Calculadora de FIIs faz essa conta cota por cota.</p>
+    </div>
+    <a class="botao vazado" href="https://redebolha.com.br/financas/calculadora-fii.html">Abrir a calculadora de FIIs →</a>
+  </section>
+
+  <section class="final">
+    <h2>O problema quase nunca é o dinheiro. <em>É a decisão.</em></h2>
+    <p>Você acabou de ver na tela: o que muda tudo não é a taxa, é o tempo e a constância. E isso não é questão de planilha — é de caráter. Todo mês começa com um homem decidindo se guarda ou se gasta.</p>
+    <a class="botao" href="https://redebolha.com.br/artigos/homem-e-o-dinheiro.html">Ler: O Homem e o Dinheiro →</a>
+    <div class="assina">Adm. Romário Cruz</div>
+  </section>
+
+  <a class="voltar" href="https://redebolha.com.br/financas/">← Voltar para Dinheiro</a>
+
+  <p class="legal">
+    <b>Aviso importante.</b> Este simulador tem finalidade exclusivamente educacional. Não constitui recomendação, análise, consultoria ou aconselhamento de investimento, e não indica ativos, produtos, fundos ou instituições financeiras. Os resultados são projeções matemáticas calculadas a partir dos valores informados pelo próprio usuário e <b>não representam garantia, promessa ou expectativa de rentabilidade futura</b>. Rentabilidade passada não garante resultado futuro. Todo investimento envolve risco, inclusive de perda do capital aplicado. Para orientação sobre onde investir, consulte um profissional autorizado pela Comissão de Valores Mobiliários (CVM).<br><br>
+    <b>Privacidade.</b> Todo o cálculo acontece no seu navegador. Nenhum valor digitado é enviado, gravado ou compartilhado.<br><br>
+    Ferramenta gratuita — pode usar e compartilhar à vontade.
+  </p>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="https://redebolha.com.br/">Início</a> ·
+    <a href="https://redebolha.com.br/sobre-o-autor.html">Sobre</a> ·
+    <a href="https://redebolha.com.br/livros/">Livros</a> ·
+    <a href="https://redebolha.com.br/artigos/">Artigos</a> ·
+    <a href="https://redebolha.com.br/contato/">Contato</a>
+    <div class="copy">© 2026 Adm. Romário Cruz · Eldorado do Sul, RS · Rede Bolha</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var el = function(id){ return document.getElementById(id); };
+  function brl(n){ return n.toLocaleString('pt-BR',{minimumFractionDigits:0,maximumFractionDigits:0}); }
+  function brl2(n){ return n.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+
+  function tempoTexto(m){
+    var a = Math.floor(m/12), r = m%12;
+    if(a === 0) return r + (r===1?' mês':' meses');
+    var t = a + (a===1?' ano':' anos');
+    if(r > 0) t += ' e ' + r + (r===1?' mês':' meses');
+    return t;
+  }
+
+  function simular(){
+    var v0 = Math.max(0, parseFloat(el('inicial').value)||0);
+    var ap = Math.max(0, parseFloat(el('aporte').value)||0);
+    var ta = Math.max(0, parseFloat(el('taxa').value)||0);
+    var an = Math.max(1, Math.min(50, parseInt(el('anos').value,10)||1));
+    var i = Math.pow(1+ta/100, 1/12) - 1;
+    var meses = an*12;
+
+    var saldo = v0, aportado = v0, virada = null;
+    var serie = [{s:v0, a:v0}];
+
+    for(var m=1; m<=meses; m++){
+      var rendeu = saldo*i;
+      if(virada === null && ap > 0 && rendeu >= ap) virada = m;
+      saldo += rendeu + ap;
+      aportado += ap;
+      serie.push({s:saldo, a:aportado});
+    }
+    return { saldo:saldo, aportado:aportado, juros:saldo-aportado, renda:saldo*i,
+             serie:serie, i:i, meses:meses, ap:ap, virada:virada };
+  }
+
+  function metaTempo(r){
+    var alvo = Math.max(0, parseFloat(el('meta').value)||0);
+    if(alvo <= 0) return 'vazio';
+    if(r.i <= 0) return null;
+    var precisa = alvo / r.i;
+    var saldo = Math.max(0, parseFloat(el('inicial').value)||0);
+    if(saldo >= precisa) return 0;
+    if(r.ap <= 0 && saldo <= 0) return null;
+    for(var m=1; m<=1200; m++){
+      saldo = saldo*(1+r.i) + r.ap;
+      if(saldo >= precisa) return m;
+    }
+    return null;
+  }
+
+  function desenhar(r){
+    var svg = el('svg');
+    var W=700, H=250, pt=12, pb=26, pl=6, pr=6;
+    var n = r.serie.length;
+    var max = r.serie[n-1].s || 1;
+    var gx = function(k){ return pl + (k/(n-1))*(W-pl-pr); };
+    var gy = function(v){ return H-pb - (v/max)*(H-pt-pb); };
+
+    var topo='', voltaAp='', linhaAp='', k;
+    for(k=0;k<n;k++){ topo += gx(k)+','+gy(r.serie[k].s)+' '; }
+    for(k=n-1;k>=0;k--){ voltaAp += gx(k)+','+gy(r.serie[k].a)+' '; }
+    for(k=0;k<n;k++){ linhaAp += gx(k)+','+gy(r.serie[k].a)+' '; }
+
+    var grade='';
+    var anos = Math.round((n-1)/12);
+    var passo = anos<=10 ? 2 : (anos<=25 ? 5 : 10);
+    for(var a=passo; a<=anos; a+=passo){
+      var x = gx(a*12);
+      grade += '<line x1="'+x+'" y1="'+pt+'" x2="'+x+'" y2="'+(H-pb)+'" stroke="#2E3037" stroke-width="1" stroke-dasharray="2 4"/>'
+             + '<text x="'+x+'" y="'+(H-8)+'" fill="#8E9098" font-family="IBM Plex Mono, monospace" font-size="10" text-anchor="middle">'+a+'a</text>';
+    }
+
+    var marca='';
+    if(r.virada){
+      var xv = gx(r.virada);
+      marca = '<line x1="'+xv+'" y1="'+pt+'" x2="'+xv+'" y2="'+(H-pb)+'" stroke="#C9A227" stroke-width="1.5"/>'
+            + '<circle cx="'+xv+'" cy="'+gy(r.serie[r.virada].s)+'" r="4.5" fill="#C9A227" stroke="#111113" stroke-width="2"/>';
+    }
+
+    svg.innerHTML =
+      '<defs>'
+      + '<linearGradient id="gS" x1="0" y1="0" x2="0" y2="1">'
+      +  '<stop offset="0%" stop-color="#5B7BA8" stop-opacity=".85"/>'
+      +  '<stop offset="100%" stop-color="#5B7BA8" stop-opacity=".3"/></linearGradient>'
+      + '<linearGradient id="gO" x1="0" y1="0" x2="0" y2="1">'
+      +  '<stop offset="0%" stop-color="#C9A227" stop-opacity=".9"/>'
+      +  '<stop offset="100%" stop-color="#C9A227" stop-opacity=".35"/></linearGradient>'
+      + '</defs>'
+      + '<line x1="'+pl+'" y1="'+(H-pb)+'" x2="'+(W-pr)+'" y2="'+(H-pb)+'" stroke="#2E3037" stroke-width="1"/>'
+      + grade
+      + '<polygon points="'+topo+voltaAp+'" fill="url(#gO)"/>'
+      + '<polygon points="'+linhaAp+gx(n-1)+','+gy(0)+' '+gx(0)+','+gy(0)+'" fill="url(#gS)"/>'
+      + marca
+      + '<polyline points="'+topo+'" fill="none" stroke="#E8D48B" stroke-width="2"/>';
+  }
+
+  function atualizar(){
+    var r = simular();
+
+    el('renda').textContent = brl2(r.renda);
+    el('aportado').textContent = 'R$ '+brl(r.aportado);
+    el('juros').textContent = 'R$ '+brl(r.juros);
+    el('total').textContent = 'R$ '+brl(r.saldo);
+
+    var prop = r.aportado>0 ? r.juros/r.aportado : 0;
+    el('renda-nota').innerHTML = r.juros > r.aportado
+      ? 'Nesse cenário, os juros entregam <b>'+prop.toFixed(1).replace('.',',')+' vezes</b> o que saiu do seu bolso.'
+      : 'Nesse cenário, os juros somam <b>'+Math.round(prop*100)+'%</b> do que saiu do seu bolso.';
+
+    desenhar(r);
+
+    var vt = el('virada-titulo'), vx = el('virada-texto');
+    if(r.virada){
+      vt.innerHTML = 'No mês '+r.virada+' — <em>'+tempoTexto(r.virada)+'</em> — o dinheiro passa a guardar mais do que você.';
+      vx.innerHTML = 'A partir daí, o rendimento de um único mês supera os <b>R$ '+brl2(r.ap)+'</b> que você deposita. '
+        + 'Você continua aportando, mas deixou de ser o motor principal. Esse é o momento que quase ninguém calcula — '
+        + 'e é ele que separa quem junta dinheiro de quem constrói renda.';
+    } else if(r.ap<=0){
+      vt.innerHTML = 'Sem aporte mensal, <em>não existe ponto de virada</em>.';
+      vx.innerHTML = 'O dinheiro até rende sobre si mesmo, mas a bola de neve começa devagar demais. '
+        + 'Coloque um valor em <b>&ldquo;Guardo por mês&rdquo;</b>, mesmo pequeno, e veja o que muda no gráfico.';
+    } else {
+      vt.innerHTML = 'O ponto de virada <em>ainda não chegou</em> nesse prazo.';
+      vx.innerHTML = 'Dentro dos anos que você escolheu, o rendimento de um mês nunca supera o seu aporte de <b>R$ '+brl2(r.ap)+'</b>. '
+        + 'Aumente o prazo, o valor inicial ou o rendimento esperado e observe em que ponto a conta vira.';
+    }
+
+    var mm = metaTempo(r), mr = el('meta-res');
+    if(mm === 'vazio'){ mr.innerHTML = 'Digite um valor de renda para ver o prazo.'; }
+    else if(mm === 0){ mr.innerHTML = 'Com o que você já tem, <em>essa renda já seria possível hoje</em>.'; }
+    else if(mm === null){ mr.innerHTML = 'Nesse ritmo, essa renda <em>não é alcançada</em> nem em 100 anos. Aumente o aporte mensal ou revise o rendimento esperado.'; }
+    else {
+      var alvo = parseFloat(el('meta').value)||0;
+      mr.innerHTML = 'Você chegaria lá em <em>'+tempoTexto(mm)+'</em>, com um patrimônio de cerca de <em>R$ '+brl(alvo/r.i)+'</em>.';
+    }
+  }
+
+  ['inicial','aporte','taxa','anos','meta'].forEach(function(id){
+    el(id).addEventListener('input', function(){
+      if(id === 'anos') el('anos-r').value = el('anos').value;
+      atualizar();
+    });
+  });
+  el('anos-r').addEventListener('input', function(){
+    el('anos').value = el('anos-r').value;
+    atualizar();
+  });
+
+  atualizar();
+})();
+</script>
+</body>
+</html>
