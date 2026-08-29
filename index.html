@@ -198,6 +198,9 @@
   .hyr *,.hyr *::before,.hyr .cover,.hyr .bk-cover-wrap img{animation:none!important;transition:none!important;}
   .hyr.js .reveal{opacity:1;transform:none;}
 }
+  /* A barra tem 65px e fica no topo; sem isto, um link de ancora leva o
+     título para debaixo dela (era o caso de #contato). */
+  html{scroll-padding-top:88px;}
   /* --- fotos (lote 2) --- */
   /* A foto do homem na cama disputava com o título e com o livro no hero.
      Ela pertence ao bloco das quatro perguntas — que é exatamente essa cena. */
@@ -273,7 +276,7 @@
 <!-- Folhas de estilo que antes ficavam soltas dentro do <body> (inválido no W3C).
      Movidas para cá NA MESMA ORDEM em que apareciam, então a cascata — e o visual — não mudam. -->
 <style>
-.rb-nav{position:sticky;top:0;z-index:50;background:rgba(10,10,12,.86);backdrop-filter:blur(10px);border-bottom:1px solid rgba(201,162,75,.18);}
+.rb-nav{position:sticky;top:0;z-index:50;background:rgba(10,10,12,.97);backdrop-filter:blur(10px);border-bottom:1px solid rgba(201,162,75,.18);}
 .rb-nav .inner{max-width:1180px;margin:0 auto;padding:.7rem 1.2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
 .rb-nav .brand{font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:.9rem;color:#C9A24B;text-decoration:none;white-space:nowrap;}
 .rb-nav ul{list-style:none;display:flex;flex-wrap:wrap;gap:1.15rem;margin:0;padding:0;}
