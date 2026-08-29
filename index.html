@@ -198,6 +198,24 @@
   .hyr *,.hyr *::before,.hyr .cover,.hyr .bk-cover-wrap img{animation:none!important;transition:none!important;}
   .hyr.js .reveal{opacity:1;transform:none;}
 }
+  /* --- fotos (lote 2) --- */
+  /* A foto do homem na cama disputava com o título e com o livro no hero.
+     Ela pertence ao bloco das quatro perguntas — que é exatamente essa cena. */
+  .hyr .hook{position:relative;overflow:hidden;
+    background-image:url('/img/hero-fundo-desktop.webp');background-size:cover;
+    background-position:70% 45%;}
+  .hyr .hook::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:linear-gradient(90deg,rgba(10,10,12,.96) 30%,rgba(10,10,12,.72) 58%,rgba(10,10,12,.42) 100%);}
+  .hyr .hook > .wrap{position:relative;z-index:1;}
+  @media (max-width:820px){
+    .hyr .hook{background-image:url('/img/hero-fundo-mobile.webp');background-position:50% 62%;}
+    .hyr .hook::before{background:linear-gradient(180deg,rgba(10,10,12,.93) 46%,rgba(10,10,12,.70) 100%);}
+  }
+  /* emblema da secao dos dados */
+  .hyr .stat-emblema{display:block;width:100%;max-width:640px;height:auto;margin:1.6rem auto .2rem;}
+  /* foto de abertura dos trechos */
+  .hyr .trecho-foto{display:block;width:100%;height:auto;margin:2.4rem 0 0;border-radius:10px;
+    box-shadow:0 34px 64px -28px rgba(0,0,0,.85),0 0 0 1px rgba(201,162,75,.14);}
   /* --- mockups (lote 1) --- */
   /* o complemento do preco ficava do mesmo tamanho do numero e quebrava
      em tres linhas; agora vira uma linha de apoio */
@@ -1067,7 +1085,7 @@
     </div>
   </header>
 <!-- HOOK -->
-  <section class="sec">
+  <section class="sec hook">
     <div class="wrap">
       <span class="eyebrow reveal">Antes de qualquer coisa</span>
       <h2 class="reveal">Você já se sentiu assim?</h2>
@@ -1087,6 +1105,7 @@
       <span class="eyebrow reveal">O que ninguém te contou</span>
       <h2 class="reveal">O silêncio do homem tem um preço.</h2>
       <div class="rule reveal"></div>
+      <img class="stat-emblema reveal" loading="lazy" decoding="async" src="/img/dado-expectativa-vida.webp" width="1600" height="1060" alt="Duas velas: a da esquerda inteira e acesa, a da direita quase consumida — a diferença de anos de vida entre mulheres e homens">
       <div class="stats reveal">
         <div class="stat"><div class="num">−7</div><div class="lbl">anos a menos de expectativa de vida que a mulher</div></div>
         <div class="stat"><div class="num">95%</div><div class="lbl">das mortes por acidente de trabalho são de homens</div></div>
@@ -1120,6 +1139,7 @@
     <div class="wrap">
       <span class="eyebrow reveal">Trechos do livro</span>
       <h2 class="reveal">Abra em qualquer página.<br />Vai doer um pouco — e curar também.</h2>
+      <img class="trecho-foto reveal" loading="lazy" decoding="async" src="/img/mockup-livro-mesa.webp" width="1600" height="1200" alt="O livro Homem, Você Não É Ridículo fechado sobre uma mesa de madeira, ao lado de uma xícara de café e óculos de leitura">
       <div class="rule reveal"></div>
       <div class="ex-grid">
         <div class="ex reveal"><span class="tag">Sobre a máscara</span><p>"Todo homem constrói uma máscara. Não uma máscara de vilão — mas a do 'estou bem', a do 'consigo sozinho', a do 'sou forte'. E ninguém te avisa o preço de usá-la todo dia."</p></div>
