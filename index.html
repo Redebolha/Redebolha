@@ -201,6 +201,14 @@
   /* A barra tem 65px e fica no topo; sem isto, um link de ancora leva o
      título para debaixo dela (era o caso de #contato). */
   html{scroll-padding-top:88px;}
+  /* A foto do autor deixou de ser um retrato quadrado e passou a ser
+     horizontal, então a coluna da imagem ganha largura. */
+  .hyr .author-grid--foto{grid-template-columns:1.05fr 1fr;}
+  .hyr .author-grid--foto .author-photo img{border-radius:10px;}
+  @media (max-width:820px){
+    .hyr .author-grid--foto{grid-template-columns:1fr;}
+    .hyr .author-grid--foto .author-photo{max-width:none;}
+  }
   /* --- fotos (lote 2) --- */
   /* A foto do homem na cama disputava com o título e com o livro no hero.
      Ela pertence ao bloco das quatro perguntas — que é exatamente essa cena. */
@@ -520,8 +528,8 @@
       "image": {
         "@type": "ImageObject",
         "url": "https://redebolha.com.br/fotos/romario-cruz-avatar.jpg",
-        "width": 420,
-        "height": 420,
+        "width": 700,
+        "height": 700,
         "caption": "Adm. Romário Cruz"
       },
       "knowsAbout": [
@@ -1184,8 +1192,8 @@
   <section class="sec cred">
     <div class="wrap">
       <span class="eyebrow reveal">Sobre o autor</span>
-      <div class="author-grid">
-        <div class="author-photo reveal"><img loading="lazy" decoding="async" alt="Adm. Romário Cruz" src="/fotos/romario-cruz-avatar.jpg" width="420" height="420" /></div>
+      <div class="author-grid author-grid--foto">
+        <div class="author-photo reveal"><img loading="lazy" decoding="async" alt="Adm. Romário Cruz lendo Homem, Você Não É Ridículo numa poltrona de couro, com a cuia de chimarrão ao lado" src="/img/romario-poltrona.webp" width="1024" height="739" /></div>
         <div class="reveal">
           <div class="author-name">Adm. Romário Cruz</div>
           <div class="author-role">Escritor · Administrador · Criador de conteúdo</div>
