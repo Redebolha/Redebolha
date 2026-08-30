@@ -42,6 +42,14 @@
   }
 }
 </script>
+<!-- Meta Pixel — estas páginas não tinham pixel nenhum, então o Meta não via
+     ninguém chegar na página onde a compra é decidida. -->
+<script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2570806596755923');
+    fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2570806596755923&amp;ev=PageView&amp;noscript=1" alt=""/></noscript>
 </head>
 <body>
 <header class="topbar"><div class="wrap">
@@ -60,7 +68,7 @@
 <div class="post" style="margin-top:2rem;">
       <p class="lead" style="margin-bottom:1rem;"><b>E-book — R$ 9,90:</b></p>
       <p style="margin-bottom:.6rem;"><a class="btn" href="https://pay.hotmart.com/M106424796P" rel="noopener" target="_blank">Comprar na Hotmart — R$ 9,90</a></p>
-      <p style="margin-bottom:.6rem;"><a class="btn" href="https://www.amazon.com.br/dp/B0H66VZDN4" rel="noopener" target="_blank">Comprar na <img src="/amazon-logo.png" alt="Amazon" style="height:1.8em;vertical-align:middle;"> — R$ 9,90</a></p>
+      <p style="margin-bottom:.6rem;"><a class="btn" href="https://go.hotmart.com/M106424796P" rel="noopener" target="_blank">Comprar na Hotmart — R$ 9,90</a></p>
       
       
 </div>
@@ -83,6 +91,34 @@
     if (typeof gtag === 'function') { gtag('event', 'clique_comprar_livro', { canal: canal, livro: 'O Poder da Decisao', pagina: 'livro' }); }
   }, true);
 })();
+</script>
+<!-- Hotmart: InitiateCheckout (Meta) e begin_checkout (GA4) em todo botão de compra.
+     Antes, o InitiateCheckout só disparava em link da Amazon e com valor fixo de 9,90 —
+     o livro físico de R$29,90, que é o produto principal, não disparava nada. -->
+<script>
+    (function () {
+        var HOTMART = {
+            'R106833548K': { livro: 'Homem, Voce Nao E Ridiculo', formato: 'fisico', valor: 29.90 },
+            'D106424856M': { livro: 'Homem, Voce Nao E Ridiculo', formato: 'ebook',  valor: 9.90 },
+            'M106424796P': { livro: 'O Poder da Decisao',         formato: 'ebook',  valor: 9.90 },
+            'Q106424744D': { livro: 'Amanha E Outro Agora',       formato: 'ebook',  valor: 9.90 }
+        };
+        document.addEventListener('click', function (e) {
+            var a = e.target.closest('a');
+            if (!a || !a.href || a.href.indexOf('hotmart.com') === -1) return;
+            var m = a.href.match(/hotmart\.com\/([A-Za-z0-9]+)/);
+            var cod = m ? m[1].toUpperCase() : '';
+            var p = HOTMART[cod] || { livro: cod || 'desconhecido', formato: 'desconhecido', valor: 0 };
+            if (typeof fbq === 'function') {
+                fbq('track', 'InitiateCheckout', { content_name: p.livro, content_category: p.formato,
+                    content_ids: [cod], content_type: 'product', value: p.valor, currency: 'BRL' });
+            }
+            if (typeof gtag === 'function') {
+                gtag('event', 'begin_checkout', { currency: 'BRL', value: p.valor,
+                    items: [{ item_id: cod, item_name: p.livro, item_variant: p.formato, price: p.valor, quantity: 1 }] });
+            }
+        }, true);
+    })();
 </script>
 </body>
 </html>
