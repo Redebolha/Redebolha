@@ -5,6 +5,19 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6315134930280019" crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2570806596755923');
+    fbq('track', 'PageView');
+    fbq('track', 'ViewContent', {
+      content_name: 'Homem, Você Não É Ridículo',
+      content_type: 'product',
+      content_ids: ['hvnr'],
+      currency: 'BRL',
+      value: 29.90
+    });
+  </script>
 <title>Homem, Você Não É Ridículo | Livro de Romário Cruz</title>
 <meta name="description" content="O livro Homem, Você Não É Ridículo, de Romário Cruz: uma conversa direta sobre identidade masculina, emoções, fé, paternidade, casamento e propósito. De homem para homem.">
 <link rel="canonical" href="https://redebolha.com.br/livros/homem-voce-nao-e-ridiculo.html">
@@ -100,6 +113,14 @@
     else if (a.href.indexOf('hotmart.com') > -1) canal = 'hotmart';
     if (!canal) return;
     if (typeof gtag === 'function') { gtag('event', 'clique_comprar_livro', { canal: canal, livro: 'Homem, Voce Nao E Ridiculo', pagina: 'livro' }); }
+    if (typeof fbq === 'function') {
+      fbq('track', 'InitiateCheckout', {
+        content_name: 'Homem, Você Não É Ridículo',
+        content_ids: ['hvnr-' + canal],
+        currency: 'BRL',
+        value: canal === 'hotmart' ? 29.90 : 9.90
+      });
+    }
   }, true);
 })();
 </script>
