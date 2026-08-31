@@ -13,7 +13,7 @@
     fbq('track', 'ViewContent', {
       content_name: 'Homem, Você Não É Ridículo',
       content_type: 'product',
-      content_ids: ['hvnr'],
+      content_ids: ['R106833548K'],
       currency: 'BRL',
       value: 29.90
     });
@@ -54,13 +54,6 @@
     }
   }
 }
-</script>
-<!-- Meta Pixel — estas páginas não tinham pixel nenhum, então o Meta não via
-     ninguém chegar na página onde a compra é decidida. -->
-<script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '2570806596755923');
-    fbq('track', 'PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2570806596755923&amp;ev=PageView&amp;noscript=1" alt=""/></noscript>
 </head>
@@ -113,14 +106,8 @@
     else if (a.href.indexOf('hotmart.com') > -1) canal = 'hotmart';
     if (!canal) return;
     if (typeof gtag === 'function') { gtag('event', 'clique_comprar_livro', { canal: canal, livro: 'Homem, Voce Nao E Ridiculo', pagina: 'livro' }); }
-    if (typeof fbq === 'function') {
-      fbq('track', 'InitiateCheckout', {
-        content_name: 'Homem, Você Não É Ridículo',
-        content_ids: ['hvnr-' + canal],
-        currency: 'BRL',
-        value: canal === 'hotmart' ? 29.90 : 9.90
-      });
-    }
+    // O InitiateCheckout do Meta fica com o rastreador do Hotmart, logo abaixo:
+    // é ele que sabe o código e o preço de cada produto.
   }, true);
 })();
 </script>
