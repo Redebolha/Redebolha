@@ -1,0 +1,97 @@
+/* ==========================================================================
+   Rede Bolha — estilos das páginas comerciais (/cursos/ e /palestras/)
+   Complementa /artigos/blog.css e reaproveita as mesmas variáveis de cor.
+   ========================================================================== */
+
+.wrap--larga{max-width:1000px}
+
+/* ---- Cabeçalho da página ---- */
+.rb-hero{padding:56px 0 8px}
+.rb-hero .lead{font-size:1.14rem;max-width:44rem}
+.rb-selo{display:inline-block;font-family:'Oswald',sans-serif;text-transform:uppercase;
+  letter-spacing:.18em;font-size:.66rem;color:var(--gold-l);border:1px solid var(--line);
+  border-radius:999px;padding:6px 14px;margin-bottom:18px;background:rgba(201,162,75,.06)}
+
+/* ---- Grade de cartões (cursos, temas de palestra, formatos) ---- */
+.rb-grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(266px,1fr));gap:18px;margin:30px 0 8px}
+.rb-item{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:24px 22px;
+  display:flex;flex-direction:column;transition:border-color .3s ease,transform .3s ease}
+.rb-item:hover{border-color:rgba(201,162,75,.42);transform:translateY(-3px)}
+.rb-item .rb-etq{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.2em;
+  font-size:.64rem;color:var(--gold);margin-bottom:10px}
+.rb-item h3{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.4rem;
+  color:var(--txt);line-height:1.22;margin-bottom:10px}
+.rb-item p{font-size:.97rem;color:var(--body);margin-bottom:14px}
+.rb-item .rb-rodape{margin-top:auto;font-family:'Oswald',sans-serif;text-transform:uppercase;
+  letter-spacing:.14em;font-size:.68rem;color:var(--dim)}
+.rb-item .rb-rodape b{color:var(--gold-l);font-weight:500}
+
+/* Cartão de curso ainda não lançado */
+.rb-item--breve{border-style:dashed}
+.rb-item--breve .rb-etq{color:var(--wine-l)}
+
+/* ---- Passos numerados (como funciona) ---- */
+.rb-passos{list-style:none;counter-reset:passo;margin:26px 0 10px;padding:0}
+.rb-passos li{counter-increment:passo;position:relative;padding:0 0 22px 58px;
+  border-left:1px solid var(--line);margin-left:17px}
+.rb-passos li:last-child{border-left-color:transparent;padding-bottom:4px}
+.rb-passos li::before{content:counter(passo);position:absolute;left:-17px;top:-2px;
+  width:34px;height:34px;border-radius:50%;background:var(--bg2);border:1px solid var(--line);
+  color:var(--gold-l);font-family:'Oswald',sans-serif;font-size:.82rem;
+  display:flex;align-items:center;justify-content:center}
+.rb-passos b{display:block;color:var(--txt);font-weight:600;margin-bottom:4px;font-size:1.02rem}
+.rb-passos span{font-size:.97rem;color:var(--body)}
+
+/* ---- Lista com marcador dourado ---- */
+.rb-checks{list-style:none;margin:18px 0 26px;padding:0}
+.rb-checks li{position:relative;padding-left:28px;margin-bottom:12px;font-size:1rem}
+.rb-checks li::before{content:"";position:absolute;left:4px;top:.62em;width:8px;height:8px;
+  border-radius:50%;background:linear-gradient(180deg,var(--gold-l),var(--gold-d))}
+
+/* ---- Formulário ---- */
+.rb-form{border:1px solid var(--line);background:var(--bg2);border-radius:14px;
+  padding:30px 26px;margin:38px 0 10px}
+.rb-form h3{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.6rem;
+  color:var(--txt);margin-bottom:10px}
+.rb-form > p{font-size:1rem;margin-bottom:22px}
+.rb-form-linha{display:grid;grid-template-columns:repeat(auto-fit,minmax(214px,1fr));gap:16px;margin-bottom:16px}
+.rb-campo{display:flex;flex-direction:column}
+.rb-campo label{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.14em;
+  font-size:.66rem;color:var(--gold);margin-bottom:7px}
+.rb-campo input,.rb-campo select,.rb-campo textarea{
+  font-family:'Inter',system-ui,sans-serif;font-size:.98rem;color:var(--txt);
+  background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:9px;
+  padding:13px 14px;width:100%;transition:border-color .25s ease,background .25s ease}
+.rb-campo textarea{min-height:104px;resize:vertical;line-height:1.6}
+.rb-campo input:focus,.rb-campo select:focus,.rb-campo textarea:focus{
+  outline:none;border-color:var(--gold);background:rgba(201,162,75,.07)}
+.rb-campo input::placeholder,.rb-campo textarea::placeholder{color:var(--dim)}
+.rb-campo select option{background:var(--bg2);color:var(--txt)}
+.rb-form-btn{display:inline-block;font-family:'Oswald',sans-serif;text-transform:uppercase;
+  letter-spacing:.1em;font-size:.84rem;background:linear-gradient(180deg,var(--gold-l),var(--gold-d));
+  color:#1a1206;padding:15px 30px;border-radius:8px;font-weight:600;border:0;cursor:pointer;
+  transition:filter .2s ease}
+.rb-form-btn:hover{filter:brightness(1.07)}
+.rb-form-btn:disabled{opacity:.6;cursor:progress}
+.rb-form-nota{font-size:.82rem;color:var(--dim);margin-top:14px}
+.rb-form-aviso{margin-top:18px;font-size:.96rem;border-radius:9px;padding:13px 15px}
+.rb-form-aviso.is-ok{color:var(--gold-l);border:1px solid var(--line);background:rgba(201,162,75,.08)}
+.rb-form-aviso.is-erro{color:#F3C9D2;border:1px solid var(--wine-l);background:rgba(107,39,55,.24)}
+
+/* ---- Faixa de contato direto ---- */
+.rb-direto{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:26px 0 8px}
+.rb-direto .btn--fantasma{background:none;border:1px solid var(--line);color:var(--gold-l)}
+.rb-direto .btn--fantasma:hover{color:var(--gold);border-color:var(--gold)}
+
+/* ---- Citação de abertura ---- */
+.rb-fala{border-left:2px solid var(--wine-l);padding:6px 0 6px 22px;margin:30px 0;
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.34rem;
+  line-height:1.44;color:var(--gold-l)}
+
+@media (max-width:520px){
+  .rb-form{padding:24px 18px}
+  .rb-passos li{padding-left:48px}
+}
+@media (prefers-reduced-motion:reduce){
+  .rb-item:hover{transform:none}
+}
