@@ -2,18 +2,22 @@
    Troque a versão abaixo sempre que publicar mudanças grandes no site.
    Isso força a atualização do cache no celular das pessoas. */
 
-const VERSAO = 'redebolha-v5';
+const VERSAO = 'redebolha-v6';
 const OFFLINE_URL = '/offline.html';
 
 const PRE_CACHE = [
   '/',
   '/artigos/',
   '/livros/',
+  '/cursos/',
+  '/palestras/',
   OFFLINE_URL,
   '/icon-192.png',
   '/icon-512.png',
   '/css/rb.css',
   '/js/rb.js',
+  '/js/rb-lista.js',
+  '/css/rb-comercial.css',
 ];
 
 // Instalação: guarda o essencial
