@@ -1,28 +1,36 @@
 /* ==========================================================================
    Rede Bolha — Captação de e-mails (lista de espera, orçamento, newsletter)
    --------------------------------------------------------------------------
-   COMO LIGAR A LISTA DE VERDADE (leva 2 minutos, uma linha só):
+   AQUI EMBAIXO FICAM AS CAIXAS DE ENTRADA DO SITE.
 
-   Hoje, com RB_LISTA_ENDPOINT vazio, o formulário funciona no modo direto:
-   monta a mensagem e abre o WhatsApp (e oferece o e-mail como alternativa).
-   Chega, mas não monta lista automática.
+   Cada formulário do site tem um tipo, e cada tipo pode ter a sua própria
+   caixa. Para separar uma delas, crie um formulário novo em formspree.io,
+   copie o endereço que ele te dá (tem esta cara: formspree.io/f/xxxxxxxx)
+   e cole na linha do tipo correspondente, entre as aspas.
 
-   Para guardar os e-mails numa lista de verdade, crie uma conta gratuita
-   num serviço de formulário e cole a URL dele abaixo. Sugestões:
+   Linha vazia = aquele tipo usa a caixa geral (RB_LISTA_PADRAO).
+   Nenhuma caixa preenchida = o site volta ao modo WhatsApp, sem servidor:
+   o formulário monta a mensagem e abre o WhatsApp com tudo pronto.
 
-     Formspree ..... https://formspree.io  -> https://formspree.io/f/SEU_ID
-     Brevo ......... https://brevo.com     -> endpoint de formulário
-     Google Forms .. use a URL /formResponse do seu form
-
-   Preenchida a linha, o mesmo formulário passa a enviar por trás dos panos,
-   sem sair do site, e o WhatsApp continua como plano B se a rede falhar.
-
-   Para separar as listas (ex.: orçamento de palestra numa caixa e newsletter
-   noutra), crie um formulário para cada uma no serviço e ponha o endereço
-   dela direto no HTML, no atributo data-rb-endpoint do <form>. O que estiver
-   ali tem prioridade sobre a linha abaixo.
+   Por que separar: cada caixa do Formspree tem o seu próprio limite mensal
+   no plano gratuito. Com o orçamento de palestra numa caixa só dele, um mês
+   movimentado de newsletter não come a cota dos pedidos de palestra — que
+   é o contato que vale dinheiro.
    ========================================================================== */
-var RB_LISTA_ENDPOINT = 'https://formspree.io/f/mnpqovlp';
+
+/* Caixa geral: vale para todo tipo que estiver com a linha vazia abaixo. */
+var RB_LISTA_PADRAO = 'https://formspree.io/f/mnpqovlp';
+
+var RB_LISTAS = {
+  /* Pedidos de orçamento de palestra — /palestras/ */
+  palestra:   '',
+
+  /* Lista de espera dos cursos — /cursos/ */
+  curso:      '',
+
+  /* Lista da Rede Bolha (newsletter) — página inicial */
+  newsletter: ''
+};
 
 /* WhatsApp e e-mail de destino no modo direto */
 var RB_LISTA_WHATSAPP = '5551980482820';
@@ -102,15 +110,18 @@ var RB_LISTA_EMAIL    = 'admromariocruz@gmail.com';
   }
 
   function enviar(form, dados, msg, botao, rotuloBotao) {
-    /* Cada formulário pode ter o seu próprio endereço, com data-rb-endpoint
-       no <form>. Sem isso, todos usam o RB_LISTA_ENDPOINT lá de cima. */
-    var destino = form.getAttribute('data-rb-endpoint') || RB_LISTA_ENDPOINT;
+    /* Do mais específico para o mais geral: o endereço posto direto no HTML
+       vence a caixa do tipo, que vence a caixa geral. */
+    var tipo = form.getAttribute('data-rb-lista') || '';
+    var destino = form.getAttribute('data-rb-endpoint') ||
+                  (RB_LISTAS && RB_LISTAS[tipo]) ||
+                  RB_LISTA_PADRAO;
 
     if (destino) {
       var carga = {};
       for (var i = 0; i < dados.length; i++) carga[dados[i].nome] = dados[i].valor;
       carga.origem = location.pathname;
-      carga.tipo = form.getAttribute('data-rb-lista') || 'lista';
+      carga.tipo = tipo || 'lista';
 
       botao.disabled = true;
       botao.textContent = 'Enviando…';
