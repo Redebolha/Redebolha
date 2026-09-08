@@ -16,8 +16,13 @@
 
    Preenchida a linha, o mesmo formulário passa a enviar por trás dos panos,
    sem sair do site, e o WhatsApp continua como plano B se a rede falhar.
+
+   Para separar as listas (ex.: orçamento de palestra numa caixa e newsletter
+   noutra), crie um formulário para cada uma no serviço e ponha o endereço
+   dela direto no HTML, no atributo data-rb-endpoint do <form>. O que estiver
+   ali tem prioridade sobre a linha abaixo.
    ========================================================================== */
-var RB_LISTA_ENDPOINT = '';
+var RB_LISTA_ENDPOINT = 'https://formspree.io/f/mnpqovlp';
 
 /* WhatsApp e e-mail de destino no modo direto */
 var RB_LISTA_WHATSAPP = '5551980482820';
@@ -86,18 +91,22 @@ var RB_LISTA_EMAIL    = 'admromariocruz@gmail.com';
     if (!ok) box.setAttribute('role', 'alert');
   }
 
-  function agradecer(form, texto, msg) {
+  function agradecer(form, texto, msg, ok) {
     var link = 'https://wa.me/' + RB_LISTA_WHATSAPP + '?text=' + encodeURIComponent(msg);
     var mail = 'mailto:' + RB_LISTA_EMAIL +
                '?subject=' + encodeURIComponent(form.getAttribute('data-rb-assunto') || 'Contato pelo site') +
                '&body=' + encodeURIComponent(msg);
     aviso(form, texto +
       ' <br><a href="' + link + '" target="_blank" rel="noopener">Confirmar no WhatsApp</a>' +
-      ' &nbsp;·&nbsp; <a href="' + mail + '">ou enviar por e-mail</a>', true);
+      ' &nbsp;·&nbsp; <a href="' + mail + '">ou enviar por e-mail</a>', ok !== false);
   }
 
   function enviar(form, dados, msg, botao, rotuloBotao) {
-    if (RB_LISTA_ENDPOINT) {
+    /* Cada formulário pode ter o seu próprio endereço, com data-rb-endpoint
+       no <form>. Sem isso, todos usam o RB_LISTA_ENDPOINT lá de cima. */
+    var destino = form.getAttribute('data-rb-endpoint') || RB_LISTA_ENDPOINT;
+
+    if (destino) {
       var carga = {};
       for (var i = 0; i < dados.length; i++) carga[dados[i].nome] = dados[i].valor;
       carga.origem = location.pathname;
@@ -106,7 +115,7 @@ var RB_LISTA_EMAIL    = 'admromariocruz@gmail.com';
       botao.disabled = true;
       botao.textContent = 'Enviando…';
 
-      fetch(RB_LISTA_ENDPOINT, {
+      fetch(destino, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(carga)
@@ -116,7 +125,7 @@ var RB_LISTA_EMAIL    = 'admromariocruz@gmail.com';
         form.reset();
         aviso(form, form.getAttribute('data-rb-ok') || 'Pronto, seu nome está na lista. Te aviso em primeira mão.', true);
       }).catch(function () {
-        agradecer(form, 'A internet deu uma engasgada aqui. Sem problema — dá um toque direto:', msg);
+        agradecer(form, 'O envio não foi — deu alguma coisa errada na conexão. Teus dados continuam aí, nada se perdeu. Manda direto por aqui:', msg, false);
       }).then(function () {
         botao.disabled = false;
         botao.textContent = rotuloBotao;
