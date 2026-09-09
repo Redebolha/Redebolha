@@ -95,3 +95,28 @@
 @media (prefers-reduced-motion:reduce){
   .rb-item:hover{transform:none}
 }
+
+/* ===== Outras formas de comprar — mesma aparência do blog.css, para a home
+   e demais páginas que não carregam a folha de estilo dos artigos. ===== */
+.rb-lojas{margin-top:1.4rem;padding-top:1.1rem;border-top:1px solid var(--line);text-align:center}
+.rb-lojas .rb-lojas-tit{font-family:'Oswald',sans-serif;text-transform:uppercase;
+  letter-spacing:.2em;font-size:.7rem;color:var(--dim);margin-bottom:.85rem}
+.rb-lojas ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;
+  gap:.6rem .8rem;justify-content:center}
+.rb-lojas li{margin:0}
+.rb-lojas a{display:inline-flex;align-items:center;gap:.45rem;font-size:.95rem;
+  color:var(--body);text-decoration:none;border:1px solid var(--line);border-radius:8px;
+  padding:.55rem .9rem;transition:border-color .25s ease,color .25s ease}
+.rb-lojas a:hover{color:var(--gold-l);border-color:rgba(201,162,75,.45)}
+.rb-lojas a b{font-weight:600;color:var(--txt)}
+.rb-lojas a:hover b{color:var(--gold-l)}
+.rb-lojas .rb-nota{font-size:.84rem;color:var(--dim);margin-top:.85rem}
+
+/* plaquinha clara atrás do logo: os logos das lojas são feitos para fundo
+   branco — no fundo escuro do site o texto azul-marinho deles some. */
+.rb-lojas .rb-logo{display:inline-flex;align-items:center;justify-content:center;
+  background:#fff;border-radius:5px;padding:3px 5px;flex:0 0 auto}
+.rb-lojas .rb-logo img{height:16px;width:auto;display:block}
+.rb-lojas .rb-logo img[src*="mercadolivre"]{height:19px}
+.rb-lojas .rb-logo img[src*="wa-icon"]{height:17px}
+.rb-lojas .rb-logo img[src*="amazon"]{height:13px}
