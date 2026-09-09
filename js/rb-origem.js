@@ -17,12 +17,27 @@
 (function () {
   'use strict';
 
-  var busca = window.location.search || '';
-  var achou = busca.match(/[?&]de=([^&#]+)/);
-  if (!achou) return;
+  var CHAVE = 'rb_origem';
 
-  /* só letras, números e _ — evita sujeira e link quebrado */
-  var origem = decodeURIComponent(achou[1]).replace(/[^A-Za-z0-9_]/g, '').slice(0, 30);
+  function limpa(v) {
+    /* só letras, números e _ — evita sujeira e link quebrado */
+    return String(v || '').replace(/[^A-Za-z0-9_]/g, '').slice(0, 30);
+  }
+
+  var achou = (window.location.search || '').match(/[?&]de=([^&#]+)/);
+  var origem = achou ? limpa(decodeURIComponent(achou[1])) : '';
+
+  /* A pessoa chega pela bio na home e só depois vai para a página do livro.
+     Sem guardar, o ?de= morre no primeiro clique e a venda volta a aparecer
+     como origem genérica. Guardamos pela visita (sessionStorage), então a
+     marca acompanha ela pelo site e some quando ela fecha o navegador. */
+  try {
+    if (origem) window.sessionStorage.setItem(CHAVE, origem);
+    else origem = limpa(window.sessionStorage.getItem(CHAVE));
+  } catch (e) {
+    /* navegador com armazenamento bloqueado: segue só com o da URL */
+  }
+
   if (!origem) return;
 
   var links = document.querySelectorAll('a[href*="go.hotmart.com"], a[href*="pay.hotmart.com"]');
