@@ -74,3 +74,12 @@ article strong{color:var(--txt);font-weight:600}
 .rb-lojas a b{font-weight:600;color:var(--txt)}
 .rb-lojas a:hover b{color:var(--gold-l)}
 .rb-lojas .rb-nota{font-size:.82rem;color:var(--dim);margin-top:.7rem}
+
+/* plaquinha clara atrás do logo: os logos das lojas são feitos para fundo
+   branco — no fundo escuro do site o texto azul-marinho deles some. */
+.rb-lojas .rb-logo{display:inline-flex;align-items:center;justify-content:center;
+  background:#fff;border-radius:5px;padding:3px 5px;flex:0 0 auto}
+.rb-lojas .rb-logo img{height:16px;width:auto;display:block}
+.rb-lojas .rb-logo img[src*="mercadolivre"]{height:19px}
+.rb-lojas .rb-logo img[src*="wa-icon"]{height:17px}
+.rb-lojas .rb-logo img[src*="amazon"]{height:13px}

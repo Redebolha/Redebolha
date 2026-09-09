@@ -83,13 +83,21 @@
 <div class="post" style="margin-top:2rem;">
 <p class="lead" style="margin-bottom:1rem;"><b>Livro físico — R$ 29,90, com e-book incluso e frete grátis.</b></p>
 <p><a class="btn" href="https://go.hotmart.com/R106833548K?dp=1&src=site_livro_fisico" rel="noopener" target="_blank">Garantir o livro físico no Hotmart — R$ 29,90 + e-book + frete grátis</a></p>
+<div class="rb-lojas">
+  <p class="rb-lojas-tit">Prefere comprar em outro lugar?</p>
+  <ul>
+    <li><a href="https://produto.mercadolivre.com.br/MLB-7302428474-homem-voc-no-e-ridiculo-livro-fisico-frete-gratis-e-book-bnus-_JM" rel="noopener" target="_blank"><span class="rb-logo"><img src="/mercadolivre-marca.png" alt="" width="369" height="256" loading="lazy"></span> <b>Mercado Livre</b> · livro físico</a></li>
+    <li><a data-compra="whatsapp" href="https://wa.me/5551980482820?text=Ol%C3%A1%2C%20Rom%C3%A1rio!%20Quero%20comprar%20o%20livro%20f%C3%ADsico%20Homem%2C%20Voc%C3%AA%20N%C3%A3o%20%C3%89%20Rid%C3%ADculo%2C%20com%20dedicat%C3%B3ria." rel="noopener" target="_blank"><span class="rb-logo"><img src="/wa-icon-verde.png" alt="" loading="lazy"></span> <b>WhatsApp</b> · falar comigo direto</a></li>
+  </ul>
+  <p class="rb-nota">Pelo WhatsApp eu atendo pessoalmente e escrevo a dedicatória à mão, do jeito que você pedir.</p>
+</div>
 </div>
       <div class="post" style="margin-top:1.5rem;">
       <p style="margin-bottom:.6rem;"><a class="btn" href="https://go.hotmart.com/D106424856M?src=site_livro_fisico" rel="noopener" target="_blank">E-book na Hotmart — R$ 9,90</a></p>
 <div class="rb-lojas">
   <p class="rb-lojas-tit">Prefere comprar em outro lugar?</p>
   <ul>
-    <li><a href="https://www.amazon.com.br/dp/B0H59NTYV9" rel="noopener" target="_blank"><b>Amazon</b> · ler no Kindle</a></li>
+    <li><a href="https://www.amazon.com.br/dp/B0H59NTYV9" rel="noopener" target="_blank"><span class="rb-logo"><img src="/amazon-marca.png" alt="" width="402" height="122" loading="lazy"></span> <b>Amazon</b> · ler no Kindle</a></li>
   </ul>
   <p class="rb-nota">Na Hotmart o e-book sai por R$ 9,90 e o valor fica comigo, que é o que mantém a Rede Bolha de pé.</p>
 </div>
@@ -110,6 +118,8 @@
     if (!a || !a.href) return;
     var canal = null;
     if (a.href.indexOf('amazon.com.br') > -1) canal = 'amazon';
+    else if (a.href.indexOf('mercadolivre.com') > -1) canal = 'mercado_livre';
+    else if (a.getAttribute('data-compra') === 'whatsapp') canal = 'whatsapp';
     else if (a.href.indexOf('hotmart.com') > -1) canal = 'hotmart';
     if (!canal) return;
     if (typeof gtag === 'function') { gtag('event', 'clique_comprar_livro', { canal: canal, livro: 'Homem, Voce Nao E Ridiculo', pagina: 'livro' }); }
