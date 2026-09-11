@@ -1,0 +1,168 @@
+/* ===========================================================
+   ECONOMIA — Rede Bolha
+   Folha de estilo da editoria de economia (hub + matérias).
+   Mesma paleta das páginas de artigo: tinta, ouro e giz.
+   =========================================================== */
+:root{
+  --tinta:#111113; --papel:#191A1E; --papel-alto:#212329;
+  --linha:#2E3037; --ouro:#C9A227; --ouro-claro:#E8D48B;
+  --giz:#EDEAE3; --sombra:#8E9098;
+  --display:'Fraunces',Georgia,serif;
+  --corpo:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --num:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--tinta);color:var(--giz);font-family:var(--corpo);
+  font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:var(--ouro-claro)}
+.wrap{max-width:1000px;margin:0 auto;padding:0 18px}
+.texto{max-width:660px;margin:0 auto}
+.pular{position:absolute;left:-9999px}
+.pular:focus{left:18px;top:12px;z-index:99;background:var(--ouro);color:#111113;
+  padding:9px 15px;border-radius:6px;font-weight:600}
+
+/* Topo */
+.topo{border-bottom:1px solid var(--linha);position:sticky;top:0;z-index:20;
+  background:rgba(17,17,19,.94);backdrop-filter:blur(8px)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;
+  gap:16px;padding-top:14px;padding-bottom:14px;flex-wrap:wrap}
+.logo{font-family:var(--display);font-size:20px;font-weight:400;
+  text-decoration:none;color:var(--giz);letter-spacing:-.01em}
+.logo b{font-weight:700;color:var(--ouro)}
+nav ul{display:flex;gap:20px;list-style:none;flex-wrap:wrap}
+nav a{font-size:14px;color:var(--sombra);text-decoration:none;transition:color .15s}
+nav a:hover,nav a[aria-current="page"]{color:var(--ouro-claro)}
+
+/* Capa da matéria */
+.capa{padding:48px 0 32px;border-bottom:1px solid var(--linha)}
+.cat{font-family:var(--num);font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ouro);margin-bottom:16px}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(29px,5.4vw,44px);
+  line-height:1.08;letter-spacing:-.02em;margin-bottom:16px}
+h1 em{font-style:italic;color:var(--ouro-claro)}
+.linha-fina{font-size:17px;color:var(--sombra);line-height:1.6;margin-bottom:20px}
+.assinatura{font-size:14px;color:var(--sombra);font-family:var(--num);letter-spacing:.03em}
+
+/* Corpo da matéria */
+article{padding:36px 0 10px}
+article p{margin-bottom:22px}
+article h2{font-family:var(--display);font-weight:400;font-size:clamp(22px,4vw,29px);
+  line-height:1.2;margin:44px 0 18px;letter-spacing:-.01em}
+article h2 em{font-style:italic;color:var(--ouro-claro)}
+article strong{color:#fff;font-weight:600}
+
+.destaque{font-family:var(--display);font-size:clamp(20px,3.6vw,25px);line-height:1.4;
+  color:var(--ouro-claro);border-left:2px solid var(--ouro);padding:6px 0 6px 22px;
+  margin:34px 0;font-style:italic}
+
+.caixa-num{background:var(--papel);border:1px solid var(--linha);border-radius:14px;
+  padding:24px;margin:32px 0;text-align:center}
+.caixa-num .rot{font-family:var(--num);font-size:10px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--sombra);margin-bottom:12px}
+.caixa-num .big{font-family:var(--display);font-size:clamp(34px,7vw,48px);
+  line-height:1;color:var(--ouro-claro);font-weight:600;letter-spacing:-.02em}
+.caixa-num .leg{font-size:14px;color:var(--sombra);margin-top:14px;line-height:1.6}
+
+/* Botões */
+.botao{display:inline-block;font-size:15px;font-weight:600;
+  background:var(--ouro);color:#111113;border-radius:9px;
+  padding:14px 26px;text-decoration:none;transition:background .15s}
+.botao:hover{background:var(--ouro-claro)}
+.botao:focus-visible{outline:2px solid var(--ouro-claro);outline-offset:3px}
+.botao.vazado{background:transparent;color:var(--ouro-claro);border:1px solid var(--linha)}
+.botao.vazado:hover{background:var(--papel-alto);border-color:var(--ouro)}
+
+/* Blocos de apoio */
+.livro{border-top:1px solid var(--linha);margin-top:44px;padding-top:34px;text-align:center}
+.livro h3{font-family:var(--display);font-weight:400;font-size:clamp(21px,4vw,27px);
+  line-height:1.25;margin:0 auto 14px;max-width:22ch}
+.livro h3 em{font-style:italic;color:var(--ouro-claro)}
+.livro p{font-size:15px;color:var(--sombra);max-width:50ch;margin:0 auto 22px}
+
+.leia{margin-top:44px;border-top:1px solid var(--linha);padding-top:30px}
+.leia h4{font-family:var(--num);font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ouro);margin-bottom:16px}
+.leia a{display:block;background:var(--papel);border:1px solid var(--linha);
+  border-radius:12px;padding:16px 18px;margin-bottom:10px;text-decoration:none;
+  transition:.15s}
+.leia a:hover{border-color:var(--ouro)}
+.leia strong{display:block;font-family:var(--display);font-weight:400;font-size:18px;
+  color:var(--giz);margin-bottom:5px}
+.leia span{font-size:14px;color:var(--sombra);line-height:1.55}
+
+.fontes,.aviso{font-size:12.5px;color:var(--sombra);line-height:1.7;margin-top:36px;
+  border-top:1px solid var(--linha);padding-top:20px}
+.fontes b,.aviso b{color:var(--giz);font-weight:600}
+
+.cta{background:var(--papel);border:1px solid var(--ouro);border-radius:14px;
+  padding:26px;margin:38px 0 0;text-align:center;
+  background-image:linear-gradient(180deg,rgba(201,162,39,.09),transparent 70%)}
+.cta .eyebrow{font-family:var(--num);font-size:10px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ouro);margin-bottom:11px}
+.cta h3{font-family:var(--display);font-weight:400;font-size:23px;
+  line-height:1.25;margin-bottom:11px}
+.cta p{font-size:15px;color:var(--sombra);margin-bottom:20px;max-width:48ch;
+  margin-left:auto;margin-right:auto}
+
+/* Subtitulo da manchete: entra entre o h1 e a linha fina, como no jornal. */
+.subtitulo{font-family:var(--display);font-weight:400;font-size:clamp(19px,3vw,26px);
+  line-height:1.3;color:var(--ouro-claro);margin:-4px 0 18px;max-width:40ch}
+
+/* Foto de abertura */
+.figura-capa{margin:0;padding:30px 0 6px;border-bottom:1px solid var(--linha)}
+.figura-capa img{display:block;width:100%;height:auto;border-radius:14px;
+  border:1px solid var(--linha)}
+.figura-capa figcaption{font-size:13.5px;line-height:1.6;color:var(--sombra);
+  max-width:660px;margin:14px auto 0}
+.figura-capa figcaption span{display:block;font-family:var(--num);font-size:11.5px;
+  letter-spacing:.04em;margin-top:6px;color:#6E7684}
+
+/* Figura dentro do texto: mesma linguagem da abertura, largura da coluna. */
+.figura-texto{margin:34px 0}
+.figura-texto img{display:block;width:100%;height:auto;border-radius:12px;
+  border:1px solid var(--linha)}
+.figura-texto figcaption{font-size:13.5px;line-height:1.6;color:var(--sombra);margin-top:12px}
+.figura-texto figcaption span{display:block;font-family:var(--num);font-size:11.5px;
+  letter-spacing:.04em;margin-top:6px;color:#6E7684}
+
+/* Chamada do hub com foto */
+.materia .materia-img{display:block;width:100%;height:auto;aspect-ratio:16/9;
+  object-fit:cover;object-position:center 42%;border-radius:10px;
+  border:1px solid var(--linha);margin:0 0 18px}
+.materia .materia-sub{font-family:var(--display);font-size:17px;line-height:1.35;
+  color:var(--ouro-claro);margin:0 0 12px}
+
+/* ====== HUB DA EDITORIA ====== */
+.hub-capa{padding:52px 0 36px;border-bottom:1px solid var(--linha)}
+.hub-capa .lead{font-size:17px;color:var(--sombra);line-height:1.65;max-width:60ch;margin-top:14px}
+.materias{padding:34px 0 10px;display:grid;gap:16px;grid-template-columns:repeat(2,1fr);
+  max-width:660px;margin:0 auto}
+@media (max-width:760px){.materias{grid-template-columns:1fr}}
+.materia{display:block;background:var(--papel);border:1px solid var(--linha);
+  border-radius:14px;padding:24px;text-decoration:none;
+  transition:border-color .2s,transform .2s}
+.materia:hover{border-color:var(--ouro);transform:translateY(-3px)}
+.materia .chapeu{font-family:var(--num);font-size:10.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ouro);display:block;margin-bottom:12px}
+.materia h2{font-family:var(--display);font-weight:400;font-size:22px;line-height:1.22;
+  color:var(--giz);margin:0 0 10px}
+.materia p{font-size:14.5px;color:var(--sombra);line-height:1.6;margin:0 0 14px}
+.materia .mais{font-family:var(--num);font-size:11.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ouro-claro)}
+.materia--destaque{grid-column:1/-1;background-image:linear-gradient(135deg,rgba(201,162,39,.10),transparent 60%)}
+.materia--destaque h2{font-size:clamp(24px,4.2vw,34px)}
+.vazio{background:var(--papel);border:1px dashed var(--linha);border-radius:14px;
+  padding:26px;color:var(--sombra);font-size:14.5px;line-height:1.65;margin-top:16px}
+
+footer{border-top:1px solid var(--linha);margin-top:44px;padding:26px 0 40px;
+  text-align:center;font-size:13.5px;color:var(--sombra)}
+footer a{color:var(--sombra);text-decoration:none}
+footer a:hover{color:var(--ouro-claro)}
+footer .copy{margin-top:12px;font-size:12.5px}
+
+@media (max-width:700px){
+  body{font-size:16.5px}
+  nav ul{gap:14px} nav a{font-size:13px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}

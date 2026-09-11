@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img"
+     aria-label="Grafico: a meta de juros do Federal Reserve cai de 6,5% ao ano no fim de 2000 para 1% ao ano em meados de 2003, com corte de meio ponto logo apos o 11 de setembro de 2001.">
+<defs>
+  <linearGradient id="fundo" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#141A24"/><stop offset="1" stop-color="#0B0E14"/>
+  </linearGradient>
+  <linearGradient id="sob" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#E0A437" stop-opacity=".26"/>
+    <stop offset="1" stop-color="#E0A437" stop-opacity="0"/>
+  </linearGradient>
+  <linearGradient id="feixe" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#9FC4E8" stop-opacity="0"/>
+    <stop offset="1" stop-color="#9FC4E8" stop-opacity=".20"/>
+  </linearGradient>
+  <style>
+    .chapeu{font:600 22px Arial,Helvetica,sans-serif;letter-spacing:6px;fill:#E0A437}
+    .titulo{font:700 54px Georgia,'Times New Roman',serif;fill:#F5F1E8}
+    .sub{font:400 25px Arial,Helvetica,sans-serif;fill:#8B93A1}
+    .eixo{font:400 20px Arial,Helvetica,sans-serif;fill:#78808E}
+    .rot{font:700 30px Arial,Helvetica,sans-serif;fill:#F5F1E8}
+    .rotp{font:400 19px Arial,Helvetica,sans-serif;fill:#8B93A1}
+    .marca{font:700 20px Arial,Helvetica,sans-serif;fill:#E0A437}
+    .fonte{font:400 18px Arial,Helvetica,sans-serif;fill:#6E7684}
+  </style>
+</defs>
+
+<rect width="1600" height="900" fill="url(#fundo)"/>
+<rect x="0" y="0" width="10" height="900" fill="#E0A437"/>
+
+<g fill="#171D28" opacity=".7"><rect x="0" y="770" width="50" height="130"/><rect x="64" y="820" width="50" height="80"/><rect x="128" y="852" width="58" height="48"/><rect x="192" y="820" width="58" height="80"/><rect x="264" y="770" width="58" height="130"/><rect x="328" y="820" width="26" height="80"/><rect x="364" y="866" width="34" height="34"/><rect x="412" y="804" width="26" height="96"/><rect x="448" y="788" width="50" height="112"/><rect x="512" y="788" width="58" height="112"/><rect x="576" y="866" width="58" height="34"/><rect x="648" y="866" width="26" height="34"/><rect x="680" y="852" width="34" height="48"/><rect x="728" y="770" width="26" height="130"/><rect x="764" y="820" width="42" height="80"/><rect x="820" y="804" width="34" height="96"/><rect x="860" y="820" width="42" height="80"/><rect x="908" y="820" width="26" height="80"/><rect x="948" y="820" width="42" height="80"/><rect x="1004" y="788" width="26" height="112"/><rect x="1040" y="770" width="42" height="130"/><rect x="1088" y="838" width="58" height="62"/><rect x="1152" y="804" width="26" height="96"/><rect x="1184" y="866" width="50" height="34"/><rect x="1244" y="866" width="50" height="34"/><rect x="1300" y="852" width="26" height="48"/><rect x="1332" y="820" width="26" height="80"/><rect x="1368" y="820" width="50" height="80"/><rect x="1424" y="788" width="58" height="112"/><rect x="1488" y="838" width="42" height="62"/><rect x="1536" y="838" width="42" height="62"/><rect x="1584" y="770" width="50" height="130"/></g>
+
+<text class="chapeu" x="58" y="96">11 DE SETEMBRO &#183; 25 ANOS</text>
+<text class="titulo" x="58" y="170">O juro americano depois do atentado</text>
+<text class="sub" x="58" y="214">Meta da taxa b&#225;sica dos Estados Unidos (Federal Reserve), em % ao ano</text>
+
+<line x1="170" y1="720.0" x2="1480" y2="720.0" stroke="#3A4150" stroke-width="1.5"/>
+<text x="154" y="726.0" class="eixo" text-anchor="end">0%</text>
+<line x1="170" y1="664.3" x2="1480" y2="664.3" stroke="#252B36" stroke-width="1"/>
+<text x="154" y="670.3" class="eixo" text-anchor="end">1%</text>
+<line x1="170" y1="608.6" x2="1480" y2="608.6" stroke="#252B36" stroke-width="1"/>
+<text x="154" y="614.6" class="eixo" text-anchor="end">2%</text>
+<line x1="170" y1="552.9" x2="1480" y2="552.9" stroke="#252B36" stroke-width="1"/>
+<text x="154" y="558.9" class="eixo" text-anchor="end">3%</text>
+<line x1="170" y1="497.1" x2="1480" y2="497.1" stroke="#252B36" stroke-width="1"/>
+<text x="154" y="503.1" class="eixo" text-anchor="end">4%</text>
+<line x1="170" y1="441.4" x2="1480" y2="441.4" stroke="#252B36" stroke-width="1"/>
+<text x="154" y="447.4" class="eixo" text-anchor="end">5%</text>
+<line x1="170" y1="385.7" x2="1480" y2="385.7" stroke="#252B36" stroke-width="1"/>
+<text x="154" y="391.7" class="eixo" text-anchor="end">6%</text>
+<line x1="170" y1="330.0" x2="1480" y2="330.0" stroke="#252B36" stroke-width="1"/>
+<text x="154" y="336.0" class="eixo" text-anchor="end">7%</text>
+<text x="441.0" y="758" class="eixo" text-anchor="middle">2001</text>
+<text x="849.6" y="758" class="eixo" text-anchor="middle">2002</text>
+<text x="1258.3" y="758" class="eixo" text-anchor="middle">2003</text>
+
+<path d="M 170.0 357.9 L 240.5 357.9 L 240.5 385.7 L 271.9 385.7 L 271.9 413.6 L 325.6 413.6 L 325.6 441.4 L 358.1 441.4 L 358.1 469.3 L 388.3 469.3 L 388.3 497.1 L 436.5 497.1 L 436.5 511.1 L 498.1 511.1 L 498.1 525.0 L 528.3 525.0 L 528.3 552.9 L 545.1 552.9 L 545.1 580.7 L 584.3 580.7 L 584.3 608.6 L 623.5 608.6 L 623.5 622.5 L 992.9 622.5 L 992.9 650.4 L 1251.6 650.4 L 1251.6 664.3 L 1480.0 664.3 L 1480.0 664.3 L 1480.0 720.0 L 170.0 720.0 Z" fill="url(#sob)"/>
+<path d="M 170.0 357.9 L 240.5 357.9 L 240.5 385.7 L 271.9 385.7 L 271.9 413.6 L 325.6 413.6 L 325.6 441.4 L 358.1 441.4 L 358.1 469.3 L 388.3 469.3 L 388.3 497.1 L 436.5 497.1 L 436.5 511.1 L 498.1 511.1 L 498.1 525.0 L 528.3 525.0 L 528.3 552.9 L 545.1 552.9 L 545.1 580.7 L 584.3 580.7 L 584.3 608.6 L 623.5 608.6 L 623.5 622.5 L 992.9 622.5 L 992.9 650.4 L 1251.6 650.4 L 1251.6 664.3 L 1480.0 664.3 L 1480.0 664.3" fill="none" stroke="#E0A437" stroke-width="4" stroke-linejoin="round"/>
+
+<!-- marcacao do dia do atentado -->
+<line x1="521.6" y1="330" x2="521.6" y2="720" stroke="#F5F1E8" stroke-width="2" stroke-dasharray="7 7" opacity=".55"/>
+<circle cx="521.6" cy="330" r="7" fill="#F5F1E8"/>
+<text class="rotp" x="537.6" y="310">11 de setembro de 2001</text>
+
+<!-- rotulos diretos nas pontas: serie unica dispensa legenda -->
+<circle cx="170.0" cy="357.9" r="9" fill="#E0A437" stroke="#0B0E14" stroke-width="3"/>
+<text class="rot" x="170" y="310">6,5%</text>
+<text class="rotp" x="266.0" y="310">no fim de 2000</text>
+<circle cx="1251.6" cy="664.3" r="9" fill="#E0A437" stroke="#0B0E14" stroke-width="3"/>
+<text class="rot" x="1472.0" y="606.3" text-anchor="end">1%</text>
+<text class="rotp" x="1472.0" y="632.3" text-anchor="end">meados de 2003</text>
+
+<text class="fonte" x="58" y="854">Fonte: decis&#245;es de pol&#237;tica monet&#225;ria do Federal Reserve (2000&#8211;2003).</text>
+<text class="marca" x="1542" y="854" text-anchor="end">REDE BOLHA</text>
+</svg>

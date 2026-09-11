@@ -8,6 +8,7 @@ const OFFLINE_URL = '/offline.html';
 const PRE_CACHE = [
   '/',
   '/artigos/',
+  '/economia/',
   '/livros/',
   '/cursos/',
   '/palestras/',
