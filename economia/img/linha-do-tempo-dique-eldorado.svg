@@ -39,9 +39,9 @@
 <circle cx="1410" cy="330" r="5" fill="#5A6270"/>
 <text class="data" x="170" y="286" text-anchor="middle">MAIO DE 2024</text>
 <text class="tit" x="170" y="388" text-anchor="middle">A enchente</text>
-<text class="ap" x="170" y="422" text-anchor="middle">97% da área urbana</text>
-<text class="ap" x="170" y="448" text-anchor="middle">submersa; cerca de 32 mil</text>
-<text class="ap" x="170" y="474" text-anchor="middle">moradores fora de casa</text>
+<text class="ap" x="170" y="422" text-anchor="middle">80,8% dos domicílios</text>
+<text class="ap" x="170" y="448" text-anchor="middle">atingidos e 31.964</text>
+<text class="ap" x="170" y="474" text-anchor="middle">moradores impactados</text>
 <text class="data" x="480" y="286" text-anchor="middle">ABRIL DE 2026</text>
 <text class="tit" x="480" y="388" text-anchor="middle">Anteprojeto refeito</text>
 <text class="ap" x="480" y="422" text-anchor="middle">O custo estimado sai de</text>
@@ -63,6 +63,6 @@
 <text class="ap" x="1410" y="448" text-anchor="middle">7,6 m, quatro casas de</text>
 <text class="ap" x="1410" y="474" text-anchor="middle">bombas — se nada atrasar</text>
 
-<text class="fonte" x="58" y="562">Fontes: gov. do RS, prefeitura de Eldorado do Sul e noticiário de 11/09/2026.</text>
+<text class="fonte" x="58" y="562">Fontes: Mapa Único do Plano Rio Grande, gov. do RS e noticiário de 11/09/2026.</text>
 <text class="marca" x="1542" y="562" text-anchor="end">REDE BOLHA</text>
 </svg>
