@@ -105,6 +105,25 @@ article strong{color:#fff;font-weight:600}
 .cta p{font-size:15px;color:var(--sombra);margin-bottom:20px;max-width:48ch;
   margin-left:auto;margin-right:auto}
 
+/* Subtitulo da manchete: entra entre o h1 e a linha fina, como no jornal. */
+.subtitulo{font-family:var(--display);font-weight:400;font-size:clamp(19px,3vw,26px);
+  line-height:1.3;color:var(--ouro-claro);margin:-4px 0 18px;max-width:40ch}
+
+/* Foto de abertura */
+.figura-capa{margin:0;padding:30px 0 6px;border-bottom:1px solid var(--linha)}
+.figura-capa img{display:block;width:100%;height:auto;border-radius:14px;
+  border:1px solid var(--linha)}
+.figura-capa figcaption{font-size:13.5px;line-height:1.6;color:var(--sombra);
+  max-width:660px;margin:14px auto 0}
+.figura-capa figcaption span{display:block;font-family:var(--num);font-size:11.5px;
+  letter-spacing:.04em;margin-top:6px;color:#6E7684}
+
+/* Chamada do hub com foto */
+.materia .materia-img{display:block;width:100%;height:auto;border-radius:10px;
+  border:1px solid var(--linha);margin:0 0 18px}
+.materia .materia-sub{font-family:var(--display);font-size:17px;line-height:1.35;
+  color:var(--ouro-claro);margin:0 0 12px}
+
 /* ====== HUB DA EDITORIA ====== */
 .hub-capa{padding:52px 0 36px;border-bottom:1px solid var(--linha)}
 .hub-capa .lead{font-size:17px;color:var(--sombra);line-height:1.65;max-width:60ch;margin-top:14px}
