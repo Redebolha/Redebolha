@@ -457,6 +457,61 @@
   .rb-destaque .rb-destaque-img-link{display:block;line-height:0;transition:transform .25s ease,opacity .25s ease}
   .rb-destaque .rb-destaque-img-link:hover{transform:translateY(-3px);opacity:.94}
 </style>
+<style>
+/* ===== EDITORIA DE ECONOMIA — bloco da capa, logo abaixo do gancho =====
+   Os seletores levam o prefixo .rb-eco de proposito: as regras .hyr h2/h3/p/a
+   do restante da home tem especificidade maior que uma classe sozinha e
+   sequestrariam a tipografia serifada de jornal deste bloco. */
+.rb-eco{--eco-fundo:#11161f;--eco-papel:#f5f1e8;--eco-brasa:#e0a437;--eco-cinza:#8b93a1;
+  background:var(--eco-fundo);color:var(--eco-papel);border-top:1px solid rgba(224,164,55,.28);
+  padding:clamp(40px,5.5vw,64px) 24px;position:relative;z-index:1;}
+.rb-eco .rb-eco-miolo{max-width:1100px;margin:0 auto;}
+.rb-eco .rb-eco-topo{display:flex;align-items:baseline;justify-content:space-between;gap:16px;
+  flex-wrap:wrap;border-bottom:2px solid rgba(224,164,55,.45);padding-bottom:12px;margin-bottom:26px;}
+.rb-eco .rb-eco-editoria{font-family:'Oswald',Arial,Helvetica,sans-serif;
+  font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--eco-brasa);margin:0;line-height:1;}
+.rb-eco .rb-eco-editoria small{display:block;font-family:Arial,Helvetica,sans-serif;font-size:11px;
+  font-weight:400;letter-spacing:.22em;text-transform:none;color:var(--eco-cinza);margin-top:8px;}
+.rb-eco .rb-eco-todas{font-family:Arial,Helvetica,sans-serif;font-size:13px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--eco-brasa);text-decoration:none;white-space:nowrap;
+  border-bottom:1px solid rgba(224,164,55,.4);padding-bottom:3px;}
+.rb-eco .rb-eco-todas:hover{color:var(--eco-papel);border-color:var(--eco-papel);}
+.rb-eco .rb-eco-grade{display:grid;grid-template-columns:1.45fr 1fr;gap:28px;}
+@media(max-width:860px){.rb-eco .rb-eco-grade{grid-template-columns:1fr;gap:22px;}}
+.rb-eco .rb-eco-principal{display:block;text-decoration:none;color:inherit;
+  border-left:4px solid var(--eco-brasa);padding-left:22px;}
+.rb-eco .rb-eco-chapeu{display:inline-block;font-family:Arial,Helvetica,sans-serif;font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--eco-brasa);margin-bottom:12px;}
+.rb-eco .rb-eco-titulo{font-family:Georgia,'Times New Roman',serif;font-size:clamp(24px,3.6vw,38px);
+  line-height:1.16;font-weight:700;letter-spacing:0;text-transform:none;margin:0 0 14px;
+  color:var(--eco-papel);}
+.rb-eco .rb-eco-principal:hover .rb-eco-titulo{text-decoration:underline;
+  text-decoration-color:var(--eco-brasa);text-underline-offset:6px;}
+.rb-eco .rb-eco-linhafina{font-family:Arial,Helvetica,sans-serif;font-size:15.5px;line-height:1.65;
+  color:var(--eco-cinza);margin:0 0 16px;max-width:62ch;}
+.rb-eco .rb-eco-assina{font-family:Arial,Helvetica,sans-serif;font-size:12.5px;letter-spacing:.04em;
+  color:var(--eco-cinza);margin:0 0 16px;}
+.rb-eco .rb-eco-ler{font-family:Arial,Helvetica,sans-serif;font-size:13.5px;font-weight:bold;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--eco-brasa);}
+.rb-eco .rb-eco-lateral{display:flex;flex-direction:column;gap:12px;}
+.rb-eco .rb-eco-chamada{display:block;text-decoration:none;color:inherit;
+  background:rgba(245,241,232,.035);border:1px solid rgba(245,241,232,.09);border-radius:10px;
+  padding:16px 18px;transition:border-color .22s,transform .22s,background .22s;}
+.rb-eco .rb-eco-chamada:hover{border-color:rgba(224,164,55,.55);background:rgba(224,164,55,.07);
+  transform:translateY(-2px);}
+.rb-eco .rb-eco-chamada .et{display:block;font-family:Arial,Helvetica,sans-serif;font-size:10.5px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--eco-brasa);margin-bottom:7px;}
+.rb-eco .rb-eco-chamada b{display:block;font-family:Georgia,'Times New Roman',serif;font-weight:700;
+  font-size:16px;line-height:1.3;color:var(--eco-papel);margin-bottom:6px;}
+.rb-eco .rb-eco-chamada .d{display:block;font-family:Arial,Helvetica,sans-serif;font-size:13.5px;
+  line-height:1.5;color:var(--eco-cinza);}
+.rb-eco .rb-eco-rodape{font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.6;
+  color:var(--eco-cinza);margin:24px 0 0;padding-top:16px;
+  border-top:1px solid rgba(245,241,232,.08);}
+@media(prefers-reduced-motion:reduce){.rb-eco .rb-eco-chamada{transition:none;}
+  .rb-eco .rb-eco-chamada:hover{transform:none;}}
+</style>
 <style>.rb-art-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:2rem;}@media(max-width:860px){.rb-art-grid{grid-template-columns:1fr;}}.rb-art-card{display:block;background:#141216;border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:1.5rem 1.4rem;text-decoration:none;transition:border-color .25s,transform .25s;}.rb-art-card:hover{border-color:rgba(201,162,75,.45);transform:translateY(-3px);}.rb-art-tag{display:block;font-family:'Oswald',sans-serif;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:#C9A24B;margin-bottom:.6rem;}.rb-art-card h3{font-family:'Oswald',sans-serif;color:#F4EFE7;font-size:1.05rem;line-height:1.3;margin:0 0 .6rem;text-transform:none;}.rb-art-card p{color:#A79E92;font-size:.88rem;line-height:1.5;margin:0 0 .8rem;}.rb-art-more{font-family:'Oswald',sans-serif;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;color:#E6C879;}</style>
 <style>
 .bloco-dinheiro{padding:48px 0;border-top:1px solid var(--line,rgba(201,162,75,.18));
@@ -993,6 +1048,7 @@
       <li><a class="lnk" href="/cursos/">Cursos</a></li>
       <li><a class="lnk" href="/palestras/">Palestras</a></li>
       <li><a class="lnk" href="/artigos/">Artigos</a></li>
+      <li><a class="lnk" href="/economia/">Economia</a></li>
       <li><a class="lnk" href="/assinatura/">Círculo</a></li>
       <li><a class="lnk" href="/financas/">Dinheiro</a></li>
       <li><a class="lnk" href="/instalar-app.html">Instalar App</a></li>
@@ -1054,6 +1110,54 @@
   </script>
 </section>
 <!-- ============ FIM DO GANCHO DE MANCHETE ============ -->
+<!-- ============================================================
+   EDITORIA DE ECONOMIA — espaço de capa, logo abaixo do gancho
+   Para publicar uma nova matéria: troque o bloco .rb-eco-principal
+   pela matéria nova e leve a anterior para /economia/index.html
+   ============================================================ -->
+<section class="rb-eco" aria-labelledby="rb-eco-editoria">
+  <div class="rb-eco-miolo">
+
+    <div class="rb-eco-topo">
+      <h2 class="rb-eco-editoria" id="rb-eco-editoria">Economia<small>O dinheiro do mundo e o seu</small></h2>
+      <a class="rb-eco-todas" href="/economia/">Todas as mat&eacute;rias &rarr;</a>
+    </div>
+
+    <div class="rb-eco-grade">
+
+      <a class="rb-eco-principal" href="/economia/11-de-setembro-25-anos-economia.html">
+        <span class="rb-eco-chapeu">Especial 25 anos &middot; 11 de setembro</span>
+        <h3 class="rb-eco-titulo">25 anos do 11 de Setembro: o dia em que mudou o pre&ccedil;o de tudo</h3>
+        <p class="rb-eco-linhafina">Quatro preg&otilde;es com a maior bolsa do mundo fechada. Juros americanos derrubados de 3,5% para 1%. Cerca de US$ 40 bilh&otilde;es em seguros, US$ 8 trilh&otilde;es em guerras &mdash; e uma papelada nova que chegou at&eacute; o seu gerente de banco aqui no Brasil. A conta daquela ter&ccedil;a-feira nunca fechou.</p>
+        <p class="rb-eco-assina">Por Adm. Rom&aacute;rio Cruz &middot; 11 de setembro de 2026</p>
+        <span class="rb-eco-ler">Ler a mat&eacute;ria &rarr;</span>
+      </a>
+
+      <div class="rb-eco-lateral">
+        <a class="rb-eco-chamada" href="/economia/">
+          <span class="et">A editoria</span>
+          <b>Economia sem jarg&atilde;o de banco</b>
+          <span class="d">Juros, mercado, crise e o pre&ccedil;o do medo, contados como chegam na sua casa.</span>
+        </a>
+        <a class="rb-eco-chamada" href="/artigos/ponto-de-virada-renda-passiva.html">
+          <span class="et">Dinheiro</span>
+          <b>O m&ecirc;s em que o dinheiro passa a trabalhar mais que voc&ecirc;</b>
+          <span class="d">Existe uma data exata em que os juros rendem mais do que voc&ecirc; consegue guardar.</span>
+        </a>
+        <a class="rb-eco-chamada" href="/financas/simulador-renda-passiva.html">
+          <span class="et">Ferramenta gr&aacute;tis</span>
+          <b>Simulador de renda passiva</b>
+          <span class="d">Quatro n&uacute;meros e voc&ecirc; v&ecirc; em que m&ecirc;s a conta vira. Sem cadastro.</span>
+        </a>
+      </div>
+
+    </div>
+
+    <p class="rb-eco-rodape">Conte&uacute;do jornal&iacute;stico e educacional. N&atilde;o &eacute; recomenda&ccedil;&atilde;o nem consultoria de investimento.</p>
+
+  </div>
+</section>
+<!-- ============ FIM DA EDITORIA DE ECONOMIA ============ -->
 <section class="sec outros-livros">
 <div class="wrap center">
 <span class="eyebrow reveal">Obras de Adm. Romário Cruz</span>
