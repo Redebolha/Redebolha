@@ -2,13 +2,15 @@
    Troque a versão abaixo sempre que publicar mudanças grandes no site.
    Isso força a atualização do cache no celular das pessoas. */
 
-const VERSAO = 'redebolha-v7';
+const VERSAO = 'redebolha-v8';
 const OFFLINE_URL = '/offline.html';
 
 const PRE_CACHE = [
   '/',
   '/artigos/',
   '/economia/',
+  '/expediente/',
+  '/economia/economia.css',
   '/livros/',
   '/cursos/',
   '/palestras/',
