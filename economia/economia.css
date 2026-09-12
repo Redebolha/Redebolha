@@ -127,9 +127,10 @@ article strong{color:#fff;font-weight:600}
   letter-spacing:.04em;margin-top:6px;color:#6E7684}
 
 /* Chamada do hub com foto */
-.materia .materia-img{display:block;width:100%;height:auto;aspect-ratio:16/9;
-  object-fit:cover;object-position:center 42%;border-radius:10px;
+.materia .materia-img{display:block;width:100%;height:auto;border-radius:10px;
   border:1px solid var(--linha);margin:0 0 18px}
+/* recorte largo só para fotografia; gráfico nunca leva corte, perde rótulo. */
+.materia .materia-img--corte{aspect-ratio:16/9;object-fit:cover;object-position:center 42%}
 .materia .materia-sub{font-family:var(--display);font-size:17px;line-height:1.35;
   color:var(--ouro-claro);margin:0 0 12px}
 

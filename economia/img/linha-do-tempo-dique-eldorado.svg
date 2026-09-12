@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 600" width="1600" height="600" role="img"
+     aria-label="Linha do tempo do sistema de protecao contra cheias de Eldorado do Sul: enchente em maio de 2024; anteprojeto refeito em abril de 2026, com o custo saindo de 531 milhoes para 1,1 bilhao de reais; dinheiro garantido em 11 de setembro de 2026, com 700 milhoes da Uniao e 300 milhoes do Estado; inicio da obra previsto para 2027; conclusao prevista entre 2030 e 2031.">
+<defs>
+  <linearGradient id="fundo" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#141A24"/><stop offset="1" stop-color="#0B0E14"/>
+  </linearGradient>
+  <style>
+    .chapeu{font:600 21px Arial,Helvetica,sans-serif;letter-spacing:5px;fill:#E0A437}
+    .titulo{font:700 50px Georgia,'Times New Roman',serif;fill:#F5F1E8}
+    .sub{font:400 24px Arial,Helvetica,sans-serif;fill:#8B93A1}
+    .data{font:700 20px 'Courier New',monospace;letter-spacing:1px;fill:#E0A437}
+    .datafut{font:700 20px 'Courier New',monospace;letter-spacing:1px;fill:#7D8694}
+    .tit{font:700 25px Georgia,'Times New Roman',serif;fill:#F5F1E8}
+    .ap{font:400 17px Arial,Helvetica,sans-serif;fill:#8B93A1}
+    .hoje{font:700 16px Arial,Helvetica,sans-serif;letter-spacing:3px;fill:#E0A437}
+    .fonte{font:400 17px Arial,Helvetica,sans-serif;fill:#6E7684}
+    .marca{font:700 19px Arial,Helvetica,sans-serif;fill:#E0A437}
+  </style>
+</defs>
+
+<rect width="1600" height="600" fill="url(#fundo)"/>
+<rect x="0" y="0" width="10" height="600" fill="#E0A437"/>
+
+<text class="chapeu" x="58" y="92">ELDORADO DO SUL &#183; PROTE&#199;&#195;O CONTRA CHEIAS</text>
+<text class="titulo" x="58" y="162">Do alagamento ao dique pronto</text>
+<text class="sub" x="58" y="206">O que j&#225; aconteceu, e o que ainda falta acontecer</text>
+
+<!-- trecho vivido: linha cheia; trecho por vir: linha tracejada -->
+<line x1="170" y1="330" x2="790" y2="330" stroke="#E0A437" stroke-width="3"/>
+<line x1="790" y1="330" x2="1410" y2="330" stroke="#5A6270" stroke-width="3" stroke-dasharray="9 9"/>
+<text class="hoje" x="790" y="252" text-anchor="middle">HOJE</text>
+
+<circle cx="170" cy="330" r="14" fill="#E0A437" stroke="#E0A437" stroke-width="3"/>
+<circle cx="480" cy="330" r="14" fill="#E0A437" stroke="#E0A437" stroke-width="3"/>
+<circle cx="790" cy="330" r="14" fill="#E0A437" stroke="#E0A437" stroke-width="3"/>
+<circle cx="1100" cy="330" r="14" fill="#0B0E14" stroke="#5A6270" stroke-width="3"/>
+<circle cx="1100" cy="330" r="5" fill="#5A6270"/>
+<circle cx="1410" cy="330" r="14" fill="#0B0E14" stroke="#5A6270" stroke-width="3"/>
+<circle cx="1410" cy="330" r="5" fill="#5A6270"/>
+<text class="data" x="170" y="286" text-anchor="middle">MAIO DE 2024</text>
+<text class="tit" x="170" y="388" text-anchor="middle">A enchente</text>
+<text class="ap" x="170" y="422" text-anchor="middle">80,8% dos domicílios</text>
+<text class="ap" x="170" y="448" text-anchor="middle">atingidos e 31.964</text>
+<text class="ap" x="170" y="474" text-anchor="middle">moradores impactados</text>
+<text class="data" x="480" y="286" text-anchor="middle">ABRIL DE 2026</text>
+<text class="tit" x="480" y="388" text-anchor="middle">Anteprojeto refeito</text>
+<text class="ap" x="480" y="422" text-anchor="middle">O custo estimado sai de</text>
+<text class="ap" x="480" y="448" text-anchor="middle">R$ 531 milhões e vai</text>
+<text class="ap" x="480" y="474" text-anchor="middle">a R$ 1,1 bilhão</text>
+<text class="data" x="790" y="286" text-anchor="middle">11/09/2026</text>
+<text class="tit" x="790" y="388" text-anchor="middle">O dinheiro</text>
+<text class="ap" x="790" y="422" text-anchor="middle">R$ 700 milhões da União</text>
+<text class="ap" x="790" y="448" text-anchor="middle">e R$ 300 milhões do</text>
+<text class="ap" x="790" y="474" text-anchor="middle">Estado; libera o edital</text>
+<text class="datafut" x="1100" y="286" text-anchor="middle">2027</text>
+<text class="tit" x="1100" y="388" text-anchor="middle">Início da obra</text>
+<text class="ap" x="1100" y="422" text-anchor="middle">Previsão do governo</text>
+<text class="ap" x="1100" y="448" text-anchor="middle">estadual para a primeira</text>
+<text class="ap" x="1100" y="474" text-anchor="middle">máquina no terreno</text>
+<text class="datafut" x="1410" y="286" text-anchor="middle">2030-2031</text>
+<text class="tit" x="1410" y="388" text-anchor="middle">Cidade protegida</text>
+<text class="ap" x="1410" y="422" text-anchor="middle">8,6 km de diques de</text>
+<text class="ap" x="1410" y="448" text-anchor="middle">7,6 m, quatro casas de</text>
+<text class="ap" x="1410" y="474" text-anchor="middle">bombas — se nada atrasar</text>
+
+<text class="fonte" x="58" y="562">Fontes: Mapa Único do Plano Rio Grande, gov. do RS e noticiário de 11/09/2026.</text>
+<text class="marca" x="1542" y="562" text-anchor="end">REDE BOLHA</text>
+</svg>
