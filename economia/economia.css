@@ -156,6 +156,32 @@ article strong{color:#fff;font-weight:600}
 .vazio{background:var(--papel);border:1px dashed var(--linha);border-radius:14px;
   padding:26px;color:var(--sombra);font-size:14.5px;line-height:1.65;margin-top:16px}
 
+/* Confronto de dois cenarios, lado a lado; empilha no celular. */
+.confronto{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:32px 0 14px}
+.confronto .col{background:var(--papel);border:1px solid var(--linha);border-radius:14px;padding:20px}
+.confronto .col--ouro{border-color:var(--ouro);
+  background-image:linear-gradient(180deg,rgba(201,162,39,.09),transparent 70%)}
+.confronto .rot{font-family:var(--num);font-size:10.5px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--sombra);margin-bottom:14px}
+.confronto .col--ouro .rot{color:var(--ouro)}
+.confronto ul{list-style:none;margin:0 0 14px;padding:0}
+.confronto li{display:flex;justify-content:space-between;align-items:baseline;gap:10px;
+  font-size:15px;color:var(--sombra);padding:8px 0;border-bottom:1px solid var(--linha)}
+.confronto li b{color:#fff;font-weight:600;font-size:16px;white-space:nowrap}
+.confronto .tot span{display:block;font-size:13px;color:var(--sombra);margin-bottom:2px}
+.confronto .tot b{font-family:var(--display);font-size:28px;font-weight:600;color:var(--giz)}
+.confronto .col--ouro .tot b{color:var(--ouro-claro)}
+.confronto-nota{font-size:14px;line-height:1.6;color:var(--sombra);font-style:italic}
+@media (max-width:640px){.confronto{grid-template-columns:1fr}}
+
+/* Lista numerada de perguntas dentro da materia */
+.perguntas{list-style:none;counter-reset:pg;margin:30px 0 34px}
+.perguntas li{counter-increment:pg;position:relative;padding-left:54px;margin-bottom:20px}
+.perguntas li::before{content:counter(pg);position:absolute;left:0;top:1px;
+  width:34px;height:34px;line-height:32px;text-align:center;border:1px solid var(--ouro);
+  border-radius:50%;color:var(--ouro);font-family:var(--num);font-size:14px}
+.perguntas b{display:block;color:#fff;font-weight:600;margin-bottom:3px}
+
 footer{border-top:1px solid var(--linha);margin-top:44px;padding:26px 0 40px;
   text-align:center;font-size:13.5px;color:var(--sombra)}
 footer a{color:var(--sombra);text-decoration:none}

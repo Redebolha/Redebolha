@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1560" width="1000" height="1560" role="img"
+     aria-label="Grafico: 82% das familias brasileiras tinham dividas a vencer em agosto de 2026, o equivalente a 8 em cada 10. A inadimplencia atingiu 29,9%. Entre quem ganha ate tres salarios minimos sao 85,1% endividados; entre quem ganha mais de dez salarios minimos, 72,3%.">
+<defs>
+  <linearGradient id="fv" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#141A24"/><stop offset="1" stop-color="#0B0E14"/>
+  </linearGradient>
+  <style>
+    .chapeu{font:600 27px Arial,Helvetica,sans-serif;letter-spacing:7px;fill:#E0A437}
+    .titulo{font:700 66px Georgia,'Times New Roman',serif;fill:#F5F1E8}
+    .sub{font:400 30px Arial,Helvetica,sans-serif;fill:#8B93A1}
+    .leg{font:700 30px Arial,Helvetica,sans-serif}
+    .num{font:700 64px Georgia,'Times New Roman',serif;fill:#F5F1E8}
+    .numleg{font:400 27px Arial,Helvetica,sans-serif;fill:#8B93A1}
+    .marca{font:700 26px Arial,Helvetica,sans-serif;fill:#E0A437;letter-spacing:3px}
+    .fonte{font:400 24px Arial,Helvetica,sans-serif;fill:#6E7684}
+  </style>
+  <g id="p2"><circle cx="0" cy="0" r="17"/><path d="M-26,62 C-26,32 -14,23 0,23 C14,23 26,32 26,62 Z"/></g>
+</defs>
+
+<rect width="1000" height="1560" fill="url(#fv)"/>
+<rect x="0" y="0" width="12" height="1560" fill="#E0A437"/>
+
+<text class="chapeu" x="70" y="100">PEIC &#183; CNC &#183; AGOSTO DE 2026</text>
+<text class="titulo" x="70" y="200">8 em cada 10 fam&#237;lias</text>
+<text class="titulo" x="70" y="276">t&#234;m d&#237;vida a vencer</text>
+<text class="sub" x="70" y="336">S&#233;timo m&#234;s seguido de recorde na s&#233;rie</text>
+<text class="sub" x="70" y="378">da Confedera&#231;&#227;o Nacional do Com&#233;rcio</text>
+
+<g fill="#E0A437">
+  <g transform="translate(164,500) scale(1.7)"><use href="#p2"/></g>
+  <g transform="translate(332,500) scale(1.7)"><use href="#p2"/></g>
+  <g transform="translate(500,500) scale(1.7)"><use href="#p2"/></g>
+  <g transform="translate(668,500) scale(1.7)"><use href="#p2"/></g>
+  <g transform="translate(836,500) scale(1.7)"><use href="#p2"/></g>
+  <g transform="translate(164,700) scale(1.7)"><use href="#p2"/></g>
+  <g transform="translate(332,700) scale(1.7)"><use href="#p2"/></g>
+  <g transform="translate(500,700) scale(1.7)"><use href="#p2"/></g>
+</g>
+<g fill="none" stroke="#3A4250" stroke-width="3">
+  <g transform="translate(668,700) scale(1.7)"><use href="#p2"/></g>
+  <g transform="translate(836,700) scale(1.7)"><use href="#p2"/></g>
+</g>
+
+<circle cx="86" cy="846" r="14" fill="#E0A437"/>
+<text class="leg" x="120" y="856" fill="#E8D48B">8 com d&#237;vidas a vencer</text>
+<circle cx="86" cy="906" r="14" fill="none" stroke="#3A4250" stroke-width="3"/>
+<text class="leg" x="120" y="916" fill="#6E7684">2 sem d&#237;vidas</text>
+
+<rect x="70" y="970" width="860" height="160" rx="16" fill="#171D28" stroke="#2A3140"/>
+<text class="num" x="110" y="1050">29,9%</text>
+<text class="numleg" x="380" y="1035">das fam&#237;lias j&#225; est&#227;o</text>
+<text class="numleg" x="380" y="1073">com contas em atraso</text>
+
+<rect x="70" y="1150" width="860" height="160" rx="16" fill="#171D28" stroke="#2A3140"/>
+<text class="num" x="110" y="1230">85,1%</text>
+<text class="numleg" x="380" y="1215">entre quem ganha at&#233;</text>
+<text class="numleg" x="380" y="1253">tr&#234;s sal&#225;rios m&#237;nimos</text>
+
+<rect x="70" y="1330" width="860" height="160" rx="16" fill="#171D28" stroke="#E0A437"/>
+<text class="num" x="110" y="1410">72,3%</text>
+<text class="numleg" x="380" y="1395">entre quem ganha mais</text>
+<text class="numleg" x="380" y="1433">de dez sal&#225;rios m&#237;nimos</text>
+
+<text class="marca" x="70" y="1530">REDE BOLHA</text>
+<text class="fonte" x="930" y="1530" text-anchor="end">Fonte: Peic / CNC, agosto de 2026</text>
+</svg>
