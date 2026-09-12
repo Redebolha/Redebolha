@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Da primeira centena ao primeiro milhão | Rede Bolha</title>
+<meta name="description" content="Simulador educativo: quanto tempo o aporte mensal leva para chegar a R$ 100 mil e a R$ 1 milhão, e por que a primeira faixa custa mais da metade do caminho.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --tinta:#0C0B09;
+  --breu:#15130E;
+  --borda:#2A2620;
+  --ouro:#C9A227;
+  --ouro-claro:#E3C766;
+  --giz:#EDE9E0;
+  --cinza:#8C8778;
+  --cobre:#B5643C;
+  --display:"Fraunces",Georgia,serif;
+  --texto:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--tinta);
+  color:var(--giz);
+  font-family:var(--texto);
+  font-size:16px;
+  line-height:1.6;
+}
+.folha{max-width:960px;margin:0 auto;padding:40px 20px 72px}
+
+/* ---------- cabeçalho ---------- */
+header{border-bottom:1px solid var(--borda);padding-bottom:28px;margin-bottom:32px}
+h1{
+  font-family:var(--display);
+  font-weight:300;
+  font-size:clamp(30px,6vw,50px);
+  line-height:1.08;
+  letter-spacing:-.02em;
+  margin:0 0 14px;
+  color:var(--giz);
+}
+header p{margin:0;max-width:60ch;color:var(--cinza);font-size:17px}
+
+h2{
+  font-family:var(--display);
+  font-weight:400;
+  font-size:23px;
+  letter-spacing:-.01em;
+  margin:0 0 6px;
+  color:var(--ouro);
+}
+section{margin-bottom:44px}
+.legenda{color:var(--cinza);font-size:15px;margin:0 0 20px;max-width:62ch}
+
+/* ---------- painel de controles ---------- */
+.painel{
+  background:var(--breu);
+  border:1px solid var(--borda);
+  border-radius:4px;
+  padding:26px 24px 20px;
+}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:36px}
+.campo{min-width:0}
+.campo .topo{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:2px}
+.campo label{font-size:14px;color:var(--cinza)}
+.valor{
+  font-family:var(--display);
+  font-size:30px;
+  font-weight:400;
+  color:var(--giz);
+  letter-spacing:-.01em;
+}
+.valor input{
+  font:inherit;color:inherit;background:none;border:none;border-bottom:1px dashed var(--borda);
+  width:5.2em;padding:0 0 2px;text-align:left;
+}
+.valor input:focus{outline:none;border-bottom-color:var(--ouro)}
+.valor input::-webkit-outer-spin-button,.valor input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.valor input[type=number]{-moz-appearance:textfield}
+.unid{font-size:14px;color:var(--cinza);font-family:var(--texto)}
+
+input[type=range]{
+  -webkit-appearance:none;appearance:none;width:100%;height:22px;background:none;margin:6px 0 2px;cursor:pointer;
+}
+input[type=range]::-webkit-slider-runnable-track{height:2px;background:var(--borda)}
+input[type=range]::-moz-range-track{height:2px;background:var(--borda)}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--ouro);margin-top:-7px;border:none;
+}
+input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--ouro);border:none}
+input[type=range]:focus-visible{outline:2px solid var(--ouro-claro);outline-offset:4px}
+.extremos{display:flex;justify-content:space-between;font-size:12px;color:#6E6A5F}
+
+.ajustes{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:28px;
+  margin-top:30px;padding-top:24px;border-top:1px solid var(--borda);
+}
+.mini label{display:block;font-size:14px;color:var(--cinza);margin-bottom:6px}
+.mini input[type=number]{
+  font-family:var(--display);font-size:20px;color:var(--giz);background:none;
+  border:none;border-bottom:1px solid var(--borda);padding:2px 0;width:100%;
+}
+.mini input[type=number]:focus{outline:none;border-bottom-color:var(--ouro)}
+.mini .dica{font-size:12px;color:#6E6A5F;margin-top:5px}
+.chave{display:flex;align-items:center;gap:10px;margin-bottom:6px;cursor:pointer}
+.chave input{accent-color:var(--ouro);width:17px;height:17px;cursor:pointer}
+.chave span{font-size:14px;color:var(--giz)}
+.apagado{opacity:.4}
+
+/* ---------- placar ---------- */
+.placar{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--borda);border-bottom:1px solid var(--borda)}
+.placar div{padding:26px 20px;border-left:1px solid var(--borda)}
+.placar div:first-child{border-left:none;padding-left:0}
+.placar .rotulo{font-size:13px;color:var(--cinza);margin-bottom:8px}
+.placar .numero{font-family:var(--display);font-size:clamp(30px,5.6vw,44px);font-weight:300;line-height:1;letter-spacing:-.02em}
+.placar .meses{font-size:13px;color:#6E6A5F;margin-top:8px}
+.n-cem{color:var(--ouro-claro)}
+.n-milhao{color:var(--giz)}
+.n-peso{color:var(--cobre)}
+
+/* ---------- escada ---------- */
+.escada{display:flex;width:100%;height:78px;border:1px solid var(--borda);background:var(--breu);overflow:hidden}
+.degrau{
+  position:relative;min-width:2px;display:flex;align-items:center;justify-content:center;
+  border-right:1px solid var(--tinta);
+}
+.degrau:last-child{border-right:none}
+.degrau b{font-family:var(--display);font-weight:400;font-size:14px;color:var(--tinta);white-space:nowrap}
+.reguas{display:flex;width:100%;margin-top:8px;font-size:11px;color:#6E6A5F}
+.reguas span{overflow:hidden;white-space:nowrap;padding-right:4px}
+.frase{
+  font-family:var(--display);font-size:19px;font-weight:300;line-height:1.5;
+  color:var(--giz);margin:22px 0 0;max-width:56ch;
+}
+.frase em{color:var(--ouro);font-style:normal}
+
+/* ---------- tabela ---------- */
+.rolagem{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:15px;min-width:430px}
+th{
+  text-align:right;font-weight:400;font-size:13px;color:var(--cinza);
+  padding:0 0 10px;border-bottom:1px solid var(--borda);
+}
+th:first-child{text-align:left}
+td{padding:11px 0;border-bottom:1px solid #1E1B16;text-align:right;font-variant-numeric:tabular-nums}
+td:first-child{text-align:left;color:var(--cinza)}
+td.tempo{font-family:var(--display);font-size:17px;color:var(--giz)}
+tr.primeira td.tempo{color:var(--cobre)}
+.barrinha{display:inline-block;height:6px;background:var(--ouro);vertical-align:middle;min-width:2px}
+
+/* ---------- gráfico e cartões ---------- */
+.grafico{width:100%;height:auto;display:block;background:var(--breu);border:1px solid var(--borda)}
+.chaves{display:flex;gap:20px;font-size:13px;color:var(--cinza);margin-top:10px;flex-wrap:wrap}
+.chaves i{display:inline-block;width:14px;height:2px;vertical-align:middle;margin-right:7px}
+.cartoes{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px}
+.cartao{border:1px solid var(--borda);padding:22px;border-radius:4px;background:var(--breu)}
+.cartao h3{margin:0 0 10px;font-size:14px;font-weight:400;color:var(--ouro)}
+.cartao p{margin:0;font-size:15px;color:var(--cinza)}
+.cartao strong{font-family:var(--display);font-weight:400;font-size:22px;color:var(--giz);display:block;margin-bottom:6px}
+.mistura{display:flex;height:10px;margin:14px 0 10px;background:var(--borda)}
+.mistura .aportes{background:var(--cinza)}
+.mistura .juros{background:var(--ouro)}
+
+footer{border-top:1px solid var(--borda);padding-top:22px;color:#6E6A5F;font-size:13px;max-width:70ch}
+footer p{margin:0 0 10px}
+
+@media (max-width:720px){
+  .folha{padding:28px 16px 56px}
+  .duo{grid-template-columns:1fr;gap:26px}
+  .ajustes{grid-template-columns:1fr;gap:22px}
+  .placar{grid-template-columns:1fr;border-bottom:none}
+  .placar div{border-left:none;border-bottom:1px solid var(--borda);padding:20px 0}
+  .cartoes{grid-template-columns:1fr}
+  .escada{height:58px}
+  .degrau b{font-size:11px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .degrau,.barrinha,.mistura div{transition:flex-grow .35s ease,width .35s ease}
+}
+</style>
+</head>
+<body>
+<div class="folha">
+
+<header>
+  <h1>Da primeira centena<br>ao primeiro milhão</h1>
+  <p>O primeiro R$ 100 mil não é o mais caro em dinheiro. É o mais caro em tempo. Mexa nos controles e veja o tamanho real de cada degrau.</p>
+</header>
+
+<section class="painel">
+  <div class="duo">
+    <div class="campo">
+      <div class="topo">
+        <label for="aporte">Aporte mensal</label>
+      </div>
+      <div class="valor">R$ <input type="number" id="aporteNum" value="100" min="0" step="10" inputmode="numeric" aria-label="Valor do aporte mensal em reais"></div>
+      <input type="range" id="aporte" min="100" max="5000" step="50" value="100" aria-label="Aporte mensal">
+      <div class="extremos"><span>R$ 100</span><span>R$ 5.000</span></div>
+    </div>
+    <div class="campo">
+      <div class="topo">
+        <label for="taxa">Rentabilidade</label>
+      </div>
+      <div class="valor"><input type="number" id="taxaNum" value="16" min="0" max="60" step="0.5" inputmode="decimal" aria-label="Rentabilidade anual em porcentagem"><span class="unid">% ao ano</span></div>
+      <input type="range" id="taxa" min="6" max="20" step="0.5" value="16" aria-label="Rentabilidade anual">
+      <div class="extremos"><span>6%</span><span>20%</span></div>
+    </div>
+  </div>
+
+  <div class="ajustes">
+    <div class="mini">
+      <label for="inicial">Quanto você já tem</label>
+      <input type="number" id="inicial" value="0" min="0" step="1000" inputmode="numeric">
+      <div class="dica">Capital que já está investido hoje.</div>
+    </div>
+    <div class="mini">
+      <label for="reajuste">Reajuste anual do aporte</label>
+      <input type="number" id="reajuste" value="0" min="0" max="30" step="1" inputmode="decimal">
+      <div class="dica" id="dicaReajuste">Quanto você aumenta o aporte a cada 12 meses.</div>
+    </div>
+    <div class="mini">
+      <label class="chave" for="usarInflacao"><input type="checkbox" id="usarInflacao"><span>Descontar a inflação</span></label>
+      <input type="number" id="ipca" value="4.5" min="0" max="30" step="0.1" inputmode="decimal" disabled>
+      <div class="dica">IPCA ao ano. Ligado, tudo aparece em poder de compra de hoje.</div>
+    </div>
+  </div>
+</section>
+
+<section class="placar" aria-live="polite">
+  <div>
+    <div class="rotulo">Até R$ 100 mil</div>
+    <div class="numero n-cem" id="tCem">17a 7m</div>
+    <div class="meses" id="mCem">211 meses</div>
+  </div>
+  <div>
+    <div class="rotulo">Até R$ 1 milhão</div>
+    <div class="numero n-milhao" id="tMilhao">32a 7m</div>
+    <div class="meses" id="mMilhao">391 meses</div>
+  </div>
+  <div>
+    <div class="rotulo">Peso do primeiro 100 mil</div>
+    <div class="numero n-peso" id="peso">54,0%</div>
+    <div class="meses">do tempo total da jornada</div>
+  </div>
+</section>
+
+<section>
+  <h2>A escada</h2>
+  <p class="legenda">Cada bloco é uma faixa de R$ 100 mil. A largura é o tempo que ela consome. O milhão não é dez vezes o primeiro degrau — é o primeiro degrau mais nove degraus cada vez mais curtos.</p>
+  <div class="escada" id="escada"></div>
+  <div class="reguas" id="reguas"></div>
+  <p class="frase" id="frase"></p>
+</section>
+
+<section>
+  <h2>Faixa por faixa</h2>
+  <p class="legenda">Quanto tempo você passa dentro de cada centena de milhar.</p>
+  <div class="rolagem">
+    <table>
+      <thead>
+        <tr>
+          <th>Faixa</th>
+          <th>Tempo na faixa</th>
+          <th>Acumulado</th>
+          <th>Fatia do total</th>
+        </tr>
+      </thead>
+      <tbody id="corpoTabela"></tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>A curva</h2>
+  <p class="legenda">A linha de baixo é o seu suor. A distância entre as duas é o trabalho que o dinheiro fez sozinho.</p>
+  <svg class="grafico" id="grafico" viewBox="0 0 860 300" role="img" aria-label="Evolução do patrimônio comparada ao total aportado"></svg>
+  <div class="chaves">
+    <span><i style="background:var(--ouro)"></i>Patrimônio</span>
+    <span><i style="background:var(--cinza)"></i>Total aportado</span>
+    <span><i style="background:var(--cobre)"></i>Ponto de virada</span>
+  </div>
+
+  <div class="cartoes">
+    <div class="cartao">
+      <h3>Ponto de virada</h3>
+      <strong id="viradaTempo">—</strong>
+      <p id="viradaTexto">O mês em que os juros passam a render mais do que você deposita.</p>
+    </div>
+    <div class="cartao">
+      <h3>De onde vem o milhão</h3>
+      <div class="mistura"><div class="aportes" id="barraAportes"></div><div class="juros" id="barraJuros"></div></div>
+      <p id="misturaTexto">—</p>
+    </div>
+    <div class="cartao">
+      <h3>Se você parasse nos R$ 100 mil</h3>
+      <strong id="sozinhoTempo">—</strong>
+      <p>Sem aportar mais nada, só com os juros, o primeiro 100 mil viraria 1 milhão nesse prazo.</p>
+    </div>
+    <div class="cartao">
+      <h3>Renda ao chegar</h3>
+      <strong id="rendaMilhao">—</strong>
+      <p id="rendaTexto">Rendimento do primeiro mês depois do milhão, na mesma taxa da simulação.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Simulação com juros compostos mensais, aporte no fim de cada mês e taxa constante. No mundo real a rentabilidade oscila, e não existe taxa garantida por 30 anos.</p>
+  <p>Conteúdo educativo da Rede Bolha. Não é recomendação de investimento, não indica ativos e não substitui um profissional habilitado.</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var LIMITE = 1200; // 100 anos
+  var brl = new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
+  var brlCent = new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',minimumFractionDigits:2,maximumFractionDigits:2});
+  var pct = new Intl.NumberFormat('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1});
+
+  var el = function(id){ return document.getElementById(id); };
+  var aporte = el('aporte'), aporteNum = el('aporteNum');
+  var taxa = el('taxa'), taxaNum = el('taxaNum');
+  var inicial = el('inicial'), reajuste = el('reajuste');
+  var usarInflacao = el('usarInflacao'), ipca = el('ipca');
+
+  function num(campo, padrao){
+    var v = parseFloat(String(campo.value).replace(',','.'));
+    return isFinite(v) && v >= 0 ? v : padrao;
+  }
+
+  function fmtTempo(m){
+    if(m === null) return 'além de 100 anos';
+    if(m === 0) return 'já alcançado';
+    var a = Math.floor(m/12), r = m % 12;
+    if(a === 0) return r + (r === 1 ? ' mês' : ' meses');
+    if(r === 0) return a + 'a';
+    return a + 'a ' + r + 'm';
+  }
+
+  function simular(cfg){
+    var i = Math.pow(1 + cfg.taxa, 1/12) - 1;
+    var saldo = cfg.inicial, aportado = cfg.inicial;
+    var serie = [{m:0, saldo:saldo, aportado:aportado}];
+    var marcos = new Array(10).fill(null);
+    var virada = null, k;
+
+    for(k = 0; k < 10; k++){ if(saldo >= (k+1)*100000) marcos[k] = 0; }
+
+    for(var m = 1; m <= LIMITE; m++){
+      var dep = cfg.aporte * Math.pow(1 + cfg.reajuste, Math.floor((m-1)/12));
+      var juros = saldo * i;
+      if(!virada && dep > 0 && juros > dep) virada = {mes:m, juros:juros, aporte:dep, saldo:saldo};
+      saldo = saldo + juros + dep;
+      aportado += dep;
+      serie.push({m:m, saldo:saldo, aportado:aportado, juros:juros, aporte:dep});
+      for(k = 0; k < 10; k++){
+        if(marcos[k] === null && saldo >= (k+1)*100000) marcos[k] = m;
+      }
+      if(marcos[9] !== null) break;
+      if(dep === 0 && juros === 0 && saldo === 0) break;
+    }
+    return {i:i, serie:serie, marcos:marcos, virada:virada};
+  }
+
+  function corDegrau(k){
+    // do cobre (degrau lento) ao ouro claro (degraus rápidos)
+    var de = [181,100,60], para = [227,199,102], t = k/9;
+    var c = de.map(function(v,idx){ return Math.round(v + (para[idx]-v)*t); });
+    return 'rgb(' + c.join(',') + ')';
+  }
+
+  function desenharEscada(marcos){
+    var escada = el('escada'), reguas = el('reguas');
+    escada.innerHTML = ''; reguas.innerHTML = '';
+    var anterior = 0, total = 0, duracoes = [];
+    for(var k = 0; k < 10; k++){
+      if(marcos[k] === null){ duracoes.push(null); continue; }
+      duracoes.push(marcos[k] - anterior);
+      anterior = marcos[k];
+    }
+    total = anterior;
+    if(total <= 0) total = 1;
+
+    duracoes.forEach(function(d, k){
+      var bloco = document.createElement('div');
+      bloco.className = 'degrau';
+      bloco.style.background = corDegrau(k);
+      bloco.style.flexGrow = (d === null ? 0 : Math.max(d, 0));
+      bloco.style.flexBasis = '0';
+      if(d === null){ bloco.style.background = '#1E1B16'; bloco.style.flexGrow = 0.4; }
+      var faixa = ((k)*100) + 'k → ' + ((k+1)*100) + 'k';
+      bloco.title = faixa + ' · ' + (d === null ? 'não alcançado' : fmtTempo(d));
+      if(d !== null && d/total > 0.14){
+        var b = document.createElement('b');
+        b.textContent = fmtTempo(d);
+        bloco.appendChild(b);
+      }
+      escada.appendChild(bloco);
+
+      var r = document.createElement('span');
+      r.style.flexGrow = bloco.style.flexGrow;
+      r.style.flexBasis = '0';
+      r.textContent = (d !== null && d/total > 0.10) ? (k+1)*100 + 'k' : '';
+      reguas.appendChild(r);
+    });
+    return {duracoes:duracoes, total:total};
+  }
+
+  function preencherTabela(dados){
+    var corpo = el('corpoTabela');
+    corpo.innerHTML = '';
+    var acumulado = 0;
+    var maior = Math.max.apply(null, dados.duracoes.map(function(d){ return d === null ? 0 : d; })) || 1;
+    dados.duracoes.forEach(function(d, k){
+      var tr = document.createElement('tr');
+      if(k === 0) tr.className = 'primeira';
+      var fatia = d === null ? 0 : d/dados.total*100;
+      if(d !== null) acumulado += d;
+      tr.innerHTML =
+        '<td>' + brl.format(k*100000) + ' → ' + brl.format((k+1)*100000) + '</td>' +
+        '<td class="tempo">' + (d === null ? '—' : fmtTempo(d)) + '</td>' +
+        '<td>' + (d === null ? '—' : fmtTempo(acumulado)) + '</td>' +
+        '<td><span class="barrinha" style="width:' + (d === null ? 0 : Math.max(fatia/100*90, 1)) + 'px"></span> ' +
+        (d === null ? '—' : pct.format(fatia) + '%') + '</td>';
+      corpo.appendChild(tr);
+    });
+  }
+
+  function desenharGrafico(serie, virada){
+    var svg = el('grafico');
+    var W = 860, H = 300, pl = 62, pr = 14, pt = 14, pb = 30;
+    var n = serie.length - 1;
+    if(n < 1){ svg.innerHTML = ''; return; }
+    var maxY = Math.max(serie[n].saldo, 1);
+    var X = function(m){ return pl + (m/n)*(W-pl-pr); };
+    var Y = function(v){ return H - pb - (v/maxY)*(H-pt-pb); };
+    var p = [];
+
+    // grades horizontais a cada 100 mil
+    for(var v = 100000; v <= maxY + 1; v += 100000){
+      var y = Y(v);
+      p.push('<line x1="'+pl+'" y1="'+y.toFixed(1)+'" x2="'+(W-pr)+'" y2="'+y.toFixed(1)+'" stroke="#221F19"/>');
+      if(v % 200000 === 0 || maxY <= 400000){
+        p.push('<text x="'+(pl-10)+'" y="'+(y+4).toFixed(1)+'" fill="#6E6A5F" font-size="11" text-anchor="end">'+(v/1000)+'k</text>');
+      }
+    }
+    // marcas de tempo a cada 5 anos
+    var passo = n > 480 ? 120 : (n > 180 ? 60 : 24);
+    for(var m = passo; m <= n; m += passo){
+      p.push('<text x="'+X(m).toFixed(1)+'" y="'+(H-10)+'" fill="#6E6A5F" font-size="11" text-anchor="middle">'+(m/12)+'a</text>');
+    }
+
+    var linhaSaldo = '', linhaAporte = '';
+    var salto = Math.max(1, Math.floor(n/400));
+    for(var k = 0; k <= n; k += salto){
+      linhaSaldo += (k === 0 ? 'M' : 'L') + X(serie[k].m).toFixed(1) + ' ' + Y(serie[k].saldo).toFixed(1) + ' ';
+      linhaAporte += (k === 0 ? 'M' : 'L') + X(serie[k].m).toFixed(1) + ' ' + Y(serie[k].aportado).toFixed(1) + ' ';
+    }
+    linhaSaldo += 'L' + X(n).toFixed(1) + ' ' + Y(serie[n].saldo).toFixed(1);
+    linhaAporte += 'L' + X(n).toFixed(1) + ' ' + Y(serie[n].aportado).toFixed(1);
+
+    var area = linhaSaldo + ' L' + X(n).toFixed(1) + ' ' + Y(0) + ' L' + X(0).toFixed(1) + ' ' + Y(0) + ' Z';
+    p.push('<path d="'+area+'" fill="#C9A227" opacity="0.09"/>');
+    p.push('<path d="'+linhaAporte+'" fill="none" stroke="#8C8778" stroke-width="1.5"/>');
+    p.push('<path d="'+linhaSaldo+'" fill="none" stroke="#C9A227" stroke-width="2"/>');
+
+    if(virada && virada.mes <= n){
+      p.push('<line x1="'+X(virada.mes).toFixed(1)+'" y1="'+pt+'" x2="'+X(virada.mes).toFixed(1)+'" y2="'+(H-pb)+'" stroke="#B5643C" stroke-width="1" stroke-dasharray="3 3"/>');
+      p.push('<circle cx="'+X(virada.mes).toFixed(1)+'" cy="'+Y(virada.saldo).toFixed(1)+'" r="4" fill="#B5643C"/>');
+    }
+    p.push('<line x1="'+pl+'" y1="'+(H-pb)+'" x2="'+(W-pr)+'" y2="'+(H-pb)+'" stroke="#2A2620"/>');
+    svg.innerHTML = p.join('');
+  }
+
+  function atualizar(){
+    var infl = usarInflacao.checked ? num(ipca,0)/100 : 0;
+    var nominal = num(taxaNum,16)/100;
+    var real = usarInflacao.checked ? (1+nominal)/(1+infl) - 1 : nominal;
+
+    var cfg = {
+      aporte: num(aporteNum,0),
+      taxa: real,
+      inicial: num(inicial,0),
+      reajuste: num(reajuste,0)/100
+    };
+
+    el('dicaReajuste').textContent = usarInflacao.checked
+      ? 'Aumento do aporte acima da inflação a cada 12 meses.'
+      : 'Quanto você aumenta o aporte a cada 12 meses.';
+
+    var r = simular(cfg);
+    var mCem = r.marcos[0], mMil = r.marcos[9];
+
+    el('tCem').textContent = fmtTempo(mCem);
+    el('mCem').textContent = mCem === null ? 'fora do horizonte de 100 anos' : mCem + (mCem === 1 ? ' mês' : ' meses');
+    el('tMilhao').textContent = fmtTempo(mMil);
+    el('mMilhao').textContent = mMil === null ? 'fora do horizonte de 100 anos' : mMil + (mMil === 1 ? ' mês' : ' meses');
+
+    if(mCem !== null && mMil !== null && mMil > 0){
+      el('peso').textContent = pct.format(mCem/mMil*100) + '%';
+    } else {
+      el('peso').textContent = '—';
+    }
+
+    var dados = desenharEscada(r.marcos);
+    preencherTabela(dados);
+    desenharGrafico(r.serie, r.virada);
+
+    // frase de leitura da escada
+    var frase = el('frase');
+    if(mCem !== null && mMil !== null && dados.duracoes[9] !== null){
+      var ultima = dados.duracoes[9];
+      frase.innerHTML = 'Você leva <em>' + fmtTempo(mCem) + '</em> para juntar os primeiros R$ 100 mil e apenas <em>' +
+        fmtTempo(ultima) + '</em> para juntar os últimos R$ 100 mil. É o mesmo valor, no mesmo ritmo de aporte — o que mudou foi o tamanho do exército que trabalha por você.';
+    } else {
+      frase.textContent = 'Com esses números o milhão não aparece dentro de 100 anos. Aumente o aporte, a taxa ou o capital inicial e veja a escada se formar.';
+    }
+
+    // ponto de virada
+    if(r.virada){
+      el('viradaTempo').textContent = fmtTempo(r.virada.mes);
+      el('viradaTexto').textContent = 'Nesse mês os juros rendem ' + brlCent.format(r.virada.juros) +
+        ' contra um aporte de ' + brlCent.format(r.virada.aporte) + '. A partir daí o dinheiro aporta mais do que você.';
+    } else {
+      el('viradaTempo').textContent = '—';
+      el('viradaTexto').textContent = 'Com esses parâmetros os juros ainda não superam o aporte dentro do período simulado.';
+    }
+
+    // composição do milhão
+    var fim = mMil !== null ? r.serie[mMil] : r.serie[r.serie.length-1];
+    var jurosTotal = Math.max(fim.saldo - fim.aportado, 0);
+    var partAp = fim.saldo > 0 ? fim.aportado/fim.saldo*100 : 0;
+    el('barraAportes').style.flexGrow = partAp;
+    el('barraJuros').style.flexGrow = 100 - partAp;
+    el('barraAportes').style.flexBasis = '0';
+    el('barraJuros').style.flexBasis = '0';
+    el('misturaTexto').innerHTML = 'Do seu bolso saíram <strong style="display:inline;font-size:15px">' + brl.format(fim.aportado) +
+      '</strong> (' + pct.format(partAp) + '%). Os outros ' + brl.format(jurosTotal) + ' foram juros.';
+
+    // 100 mil sozinho até 1 milhão
+    if(cfg.taxa > 0){
+      var anos = Math.log(10)/Math.log(1 + cfg.taxa);
+      el('sozinhoTempo').textContent = fmtTempo(Math.ceil(anos*12));
+    } else {
+      el('sozinhoTempo').textContent = 'nunca';
+    }
+
+    // renda ao chegar
+    if(mMil !== null){
+      el('rendaMilhao').textContent = brl.format(r.serie[mMil].saldo * r.i) + '/mês';
+      el('rendaTexto').textContent = usarInflacao.checked
+        ? 'Rendimento real do primeiro mês após o milhão, já descontada a inflação.'
+        : 'Rendimento do primeiro mês depois do milhão, na mesma taxa da simulação.';
+    } else {
+      el('rendaMilhao').textContent = '—';
+    }
+  }
+
+  function amarrar(faixa, campo){
+    faixa.addEventListener('input', function(){ campo.value = faixa.value; atualizar(); });
+    campo.addEventListener('input', function(){
+      var v = parseFloat(String(campo.value).replace(',','.'));
+      if(isFinite(v)) faixa.value = Math.min(Math.max(v, faixa.min), faixa.max);
+      atualizar();
+    });
+  }
+  amarrar(aporte, aporteNum);
+  amarrar(taxa, taxaNum);
+  [inicial, reajuste, ipca].forEach(function(c){ c.addEventListener('input', atualizar); });
+  usarInflacao.addEventListener('change', function(){
+    ipca.disabled = !usarInflacao.checked;
+    ipca.parentNode.classList.toggle('apagado', !usarInflacao.checked);
+    atualizar();
+  });
+  ipca.parentNode.classList.add('apagado');
+
+  atualizar();
+})();
+</script>
+</body>
+</html>
