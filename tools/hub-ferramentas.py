@@ -49,6 +49,13 @@ FERRAMENTAS = [
         "tags": "Aporte · Longo prazo",
     },
     {
+        "href": "/teste-homem-e-dinheiro/",
+        "nome": "Teste: que tipo de homem você é com o dinheiro?",
+        "desc": "Seis perguntas, dois minutos. Quatro jeitos de se relacionar com "
+                "dinheiro — e o que cada um cobra de você.",
+        "tags": "Teste · 2 minutos",
+    },
+    {
         "href": "/teste-mascara-masculina/",
         "nome": "Teste das Máscaras",
         "desc": "Seis perguntas, dois minutos. Sobre as máscaras que muito homem "

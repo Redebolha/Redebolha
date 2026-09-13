@@ -62,7 +62,12 @@ POR_ARQUIVO = {
 
 # Fora do alcance: painel, area logada, utilitarios e as proprias paginas de
 # venda — anunciar um livro dentro da pagina de outro nao faz sentido.
-IGNORAR_PASTAS = {"admin", "membros", "livros", "oferta", "hvnr"}
+IGNORAR_PASTAS = {
+    "admin", "membros", "livros", "oferta", "hvnr",
+    # O quiz fica de fora do motor de patrocinio de proposito: o resultado ja
+    # captura pela Carta, e duas capturas na mesma tela competem entre si.
+    "teste-homem-e-dinheiro", "teste-mascara-masculina",
+}
 IGNORAR_ARQUIVOS = {
     "offline.html", "logo-3d.html", "destaque-promocional-backup.html",
     "google2811742ec626a64f.html", "404.html", "instalar-app.html",

@@ -103,9 +103,21 @@
       if (typeof window.gtag === 'function') {
         // Conta o envio feito no site. A confirmacao acontece na Substack e
         // nao volta para ca — o numero real de inscritos e o do painel dela.
-        window.gtag('event', 'newsletter_signup', { origem: location.pathname });
+        window.gtag('event', 'newsletter_signup', {
+          origem: location.pathname,
+          perfil: form.getAttribute('data-origem') || ''
+        });
       }
-      window.location.href = CADASTRO + '?email=' + encodeURIComponent(email);
+      // Se quem montou o bloco marcou uma origem (o quiz marca o perfil), ela
+      // viaja junto: a Substack registra a origem de cada inscrito, e assim a
+      // segmentacao aparece tambem no painel dela, nao so no GA4.
+      var destino = CADASTRO + '?email=' + encodeURIComponent(email);
+      var origem = form.getAttribute('data-origem');
+      if (origem) {
+        destino += '&utm_source=redebolha&utm_medium=site&utm_campaign=' +
+                   encodeURIComponent(origem);
+      }
+      window.location.href = destino;
     });
 
     box.appendChild(form);
