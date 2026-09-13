@@ -319,6 +319,7 @@
 .rb-rodape-col a:hover{color:var(--gold,#c9a24b);text-decoration:underline}
 .rb-rodape-contato{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:center;
   padding-top:22px;border-top:1px solid rgba(255,255,255,.08)}
+
 </style>
 <!-- Folhas de estilo que antes ficavam soltas dentro do <body> (inválido no W3C).
      Movidas para cá NA MESMA ORDEM em que apareciam, então a cascata — e o visual — não mudam. -->
@@ -591,7 +592,9 @@
 .bloco-dinheiro h2{margin:0 0 12px;font-size:clamp(1.5rem,4.5vw,2.1rem)}
 .bloco-dinheiro > .wrap > p{color:var(--body,#C6C0B5);max-width:58ch;
   margin:0 0 26px}
-.bd-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:22px}
+.bd-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-bottom:22px}
+.bd-rodape{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center}
+.bd-rodape .bd-tema{margin:0}
 .bd-card{display:block;background:var(--card,#1A171B);
   border:1px solid var(--line,rgba(201,162,75,.18));border-radius:14px;padding:20px;
   text-decoration:none}
@@ -1170,36 +1173,37 @@
 </section>
 <!-- ============ FIM DO GANCHO DE MANCHETE ============ -->
 <!-- BLOCO DINHEIRO -->
-<section class="bloco-dinheiro">
+<section class="bloco-dinheiro" aria-label="Ferramentas">
   <div class="wrap">
-    <div class="bd-selo">Ainda não é a hora do livro?</div>
-    <h2>Então leva uma ferramenta.</h2>
-    <p>Duas calculadoras gratuitas, sem cadastro e sem e-mail. Porque
-    dinheiro mexe com o brio do homem mais do que ele admite — e a conta
-    que a gente evita fazer é sempre a que mais pesa.</p>
+    <div class="bd-selo">Sem cadastro, sem e-mail</div>
+    <h2>Antes de decidir, faça a conta.</h2>
+    <p>Oito calculadoras abertas, de graça. Porque dinheiro mexe com o brio do homem mais do que ele admite — e a conta que a gente evita fazer é sempre a que mais pesa.</p>
     <div class="bd-cards">
-      <a class="bd-card" href="/financas/simulador-renda-passiva.html">
-        <strong>Simulador de Renda Passiva</strong>
-        <span>Descubra o mês exato em que os juros passam a render mais
-        do que você consegue guardar.</span>
-        <em>Abrir o simulador →</em>
-      </a>
-      <a class="bd-card" href="/financas/simulador-100k-1milhao.html">
-        <strong>Da Primeira Centena ao Primeiro Milhão</strong>
-        <span>O primeiro R$ 100 mil é o mais caro em tempo. Veja quanto cada faixa consome — e por que a jornada acelera.</span>
-        <em>Abrir o simulador →</em>
-      </a>
-      <a class="bd-card" href="/financas/calculadora-fii.html">
-        <strong>Calculadora de Carteira de FIIs</strong>
-        <span>Monte sua carteira e veja na hora quanto ela gera de renda
-        por mês.</span>
-        <em>Usar a calculadora →</em>
-      </a>
-    </div>
-    <a class="bd-tema" href="/financas/">
-      Ver tudo sobre Homem e o Dinheiro — o tema que está virando meu
-      próximo livro →
+    <a class="bd-card" href="/ferramentas/quanto-vale-sua-hora.html" data-ferramenta="Quanto vale a sua hora">
+      <strong>Quanto vale a sua hora</strong>
+      <span>Salário dividido por horas dá um número bonito e mentiroso. Esta conta desconta o trânsito e o que você gasta só porque trabalha.</span>
+      <em>Fazer a conta →</em>
     </a>
+    <a class="bd-card" href="/ferramentas/termometro-da-divida.html" data-ferramenta="Termômetro da Dívida">
+      <strong>Termômetro da Dívida</strong>
+      <span>Em quanto tempo você quita, quanto paga de juros — e se a sua parcela está derrubando a dívida ou só empurrando ela.</span>
+      <em>Medir a dívida →</em>
+    </a>
+    <a class="bd-card" href="/ferramentas/custo-real-do-carro.html" data-ferramenta="O custo real do seu carro">
+      <strong>O custo real do seu carro</strong>
+      <span>A parcela não é o custo. Depreciação, combustível, IPVA, seguro e manutenção somados — e quantas horas de trabalho isso dá.</span>
+      <em>Ver o custo →</em>
+    </a>
+    <a class="bd-card" href="/financas/simulador-renda-passiva.html" data-ferramenta="Simulador de Renda Passiva">
+      <strong>Simulador de Renda Passiva</strong>
+      <span>O mês exato em que os juros passam a render mais do que você consegue guardar. O ponto em que a conta vira.</span>
+      <em>Abrir o simulador →</em>
+    </a>
+    </div>
+    <div class="bd-rodape">
+      <a class="bd-tema" href="/ferramentas/">Ver as oito ferramentas →</a>
+      <a class="bd-tema" href="/teste-homem-e-dinheiro/">Ou faça o teste: que tipo de homem você é com o dinheiro? →</a>
+    </div>
   </div>
 </section>
 <!-- FIM BLOCO DINHEIRO -->
@@ -1505,5 +1509,6 @@
 <script src="/js/rb-origem.js" defer></script>
 <script src="/js/patrocinio.js" defer></script>
 <script src="/js/newsletter.js" defer></script>
+<script src="/js/ferramenta-uso.js" defer></script>
 </body>
 </html>
