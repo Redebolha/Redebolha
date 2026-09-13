@@ -1,0 +1,591 @@
+<title>CÃ­rculo Rede Bolha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=DM+Sans:opsz,wght@9..40,400;9..40,450;9..40,500;9..40,700&display=swap" rel="stylesheet">
+
+<style>
+/* ââ Tokens ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+:root {
+  --bg:       #080808;
+  --surf:     #0f0f0d;
+  --surf-2:   #141410;
+  --border:   #1e1c17;
+  --border-2: #2a2720;
+  --ouro:     #C9A84C;
+  --ouro-t:   #E0C06A;
+  --ouro-bg:  rgba(201,168,76,0.07);
+  --giz:      #E8E4DA;
+  --giz-mid:  #9A9384;
+  --giz-dim:  #4E4B44;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--giz);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  padding-inline: clamp(20px, 5vw, 56px);
+  padding-bottom: 80px;
+}
+
+/* ââ Gate screen (shown while checking) âââââââââââââââââââââââââââ */
+#gate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  gap: 16px;
+}
+
+#gate .gate-logo {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--ouro);
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+
+#gate p {
+  font-size: 0.875rem;
+  color: var(--giz-dim);
+}
+
+/* ââ Main content (hidden until access confirmed) ââââââââââââââââââ */
+#conteudo { display: none; }
+
+/* ââ Nav âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 26px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 64px;
+}
+
+.nav-brand {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 300;
+  font-size: 1.0625rem;
+  color: var(--ouro);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.circulo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ouro);
+  border: 1px solid rgba(201,168,76,0.3);
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.circulo-badge::before {
+  content: 'â';
+  font-size: 0.5rem;
+}
+
+.nav-sair {
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--giz-dim);
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: color 0.18s;
+  font-family: inherit;
+}
+.nav-sair:hover { color: var(--giz-mid); }
+
+/* ââ Welcome âââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+.welcome {
+  max-width: 640px;
+  margin-bottom: 72px;
+}
+
+.eyebrow {
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ouro);
+  margin-bottom: 16px;
+}
+
+.welcome h1 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--giz);
+  text-wrap: balance;
+  margin-bottom: 16px;
+}
+
+.welcome h1 em {
+  font-style: italic;
+  color: var(--ouro-t);
+}
+
+.welcome p {
+  font-size: 1rem;
+  color: var(--giz-mid);
+  line-height: 1.65;
+}
+
+/* ââ Section header ââââââââââââââââââââââââââââââââââââââââââââââââ */
+.section-header {
+  margin-bottom: 24px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.section-title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 400;
+  color: var(--giz);
+}
+
+/* ââ Tools grid ââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+.tools-section { margin-bottom: 72px; }
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  background: var(--border);
+  border: 1px solid var(--border);
+  gap: 1px;
+}
+
+.tool-card {
+  background: var(--surf);
+  padding: 32px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  transition: background 0.18s;
+}
+
+.tool-card:hover { background: var(--surf-2); }
+.tool-card:hover .tool-arrow { opacity: 1; transform: none; }
+
+.tool-card:focus-visible {
+  outline: 1px solid var(--ouro);
+  outline-offset: -1px;
+}
+
+.tool-arrow {
+  position: absolute;
+  top: 28px; right: 28px;
+  color: var(--ouro);
+  font-size: 0.875rem;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.18s, transform 0.18s;
+  pointer-events: none;
+}
+
+/* "Em breve" card variation */
+.tool-card.em-breve {
+  cursor: default;
+  opacity: 0.55;
+}
+.tool-card.em-breve:hover { background: var(--surf); }
+
+.tool-glyph {
+  font-size: 1.125rem;
+  color: var(--ouro);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.tool-name {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.0625rem;
+  font-weight: 400;
+  color: var(--giz);
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+.tool-desc {
+  font-size: 0.875rem;
+  color: var(--giz-mid);
+  line-height: 1.55;
+}
+
+.tool-tag {
+  margin-top: auto;
+  padding-top: 14px;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--giz-dim);
+}
+
+.tool-tag.soon {
+  color: rgba(201,168,76,0.45);
+}
+
+/* ââ Divider âââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin-bottom: 72px;
+}
+
+/* ââ Link de acesso ââââââââââââââââââââââââââââââââââââââââââââââââ */
+.link-section {
+  max-width: 640px;
+  margin-bottom: 72px;
+}
+
+.link-box {
+  background: var(--surf);
+  border: 1px solid var(--border-2);
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.link-box code {
+  font-family: 'DM Sans', monospace;
+  font-size: 0.875rem;
+  color: var(--ouro-t);
+  word-break: break-all;
+  flex: 1;
+}
+
+.btn-copiar {
+  background: var(--ouro);
+  color: #0e0c08;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 9px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.18s;
+  flex-shrink: 0;
+}
+.btn-copiar:hover { background: var(--ouro-t); }
+.btn-copiar.copied { background: #3a6b3a; color: #b8f0b8; }
+
+.link-note {
+  font-size: 0.8125rem;
+  color: var(--giz-dim);
+  margin-top: 12px;
+  line-height: 1.5;
+}
+
+/* ââ Footer ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+.footer {
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-brand {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: var(--giz-dim);
+}
+
+.footer-note {
+  font-size: 0.75rem;
+  color: var(--giz-dim);
+}
+
+/* ââ Responsive ââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+@media (max-width: 560px) {
+  .tools-grid { grid-template-columns: 1fr; }
+  .footer { flex-direction: column; align-items: flex-start; }
+  .link-box { flex-direction: column; align-items: flex-start; }
+  .btn-copiar { width: 100%; text-align: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tool-arrow, .tool-card, .btn-copiar { transition: none; }
+}
+</style>
+
+<!-- Gate: shown while JS checks access -->
+<div id="gate" role="status" aria-live="polite">
+  <p class="gate-logo">Rede Bolha</p>
+  <p>Verificando acessoâ¦</p>
+</div>
+
+<!-- Main content: revealed after access confirmed -->
+<div id="conteudo" aria-hidden="true">
+
+  <nav class="nav">
+    <a href="/" class="nav-brand">Rede Bolha</a>
+    <div class="nav-right">
+      <span class="circulo-badge">CÃ­rculo</span>
+      <button class="nav-sair" id="btn-sair" aria-label="Sair da Ã¡rea de membros">Sair</button>
+    </div>
+  </nav>
+
+  <!-- Welcome -->
+  <div class="welcome">
+    <p class="eyebrow">Ãrea exclusiva</p>
+    <h1>Bem-vindo ao{<br><em>CÃ­rculo Rede Bolha.</em></h1>
+    <p>Aqui ficam as ferramentas, simuladores e conteÃºdos exclusivos da comunidade. SÃ³ vocÃª e quem faz parte do CÃ­rculo tÃªm acesso a esta pÃ¡gina.</p>
+  </div>
+
+  <!-- Tools -->
+  <div class="tools-section">
+    <div class="section-header">
+      <p class="eyebrow" style="margin-bottom:0">Ferramentas</p>
+      <h2 class="section-title">DisponÃ­veis agora</h2>
+    </div>
+
+    <div class="tools-grid">
+      <a href="/financas/" class="tool-card">
+        <span class="tool-arrow" aria-hidden="true">â</span>
+        <div class="tool-glyph">â</div>
+        <h3 class="tool-name">Simulador de Juros Compostos</h3>
+        <p class="tool-desc">Como R$ 100 por mÃªs viram patrimÃ´nio. Com o ponto de virada e a metÃ¡fora do tijolo que vira Ã¡rvre.</p>
+        <span class="tool-tag">Juros Â· PatrimÃ´nio</span>
+      </a>
+
+      <a href="/financas/calculadora-fii.html" class="tool-card">
+        <span class="tool-arrow" aria-hidden="true">â</span>
+        <div class="tool-glyph">â</div>
+        <h3 class="tool-name">Calculadora de FIIs</h3>
+        <p class="tool-desc">Monte sua carteira de fundos imobiliÃ¡rios e projete a renda passiva mensal. HGBS11, GGRC11, MXRF11, CPTS11 e outros.</p>
+        <span class="tool-tag">Renda passiva Â· FIIs</span>
+      </a>
+
+      <a href="/financas/simulador-renda-passiva.html" class="tool-card">
+        <span class="tool-arrow" aria-hidden="true">â</span>
+        <div class="tool-glyph">â</div>
+        <h3 class="tool-name">Simulador de Renda Passiva</h3>
+        <p class="tool-desc">Quatro nÃºmeros e vocÃª vÃª em que mÃªs a conta vira. PortfÃ³lio consolidado com BBAS3, ITUB4, TAEE11, VIVT3 e mais.</p>
+        <span class="tool-tag">AÃ§Ãµes Â· Renda variÃ¡vel</span>
+      </a>
+
+      <a href="/ferramentas/" class="tool-card">
+        <span class="tool-arrow" aria-hidden="true">â</span>
+        <div class="tool-glyph">â</div>
+        <h3 class="tool-name">Meta de PoupanÃ§a Mensal</h3>
+        <p class="tool-desc">Quanto guardar por mÃªs para chegar na sua meta. FÃ³rmula de juros compostos com taxa mensal equivalente.</p>
+        <span class="tool-tag">Planejamento Â· Metas</span>
+      </a>
+
+      <div class="tool-card em-breve" aria-label="Em breve">
+        <div class="tool-glyph">â</div>
+        <h3 class="tool-name">Calculadora de IR sobre Investimentos</h3>
+        <p class="tool-desc">Simule o imposto de renda sobre aÃ§Ãµes, FIIs e renda fixa antes de vender ou resgatar.</p>
+        <span class="tool-tag soon">Em breve</span>
+      </div>
+
+      <div class="tool-card em-breve" aria-label="Em breve">
+        <div class="tool-glyph">â</div>
+        <h3 class="tool-name">Simulador de IndependÃªncia Financeira</h3>
+        <p class="tool-desc">Em quantos anos vocÃª pode parar de trabalhar? Informe patrimÃ´nio, aporte mensal e taxa de retirada segura.</p>
+        <span class="tool-tag soon">Em breve</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Share link section -->
+  <div class="link-section">
+    <div class="section-header" style="margin-bottom:16px">
+      <p class="eyebrow" style="margin-bottom:0">Seu link de acesso</p>
+    </div>
+    <p style="font-size:0.9375rem;color:var(--giz-mid);margin-bottom:20px;line-height:1.6">
+      Este Ã© o link que dÃ¡ acesso ao CÃ­rculo. NÃ£o compartilhe â ele Ã© pessoal e pode ser desativado a qualquer momento.
+    </p>
+    <div class="link-box">
+      <code id="link-exibido">carregandoâ¦</code>
+      <button class="btn-copiar" id="btn-copiar">Copiar</button>
+    </div>
+    <p class="link-note">O acesso fica salvo no seu navegador por 30 dias. Se trocar de dispositivo, use o link novamente para entrar.</p>
+  </div>
+
+  <footer class="footer">
+    <span class="footer-brand">Rede Bolha Â· CÃ­rculo</span>
+    <span class="footer-note">ConteÃºdo exclusivo para membros. NÃ£o redistribuir.</span>
+  </footer>
+
+</div><!-- /conteudo -->
+
+<script>
+(async function () {
+  'use strict';
+
+  // ââ Chaves de armazenamento local ââââââââââââââââââââââââââââââââ
+  var STORAGE_KEY  = 'rb_circulo_acesso';   // guarda a chave do membro
+  var STORAGE_TS   = 'rb_circulo_ts';       // timestamp do Ãºltimo acesso confirmado
+  var LEGACY_KEY   = 'RB-CIRCULO-2026';     // compatibilidade com membros antigos
+  var GRACE_MS     = 7 * 24 * 60 * 60 * 1000; // 7 dias de graÃ§a se o JSON falhar
+
+  var gate     = document.getElementById('gate');
+  var conteudo = document.getElementById('conteudo');
+
+  // ââ Helpers de armazenamento âââââââââââââââââââââââââââââââââââââ
+  function chaveNaURL() {
+    return new URLSearchParams(window.location.search).get('k') || '';
+  }
+
+  function chaveLocal() {
+    try { return localStorage.getItem(STORAGE_KEY) || ''; } catch (e) { return ''; }
+  }
+
+  function salvarAcesso(chave) {
+    try {
+      localStorage.setItem(STORAGE_KEY, chave);
+      localStorage.setItem(STORAGE_TS, Date.now().toString());
+    } catch (e) {}
+  }
+
+  function limparAcesso() {
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem(STORAGE_TS);
+    } catch (e) {}
+  }
+
+  // ââ ValidaÃ§Ã£o contra membros.json ââââââââââââââââââââââââââââââââ
+  // O arquivo membros.json fica em circulo/membros.json (mesma pasta).
+  // Gerado pelo Painel de Controle do CÃ­rculo.
+  async function validarChave(chave) {
+    if (!chave) return false;
+
+    try {
+      var resp = await fetch('membros.json?_=' + Math.floor(Date.now() / 60000), {
+        cache: 'no-cache'
+      });
+
+      // Arquivo ainda nÃ£o existe â validaÃ§Ã£o legada (transiÃ§Ã£o)
+      if (resp.status === 404) {
+        return chave === LEGACY_KEY;
+      }
+
+      if (!resp.ok) throw new Error('fetch-' + resp.status);
+
+      var config = await resp.json();
+      var membro = config.membros && config.membros[chave];
+
+      if (!membro || !membro.ativo) return false;
+
+      var expira = new Date(membro.expira + 'T23:59:59');
+      if (expira < new Date()) return false;
+
+      return true;
+
+    } catch (e) {
+      // Falha de rede: aceita se a chave foi validada recentemente (grace period)
+      try {
+        var ts = parseInt(localStorage.getItem(STORAGE_TS) || '0', 10);
+        return !!chaveLocal() && (Date.now() - ts) < GRACE_MS;
+      } catch (_) { return false; }
+    }
+  }
+
+  // ââ Liberar conteÃºdo âââââââââââââââââââââââââââââââââââââââââââââ
+  function liberar(chave) {
+    gate.style.display     = 'none';
+    conteudo.style.display = 'block';
+    conteudo.removeAttribute('aria-hidden');
+
+    // Exibe o link pessoal do membro
+    var base = window.location.origin + window.location.pathname;
+    var el = document.getElementById('link-exibido');
+    if (el) el.textContent = base + '?k=' + chave;
+
+    // Limpa a chave da barra de endereÃ§o
+    if (chaveNaURL()) {
+      history.replaceState(null, '', window.location.pathname);
+    }
+  }
+
+  // ââ Bloquear âââââââââââââââââââââââââââââââââââââââââââââââââââââ
+  function bloquear() {
+    window.location.href = '/membros/?bloqueado=1';
+  }
+
+  // ââ Fluxo principal ââââââââââââââââââââââââââââââââââââââââââââââ
+  var chave = chaveNaURL() || chaveLocal();
+
+  if (!chave) {
+    setTimeout(bloquear, 400);
+    return;
+  }
+
+  var valido = await validarChave(chave);
+
+  if (valido) {
+    salvarAcesso(chave);
+    liberar(chave);
+
+    // ââ BotÃ£o Copiar âââââââââââââââââââââââââââââââââââââââââââââ
+    document.getElementById('btn-copiar').addEventListener('click', function () {
+      var texto = document.getElementById('link-exibido').textContent;
+      if (!navigator.clipboard) return;
+      navigator.clipboard.writeText(texto).then(function () {
+        var btn = document.getElementById('btn-copiar');
+        var orig = btn.textContent;
+        btn.textContent = 'Copiado â';
+        btn.classList.add('copied');
+        setTimeout(function () {
+          btn.textContent = orig;
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    });
+
+    // ââ BotÃ£o Sair âââââââââââââââââââââââââââââââââââââââââââââââ
+    document.getElementById('btn-sair').addEventListener('click', function () {
+      limparAcesso();
+      window.location.href = '/';
+    });
+
+  } else {
+    limparAcesso();
+    setTimeout(bloquear, 400);
+  }
+
+})();
+</script>
