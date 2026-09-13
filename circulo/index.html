@@ -1,10 +1,10 @@
-<title>CÃ­rculo Rede Bolha</title>
+<title>Círculo Rede Bolha</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=DM+Sans:opsz,wght@9..40,400;9..40,450;9..40,500;9..40,700&display=swap" rel="stylesheet">
 
 <style>
-/* ââ Tokens ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* ── Tokens ──────────────────────────────────────────────────────── */
 :root {
   --bg:       #080808;
   --surf:     #0f0f0d;
@@ -33,7 +33,7 @@ body {
   padding-bottom: 80px;
 }
 
-/* ââ Gate screen (shown while checking) âââââââââââââââââââââââââââ */
+/* ── Gate screen (shown while checking) ─────────────────────────── */
 #gate {
   display: flex;
   flex-direction: column;
@@ -58,10 +58,10 @@ body {
   color: var(--giz-dim);
 }
 
-/* ââ Main content (hidden until access confirmed) ââââââââââââââââââ */
+/* ── Main content (hidden until access confirmed) ────────────────── */
 #conteudo { display: none; }
 
-/* ââ Nav âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* ── Nav ─────────────────────────────────────────────────────────── */
 .nav {
   display: flex;
   align-items: center;
@@ -100,7 +100,7 @@ body {
 }
 
 .circulo-badge::before {
-  content: 'â';
+  content: '●';
   font-size: 0.5rem;
 }
 
@@ -118,7 +118,7 @@ body {
 }
 .nav-sair:hover { color: var(--giz-mid); }
 
-/* ââ Welcome âââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* ── Welcome ─────────────────────────────────────────────────────── */
 .welcome {
   max-width: 640px;
   margin-bottom: 72px;
@@ -153,7 +153,7 @@ body {
   line-height: 1.65;
 }
 
-/* ââ Section header ââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* ── Section header ──────────────────────────────────────────────── */
 .section-header {
   margin-bottom: 24px;
   display: flex;
@@ -170,7 +170,7 @@ body {
   color: var(--giz);
 }
 
-/* ââ Tools grid ââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* ── Tools grid ──────────────────────────────────────────────────── */
 .tools-section { margin-bottom: 72px; }
 
 .tools-grid {
@@ -253,14 +253,14 @@ body {
   color: rgba(201,168,76,0.45);
 }
 
-/* ââ Divider âââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* ── Divider ─────────────────────────────────────────────────────── */
 .divider {
   height: 1px;
   background: var(--border);
   margin-bottom: 72px;
 }
 
-/* ââ Link de acesso ââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* ── Link de acesso ──────────────────────────────────────────────── */
 .link-section {
   max-width: 640px;
   margin-bottom: 72px;
@@ -310,7 +310,7 @@ body {
   line-height: 1.5;
 }
 
-/* ââ Footer ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* ── Footer ──────────────────────────────────────────────────────── */
 .footer {
   margin-top: 64px;
   padding-top: 24px;
@@ -334,7 +334,7 @@ body {
   color: var(--giz-dim);
 }
 
-/* ââ Responsive ââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* ── Responsive ──────────────────────────────────────────────────── */
 @media (max-width: 560px) {
   .tools-grid { grid-template-columns: 1fr; }
   .footer { flex-direction: column; align-items: flex-start; }
@@ -350,7 +350,7 @@ body {
 <!-- Gate: shown while JS checks access -->
 <div id="gate" role="status" aria-live="polite">
   <p class="gate-logo">Rede Bolha</p>
-  <p>Verificando acessoâ¦</p>
+  <p>Verificando acesso…</p>
 </div>
 
 <!-- Main content: revealed after access confirmed -->
@@ -359,69 +359,69 @@ body {
   <nav class="nav">
     <a href="/" class="nav-brand">Rede Bolha</a>
     <div class="nav-right">
-      <span class="circulo-badge">CÃ­rculo</span>
-      <button class="nav-sair" id="btn-sair" aria-label="Sair da Ã¡rea de membros">Sair</button>
+      <span class="circulo-badge">Círculo</span>
+      <button class="nav-sair" id="btn-sair" aria-label="Sair da área de membros">Sair</button>
     </div>
   </nav>
 
   <!-- Welcome -->
   <div class="welcome">
-    <p class="eyebrow">Ãrea exclusiva</p>
-    <h1>Bem-vindo ao{<br><em>CÃ­rculo Rede Bolha.</em></h1>
-    <p>Aqui ficam as ferramentas, simuladores e conteÃºdos exclusivos da comunidade. SÃ³ vocÃª e quem faz parte do CÃ­rculo tÃªm acesso a esta pÃ¡gina.</p>
+    <p class="eyebrow">Área exclusiva</p>
+    <h1>Bem-vindo ao{<br><em>Círculo Rede Bolha.</em></h1>
+    <p>Aqui ficam as ferramentas, simuladores e conteúdos exclusivos da comunidade. Só você e quem faz parte do Círculo têm acesso a esta página.</p>
   </div>
 
   <!-- Tools -->
   <div class="tools-section">
     <div class="section-header">
       <p class="eyebrow" style="margin-bottom:0">Ferramentas</p>
-      <h2 class="section-title">DisponÃ­veis agora</h2>
+      <h2 class="section-title">Disponíveis agora</h2>
     </div>
 
     <div class="tools-grid">
       <a href="/financas/" class="tool-card">
-        <span class="tool-arrow" aria-hidden="true">â</span>
-        <div class="tool-glyph">â</div>
+        <span class="tool-arrow" aria-hidden="true">→</span>
+        <div class="tool-glyph">◈</div>
         <h3 class="tool-name">Simulador de Juros Compostos</h3>
-        <p class="tool-desc">Como R$ 100 por mÃªs viram patrimÃ´nio. Com o ponto de virada e a metÃ¡fora do tijolo que vira Ã¡rvre.</p>
-        <span class="tool-tag">Juros Â· PatrimÃ´nio</span>
+        <p class="tool-desc">Como R$ 100 por mês viram patrimônio. Com o ponto de virada e a metáfora do tijolo que vira árvre.</p>
+        <span class="tool-tag">Juros · Patrimônio</span>
       </a>
 
       <a href="/financas/calculadora-fii.html" class="tool-card">
-        <span class="tool-arrow" aria-hidden="true">â</span>
-        <div class="tool-glyph">â</div>
+        <span class="tool-arrow" aria-hidden="true">→</span>
+        <div class="tool-glyph">◉</div>
         <h3 class="tool-name">Calculadora de FIIs</h3>
-        <p class="tool-desc">Monte sua carteira de fundos imobiliÃ¡rios e projete a renda passiva mensal. HGBS11, GGRC11, MXRF11, CPTS11 e outros.</p>
-        <span class="tool-tag">Renda passiva Â· FIIs</span>
+        <p class="tool-desc">Monte sua carteira de fundos imobiliários e projete a renda passiva mensal. HGBS11, GGRC11, MXRF11, CPTS11 e outros.</p>
+        <span class="tool-tag">Renda passiva · FIIs</span>
       </a>
 
       <a href="/financas/simulador-renda-passiva.html" class="tool-card">
-        <span class="tool-arrow" aria-hidden="true">â</span>
-        <div class="tool-glyph">â</div>
+        <span class="tool-arrow" aria-hidden="true">→</span>
+        <div class="tool-glyph">◎</div>
         <h3 class="tool-name">Simulador de Renda Passiva</h3>
-        <p class="tool-desc">Quatro nÃºmeros e vocÃª vÃª em que mÃªs a conta vira. PortfÃ³lio consolidado com BBAS3, ITUB4, TAEE11, VIVT3 e mais.</p>
-        <span class="tool-tag">AÃ§Ãµes Â· Renda variÃ¡vel</span>
+        <p class="tool-desc">Quatro números e você vê em que mês a conta vira. Portfólio consolidado com BBAS3, ITUB4, TAEE11, VIVT3 e mais.</p>
+        <span class="tool-tag">Ações · Renda variável</span>
       </a>
 
       <a href="/ferramentas/" class="tool-card">
-        <span class="tool-arrow" aria-hidden="true">â</span>
-        <div class="tool-glyph">â</div>
-        <h3 class="tool-name">Meta de PoupanÃ§a Mensal</h3>
-        <p class="tool-desc">Quanto guardar por mÃªs para chegar na sua meta. FÃ³rmula de juros compostos com taxa mensal equivalente.</p>
-        <span class="tool-tag">Planejamento Â· Metas</span>
+        <span class="tool-arrow" aria-hidden="true">→</span>
+        <div class="tool-glyph">◇</div>
+        <h3 class="tool-name">Meta de Poupança Mensal</h3>
+        <p class="tool-desc">Quanto guardar por mês para chegar na sua meta. Fórmula de juros compostos com taxa mensal equivalente.</p>
+        <span class="tool-tag">Planejamento · Metas</span>
       </a>
 
       <div class="tool-card em-breve" aria-label="Em breve">
-        <div class="tool-glyph">â</div>
+        <div class="tool-glyph">◐</div>
         <h3 class="tool-name">Calculadora de IR sobre Investimentos</h3>
-        <p class="tool-desc">Simule o imposto de renda sobre aÃ§Ãµes, FIIs e renda fixa antes de vender ou resgatar.</p>
+        <p class="tool-desc">Simule o imposto de renda sobre ações, FIIs e renda fixa antes de vender ou resgatar.</p>
         <span class="tool-tag soon">Em breve</span>
       </div>
 
       <div class="tool-card em-breve" aria-label="Em breve">
-        <div class="tool-glyph">â</div>
-        <h3 class="tool-name">Simulador de IndependÃªncia Financeira</h3>
-        <p class="tool-desc">Em quantos anos vocÃª pode parar de trabalhar? Informe patrimÃ´nio, aporte mensal e taxa de retirada segura.</p>
+        <div class="tool-glyph">◑</div>
+        <h3 class="tool-name">Simulador de Independência Financeira</h3>
+        <p class="tool-desc">Em quantos anos você pode parar de trabalhar? Informe patrimônio, aporte mensal e taxa de retirada segura.</p>
         <span class="tool-tag soon">Em breve</span>
       </div>
     </div>
@@ -435,18 +435,18 @@ body {
       <p class="eyebrow" style="margin-bottom:0">Seu link de acesso</p>
     </div>
     <p style="font-size:0.9375rem;color:var(--giz-mid);margin-bottom:20px;line-height:1.6">
-      Este Ã© o link que dÃ¡ acesso ao CÃ­rculo. NÃ£o compartilhe â ele Ã© pessoal e pode ser desativado a qualquer momento.
+      Este é o link que dá acesso ao Círculo. Não compartilhe — ele é pessoal e pode ser desativado a qualquer momento.
     </p>
     <div class="link-box">
-      <code id="link-exibido">carregandoâ¦</code>
+      <code id="link-exibido">carregando…</code>
       <button class="btn-copiar" id="btn-copiar">Copiar</button>
     </div>
     <p class="link-note">O acesso fica salvo no seu navegador por 30 dias. Se trocar de dispositivo, use o link novamente para entrar.</p>
   </div>
 
   <footer class="footer">
-    <span class="footer-brand">Rede Bolha Â· CÃ­rculo</span>
-    <span class="footer-note">ConteÃºdo exclusivo para membros. NÃ£o redistribuir.</span>
+    <span class="footer-brand">Rede Bolha · Círculo</span>
+    <span class="footer-note">Conteúdo exclusivo para membros. Não redistribuir.</span>
   </footer>
 
 </div><!-- /conteudo -->
@@ -455,16 +455,16 @@ body {
 (async function () {
   'use strict';
 
-  // ââ Chaves de armazenamento local ââââââââââââââââââââââââââââââââ
+  // ── Chaves de armazenamento local ────────────────────────────────
   var STORAGE_KEY  = 'rb_circulo_acesso';   // guarda a chave do membro
-  var STORAGE_TS   = 'rb_circulo_ts';       // timestamp do Ãºltimo acesso confirmado
+  var STORAGE_TS   = 'rb_circulo_ts';       // timestamp do último acesso confirmado
   var LEGACY_KEY   = 'RB-CIRCULO-2026';     // compatibilidade com membros antigos
-  var GRACE_MS     = 7 * 24 * 60 * 60 * 1000; // 7 dias de graÃ§a se o JSON falhar
+  var GRACE_MS     = 7 * 24 * 60 * 60 * 1000; // 7 dias de graça se o JSON falhar
 
   var gate     = document.getElementById('gate');
   var conteudo = document.getElementById('conteudo');
 
-  // ââ Helpers de armazenamento âââââââââââââââââââââââââââââââââââââ
+  // ── Helpers de armazenamento ─────────────────────────────────────
   function chaveNaURL() {
     return new URLSearchParams(window.location.search).get('k') || '';
   }
@@ -487,9 +487,9 @@ body {
     } catch (e) {}
   }
 
-  // ââ ValidaÃ§Ã£o contra membros.json ââââââââââââââââââââââââââââââââ
+  // ── Validação contra membros.json ────────────────────────────────
   // O arquivo membros.json fica em circulo/membros.json (mesma pasta).
-  // Gerado pelo Painel de Controle do CÃ­rculo.
+  // Gerado pelo Painel de Controle do Círculo.
   async function validarChave(chave) {
     if (!chave) return false;
 
@@ -498,7 +498,7 @@ body {
         cache: 'no-cache'
       });
 
-      // Arquivo ainda nÃ£o existe â validaÃ§Ã£o legada (transiÃ§Ã£o)
+      // Arquivo ainda não existe → validação legada (transição)
       if (resp.status === 404) {
         return chave === LEGACY_KEY;
       }
@@ -524,7 +524,7 @@ body {
     }
   }
 
-  // ââ Liberar conteÃºdo âââââââââââââââââââââââââââââââââââââââââââââ
+  // ── Liberar conteúdo ─────────────────────────────────────────────
   function liberar(chave) {
     gate.style.display     = 'none';
     conteudo.style.display = 'block';
@@ -535,18 +535,18 @@ body {
     var el = document.getElementById('link-exibido');
     if (el) el.textContent = base + '?k=' + chave;
 
-    // Limpa a chave da barra de endereÃ§o
+    // Limpa a chave da barra de endereço
     if (chaveNaURL()) {
       history.replaceState(null, '', window.location.pathname);
     }
   }
 
-  // ââ Bloquear âââââââââââââââââââââââââââââââââââââââââââââââââââââ
+  // ── Bloquear ─────────────────────────────────────────────────────
   function bloquear() {
     window.location.href = '/membros/?bloqueado=1';
   }
 
-  // ââ Fluxo principal ââââââââââââââââââââââââââââââââââââââââââââââ
+  // ── Fluxo principal ──────────────────────────────────────────────
   var chave = chaveNaURL() || chaveLocal();
 
   if (!chave) {
@@ -560,14 +560,14 @@ body {
     salvarAcesso(chave);
     liberar(chave);
 
-    // ââ BotÃ£o Copiar âââââââââââââââââââââââââââââââââââââââââââââ
+    // ── Botão Copiar ─────────────────────────────────────────────
     document.getElementById('btn-copiar').addEventListener('click', function () {
       var texto = document.getElementById('link-exibido').textContent;
       if (!navigator.clipboard) return;
       navigator.clipboard.writeText(texto).then(function () {
         var btn = document.getElementById('btn-copiar');
         var orig = btn.textContent;
-        btn.textContent = 'Copiado â';
+        btn.textContent = 'Copiado ✓';
         btn.classList.add('copied');
         setTimeout(function () {
           btn.textContent = orig;
@@ -576,7 +576,7 @@ body {
       });
     });
 
-    // ââ BotÃ£o Sair âââââââââââââââââââââââââââââââââââââââââââââââ
+    // ── Botão Sair ───────────────────────────────────────────────
     document.getElementById('btn-sair').addEventListener('click', function () {
       limparAcesso();
       window.location.href = '/';

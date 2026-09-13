@@ -4,7 +4,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=DM+Sans:opsz,wght@9..40,400;9..40,450;9..40,500&display=swap" rel="stylesheet">
 
 <style>
-/* ââ Design tokens: Rede Bolha dark system âââââââââââââââââââââââââ */
+/* ── Design tokens: Rede Bolha dark system ───────────────────────── */
 :root {
   --bg:        #080808;
   --surf:      #0f0f0d;
@@ -21,7 +21,7 @@
   --muted:     var(--giz-mid);
 }
 
-/* ââ Reset âââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* ── Reset ───────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
@@ -36,7 +36,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ââ Nav âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* ── Nav ─────────────────────────────────────────────────────────── */
 .nav {
   display: flex;
   align-items: center;
@@ -66,7 +66,7 @@ body {
 .nav-back:hover { color: var(--ouro); }
 .nav-back:focus-visible { outline: 1px solid var(--ouro); outline-offset: 4px; }
 
-/* ââ Hero ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* ── Hero ────────────────────────────────────────────────────────── */
 .hero {
   max-width: 680px;
   margin-bottom: 80px;
@@ -103,7 +103,7 @@ body {
   line-height: 1.65;
 }
 
-/* ââ Featured Calculator âââââââââââââââââââââââââââââââââââââââââââ */
+/* ── Featured Calculator ─────────────────────────────────────────── */
 .calc-wrap {
   max-width: 860px;
   margin-bottom: 96px;
@@ -248,7 +248,7 @@ body {
   line-height: 1.5;
 }
 
-/* ââ Tools Grid ââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* ── Tools Grid ──────────────────────────────────────────────────── */
 .tools-wrap {
   max-width: 860px;
 }
@@ -273,7 +273,7 @@ body {
   gap: 1px;
 }
 
-/* ââ Locked (member-only) cards ââââââââââââââââââââââââââââââââââââ */
+/* ── Locked (member-only) cards ──────────────────────────────────── */
 .tool-card {
   background: var(--surf);
   padding: 32px;
@@ -295,7 +295,7 @@ body {
   outline-offset: -1px;
 }
 
-/* Member badge â replaces the old arrow */
+/* Member badge — replaces the old arrow */
 .tool-member-badge {
   position: absolute;
   top: 24px; right: 24px;
@@ -372,7 +372,7 @@ body {
   color: var(--giz-dim);
 }
 
-/* ââ EspaÃ§o de Membros âââââââââââââââââââââââââââââââââââââââââââââ */
+/* ── Espaço de Membros ───────────────────────────────────────────── */
 .members-wrap {
   max-width: 860px;
   margin-top: 48px;
@@ -442,7 +442,7 @@ body {
 }
 
 .members-features li::before {
-  content: 'â';
+  content: '—';
   position: absolute;
   left: 0;
   color: var(--ouro);
@@ -499,7 +499,7 @@ body {
   .btn-membros { width: 100%; text-align: center; }
 }
 
-/* ââ Footer ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* ── Footer ──────────────────────────────────────────────────────── */
 .footer {
   max-width: 860px;
   margin-top: 64px;
@@ -527,7 +527,7 @@ body {
   max-width: 520px;
 }
 
-/* ââ Nav actions âââââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* ── Nav actions ─────────────────────────────────────────────────── */
 .nav-actions {
   display: flex;
   align-items: center;
@@ -558,7 +558,7 @@ body {
 .nav-circulo:hover { background: var(--ouro-text); }
 .nav-circulo:focus-visible { outline: 2px solid var(--ouro); outline-offset: 3px; }
 
-/* ââ Hero CTA ââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* ── Hero CTA ────────────────────────────────────────────────────── */
 .hero-cta {
   display: flex;
   align-items: center;
@@ -605,7 +605,7 @@ body {
 }
 .link-saiba:hover { color: var(--ouro); }
 
-/* ââ Responsive ââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* ── Responsive ──────────────────────────────────────────────────── */
 @media (max-width: 560px) {
   .calc-fields { grid-template-columns: 1fr; gap: 28px; }
   .tools-grid { grid-template-columns: 1fr; }
@@ -617,44 +617,44 @@ body {
 }
 </style>
 
-<!-- ââ Nav ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ -->
+<!-- ── Nav ──────────────────────────────────────────────────────────── -->
 <nav class="nav">
   <a href="/" class="nav-brand">Rede Bolha</a>
   <div class="nav-actions">
-    <a href="/membros/" class="nav-circulo">
+    <a href="https://club.hotmart.com" rel="noopener" target="_blank" class="nav-circulo">
       <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <circle cx="7" cy="5" r="2.5"/>
         <path d="M2 12c0-2.2 2.2-4 5-4s5 1.8 5 4"/>
       </svg>
-      CÃ­rculo
+      Círculo
     </a>
-    <a href="/" class="nav-back">â Voltar</a>
+    <a href="/" class="nav-back">← Voltar</a>
   </div>
 </nav>
 
-<!-- ââ Hero âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ -->
+<!-- ── Hero ─────────────────────────────────────────────────────────── -->
 <div class="hero">
   <p class="eyebrow">Central de ferramentas</p>
-  <h1>Tome decisÃµes melhores<br><em>com o seu dinheiro.</em></h1>
-  <p class="hero-sub">Calculadoras e simuladores para entender os nÃºmeros antes de agir. Sem jargÃ£o, sem enrolaÃ§Ã£o â sÃ³ matemÃ¡tica honesta.</p>
+  <h1>Tome decisões melhores<br><em>com o seu dinheiro.</em></h1>
+  <p class="hero-sub">Calculadoras e simuladores para entender os números antes de agir. Sem jargão, sem enrolação — só matemática honesta.</p>
   <div class="hero-cta">
-    <a href="/membros/" class="btn-circulo">
-      Acessar o CÃ­rculo
+    <a href="https://club.hotmart.com" rel="noopener" target="_blank" class="btn-circulo">
+      Acessar o Círculo
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M3 8h10M9 4l4 4-4 4"/>
       </svg>
     </a>
-    <a href="/membros/" class="link-saiba">Ainda nÃ£o sou membro</a>
+    <a href="/assinatura/" class="link-saiba">Ainda não sou membro</a>
   </div>
 </div>
 
-<!-- ââ Featured Calculator ââââââââââââââââââââââââââââââââââââââââââââ -->
+<!-- ── Featured Calculator ──────────────────────────────────────────── -->
 <div class="calc-wrap">
-  <div class="calc-card" role="region" aria-label="Calculadora: meta de poupanÃ§a mensal">
+  <div class="calc-card" role="region" aria-label="Calculadora: meta de poupança mensal">
     <div class="calc-header">
       <p class="eyebrow">Calculadora em destaque</p>
-      <h2>Quanto preciso guardar por mÃªs?</h2>
-      <p>Informe sua meta em reais, o prazo e a taxa de retorno esperada. A calculadora mostra o aporte necessÃ¡rio todo mÃªs para chegar lÃ¡.</p>
+      <h2>Quanto preciso guardar por mês?</h2>
+      <p>Informe sua meta em reais, o prazo e a taxa de retorno esperada. A calculadora mostra o aporte necessário todo mês para chegar lá.</p>
     </div>
 
     <div class="calc-fields">
@@ -696,15 +696,15 @@ body {
   </div>
 </div>
 
-<!-- ââ Tool Cards ââââââââââââââââââââââââââââââââââââââââââââââââââââââ -->
+<!-- ── Tool Cards ────────────────────────────────────────────────────── -->
 <div class="tools-wrap">
   <div class="tools-header">
-    <p class="eyebrow">CÃ­rculo Rede Bolha</p>
+    <p class="eyebrow">Círculo Rede Bolha</p>
     <h2>Ferramentas exclusivas</h2>
   </div>
 
   <div class="tools-grid">
-    <a href="/membros/?ref=juros-compostos" class="tool-card" aria-label="Simulador de Juros Compostos â exclusivo para membros">
+    <a href="/assinatura/?ref=juros-compostos" class="tool-card" aria-label="Simulador de Juros Compostos — exclusivo para membros">
       <span class="tool-member-badge" aria-hidden="true">
         <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <rect x="2" y="5.5" width="8" height="5.5" rx="0.5"/>
@@ -718,13 +718,13 @@ body {
           <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
         </svg>
       </div>
-      <div class="tool-glyph" aria-hidden="true">â</div>
+      <div class="tool-glyph" aria-hidden="true">◈</div>
       <h3 class="tool-name">Simulador de Juros Compostos</h3>
-      <p class="tool-desc">Veja como R$ 100 por mÃªs viram patrimÃ´nio ao longo do tempo. Com o ponto de virada e a metÃ¡fora do tijolo que vira Ã¡rvore.</p>
-      <span class="tool-tag">Juros Â· PatrimÃ´nio</span>
+      <p class="tool-desc">Veja como R$ 100 por mês viram patrimônio ao longo do tempo. Com o ponto de virada e a metáfora do tijolo que vira árvore.</p>
+      <span class="tool-tag">Juros · Patrimônio</span>
     </a>
 
-    <a href="/membros/?ref=calculadora-fii" class="tool-card" aria-label="Planejador de FIIs â exclusivo para membros">
+    <a href="/assinatura/?ref=calculadora-fii" class="tool-card" aria-label="Planejador de FIIs — exclusivo para membros">
       <span class="tool-member-badge" aria-hidden="true">
         <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <rect x="2" y="5.5" width="8" height="5.5" rx="0.5"/>
@@ -738,13 +738,13 @@ body {
           <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
         </svg>
       </div>
-      <div class="tool-glyph" aria-hidden="true">â</div>
+      <div class="tool-glyph" aria-hidden="true">◉</div>
       <h3 class="tool-name">Planejador de FIIs</h3>
-      <p class="tool-desc">Monte sua carteira de fundos imobiliÃ¡rios e projete a renda passiva mensal. HGBS11, GGRC11, MXRF11, CPTS11 e outros.</p>
-      <span class="tool-tag">Renda passiva Â· FIIs</span>
+      <p class="tool-desc">Monte sua carteira de fundos imobiliários e projete a renda passiva mensal. HGBS11, GGRC11, MXRF11, CPTS11 e outros.</p>
+      <span class="tool-tag">Renda passiva · FIIs</span>
     </a>
 
-    <a href="/membros/?ref=simulador-renda-passiva" class="tool-card" aria-label="Rastreador de PortfÃ³lio â exclusivo para membros">
+    <a href="/assinatura/?ref=simulador-renda-passiva" class="tool-card" aria-label="Rastreador de Portfólio — exclusivo para membros">
       <span class="tool-member-badge" aria-hidden="true">
         <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <rect x="2" y="5.5" width="8" height="5.5" rx="0.5"/>
@@ -758,42 +758,42 @@ body {
           <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
         </svg>
       </div>
-      <div class="tool-glyph" aria-hidden="true">â</div>
-      <h3 class="tool-name">Rastreador de PortfÃ³lio</h3>
-      <p class="tool-desc">Acompanhe sua carteira de aÃ§Ãµes: BBAS3, ITUB4, PETR4, TAEE11, VIVT3 e mais. PosiÃ§Ã£o consolidada, sem planilha.</p>
-      <span class="tool-tag">AÃ§Ãµes Â· Renda variÃ¡vel</span>
+      <div class="tool-glyph" aria-hidden="true">◎</div>
+      <h3 class="tool-name">Rastreador de Portfólio</h3>
+      <p class="tool-desc">Acompanhe sua carteira de ações: BBAS3, ITUB4, PETR4, TAEE11, VIVT3 e mais. Posição consolidada, sem planilha.</p>
+      <span class="tool-tag">Ações · Renda variável</span>
     </a>
   </div>
 </div>
 
-<!-- ââ EspaÃ§o de Membros âââââââââââââââââââââââââââââââââââââââââââââââ -->
+<!-- ── Espaço de Membros ─────────────────────────────────────────────── -->
 <div class="members-wrap">
   <div class="members-card">
-    <div class="members-badge" aria-label="ConteÃºdo exclusivo">â CÃ­rculo Rede Bolha</div>
+    <div class="members-badge" aria-label="Conteúdo exclusivo">● Círculo Rede Bolha</div>
     <div class="members-body">
       <div class="members-text">
-        <h2 class="members-title">CÃ­rculo Rede Bolha</h2>
-        <p class="members-desc">Membros do CÃ­rculo tÃªm acesso ao Simulador de Juros Compostos, ao Planejador de FIIs e ao Rastreador de PortfÃ³lio â alÃ©m de relatÃ³rios exclusivos e novidades em primeira mÃ£o.</p>
-        <ul class="members-features" aria-label="BenefÃ­cios do plano">
+        <h2 class="members-title">Círculo Rede Bolha</h2>
+        <p class="members-desc">Membros do Círculo têm acesso ao Simulador de Juros Compostos, ao Planejador de FIIs e ao Rastreador de Portfólio — além de relatórios exclusivos e novidades em primeira mão.</p>
+        <ul class="members-features" aria-label="Benefícios do plano">
           <li>Simulador de juros compostos com ponto de virada</li>
-          <li>Planejador de FIIs com projeÃ§Ã£o de renda passiva</li>
-          <li>Rastreador de portfÃ³lio de aÃ§Ãµes consolidado</li>
+          <li>Planejador de FIIs com projeção de renda passiva</li>
+          <li>Rastreador de portfólio de ações consolidado</li>
           <li>Calculadora de IR sobre investimentos</li>
           <li>Acesso antecipado a cada nova ferramenta</li>
         </ul>
       </div>
       <div class="members-cta">
-        <a href="/membros/" class="btn-membros">Entrar no CÃ­rculo</a>
-        <p class="members-cta-note">JÃ¡ Ã© do CÃ­rculo? <a href="/membros/" class="members-link">Fazer login</a></p>
+        <a href="/assinatura/" class="btn-membros">Entrar no Círculo</a>
+        <p class="members-cta-note">Já é do Círculo? <a href="https://club.hotmart.com" rel="noopener" target="_blank" class="members-link">Fazer login</a></p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ââ Footer ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ -->
+<!-- ── Footer ────────────────────────────────────────────────────────── -->
 <footer class="footer">
-  <span class="footer-brand">Rede Bolha Â· redebolha.com.br</span>
-  <p class="footer-disclaimer">ConteÃºdo de carÃ¡ter exclusivamente educacional. As ferramentas e simulaÃ§Ãµes apresentadas nÃ£o constituem recomendaÃ§Ã£o de investimento. Consulte um profissional habilitado pela CVM antes de tomar qualquer decisÃ£o financeira.</p>
+  <span class="footer-brand">Rede Bolha · redebolha.com.br</span>
+  <p class="footer-disclaimer">Conteúdo de caráter exclusivamente educacional. As ferramentas e simulações apresentadas não constituem recomendação de investimento. Consulte um profissional habilitado pela CVM antes de tomar qualquer decisão financeira.</p>
 </footer>
 
 <script>
@@ -817,7 +817,7 @@ body {
     const rAno = Math.max(0, parseFloat(taxaEl.value)   || 0);
 
     if (FV <= 0 || anos <= 0) {
-      resultEl.textContent = 'â';
+      resultEl.textContent = '—';
       noteEl.textContent = '';
       return;
     }
@@ -832,9 +832,9 @@ body {
       return;
     }
 
-    // Taxa mensal equivalente: (1 + r_a)^(1/12) â 1
+    // Taxa mensal equivalente: (1 + r_a)^(1/12) − 1
     const r   = Math.pow(1 + rAno / 100, 1 / 12) - 1;
-    // PMT = FV Ã r / ((1 + r)^n â 1)
+    // PMT = FV × r / ((1 + r)^n − 1)
     const pmt = FV * r / (Math.pow(1 + r, n) - 1);
 
     const totalAportado = pmt * n;
@@ -845,7 +845,7 @@ body {
     resultEl.textContent = fmt(pmt);
     noteEl.textContent =
       `Em ${prazoLabel}: total aportado ${fmt(totalAportado)} + `
-      + `rendimentos ${fmt(rendimento)} (${pctRend}% do patrimÃ´nio final).`;
+      + `rendimentos ${fmt(rendimento)} (${pctRend}% do patrimônio final).`;
   }
 
   [metaEl, prazoEl, taxaEl].forEach(el =>

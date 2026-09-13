@@ -1,10 +1,10 @@
-<title>CÃ­rculo Rede Bolha</title>
+<title>Círculo Rede Bolha</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=DM+Sans:opsz,wght@9..40,400;9..40,450;9..40,500&display=swap" rel="stylesheet">
 
 <style>
-/* ââ Tokens: Rede Bolha dark âââââââââââââââââââââââââââââââââââââââ */
+/* ── Tokens: Rede Bolha dark ─────────────────────────────────────── */
 :root {
   --bg:        #080808;
   --surf:      #0f0f0d;
@@ -38,7 +38,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ââ Nav âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* ── Nav ─────────────────────────────────────────────────────────── */
 .nav {
   display: flex;
   align-items: center;
@@ -67,7 +67,7 @@ body {
 .nav-back:hover { color: var(--ouro); }
 .nav-back:focus-visible { outline: 1px solid var(--ouro); outline-offset: 4px; }
 
-/* ââ Main: two-column on large, stacked on small âââââââââââââââââââ */
+/* ── Main: two-column on large, stacked on small ─────────────────── */
 .main {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -80,7 +80,7 @@ body {
   align-items: center;
 }
 
-/* ââ Left: brand panel âââââââââââââââââââââââââââââââââââââââââââââ */
+/* ── Left: brand panel ───────────────────────────────────────────── */
 .brand-panel {
   display: flex;
   flex-direction: column;
@@ -142,7 +142,7 @@ body {
   color: var(--ouro);
 }
 
-/* ââ Right: login card âââââââââââââââââââââââââââââââââââââââââââââ */
+/* ── Right: login card ───────────────────────────────────────────── */
 .login-card {
   background: var(--surf);
   border: 1px solid var(--border);
@@ -329,7 +329,7 @@ body {
 }
 .signup-prompt a:hover { text-decoration: underline; }
 
-/* ââ Notice banner âââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* ── Notice banner ───────────────────────────────────────────────── */
 .notice {
   background: var(--ouro-bg);
   border: 1px solid rgba(201,168,76,0.2);
@@ -344,7 +344,7 @@ body {
 .notice strong { color: var(--ouro-text); font-weight: 500; }
 .notice.visible { display: block; }
 
-/* ââ Footer ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* ── Footer ──────────────────────────────────────────────────────── */
 .footer {
   padding: 20px clamp(20px, 5vw, 56px);
   border-top: 1px solid var(--border);
@@ -376,7 +376,7 @@ body {
 }
 .footer-links a:hover { color: var(--ouro); }
 
-/* ââ Responsive ââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* ── Responsive ──────────────────────────────────────────────────── */
 @media (max-width: 720px) {
   .main {
     grid-template-columns: 1fr;
@@ -395,24 +395,28 @@ body {
   .btn-entrar svg, .btn-entrar, .btn-memberkit,
   .form-group input, .nav-back { transition: none; }
 }
+.ajuda{font-size:.82rem;line-height:1.5;color:#8b9694;margin:14px 0 0}
+.ajuda a{color:inherit;text-decoration:underline}
+a.btn-entrar{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;box-sizing:border-box;text-decoration:none}
 </style>
 
-<!-- ââ Nav ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ -->
+<!-- ── Nav ──────────────────────────────────────────────────────────── -->
 <nav class="nav">
   <a href="/" class="nav-brand">Rede Bolha</a>
-  <a href="/ferramentas/" class="nav-back">â Ferramentas</a>
+  <a href="/ferramentas/" class="nav-back">← Ferramentas</a>
 </nav>
 
-<!-- ââ Main âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ -->
+<!-- ── Main ─────────────────────────────────────────────────────────── -->
 <main class="main">
 
   <!-- Left: brand pitch -->
   <div class="brand-panel">
-    <p class="eyebrow">CÃ­rculo Rede Bolha</p>
+    <p class="eyebrow">Círculo Rede Bolha</p>
     <h1>O dinheiro obedece<br>a quem <em>entende as regras.</em></h1>
-    <p>Membros do CÃ­rculo tÃ«m acesso Ã s ferramentas completas, relatÃ³rios e simuladores exclusivos da comunidade Rede Bolha.</p>
+    <p>Membros do Círculo tëm acesso às ferramentas completas, relatórios e simuladores exclusivos da comunidade Rede Bolha.</p>
 
-    <ul class="benefits" aria-label="O que vocÃª acessa como membro">
+    <ul class="benefits" aria-label="O que você acessa como membro">
       <li class="benefit">
         <svg class="benefit-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M2 10l5 5 9-9"/>
@@ -423,13 +427,13 @@ body {
         <svg class="benefit-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M2 10l5 5 9-9"/>
         </svg>
-        Planejador de FIIs com projeÃ§Ã£o de renda passiva
+        Planejador de FIIs com projeção de renda passiva
       </li>
       <li class="benefit">
         <svg class="benefit-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M2 10l5 5 9-9"/>
         </svg>
-        Rastreador de portfÃ³lio de aÃ§Ãµes consolidado
+        Rastreador de portfólio de ações consolidado
       </li>
       <li class="benefit">
         <svg class="benefit-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -451,69 +455,41 @@ body {
 
     <!-- Shown when visitor came from a locked tool -->
     <div class="notice" id="notice" role="alert">
-      <strong>ConteÃºdo exclusivo do CÃ­rculo.</strong> FaÃ§a login ou crie sua conta para acessar essa ferramenta.
+      <strong>Conteúdo exclusivo do Círculo.</strong> Faça login ou crie sua conta para acessar essa ferramenta.
     </div>
 
-    <h2>Entrar no CÃ­rculo Rede Bolha</h2>
-    <p class="subtitle">Use o e-mail e senha cadastrados no Memberkit.</p>
+    <h2>Entrar no Círculo Rede Bolha</h2>
+    <p class="subtitle">O conteúdo do Círculo fica no Hotmart Club. Entre com o
+       mesmo e-mail que você usou na compra.</p>
 
-    <!--
-      CONFIGURAÃÃO: substitua o action abaixo pela URL de login
-      da sua Ã¡rea no Memberkit (ex: https://suaarea.memberkit.com.br/members/sign_in)
-    -->
-    <form id="login-form" action="https://SEU-DOMINIO.memberkit.com.br/members/sign_in" method="POST" novalidate>
+    <a href="https://club.hotmart.com" class="btn-entrar" rel="noopener" target="_blank">
+      Acessar o Hotmart Club
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 8h10M9 4l4 4-4 4"/>
+      </svg>
+    </a>
 
-      <div class="form-group">
-        <label for="email">E-mail</label>
-        <input type="email" id="email" name="member[email]"
-               placeholder="seuemail@exemplo.com"
-               autocomplete="email" required>
-      </div>
-
-      <div class="form-group">
-        <label for="senha">Senha</label>
-        <input type="password" id="senha" name="member[password]"
-               placeholder="â¢â¢â¢â¢â¢â¢â¢â¢"
-               autocomplete="current-password" required>
-      </div>
-
-      <div class="forgot">
-        <a href="https://SEU-DOMINIO.memberkit.com.br/members/password/new">Esqueci minha senha</a>
-      </div>
-
-      <button type="submit" class="btn-entrar">
-        Entrar
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M3 8h10M9 4l4 4-4 4"/>
-        </svg>
-      </button>
-    </form>
+    <p class="ajuda">Não recebeu o acesso? O e-mail da Hotmart chega logo após a
+       confirmação do pagamento — vale conferir o spam. Se não chegar,
+       <a href="https://wa.me/5551980482820" rel="noopener" target="_blank">me chama no WhatsApp</a>.</p>
 
     <div class="divider"><span>ou</span></div>
 
-    <!--
-      CONFIGURAÃÃO: substitua pelo link direto de login do seu Memberkit
-    -->
-    <a href="https://SEU-DOMINIO.memberkit.com.br/members/sign_in"
-       class="btn-memberkit">
-      Acessar via Memberkit
-    </a>
-
     <div class="signup-prompt">
-      Ainda nÃ£o faz parte do CÃ­rculo?
-      <a href="/membros/">ConheÃ§a os planos â</a>
+      Ainda não faz parte do Círculo?
+      <a href="/assinatura/">Conhecer o Círculo →</a>
     </div>
 
   </div>
 </main>
 
-<!-- ââ Footer ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ -->
+<!-- ── Footer ────────────────────────────────────────────────────────── -->
 <footer class="footer">
-  <span class="footer-brand">Rede Bolha Â· redebolha.com.br</span>
-  <nav class="footer-links" aria-label="Links do rodapÃ©">
+  <span class="footer-brand">Rede Bolha · redebolha.com.br</span>
+  <nav class="footer-links" aria-label="Links do rodapé">
     <a href="/ferramentas/">Ferramentas</a>
     <a href="/financas/">Economia</a>
-    <a href="/membros/">Planos</a>
+    <a href="/assinatura/">Assinar</a>
   </nav>
 </footer>
 
@@ -527,7 +503,7 @@ body {
     if (notice) notice.classList.add('visible');
   }
 
-  // ValidaÃ§Ã£o bÃ¡sica antes de submeter
+  // Validação básica antes de submeter
   const form = document.getElementById('login-form');
   if (form) {
     form.addEventListener('submit', function (e) {

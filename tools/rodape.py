@@ -28,7 +28,7 @@ COLUNAS = [
         ("Cursos", "/cursos/"),
         ("Palestras", "/palestras/"),
         ("Círculo Rede Bolha — assinar", "/assinatura/"),
-        ("Área do assinante (entrar)", "/membros/"),
+        ("Área do assinante — Hotmart Club", "https://club.hotmart.com"),
         ("Falar no WhatsApp", "https://wa.me/5551980482820"),
     ]),
     ("Institucional", [

@@ -30,7 +30,8 @@ MENU = [
 MARCA_HTML = '<b>Rede</b> Bolha'
 
 # Link utilitario, separado do menu: quem ja assina precisa achar a porta.
-ENTRAR = ("Entrar", "/membros/")
+ENTRAR = ("Entrar", "https://club.hotmart.com")
+ENTRAR_ATTR = ' rel="noopener" target="_blank"'  # o Club e externo
 
 # Pastas que nao recebem cabecalho do site.
 IGNORAR = {
@@ -61,7 +62,9 @@ def links(atual: str, sep: str = " ") -> str:
     for rotulo, href in MENU:
         marca = ' aria-current="page"' if href == atual else ""
         saida.append(f'<a href="{href}"{marca}>{rotulo}</a>')
-    saida.append(f'<a class="rb-entrar" href="{ENTRAR[1]}">{ENTRAR[0]}</a>')
+    saida.append(
+        f'<a class="rb-entrar" href="{ENTRAR[1]}"{ENTRAR_ATTR}>{ENTRAR[0]}</a>'
+    )
     return sep.join(saida)
 
 
@@ -74,7 +77,7 @@ def itens_lista(atual: str, classe: str = "") -> str:
         saida.append(f'<li><a{cls} href="{href}"{marca}>{rotulo}</a></li>')
     entrar_cls = f"{classe} rb-entrar".strip()
     saida.append(
-        f'<li><a class="{entrar_cls}" href="{ENTRAR[1]}">{ENTRAR[0]}</a></li>'
+        f'<li><a class="{entrar_cls}" href="{ENTRAR[1]}"{ENTRAR_ATTR}>{ENTRAR[0]}</a></li>'
     )
     return "".join(saida)
 
