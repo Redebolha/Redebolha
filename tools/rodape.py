@@ -27,7 +27,8 @@ COLUNAS = [
     ("Trabalhe com Romário", [
         ("Cursos", "/cursos/"),
         ("Palestras", "/palestras/"),
-        ("Círculo Rede Bolha", "/assinatura/"),
+        ("Círculo Rede Bolha — assinar", "/assinatura/"),
+        ("Área do assinante (entrar)", "/membros/"),
         ("Falar no WhatsApp", "https://wa.me/5551980482820"),
     ]),
     ("Institucional", [

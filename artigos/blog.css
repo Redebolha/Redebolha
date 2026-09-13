@@ -14,12 +14,20 @@ a{color:var(--gold-l);text-decoration:none}
 a:hover{color:var(--gold)}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
 .topbar{border-bottom:1px solid var(--line);background:rgba(10,10,12,.85);position:sticky;top:0;backdrop-filter:blur(8px);z-index:10}
-.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:10px 22px;flex-wrap:wrap;padding:16px 22px}
+.topbar .wrap{max-width:1180px;display:flex;align-items:center;justify-content:space-between;gap:10px 20px;flex-wrap:wrap;padding:16px 22px}
 .brand{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.16em;font-size:.82rem;color:var(--txt)}
 .brand b{color:var(--gold);font-weight:600}
-.topnav{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:flex-end}
+.topnav{display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px;justify-content:flex-end;min-width:0;flex:1 1 auto}
+@media(max-width:640px){
+  .topbar .wrap{justify-content:center;gap:10px}
+  .topnav{flex:1 1 100%;width:100%;max-width:100%;justify-content:center;gap:8px 12px}
+  .topnav a{font-size:.66rem;letter-spacing:.1em}
+  .topnav a.rb-entrar{padding:4px 10px}
+}
 .topnav a{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.13em;font-size:.72rem;color:var(--body)}
 .topnav a[aria-current="page"]{color:var(--gold)}
+.topnav a.rb-entrar{border:1px solid var(--gold);border-radius:3px;padding:5px 12px;color:var(--gold)}
+.topnav a.rb-entrar:hover{background:var(--gold);color:#0a0a0c}
 .topnav a:hover{color:var(--gold)}
 article,.listing{padding:52px 0 30px}
 .eyebrow{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.26em;font-size:.72rem;color:var(--gold);margin-bottom:16px}
