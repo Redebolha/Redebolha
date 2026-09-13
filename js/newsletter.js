@@ -116,12 +116,20 @@
       // Se quem montou o bloco marcou uma origem (o quiz marca o perfil), ela
       // viaja junto: o provedor registra a origem de cada inscrito, e assim a
       // segmentacao aparece tambem no painel dele, nao so no GA4.
-      var destino = cfg.cadastro + '?' + (cfg.parametro_email || 'email') +
-                    '=' + encodeURIComponent(email);
+      // O endereco de cadastro pode ja trazer parametros (o do Beehiiv vem com
+      // ?modal=signup). Juntar com "?" nesse caso quebraria a URL.
+      function juntar(url, par) {
+        return url + (url.indexOf('?') === -1 ? '?' : '&') + par;
+      }
+
+      var destino = juntar(cfg.cadastro,
+        (cfg.parametro_email || 'email') + '=' + encodeURIComponent(email));
+
       var origem = form.getAttribute('data-origem');
       if (origem) {
-        destino += '&utm_source=redebolha&utm_medium=site&utm_campaign=' +
-                   encodeURIComponent(origem);
+        destino = juntar(destino,
+          'utm_source=redebolha&utm_medium=site&utm_campaign=' +
+          encodeURIComponent(origem));
       }
       window.location.href = destino;
     });

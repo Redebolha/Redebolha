@@ -7,19 +7,10 @@
     "E proposital: melhor nao pedir e-mail do que mandar a pessoa para uma",
     "pagina que pede cartao de credito."
   ],
-
   "provedor": "beehiiv",
-
-  "publicacao": "",
-  "cadastro": "",
-
+  "publicacao": "https://adm-romrios-newsletter.beehiiv.com",
+  "cadastro": "https://adm-romrios-newsletter.beehiiv.com/subscribe",
   "_parametro": "Nome do campo que leva o e-mail digitado na URL. Beehiiv e Substack usam 'email'.",
   "parametro_email": "email",
-
-  "_pendente": [
-    "FALTA PREENCHER: o endereco publico da publicacao no Beehiiv.",
-    "app.beehiiv.com e o painel de quem escreve — nao serve para o visitante.",
-    "O que entra aqui e algo como https://suapublicacao.beehiiv.com",
-    "Enquanto estiver vazio, o bloco de captura fica fora do ar de proposito."
-  ]
+  "_nota": "Pagina dedicada de inscricao do Beehiiv. Se um dia ela parar de aceitar o e-mail pela URL, a pessoa cai no formulario vazio e digita de novo: um passo a mais, nunca um beco sem saida."
 }
