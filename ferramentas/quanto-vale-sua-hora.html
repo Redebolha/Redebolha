@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quanto vale a sua hora? Calculadora gratuita | Rede Bolha</title>
+<meta name="description" content="Calcule quanto vale de verdade uma hora do seu trabalho — descontando deslocamento e os gastos que só existem porque você trabalha. Grátis, sem cadastro.">
+<link rel="canonical" href="https://redebolha.com.br/ferramentas/quanto-vale-sua-hora.html">
+<meta property="og:title" content="Quanto vale a sua hora?">
+<meta property="og:description" content="O salário dividido pelas horas não conta a verdade. O deslocamento e os gastos do trabalho contam.">
+<meta property="og:url" content="https://redebolha.com.br/ferramentas/quanto-vale-sua-hora.html">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ferramenta.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6DSL2EMZSL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6DSL2EMZSL');
+</script>
+</head>
+<body data-tema="dinheiro">
+
+<header class="topo">
+  <div class="wrap">
+    <a class="logo" href="https://redebolha.com.br/"><b>Rede</b> Bolha</a>
+    <nav aria-label="Principal">
+      <ul><li><a href="/financas/">Homem e Dinheiro</a></li><li><a href="/masculinidade/">Masculinidade</a></li><li><a href="/economia/">Economia</a></li><li><a href="/ferramentas/" aria-current="page">Ferramentas</a></li><li><a href="/artigos/">Artigos</a></li><li><a href="/sobre-o-autor.html">Sobre</a></li><li><a class="rb-entrar" href="https://club.hotmart.com" rel="noopener" target="_blank">Entrar</a></li></ul>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+<article>
+
+  <div class="f-abertura">
+    <p class="f-chapeu">Ferramenta · sem cadastro</p>
+    <h1>Quanto vale <em>a sua hora?</em></h1>
+    <p class="f-intro">
+      Salário dividido por horas trabalhadas dá um número bonito e mentiroso.
+      Ele não conta o tempo que você passa no ônibus, nem o dinheiro que só sai
+      da sua conta porque você trabalha. <strong>Esta conta conta.</strong>
+    </p>
+  </div>
+
+  <section class="f-painel" aria-label="Calculadora">
+    <div class="f-campos">
+      <div class="f-campo">
+        <label for="salario">O que cai na conta</label>
+        <div class="f-entrada"><span>R$</span>
+          <input type="number" id="salario" value="3500" min="0" step="100" inputmode="decimal"></div>
+        <p class="f-dica">Líquido por mês, o que sobra depois dos descontos.</p>
+      </div>
+
+      <div class="f-campo">
+        <label for="horas">Horas por semana</label>
+        <div class="f-entrada">
+          <input type="number" id="horas" value="44" min="1" max="120" step="1" inputmode="decimal"><span>h</span></div>
+        <p class="f-dica">As que você realmente trabalha, não as do contrato.</p>
+      </div>
+
+      <div class="f-campo">
+        <label for="transito">Deslocamento por dia</label>
+        <div class="f-entrada">
+          <input type="number" id="transito" value="90" min="0" max="600" step="5" inputmode="decimal"><span>min</span></div>
+        <p class="f-dica">Ida e volta somadas. É tempo seu, mesmo sem crachá.</p>
+      </div>
+
+      <div class="f-campo">
+        <label for="dias">Dias no trabalho</label>
+        <div class="f-entrada">
+          <input type="number" id="dias" value="5" min="1" max="7" step="1" inputmode="decimal"><span>/semana</span></div>
+        <p class="f-dica">Quantos dias você sai de casa para trabalhar.</p>
+      </div>
+
+      <div class="f-campo">
+        <label for="gastos">Gastos do trabalho</label>
+        <div class="f-entrada"><span>R$</span>
+          <input type="number" id="gastos" value="450" min="0" step="50" inputmode="decimal"></div>
+        <p class="f-dica">Por mês: condução, almoço fora, roupa, estacionamento.</p>
+      </div>
+
+      <div class="f-campo">
+        <label for="compra">Aquilo que você quer comprar</label>
+        <div class="f-entrada"><span>R$</span>
+          <input type="number" id="compra" value="2500" min="0" step="100" inputmode="decimal"></div>
+        <p class="f-dica">Para ver o preço em horas de vida, não em reais.</p>
+      </div>
+    </div>
+
+    <div class="f-saida">
+      <div class="f-numero">
+        <span class="f-numero-rot">A sua hora vale</span>
+        <span class="f-numero-val" id="valor-hora">R$ 0,00</span>
+      </div>
+
+      <ul class="f-linhas">
+        <li class="f-linha"><span class="f-linha-rot">A conta de padaria diria</span><b id="hora-nominal">—</b></li>
+        <li class="f-linha"><span class="f-linha-rot">Horas que o trabalho toma por mês</span><b id="horas-mes">—</b></li>
+        <li class="f-linha"><span class="f-linha-rot">Dessas, só de deslocamento</span><b id="horas-transito">—</b></li>
+        <li class="f-linha destaque"><span class="f-linha-rot">Aquela compra custa</span><b id="compra-horas">—</b></li>
+      </ul>
+
+      <p class="f-nota" id="nota"></p>
+    </div>
+  </section>
+
+  <section class="f-secao">
+    <h2>Por que o número dá menor do que você imaginava</h2>
+    <p>
+      A conta que quase todo mundo faz é salário dividido pelas horas do contrato.
+      Só que o contrato não inclui as duas coisas que mais pesam: <strong>o tempo
+      que você gasta indo e voltando</strong> e <strong>o dinheiro que só sai da
+      sua conta porque você trabalha.</strong>
+    </p>
+    <p>
+      Uma hora e meia de trânsito por dia, cinco dias por semana, dá mais de trinta
+      horas por mês. É quase uma semana de trabalho que ninguém paga e que quase
+      ninguém conta.
+    </p>
+    <div class="f-aviso">
+      Isso não é motivo para desanimar com o seu trabalho. É informação para você
+      decidir melhor — inclusive sobre aceitar aquela vaga que paga mais e fica
+      muito mais longe.
+    </div>
+    <p>
+      E tem o outro lado, o que mexe mesmo com a gente: quando você vê o preço de
+      uma compra convertido em horas da sua vida, algumas coisas ficam
+      instantaneamente mais baratas. E outras ficam caríssimas.
+    </p>
+  </section>
+
+  <section class="f-secao">
+    <h2>Continue a conversa</h2>
+    <div class="f-links">
+      <a class="f-btn" href="/artigos/cansaco-emocional-do-provedor.html">O cansaço do provedor →</a>
+      <a class="f-btn vazio" href="/ferramentas/">Ver todas as ferramentas</a>
+    </div>
+    <div data-newsletter></div>
+  </section>
+
+  <footer class="f-rodape">
+    <span>&copy; 2026 Adm. Romário Cruz · Eldorado do Sul, RS</span>
+    <a href="/">Início</a>
+    <a href="/financas/">Homem e Dinheiro</a>
+    <a href="/expediente/">Expediente</a>
+  </footer>
+
+</article>
+</main>
+
+<script src="/js/ferramenta-uso.js" defer></script>
+<script src="/js/newsletter.js" defer></script>
+<script>
+(function () {
+  'use strict';
+
+  var moeda = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+  var campos = ['salario', 'horas', 'transito', 'dias', 'gastos', 'compra'];
+
+  function ler(id) {
+    var v = parseFloat(document.getElementById(id).value);
+    return isFinite(v) && v >= 0 ? v : 0;
+  }
+
+  function horasTexto(h) {
+    if (!isFinite(h) || h <= 0) return '—';
+    var inteiras = Math.floor(h);
+    var minutos = Math.round((h - inteiras) * 60);
+    if (minutos === 60) { inteiras += 1; minutos = 0; }
+    if (inteiras >= 100) return inteiras.toLocaleString('pt-BR') + ' h';
+    return inteiras + 'h' + (minutos ? ' ' + minutos + 'min' : '');
+  }
+
+  function calcular() {
+    var salario  = ler('salario');
+    var horas    = ler('horas');
+    var transito = ler('transito');
+    var dias     = ler('dias');
+    var gastos   = ler('gastos');
+    var compra   = ler('compra');
+
+    // Semanas por mes: 52 semanas / 12 meses. Usar "4" arredonda pra baixo e
+    // sempre superestima o valor da hora.
+    var SEMANAS_MES = 52 / 12;
+
+    var horasTrabalho  = horas * SEMANAS_MES;
+    var horasDesloc    = (transito / 60) * dias * SEMANAS_MES;
+    var horasTotais    = horasTrabalho + horasDesloc;
+    var liquidoReal    = salario - gastos;
+
+    var real    = horasTotais > 0 ? liquidoReal / horasTotais : 0;
+    var nominal = horasTrabalho > 0 ? salario / horasTrabalho : 0;
+
+    var elValor = document.getElementById('valor-hora');
+    elValor.textContent = real > 0 ? moeda.format(real) : moeda.format(0);
+    elValor.classList.toggle('alerta', real <= 0);
+
+    document.getElementById('hora-nominal').textContent =
+      nominal > 0 ? moeda.format(nominal) : '—';
+    document.getElementById('horas-mes').textContent = horasTexto(horasTotais);
+    document.getElementById('horas-transito').textContent = horasTexto(horasDesloc);
+    document.getElementById('compra-horas').textContent =
+      (real > 0 && compra > 0) ? horasTexto(compra / real) : '—';
+
+    escreverNota(real, nominal, horasDesloc, liquidoReal);
+  }
+
+  function escreverNota(real, nominal, horasDesloc, liquidoReal) {
+    var nota = document.getElementById('nota');
+
+    if (liquidoReal <= 0) {
+      nota.innerHTML = '<strong>Os gastos do trabalho estão comendo tudo o que ele paga.</strong> ' +
+        'Vale conferir se algum desses gastos existe só por hábito — ou se a conta ' +
+        'desse trabalho realmente fecha.';
+      return;
+    }
+    if (real <= 0) { nota.textContent = ''; return; }
+
+    var perda = nominal > 0 ? (1 - real / nominal) * 100 : 0;
+    var texto = 'A conta de padaria diria ' + moeda.format(nominal) + ' por hora. ' +
+      'Contando o deslocamento e os gastos do trabalho, a sua hora vale ' +
+      moeda.format(real) + ' — <strong>' + perda.toFixed(0) + '% a menos.</strong>';
+
+    if (horasDesloc >= 20) {
+      texto += ' Só o trajeto leva ' + horasTexto(horasDesloc) +
+        ' do seu mês. É tempo que ninguém paga.';
+    }
+    nota.innerHTML = texto;
+  }
+
+  campos.forEach(function (id) {
+    document.getElementById(id).addEventListener('input', calcular);
+  });
+  calcular();
+})();
+</script>
+</body>
+</html>

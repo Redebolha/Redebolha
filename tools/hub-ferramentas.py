@@ -28,6 +28,27 @@ FONTE = RAIZ / "tools" / "ferramentas-base.html"
 # navegador: todas respondem a entrada do usuario.
 FERRAMENTAS = [
     {
+        "href": "/ferramentas/quanto-vale-sua-hora.html",
+        "nome": "Quanto vale a sua hora",
+        "desc": "Salário dividido por horas dá um número mentiroso. Esta conta "
+                "desconta o deslocamento e os gastos que só existem por causa do trabalho.",
+        "tags": "Tempo · Renda",
+    },
+    {
+        "href": "/ferramentas/termometro-da-divida.html",
+        "nome": "Termômetro da Dívida",
+        "desc": "Em quanto tempo você quita, quanto vai pagar de juros — e se a "
+                "sua parcela está cobrindo os juros ou só empurrando a dívida.",
+        "tags": "Dívida · Juros",
+    },
+    {
+        "href": "/ferramentas/custo-real-do-carro.html",
+        "nome": "O custo real do seu carro",
+        "desc": "A parcela não é o custo. Depreciação, combustível, IPVA, seguro "
+                "e manutenção somados — e quantas horas de trabalho isso dá.",
+        "tags": "Carro · Padrão de vida",
+    },
+    {
         "href": "/financas/simulador-renda-passiva.html",
         "nome": "Simulador de Renda Passiva",
         "desc": "Em quanto tempo os juros passam a render mais que o seu aporte "

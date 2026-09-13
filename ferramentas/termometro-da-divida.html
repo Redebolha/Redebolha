@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Termômetro da Dívida — em quanto tempo você quita? | Rede Bolha</title>
+<meta name="description" content="Calculadora gratuita de dívida: veja em quanto tempo você quita, quanto vai pagar de juros e se a sua parcela está cobrindo os juros ou só empurrando a dívida.">
+<link rel="canonical" href="https://redebolha.com.br/ferramentas/termometro-da-divida.html">
+<meta property="og:title" content="Termômetro da Dívida">
+<meta property="og:description" content="Em quanto tempo você quita — e quanto vai pagar de juros até lá. Sem cadastro.">
+<meta property="og:url" content="https://redebolha.com.br/ferramentas/termometro-da-divida.html">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ferramenta.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6DSL2EMZSL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6DSL2EMZSL');
+</script>
+</head>
+<body data-tema="dinheiro">
+
+<header class="topo">
+  <div class="wrap">
+    <a class="logo" href="https://redebolha.com.br/"><b>Rede</b> Bolha</a>
+    <nav aria-label="Principal">
+      <ul><li><a href="/financas/">Homem e Dinheiro</a></li><li><a href="/masculinidade/">Masculinidade</a></li><li><a href="/economia/">Economia</a></li><li><a href="/ferramentas/" aria-current="page">Ferramentas</a></li><li><a href="/artigos/">Artigos</a></li><li><a href="/sobre-o-autor.html">Sobre</a></li><li><a class="rb-entrar" href="https://club.hotmart.com" rel="noopener" target="_blank">Entrar</a></li></ul>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+<article>
+
+  <div class="f-abertura">
+    <p class="f-chapeu">Ferramenta · sem cadastro</p>
+    <h1>Termômetro <em>da dívida</em></h1>
+    <p class="f-intro">
+      A dívida que a gente não olha não para de crescer — ela só cresce sem
+      testemunha. Coloque os números aqui e veja <strong>em quanto tempo você
+      quita e quanto vai pagar de juros até lá.</strong> Ninguém vai saber além
+      de você: nada sai deste navegador.
+    </p>
+  </div>
+
+  <section class="f-painel" aria-label="Calculadora">
+    <div class="f-campos">
+      <div class="f-campo">
+        <label for="saldo">Quanto você deve</label>
+        <div class="f-entrada"><span>R$</span>
+          <input type="number" id="saldo" value="8000" min="0" step="100" inputmode="decimal"></div>
+        <p class="f-dica">O saldo devedor de hoje, somando tudo.</p>
+      </div>
+
+      <div class="f-campo">
+        <label for="juros">Juros ao mês</label>
+        <div class="f-entrada">
+          <input type="number" id="juros" value="8" min="0" max="30" step="0.1" inputmode="decimal"><span>% a.m.</span></div>
+        <p class="f-dica">Cartão rotativo passa de 14%. Cheque especial também.</p>
+      </div>
+
+      <div class="f-campo">
+        <label for="parcela">Quanto você paga por mês</label>
+        <div class="f-entrada"><span>R$</span>
+          <input type="number" id="parcela" value="800" min="0" step="50" inputmode="decimal"></div>
+        <p class="f-dica">O valor que sai da conta todo mês para essa dívida.</p>
+      </div>
+    </div>
+
+    <div class="f-saida">
+      <div class="f-numero">
+        <span class="f-numero-rot" id="rot-principal">Você quita em</span>
+        <span class="f-numero-val" id="prazo">—</span>
+      </div>
+
+      <ul class="f-linhas">
+        <li class="f-linha"><span class="f-linha-rot">Juros só do primeiro mês</span><b id="juros-mes">—</b></li>
+        <li class="f-linha"><span class="f-linha-rot">Total que você vai desembolsar</span><b id="total">—</b></li>
+        <li class="f-linha destaque"><span class="f-linha-rot">Desse total, juros</span><b id="juros-total">—</b></li>
+      </ul>
+
+      <div id="proporcao" hidden>
+        <div class="f-barra" aria-hidden="true">
+          <i id="barra-divida" style="background:var(--ouro-claro)"></i>
+          <i id="barra-juros" style="background:var(--alerta)"></i>
+        </div>
+        <div class="f-legenda">
+          <span><i style="background:var(--ouro-claro)"></i> A dívida em si</span>
+          <span><i style="background:var(--alerta)"></i> Juros</span>
+        </div>
+      </div>
+
+      <p class="f-nota" id="nota"></p>
+    </div>
+  </section>
+
+  <section class="f-secao">
+    <h2>A conta que decide tudo</h2>
+    <p>
+      Antes de qualquer estratégia, existe uma única pergunta que importa:
+      <strong>a sua parcela é maior que os juros do mês?</strong>
+    </p>
+    <p>
+      Se for, cada pagamento derruba um pedaço do saldo e a dívida tem fim — pode
+      demorar, mas tem fim. Se não for, você está pagando todo mês e devendo mais
+      no mês seguinte. É como tirar água de um barco com um copo enquanto entra
+      água por dois furos.
+    </p>
+    <div class="f-aviso">
+      Se a ferramenta disser que a dívida cresce mesmo você pagando, isso não é
+      julgamento sobre você. É um sinal de que o problema não se resolve com mais
+      esforço — se resolve renegociando o juro ou trocando essa dívida por outra
+      mais barata.
+    </div>
+    <p>
+      E vale dizer o que ninguém diz: dívida mexe com a vergonha do homem mais do
+      que com o bolso. Muita gente paga a parcela mínima há anos <strong>só para
+      não ter que olhar o número inteiro.</strong> Olhar já é metade.
+    </p>
+  </section>
+
+  <section class="f-secao">
+    <h2>Continue a conversa</h2>
+    <div class="f-links">
+      <a class="f-btn" href="/artigos/homem-e-o-dinheiro.html">O Homem e o Dinheiro →</a>
+      <a class="f-btn vazio" href="/ferramentas/">Ver todas as ferramentas</a>
+    </div>
+    <div data-newsletter></div>
+  </section>
+
+  <footer class="f-rodape">
+    <span>&copy; 2026 Adm. Romário Cruz · Eldorado do Sul, RS</span>
+    <a href="/">Início</a>
+    <a href="/financas/">Homem e Dinheiro</a>
+    <a href="/expediente/">Expediente</a>
+  </footer>
+
+</article>
+</main>
+
+<script src="/js/ferramenta-uso.js" defer></script>
+<script src="/js/newsletter.js" defer></script>
+<script>
+(function () {
+  'use strict';
+
+  var moeda = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+  var TETO = 600;  // 50 anos: acima disso a resposta util e "nao quita"
+
+  function ler(id) {
+    var v = parseFloat(document.getElementById(id).value);
+    return isFinite(v) && v >= 0 ? v : 0;
+  }
+
+  function prazoTexto(meses) {
+    var anos = Math.floor(meses / 12);
+    var resto = meses % 12;
+    if (anos === 0) return meses + (meses === 1 ? ' mês' : ' meses');
+    var t = anos + (anos === 1 ? ' ano' : ' anos');
+    if (resto) t += ' e ' + resto + (resto === 1 ? ' mês' : ' meses');
+    return t;
+  }
+
+  function calcular() {
+    var saldo   = ler('saldo');
+    var taxa    = ler('juros') / 100;
+    var parcela = ler('parcela');
+
+    var jurosPrimeiroMes = saldo * taxa;
+    document.getElementById('juros-mes').textContent =
+      saldo > 0 ? moeda.format(jurosPrimeiroMes) : '—';
+
+    var elPrazo = document.getElementById('prazo');
+    var elRot   = document.getElementById('rot-principal');
+    var elTotal = document.getElementById('total');
+    var elJuros = document.getElementById('juros-total');
+    var prop    = document.getElementById('proporcao');
+    var nota    = document.getElementById('nota');
+
+    function limpar(msg) {
+      elPrazo.textContent = '—';
+      elPrazo.className = 'f-numero-val';
+      elTotal.textContent = '—';
+      elJuros.textContent = '—';
+      prop.hidden = true;
+      nota.innerHTML = msg || '';
+    }
+
+    if (saldo <= 0) { elRot.textContent = 'Você quita em'; return limpar('Sem dívida, sem termômetro. Que continue assim.'); }
+    if (parcela <= 0) { elRot.textContent = 'Você quita em'; return limpar('Coloque quanto você consegue pagar por mês.'); }
+
+    // Sem juros a conta e direta; com juros, a parcela precisa passar do juro
+    // do mes, senao o saldo sobe mesmo pagando.
+    var meses;
+    if (taxa === 0) {
+      meses = Math.ceil(saldo / parcela);
+    } else if (parcela <= jurosPrimeiroMes) {
+      elRot.textContent = 'Nesse ritmo';
+      elPrazo.textContent = 'a dívida cresce';
+      elPrazo.className = 'f-numero-val alerta';
+      elTotal.textContent = '—';
+      elJuros.textContent = '—';
+      prop.hidden = true;
+
+      var falta = jurosPrimeiroMes - parcela;
+      if (falta <= 0.005) {
+        // Parcela igual ao juro: o saldo nao sobe, mas tambem nunca desce.
+        elPrazo.textContent = 'a dívida não anda';
+        nota.innerHTML = '<strong>A sua parcela paga exatamente os juros — e nada do ' +
+          'saldo.</strong> Você pode pagar ' + moeda.format(parcela) +
+          ' por mês pelo resto da vida e continuar devendo os mesmos ' +
+          moeda.format(saldo) + '. Qualquer real a mais já começa a derrubar a dívida.';
+      } else {
+        nota.innerHTML = '<strong>A sua parcela não cobre nem os juros do mês.</strong> ' +
+          'Os juros somam ' + moeda.format(jurosPrimeiroMes) + ' e você paga ' +
+          moeda.format(parcela) + ' — faltam ' + moeda.format(falta) +
+          ' só para o saldo parar de subir. Aqui não adianta apertar mais o cinto: ' +
+          'o caminho é renegociar o juro ou trocar essa dívida por uma mais barata.';
+      }
+      return;
+    } else {
+      meses = Math.ceil(
+        -Math.log(1 - (taxa * saldo) / parcela) / Math.log(1 + taxa)
+      );
+    }
+
+    if (!isFinite(meses) || meses <= 0) return limpar('');
+
+    if (meses > TETO) {
+      elRot.textContent = 'Nesse ritmo';
+      elPrazo.textContent = 'mais de 50 anos';
+      elPrazo.className = 'f-numero-val alerta';
+      elTotal.textContent = '—';
+      elJuros.textContent = '—';
+      prop.hidden = true;
+      nota.innerHTML = '<strong>A parcela cobre os juros por pouco.</strong> ' +
+        'O saldo cai tão devagar que o prazo perde o sentido prático. ' +
+        'Aumentar um pouco o pagamento muda o resultado de forma desproporcional — ' +
+        'experimente somar cem reais e veja.';
+      return;
+    }
+
+    // O ultimo mes costuma ser menor que a parcela cheia: descontar a sobra
+    // evita superestimar o total pago.
+    var totalCheio = parcela * meses;
+    var saldoFinal = saldo * Math.pow(1 + taxa, meses) -
+                     (taxa === 0 ? 0 : parcela * (Math.pow(1 + taxa, meses) - 1) / taxa);
+    var total = totalCheio + (saldoFinal < 0 ? saldoFinal : 0);
+    var juros = total - saldo;
+
+    elRot.textContent = 'Você quita em';
+    elPrazo.textContent = prazoTexto(meses);
+    elPrazo.className = 'f-numero-val' + (meses > 36 ? ' alerta' : ' ok');
+    elTotal.textContent = moeda.format(total);
+    elJuros.textContent = moeda.format(juros);
+
+    var pJuros = Math.max(0, Math.min(100, (juros / total) * 100));
+    document.getElementById('barra-divida').style.width = (100 - pJuros) + '%';
+    document.getElementById('barra-juros').style.width = pJuros + '%';
+    prop.hidden = false;
+
+    var proporcao = saldo > 0 ? juros / saldo : 0;
+    var texto = 'Pagando ' + moeda.format(parcela) + ' por mês, você quita em ' +
+      prazoTexto(meses) + ' e paga ' + moeda.format(juros) + ' de juros.';
+    if (proporcao >= 1) {
+      texto += ' <strong>Os juros vão custar mais que a própria dívida.</strong>';
+    } else if (proporcao >= 0.4) {
+      texto += ' Os juros somam ' + (proporcao * 100).toFixed(0) +
+        '% do que você deve hoje.';
+    }
+    nota.innerHTML = texto;
+  }
+
+  ['saldo', 'juros', 'parcela'].forEach(function (id) {
+    document.getElementById(id).addEventListener('input', calcular);
+  });
+  calcular();
+})();
+</script>
+</body>
+</html>

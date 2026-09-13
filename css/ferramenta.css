@@ -1,0 +1,145 @@
+/* ============================================================================
+   Folha compartilhada das ferramentas da Rede Bolha.
+
+   As calculadoras nasceram cada uma com o seu CSS embutido — a de renda
+   passiva sozinha tem quase 10 KB. Daqui pra frente as novas dividem esta
+   folha: um lugar so para mexer, e todas continuam parecendo da mesma casa.
+   A paleta e a mesma que as ferramentas antigas ja usavam.
+   ========================================================================= */
+
+:root{
+  --tinta:#111113;
+  --papel:#191A1E;
+  --papel-alto:#212329;
+  --linha:#2E3037;
+  --ouro:#C9A227;
+  --ouro-claro:#E8D48B;
+  --giz:#EDEAE3;
+  --sombra:#8E9098;
+  --alerta:#C9552F;
+  --ok:#4E9A6A;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:var(--tinta);
+  color:var(--giz);
+  font-family:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+.wrap{max-width:1100px;margin:0 auto;padding:0 clamp(18px,4vw,32px)}
+
+/* ---------------------------------------------------------- cabecalho --- */
+.topo{border-bottom:1px solid var(--linha);background:rgba(17,17,19,.92);
+  position:sticky;top:0;z-index:10;backdrop-filter:blur(8px)}
+.topo .wrap{display:flex;flex-wrap:wrap;align-items:center;
+  justify-content:space-between;gap:10px 20px;padding-block:15px}
+.topo a{text-decoration:none}
+.logo{font-family:'Fraunces',Georgia,serif;font-size:.95rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--giz)}
+.logo b{color:var(--ouro-claro);font-weight:600}
+.topo nav ul{display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px;
+  justify-content:flex-end;list-style:none;margin:0;padding:0}
+.topo nav a{font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--sombra)}
+.topo nav a:hover{color:var(--ouro-claro)}
+.topo nav a[aria-current="page"]{color:var(--ouro-claro)}
+.topo nav a.rb-entrar{border:1px solid var(--ouro);border-radius:3px;
+  padding:5px 12px;color:var(--ouro-claro)}
+.topo nav a.rb-entrar:hover{background:var(--ouro);color:var(--tinta)}
+@media(max-width:640px){
+  .topo .wrap{justify-content:center}
+  .topo nav ul{justify-content:center;gap:8px 12px}
+  .topo nav a{font-size:.66rem;letter-spacing:.1em}
+}
+
+/* ------------------------------------------------------------- abertura -- */
+.f-abertura{padding:clamp(30px,6vw,56px) 0 6px}
+.f-chapeu{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ouro);margin:0 0 12px}
+.f-abertura h1{font-family:'Fraunces',Georgia,serif;font-weight:400;
+  font-size:clamp(1.9rem,5vw,3rem);line-height:1.1;margin:0 0 16px;
+  color:var(--giz);text-wrap:balance}
+.f-abertura h1 em{color:var(--ouro-claro);font-style:italic}
+.f-intro{color:var(--sombra);font-size:1.02rem;line-height:1.65;max-width:62ch;margin:0}
+.f-intro strong{color:var(--giz)}
+
+/* -------------------------------------------------------------- painel --- */
+.f-painel{background:var(--papel);border:1px solid var(--linha);border-radius:5px;
+  padding:clamp(20px,4vw,28px);margin:clamp(26px,5vw,40px) 0}
+.f-campos{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}
+.f-campo{display:flex;flex-direction:column;gap:7px;min-width:0}
+.f-campo label{font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--sombra)}
+.f-entrada{display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--linha);
+  padding-bottom:7px}
+.f-entrada:focus-within{border-color:var(--ouro)}
+.f-entrada span{font-size:.85rem;color:var(--sombra);flex:0 0 auto}
+.f-entrada input{flex:1 1 auto;min-width:0;width:100%;border:0;background:none;
+  color:var(--giz);font:inherit;font-size:1.15rem;padding:0;
+  font-variant-numeric:tabular-nums}
+.f-entrada input:focus{outline:none}
+.f-campo .f-dica{font-size:.74rem;color:var(--sombra);line-height:1.4}
+
+/* ------------------------------------------------------------ resultado -- */
+.f-saida{border-top:1px solid var(--linha);margin-top:26px;padding-top:22px}
+.f-numero{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px}
+.f-numero-rot{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--sombra)}
+.f-numero-val{font-family:'Fraunces',Georgia,serif;font-size:clamp(2rem,6vw,3.2rem);
+  line-height:1;color:var(--ouro-claro);font-variant-numeric:tabular-nums}
+.f-numero-val.alerta{color:var(--alerta)}
+.f-numero-val.ok{color:var(--ok)}
+.f-nota{color:var(--sombra);font-size:.92rem;line-height:1.6;margin:16px 0 0;max-width:66ch}
+.f-nota strong{color:var(--giz)}
+
+.f-linhas{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column}
+.f-linha{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 16px;
+  padding:11px 0;border-bottom:1px solid var(--linha);font-size:.94rem}
+.f-linha:last-child{border-bottom:0}
+.f-linha b{color:var(--giz);font-weight:600;font-variant-numeric:tabular-nums}
+.f-linha .f-linha-rot{color:var(--sombra)}
+.f-linha.destaque b{color:var(--ouro-claro)}
+
+/* barra comparativa simples, sem biblioteca */
+.f-barra{height:8px;border-radius:4px;background:var(--papel-alto);overflow:hidden;
+  margin-top:8px;display:flex}
+.f-barra i{display:block;height:100%}
+.f-legenda{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:10px;
+  font-size:.78rem;color:var(--sombra)}
+.f-legenda span{display:inline-flex;align-items:center;gap:7px}
+.f-legenda i{width:10px;height:10px;border-radius:2px;display:inline-block}
+
+/* --------------------------------------------------------------- texto --- */
+.f-secao{padding:clamp(26px,5vw,44px) 0;border-top:1px solid var(--linha)}
+.f-secao h2{font-family:'Fraunces',Georgia,serif;font-weight:400;
+  font-size:clamp(1.4rem,3.4vw,1.9rem);line-height:1.2;margin:0 0 14px;color:var(--giz)}
+.f-secao p{color:var(--sombra);line-height:1.75;margin:0 0 14px;max-width:66ch}
+.f-secao p strong{color:var(--giz)}
+.f-secao p:last-child{margin-bottom:0}
+
+.f-aviso{border-left:3px solid var(--ouro);padding:4px 0 4px 18px;margin:22px 0;
+  color:var(--giz);font-size:1.02rem;line-height:1.55;max-width:62ch}
+
+.f-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.f-btn{display:inline-block;padding:11px 20px;border-radius:3px;text-decoration:none;
+  font-size:.82rem;font-weight:600;letter-spacing:.04em;
+  background:var(--ouro);color:var(--tinta);border:1px solid var(--ouro)}
+.f-btn:hover{background:var(--ouro-claro);border-color:var(--ouro-claro)}
+.f-btn.vazio{background:none;color:var(--ouro-claro)}
+.f-btn.vazio:hover{background:rgba(201,162,39,.12)}
+
+/* -------------------------------------------------------------- rodape --- */
+.f-rodape{border-top:1px solid var(--linha);margin-top:clamp(30px,6vw,50px);
+  padding:24px 0 46px;display:flex;flex-wrap:wrap;gap:8px 20px;
+  font-size:.82rem;color:var(--sombra)}
+.f-rodape a{color:var(--sombra);text-decoration:none}
+.f-rodape a:hover{color:var(--ouro-claro)}
+
+:focus-visible{outline:2px solid var(--ouro);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}

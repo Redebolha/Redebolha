@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>O custo real do seu carro — calculadora gratuita | Rede Bolha</title>
+<meta name="description" content="Quanto o seu carro custa de verdade por mês, somando depreciação, combustível, IPVA, seguro e manutenção. Calculadora gratuita, sem cadastro.">
+<link rel="canonical" href="https://redebolha.com.br/ferramentas/custo-real-do-carro.html">
+<meta property="og:title" content="O custo real do seu carro">
+<meta property="og:description" content="A parcela não é o custo. Depreciação, IPVA, seguro e manutenção também são.">
+<meta property="og:url" content="https://redebolha.com.br/ferramentas/custo-real-do-carro.html">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ferramenta.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6DSL2EMZSL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6DSL2EMZSL');
+</script>
+</head>
+<body data-tema="dinheiro">
+
+<header class="topo">
+  <div class="wrap">
+    <a class="logo" href="https://redebolha.com.br/"><b>Rede</b> Bolha</a>
+    <nav aria-label="Principal">
+      <ul><li><a href="/financas/">Homem e Dinheiro</a></li><li><a href="/masculinidade/">Masculinidade</a></li><li><a href="/economia/">Economia</a></li><li><a href="/ferramentas/" aria-current="page">Ferramentas</a></li><li><a href="/artigos/">Artigos</a></li><li><a href="/sobre-o-autor.html">Sobre</a></li><li><a class="rb-entrar" href="https://club.hotmart.com" rel="noopener" target="_blank">Entrar</a></li></ul>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+<article>
+
+  <div class="f-abertura">
+    <p class="f-chapeu">Ferramenta · sem cadastro</p>
+    <h1>O custo real <em>do seu carro</em></h1>
+    <p class="f-intro">
+      Pergunte a qualquer homem quanto custa o carro dele e ele responde a
+      parcela — ou "só a gasolina". <strong>O carro cobra em cinco lugares ao
+      mesmo tempo,</strong> e o maior deles é justamente o que não aparece no
+      extrato: ele vale menos a cada mês parado na garagem.
+    </p>
+  </div>
+
+  <section class="f-painel" aria-label="Calculadora">
+    <div class="f-campos">
+      <div class="f-campo">
+        <label for="valor">Quanto vale hoje</label>
+        <div class="f-entrada"><span>R$</span>
+          <input type="number" id="valor" value="60000" min="0" step="1000" inputmode="decimal"></div>
+        <p class="f-dica">O preço de venda hoje, não o que você pagou.</p>
+      </div>
+
+      <div class="f-campo">
+        <label for="depreciacao">Perde de valor por ano</label>
+        <div class="f-entrada">
+          <input type="number" id="depreciacao" value="10" min="0" max="40" step="0.5" inputmode="decimal"><span>%</span></div>
+        <p class="f-dica">Carro popular gira em torno de 10% ao ano.</p>
+      </div>
+
+      <div class="f-campo">
+        <label for="km">Quanto você roda</label>
+        <div class="f-entrada">
+          <input type="number" id="km" value="1000" min="0" step="100" inputmode="decimal"><span>km/mês</span></div>
+        <p class="f-dica">Some ida e volta do trabalho e os fins de semana.</p>
+      </div>
+
+      <div class="f-campo">
+        <label for="consumo">Faz quantos km por litro</label>
+        <div class="f-entrada">
+          <input type="number" id="consumo" value="11" min="1" max="40" step="0.5" inputmode="decimal"><span>km/l</span></div>
+        <p class="f-dica">Na média real, misturando cidade e estrada.</p>
+      </div>
+
+      <div class="f-campo">
+        <label for="combustivel">Preço do combustível</label>
+        <div class="f-entrada"><span>R$</span>
+          <input type="number" id="combustivel" value="6.20" min="0" step="0.10" inputmode="decimal"></div>
+        <p class="f-dica">O que você paga no posto, por litro.</p>
+      </div>
+
+      <div class="f-campo">
+        <label for="fixos">IPVA e seguro no ano</label>
+        <div class="f-entrada"><span>R$</span>
+          <input type="number" id="fixos" value="3500" min="0" step="100" inputmode="decimal"></div>
+        <p class="f-dica">Some IPVA, licenciamento e seguro.</p>
+      </div>
+
+      <div class="f-campo">
+        <label for="manutencao">Manutenção no ano</label>
+        <div class="f-entrada"><span>R$</span>
+          <input type="number" id="manutencao" value="2400" min="0" step="100" inputmode="decimal"></div>
+        <p class="f-dica">Revisão, pneu, óleo, aquele imprevisto de sempre.</p>
+      </div>
+
+      <div class="f-campo">
+        <label for="hora">Quanto vale a sua hora</label>
+        <div class="f-entrada"><span>R$</span>
+          <input type="number" id="hora" value="20" min="0" step="1" inputmode="decimal"></div>
+        <p class="f-dica">Para ver o custo em horas de trabalho.</p>
+      </div>
+    </div>
+
+    <div class="f-saida">
+      <div class="f-numero">
+        <span class="f-numero-rot">Custa por mês</span>
+        <span class="f-numero-val" id="mensal">R$ 0,00</span>
+      </div>
+
+      <ul class="f-linhas">
+        <li class="f-linha"><span class="f-linha-rot">Depreciação — o que ele perde de valor</span><b id="c-dep">—</b></li>
+        <li class="f-linha"><span class="f-linha-rot">Combustível</span><b id="c-comb">—</b></li>
+        <li class="f-linha"><span class="f-linha-rot">IPVA, licenciamento e seguro</span><b id="c-fixos">—</b></li>
+        <li class="f-linha"><span class="f-linha-rot">Manutenção</span><b id="c-manut">—</b></li>
+        <li class="f-linha"><span class="f-linha-rot">Cada quilômetro rodado</span><b id="c-km">—</b></li>
+        <li class="f-linha destaque"><span class="f-linha-rot">Horas de trabalho por mês</span><b id="c-horas">—</b></li>
+      </ul>
+
+      <div class="f-barra" aria-hidden="true">
+        <i id="b-dep"></i><i id="b-comb"></i><i id="b-fixos"></i><i id="b-manut"></i>
+      </div>
+      <div class="f-legenda">
+        <span><i style="background:#C9552F"></i> Depreciação</span>
+        <span><i style="background:#C9A227"></i> Combustível</span>
+        <span><i style="background:#4E9A6A"></i> IPVA e seguro</span>
+        <span><i style="background:#8E9098"></i> Manutenção</span>
+      </div>
+
+      <p class="f-nota" id="nota"></p>
+    </div>
+  </section>
+
+  <section class="f-secao">
+    <h2>O custo que não passa pela sua conta</h2>
+    <p>
+      Combustível dói porque a gente paga no posto e vê o número. Depreciação não
+      dói nunca — <strong>e costuma ser o maior gasto dos cinco.</strong> Um carro
+      de sessenta mil que perde 10% ao ano some com seis mil reais em doze meses.
+      São quinhentos por mês que ninguém sente saindo, mas que estão saindo.
+    </p>
+    <p>
+      Não estou aqui para dizer que você não deve ter carro. Eu tenho o meu, moro
+      no interior do Rio Grande do Sul e sei bem o que é depender dele. O que eu
+      quero é que você saiba o preço — porque <strong>decidir sem saber o preço
+      não é decidir, é torcer.</strong>
+    </p>
+    <div class="f-aviso">
+      Se o número te assustar, tem uma pergunta que ajuda mais que qualquer
+      planilha: esse carro está aí porque você precisa dele, ou porque ele diz
+      alguma coisa sobre você para os outros?
+    </div>
+  </section>
+
+  <section class="f-secao">
+    <h2>Continue a conversa</h2>
+    <div class="f-links">
+      <a class="f-btn" href="/economia/rico-na-vitrine-quebrado-no-extrato.html">Rico na vitrine, quebrado no extrato →</a>
+      <a class="f-btn vazio" href="/ferramentas/quanto-vale-sua-hora.html">Calcular quanto vale a sua hora</a>
+    </div>
+    <div data-newsletter></div>
+  </section>
+
+  <footer class="f-rodape">
+    <span>&copy; 2026 Adm. Romário Cruz · Eldorado do Sul, RS</span>
+    <a href="/">Início</a>
+    <a href="/financas/">Homem e Dinheiro</a>
+    <a href="/expediente/">Expediente</a>
+  </footer>
+
+</article>
+</main>
+
+<script src="/js/ferramenta-uso.js" defer></script>
+<script src="/js/newsletter.js" defer></script>
+<script>
+(function () {
+  'use strict';
+
+  var moeda = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+  var campos = ['valor','depreciacao','km','consumo','combustivel','fixos','manutencao','hora'];
+
+  function ler(id) {
+    var v = parseFloat(document.getElementById(id).value);
+    return isFinite(v) && v >= 0 ? v : 0;
+  }
+
+  function calcular() {
+    var valor  = ler('valor');
+    var dep    = ler('depreciacao') / 100;
+    var km     = ler('km');
+    var consumo= ler('consumo');
+    var preco  = ler('combustivel');
+    var fixos  = ler('fixos');
+    var manut  = ler('manutencao');
+    var hora   = ler('hora');
+
+    // Depreciacao do PRIMEIRO ano sobre o valor de hoje. E uma aproximacao: a
+    // perda real e maior nos primeiros anos e desacelera depois.
+    var cDep   = (valor * dep) / 12;
+    var cComb  = consumo > 0 ? (km / consumo) * preco : 0;
+    var cFixos = fixos / 12;
+    var cManut = manut / 12;
+    var total  = cDep + cComb + cFixos + cManut;
+
+    document.getElementById('mensal').textContent = moeda.format(total);
+    document.getElementById('c-dep').textContent   = moeda.format(cDep);
+    document.getElementById('c-comb').textContent  = moeda.format(cComb);
+    document.getElementById('c-fixos').textContent = moeda.format(cFixos);
+    document.getElementById('c-manut').textContent = moeda.format(cManut);
+    document.getElementById('c-km').textContent =
+      km > 0 ? moeda.format(total / km) : '—';
+    document.getElementById('c-horas').textContent =
+      hora > 0 ? Math.round(total / hora) + ' h' : '—';
+
+    var partes = [['b-dep', cDep, '#C9552F'], ['b-comb', cComb, '#C9A227'],
+                  ['b-fixos', cFixos, '#4E9A6A'], ['b-manut', cManut, '#8E9098']];
+    partes.forEach(function (p) {
+      var el = document.getElementById(p[0]);
+      el.style.width = total > 0 ? (p[1] / total * 100) + '%' : '0';
+      el.style.background = p[2];
+    });
+
+    escreverNota(total, cDep, cComb, km, hora);
+  }
+
+  function escreverNota(total, cDep, cComb, km, hora) {
+    var nota = document.getElementById('nota');
+    if (total <= 0) { nota.textContent = ''; return; }
+
+    var texto = 'Somando tudo, o carro custa <strong>' + moeda.format(total) +
+      ' por mês</strong> — ' + moeda.format(total * 12) + ' no ano.';
+
+    if (cDep > cComb && cDep > 0) {
+      texto += ' O maior gasto não é o combustível: é a depreciação, ' +
+        moeda.format(cDep) + ' por mês que some sem passar pela sua conta.';
+    }
+    if (hora > 0) {
+      var h = Math.round(total / hora);
+      texto += ' Nas suas horas, são ' + h + ' hora' + (h === 1 ? '' : 's') +
+        ' de trabalho todo mês só para manter o carro na garagem.';
+    }
+    nota.innerHTML = texto;
+  }
+
+  campos.forEach(function (id) {
+    document.getElementById(id).addEventListener('input', calcular);
+  });
+  calcular();
+})();
+</script>
+</body>
+</html>
