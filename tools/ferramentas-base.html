@@ -1,18 +1,8 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ferramentas — calculadoras e simuladores gratuitos | Rede Bolha</title>
-<meta name="description" content="Calculadoras e simuladores gratuitos sobre dinheiro: renda passiva, carteira de FIIs, meta de poupança e o caminho até o primeiro milhão. Sem cadastro.">
-<link rel="canonical" href="https://redebolha.com.br/ferramentas/">
-<meta property="og:title" content="Ferramentas — calculadoras e simuladores gratuitos">
-<meta property="og:description" content="Entenda os números antes de agir. Sem jargão, sem cadastro.">
-<meta property="og:url" content="https://redebolha.com.br/ferramentas/">
-<meta property="og:type" content="website">
+<title>Ferramentas Financeiras</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=DM+Sans:opsz,wght@9..40,400;9..40,450;9..40,500&display=swap" rel="stylesheet">
+
 <style>
 /* ── Design tokens: Rede Bolha dark system ───────────────────────── */
 :root {
@@ -625,79 +615,40 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .tool-arrow, .tool-card, .field-input-row, #resultado { transition: none; }
 }
-
-/* Cabecalho e rodape do site, na paleta desta pagina. */
-.topbar{border-bottom:1px solid var(--border);margin-inline:calc(-1 * clamp(20px,5vw,56px));
-  padding-inline:clamp(20px,5vw,56px);margin-bottom:clamp(28px,6vw,52px)}
-.topbar .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
-  gap:10px 20px;max-width:1180px;margin:0 auto;padding:16px 0}
-.topbar a{text-decoration:none}
-.brand{font-family:'Fraunces',Georgia,serif;font-size:.95rem;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--giz)}
-.brand b{color:var(--ouro-text);font-weight:600}
-.topnav{display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px;justify-content:flex-end}
-.topnav a{font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--giz-mid)}
-.topnav a:hover{color:var(--ouro-text)}
-.topnav a[aria-current="page"]{color:var(--ouro-text)}
-.topnav a.rb-entrar{border:1px solid var(--ouro);border-radius:3px;padding:5px 12px;color:var(--ouro-text)}
-.topnav a.rb-entrar:hover{background:var(--ouro);color:#0a0a0c}
-
-/* Grade das ferramentas publicas. */
-.hub-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
-  gap:16px;max-width:1180px;margin:0 auto}
-.hub-card{display:flex;flex-direction:column;gap:9px;padding:22px;text-decoration:none;
-  background:var(--surf);border:1px solid var(--border);border-radius:4px;
-  transition:border-color .2s,background .2s}
-.hub-card:hover{border-color:var(--ouro);background:var(--surf-2)}
-.hub-card h3{font-family:'Fraunces',Georgia,serif;font-size:1.18rem;line-height:1.25;
-  color:var(--giz);font-weight:500;margin:0}
-.hub-card p{font-size:.9rem;line-height:1.55;color:var(--muted);margin:0}
-.hub-card .hub-tags{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--giz-dim);margin-top:auto;padding-top:8px}
-.hub-card .hub-abrir{font-size:.78rem;color:var(--ouro-text);letter-spacing:.04em}
-
-.hub-sec{max-width:1180px;margin:0 auto clamp(36px,7vw,64px)}
-.hub-sec-head{margin-bottom:20px}
-.hub-sec-head h2{font-family:'Fraunces',Georgia,serif;font-size:clamp(1.5rem,3.4vw,2rem);
-  color:var(--giz);font-weight:400;margin:0 0 6px}
-.hub-sec-head p{color:var(--muted);font-size:.95rem;max-width:62ch;margin:0}
-
-.hub-circulo{max-width:1180px;margin:0 auto clamp(36px,7vw,64px);padding:26px;
-  background:var(--ouro-bg);border:1px solid var(--border-2);border-radius:4px}
-.hub-circulo h2{font-family:'Fraunces',Georgia,serif;font-size:1.35rem;color:var(--giz);
-  font-weight:500;margin:0 0 8px}
-.hub-circulo p{color:var(--muted);font-size:.93rem;line-height:1.6;max-width:66ch;margin:0 0 16px}
-.hub-circulo-acoes{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
-
-.hub-rodape{border-top:1px solid var(--border);max-width:1180px;margin:0 auto;
-  padding:26px 0 44px;display:flex;flex-wrap:wrap;gap:8px 20px;
-  font-size:.82rem;color:var(--giz-dim)}
-.hub-rodape a{color:var(--giz-mid);text-decoration:none}
-.hub-rodape a:hover{color:var(--ouro-text)}
 </style>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-6DSL2EMZSL"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-6DSL2EMZSL');
-</script>
-</head>
-<body data-tema="dinheiro">
 
-<header class="topbar"><div class="wrap">
-<a class="brand" href="/"><b>Rede</b> Bolha</a>
-<nav class="topnav"><a href="/financas/">Homem e Dinheiro</a> <a href="/masculinidade/">Masculinidade</a> <a href="/economia/">Economia</a> <a href="/ferramentas/" aria-current="page">Ferramentas</a> <a href="/artigos/">Artigos</a> <a href="/sobre-o-autor.html">Sobre</a> <a class="rb-entrar" href="https://club.hotmart.com" rel="noopener" target="_blank">Entrar</a></nav>
-</div></header>
+<!-- ── Nav ──────────────────────────────────────────────────────────── -->
+<nav class="nav">
+  <a href="/" class="nav-brand">Rede Bolha</a>
+  <div class="nav-actions">
+    <a href="https://club.hotmart.com" rel="noopener" target="_blank" class="nav-circulo">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="7" cy="5" r="2.5"/>
+        <path d="M2 12c0-2.2 2.2-4 5-4s5 1.8 5 4"/>
+      </svg>
+      Círculo
+    </a>
+    <a href="/" class="nav-back">← Voltar</a>
+  </div>
+</nav>
 
+<!-- ── Hero ─────────────────────────────────────────────────────────── -->
 <div class="hero">
-  <p class="eyebrow">Ferramentas</p>
-  <h1>Entenda os números<br><em>antes de agir.</em></h1>
-  <p class="hero-sub">Calculadoras e simuladores gratuitos, sem cadastro e sem indicação de
-     investimento. Só matemática honesta — porque a conta que a gente evita fazer é sempre
-     a que mais pesa.</p>
+  <p class="eyebrow">Central de ferramentas</p>
+  <h1>Tome decisões melhores<br><em>com o seu dinheiro.</em></h1>
+  <p class="hero-sub">Calculadoras e simuladores para entender os números antes de agir. Sem jargão, sem enrolação — só matemática honesta.</p>
+  <div class="hero-cta">
+    <a href="https://club.hotmart.com" rel="noopener" target="_blank" class="btn-circulo">
+      Acessar o Círculo
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 8h10M9 4l4 4-4 4"/>
+      </svg>
+    </a>
+    <a href="/assinatura/" class="link-saiba">Ainda não sou membro</a>
+  </div>
 </div>
 
+<!-- ── Featured Calculator ──────────────────────────────────────────── -->
 <div class="calc-wrap">
   <div class="calc-card" role="region" aria-label="Calculadora: meta de poupança mensal">
     <div class="calc-header">
@@ -745,59 +696,104 @@ body {
   </div>
 </div>
 
-<section class="hub-sec">
-  <div class="hub-sec-head">
-    <h2>Todas as ferramentas</h2>
-    <p>Abertas para qualquer um, agora, sem deixar e-mail.</p>
+<!-- ── Tool Cards ────────────────────────────────────────────────────── -->
+<div class="tools-wrap">
+  <div class="tools-header">
+    <p class="eyebrow">Círculo Rede Bolha</p>
+    <h2>Ferramentas exclusivas</h2>
   </div>
-  <div class="hub-grid">
-    <a class="hub-card" href="/financas/simulador-renda-passiva.html" data-ferramenta="Simulador de Renda Passiva">
-      <h3>Simulador de Renda Passiva</h3>
-      <p>Em quanto tempo os juros passam a render mais que o seu aporte mensal. O mês em que a conta vira.</p>
-      <span class="hub-abrir">Abrir →</span>
-      <span class="hub-tags">Juros · Ponto de virada</span>
+
+  <div class="tools-grid">
+    <a href="/assinatura/?ref=juros-compostos" class="tool-card" aria-label="Simulador de Juros Compostos — exclusivo para membros">
+      <span class="tool-member-badge" aria-hidden="true">
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="5.5" width="8" height="5.5" rx="0.5"/>
+          <path d="M4 5.5V4a2 2 0 0 1 4 0v1.5"/>
+        </svg>
+        Membros
+      </span>
+      <div class="tool-lock" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="1"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </div>
+      <div class="tool-glyph" aria-hidden="true">◈</div>
+      <h3 class="tool-name">Simulador de Juros Compostos</h3>
+      <p class="tool-desc">Veja como R$ 100 por mês viram patrimônio ao longo do tempo. Com o ponto de virada e a metáfora do tijolo que vira árvore.</p>
+      <span class="tool-tag">Juros · Patrimônio</span>
     </a>
-    <a class="hub-card" href="/financas/calculadora-fii.html" data-ferramenta="Calculadora de Carteira de FIIs">
-      <h3>Calculadora de Carteira de FIIs</h3>
-      <p>Monte sua carteira de fundos imobiliários, veja quantas cotas cabem no seu bolso e quanta renda isso gera por mês.</p>
-      <span class="hub-abrir">Abrir →</span>
-      <span class="hub-tags">Renda passiva · FIIs</span>
+
+    <a href="/assinatura/?ref=calculadora-fii" class="tool-card" aria-label="Planejador de FIIs — exclusivo para membros">
+      <span class="tool-member-badge" aria-hidden="true">
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="5.5" width="8" height="5.5" rx="0.5"/>
+          <path d="M4 5.5V4a2 2 0 0 1 4 0v1.5"/>
+        </svg>
+        Membros
+      </span>
+      <div class="tool-lock" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="1"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </div>
+      <div class="tool-glyph" aria-hidden="true">◉</div>
+      <h3 class="tool-name">Planejador de FIIs</h3>
+      <p class="tool-desc">Monte sua carteira de fundos imobiliários e projete a renda passiva mensal. HGBS11, GGRC11, MXRF11, CPTS11 e outros.</p>
+      <span class="tool-tag">Renda passiva · FIIs</span>
     </a>
-    <a class="hub-card" href="/financas/simulador-100k-1milhao.html" data-ferramenta="Da primeira centena ao primeiro milhão">
-      <h3>Da primeira centena ao primeiro milhão</h3>
-      <p>Quanto tempo o aporte mensal leva até R$ 100 mil e até R$ 1 milhão — e por que a primeira faixa custa mais da metade do caminho.</p>
-      <span class="hub-abrir">Abrir →</span>
-      <span class="hub-tags">Aporte · Longo prazo</span>
-    </a>
-    <a class="hub-card" href="/teste-mascara-masculina/" data-ferramenta="Teste das Máscaras">
-      <h3>Teste das Máscaras</h3>
-      <p>Seis perguntas, dois minutos. Sobre as máscaras que muito homem aprende a usar sem ninguém ensinar.</p>
-      <span class="hub-abrir">Abrir →</span>
-      <span class="hub-tags">Autoconhecimento</span>
+
+    <a href="/assinatura/?ref=simulador-renda-passiva" class="tool-card" aria-label="Rastreador de Portfólio — exclusivo para membros">
+      <span class="tool-member-badge" aria-hidden="true">
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="5.5" width="8" height="5.5" rx="0.5"/>
+          <path d="M4 5.5V4a2 2 0 0 1 4 0v1.5"/>
+        </svg>
+        Membros
+      </span>
+      <div class="tool-lock" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="1"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </div>
+      <div class="tool-glyph" aria-hidden="true">◎</div>
+      <h3 class="tool-name">Rastreador de Portfólio</h3>
+      <p class="tool-desc">Acompanhe sua carteira de ações: BBAS3, ITUB4, PETR4, TAEE11, VIVT3 e mais. Posição consolidada, sem planilha.</p>
+      <span class="tool-tag">Ações · Renda variável</span>
     </a>
   </div>
-</section>
+</div>
 
-<!-- PONTO DE PATROCÍNIO -->
-<section class="hub-sec" data-patrocinio aria-label="Patrocínio"></section>
-
-<section class="hub-circulo">
-  <h2>Círculo Rede Bolha</h2>
-  <p>As ferramentas acima são abertas e sempre vão ser. O Círculo é a assinatura
-     mensal para quem quer continuar a conversa: conteúdo e materiais que ficam no
-     Hotmart Club, com novidades em primeira mão.</p>
-  <div class="hub-circulo-acoes">
-    <a href="/assinatura/" class="btn-circulo">Conhecer o Círculo</a>
-    <a href="https://club.hotmart.com" rel="noopener" target="_blank" class="link-saiba">Já assino — entrar</a>
+<!-- ── Espaço de Membros ─────────────────────────────────────────────── -->
+<div class="members-wrap">
+  <div class="members-card">
+    <div class="members-badge" aria-label="Conteúdo exclusivo">● Círculo Rede Bolha</div>
+    <div class="members-body">
+      <div class="members-text">
+        <h2 class="members-title">Círculo Rede Bolha</h2>
+        <p class="members-desc">Membros do Círculo têm acesso ao Simulador de Juros Compostos, ao Planejador de FIIs e ao Rastreador de Portfólio — além de relatórios exclusivos e novidades em primeira mão.</p>
+        <ul class="members-features" aria-label="Benefícios do plano">
+          <li>Simulador de juros compostos com ponto de virada</li>
+          <li>Planejador de FIIs com projeção de renda passiva</li>
+          <li>Rastreador de portfólio de ações consolidado</li>
+          <li>Calculadora de IR sobre investimentos</li>
+          <li>Acesso antecipado a cada nova ferramenta</li>
+        </ul>
+      </div>
+      <div class="members-cta">
+        <a href="/assinatura/" class="btn-membros">Entrar no Círculo</a>
+        <p class="members-cta-note">Já é do Círculo? <a href="https://club.hotmart.com" rel="noopener" target="_blank" class="members-link">Fazer login</a></p>
+      </div>
+    </div>
   </div>
-</section>
+</div>
 
-<footer class="hub-rodape">
-  <span>&copy; 2026 Adm. Romário Cruz · Eldorado do Sul, RS</span>
-  <a href="/">Início</a>
-  <a href="/financas/">Homem e Dinheiro</a>
-  <a href="/artigos/">Artigos</a>
-  <a href="/expediente/">Expediente</a>
+<!-- ── Footer ────────────────────────────────────────────────────────── -->
+<footer class="footer">
+  <span class="footer-brand">Rede Bolha · redebolha.com.br</span>
+  <p class="footer-disclaimer">Conteúdo de caráter exclusivamente educacional. As ferramentas e simulações apresentadas não constituem recomendação de investimento. Consulte um profissional habilitado pela CVM antes de tomar qualquer decisão financeira.</p>
 </footer>
 
 <script>
@@ -858,7 +854,3 @@ body {
   calcular();
 })();
 </script>
-<script src="/js/ferramenta-uso.js" defer></script>
-<script src="/js/patrocinio.js" defer></script>
-</body>
-</html>

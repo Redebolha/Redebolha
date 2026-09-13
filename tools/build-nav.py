@@ -23,6 +23,7 @@ MENU = [
     ("Homem e Dinheiro", "/financas/"),
     ("Masculinidade",    "/masculinidade/"),
     ("Economia",         "/economia/"),
+    ("Ferramentas",      "/ferramentas/"),
     ("Artigos",          "/artigos/"),
     ("Sobre",            "/sobre-o-autor.html"),
 ]
