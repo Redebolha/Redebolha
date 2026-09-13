@@ -331,7 +331,7 @@
     painel.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
     /* A segmentacao: o GA4 registra o perfil, e o link da Carta leva o perfil
-       como origem — assim a Substack tambem mostra de onde veio cada inscrito. */
+       como origem — assim o provedor da Carta tambem mostra de onde veio cada inscrito. */
     if (typeof window.gtag === 'function') {
       window.gtag('event', 'quiz_resultado', { perfil: chave, pontos: pontos });
     }

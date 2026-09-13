@@ -32,11 +32,11 @@
       "titulo": "O Homem e o Dinheiro",
       "frase": "O livro que nasceu desta seção. Quem assina a Carta fica sabendo primeiro.",
       "capa": null,
-      "destino": "https://romariocruz.substack.com/subscribe",
-      "acao": "Entrar na lista de espera",
+      "destino": "/ferramentas/",
+      "acao": "Ver as ferramentas",
       "selo": "Em breve",
       "pre_lancamento": true,
-      "_nota": "Pre-lancamento: a unidade nao vende, captura. O destino e a Substack, que e onde a lista de espera realmente vive."
+      "_nota": "O destino era a lista de espera na Substack. Enquanto A Carta muda de provedor, aponta para as ferramentas — nao para uma pagina que pede cartao. Quando o Beehiiv estiver no ar, trocar por ele."
     }
   },
   "temas": {

@@ -1,28 +1,33 @@
 /*
  * A Carta do Homem e o Dinheiro — captura de e-mail.
  *
+ * ONDE FICA O ENDERECO: em js/newsletter.json, nao aqui. Trocar de provedor
+ * e editar aquele arquivo. Se o cadastro estiver vazio la, este bloco NAO
+ * aparece — melhor nao pedir e-mail do que mandar a pessoa para uma pagina
+ * que pede cartao de credito antes do endereco.
+ *
  * Era o buraco central do site: nenhum formulario em pagina nenhuma. Toda a
  * audiencia conquistada evaporava no fechamento da aba.
  *
  * COMO FUNCIONA, E POR QUE ASSIM
- * O cadastro e feito pela Substack. Ha tres caminhos possiveis e cada um tem
- * um problema:
- *   - iframe /embed  : sempre funciona, mas vem com fundo branco e estilo
- *                      proprio, que briga com o site escuro.
- *   - fetch na API   : a Substack nao libera chamada de outro dominio (CORS),
- *                      entao falharia calado — o pior dos mundos.
+ * O cadastro e feito por um provedor de fora. Ha tres caminhos possiveis e
+ * cada um tem um problema:
+ *   - iframe de embed: sempre funciona, mas vem com estilo proprio, que
+ *                      briga com o site escuro.
+ *   - fetch na API   : provedor nenhum libera chamada de outro dominio
+ *                      (CORS), entao falharia calado — o pior dos mundos.
  *   - formulario que leva para a pagina de cadastro, com o e-mail ja digitado.
  *
  * Ficou o terceiro. O visitante digita o e-mail aqui, no visual do site, e
- * termina o cadastro na Substack. Se um dia a Substack parar de aceitar o
- * e-mail pela URL, a pessoa cai na pagina de cadastro e digita de novo: um
- * passo a mais, nunca um beco sem saida.
+ * termina o cadastro no provedor. Se um dia ele parar de aceitar o e-mail
+ * pela URL, a pessoa cai na pagina de cadastro e digita de novo: um passo a
+ * mais, nunca um beco sem saida.
  */
 (function () {
   'use strict';
 
-  var PUBLICACAO = 'https://romariocruz.substack.com';
-  var CADASTRO = PUBLICACAO + '/subscribe';
+  var CONFIG = '/js/newsletter.json';
+  var cfg = null;
 
   var CSS = [
     '.rb-carta{margin:2.8rem 0;border:1px solid rgba(201,162,75,.3);border-radius:4px;',
@@ -101,17 +106,18 @@
         return;
       }
       if (typeof window.gtag === 'function') {
-        // Conta o envio feito no site. A confirmacao acontece na Substack e
-        // nao volta para ca — o numero real de inscritos e o do painel dela.
+        // Conta o envio feito no site. A confirmacao acontece no provedor e
+        // nao volta para ca — o numero real de inscritos e o do painel dele.
         window.gtag('event', 'newsletter_signup', {
           origem: location.pathname,
           perfil: form.getAttribute('data-origem') || ''
         });
       }
       // Se quem montou o bloco marcou uma origem (o quiz marca o perfil), ela
-      // viaja junto: a Substack registra a origem de cada inscrito, e assim a
-      // segmentacao aparece tambem no painel dela, nao so no GA4.
-      var destino = CADASTRO + '?email=' + encodeURIComponent(email);
+      // viaja junto: o provedor registra a origem de cada inscrito, e assim a
+      // segmentacao aparece tambem no painel dele, nao so no GA4.
+      var destino = cfg.cadastro + '?' + (cfg.parametro_email || 'email') +
+                    '=' + encodeURIComponent(email);
       var origem = form.getAttribute('data-origem');
       if (origem) {
         destino += '&utm_source=redebolha&utm_medium=site&utm_campaign=' +
@@ -124,8 +130,12 @@
 
     var nota = document.createElement('p');
     nota.className = 'rb-carta-nota';
-    nota.innerHTML = 'O cadastro é feito na Substack. Sem spam — e o ' +
-      '<a href="' + PUBLICACAO + '" rel="noopener" target="_blank">arquivo das cartas</a> ' +
+    var casa = cfg.provedor
+      ? cfg.provedor.charAt(0).toUpperCase() + cfg.provedor.slice(1)
+      : 'nosso provedor de e-mail';
+    nota.innerHTML = 'Só o e-mail, sem cartão e sem cobrança. O cadastro é feito no ' +
+      casa + ' — e o ' +
+      '<a href="' + cfg.publicacao + '" rel="noopener" target="_blank">arquivo das cartas</a> ' +
       'fica aberto para ler antes de assinar.';
     box.appendChild(nota);
 
@@ -135,6 +145,9 @@
   /* Onde entra: nos pontos marcados e, nos artigos, no fim do texto — depois
      de o leitor ter recebido alguma coisa.                                  */
   function colocar() {
+    // Sem endereco de cadastro nao ha bloco: pedir e-mail e nao ter onde
+    // guardar e pior do que nao pedir.
+    if (!cfg || !cfg.cadastro || !cfg.publicacao) return;
     injetarCSS();
 
     var marcados = document.querySelectorAll('[data-newsletter]');
@@ -151,9 +164,16 @@
     }
   }
 
+  function comecar() {
+    fetch(CONFIG, { cache: 'no-cache' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) { cfg = d; colocar(); })
+      .catch(function () { /* sem captura e melhor que captura quebrada */ });
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', colocar);
+    document.addEventListener('DOMContentLoaded', comecar);
   } else {
-    colocar();
+    comecar();
   }
 })();

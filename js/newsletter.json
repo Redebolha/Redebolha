@@ -1,0 +1,25 @@
+{
+  "_leia_antes": [
+    "Onde A Carta e hospedada. Trocar de provedor e editar este arquivo —",
+    "nenhum JavaScript precisa ser tocado, e as 40 paginas acompanham.",
+    "",
+    "Se 'cadastro' ficar vazio, o bloco de captura NAO aparece em lugar nenhum.",
+    "E proposital: melhor nao pedir e-mail do que mandar a pessoa para uma",
+    "pagina que pede cartao de credito."
+  ],
+
+  "provedor": "beehiiv",
+
+  "publicacao": "",
+  "cadastro": "",
+
+  "_parametro": "Nome do campo que leva o e-mail digitado na URL. Beehiiv e Substack usam 'email'.",
+  "parametro_email": "email",
+
+  "_pendente": [
+    "FALTA PREENCHER: o endereco publico da publicacao no Beehiiv.",
+    "app.beehiiv.com e o painel de quem escreve — nao serve para o visitante.",
+    "O que entra aqui e algo como https://suapublicacao.beehiiv.com",
+    "Enquanto estiver vazio, o bloco de captura fica fora do ar de proposito."
+  ]
+}
