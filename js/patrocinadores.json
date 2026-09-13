@@ -1,0 +1,57 @@
+{
+  "_leia_antes": [
+    "Este arquivo controla que livro patrocina cada tema do site.",
+    "Para trocar uma campanha, edite aqui. Nenhum HTML precisa ser tocado.",
+    "O tema de cada pagina vem do atributo data-tema no <body>.",
+    "Paginas que ja tem um convite ao livro escrito a mao nao recebem outro:",
+    "o script apenas rotula e mede o que ja esta la (regra de 1 unidade por pagina)."
+  ],
+
+  "livros": {
+    "hvnr": {
+      "titulo": "Homem, Você Não É Ridículo",
+      "frase": "O silêncio do homem tem um preço. 25 capítulos sobre isso.",
+      "capa": "/homem-voce-nao-e-ridiculo-capa-frente.jpg",
+      "destino": "/livros/homem-voce-nao-e-ridiculo.html",
+      "acao": "Conheça o livro"
+    },
+    "decisao": {
+      "titulo": "O Poder da Decisão",
+      "frase": "Todo homem carrega decisões que adiou. Este livro é sobre o custo desse adiamento.",
+      "capa": "/o-poder-da-decisao-frente.webp",
+      "destino": "/livros/o-poder-da-decisao.html",
+      "acao": "Conheça o livro"
+    },
+    "amanha": {
+      "titulo": "Amanhã é Outro Agora",
+      "frase": "Um convite a parar de adiar a vida e agir no presente.",
+      "capa": "/amanha-e-outro-agora-frente.webp",
+      "destino": "/livros/amanha-e-outro-agora.html",
+      "acao": "Conheça o livro"
+    },
+    "dinheiro": {
+      "titulo": "O Homem e o Dinheiro",
+      "frase": "O livro que nasceu desta seção.",
+      "capa": null,
+      "destino": "https://wa.me/5551980482820?text=Quero%20saber%20quando%20o%20livro%20O%20Homem%20e%20o%20Dinheiro%20sair",
+      "acao": "Quero saber quando sair",
+      "selo": "Em breve",
+      "pre_lancamento": true,
+      "_nota": "Sem pagina e sem capa ainda. O destino e o WhatsApp porque funciona hoje; quando houver captura de e-mail, troque 'destino' por /lista-de-espera/ e pronto."
+    }
+  },
+
+  "temas": {
+    "dinheiro": "dinheiro",
+    "economia": "dinheiro",
+    "masculinidade": "hvnr",
+    "emocional": "hvnr",
+    "paternidade": "hvnr",
+    "relacionamentos": "hvnr",
+    "proposito": "decisao",
+    "fe": "decisao",
+    "decisao": "amanha"
+  },
+
+  "padrao": "hvnr"
+}
