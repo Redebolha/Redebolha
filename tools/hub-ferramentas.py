@@ -199,6 +199,8 @@ def main() -> int:
   </div>
 </section>
 
+<section class="hub-sec" data-newsletter aria-label="Assine a Carta"></section>
+
 <!-- PONTO DE PATROCÍNIO -->
 <section class="hub-sec" data-patrocinio aria-label="Patrocínio"></section>
 
@@ -223,6 +225,7 @@ def main() -> int:
 
 {script.group(0)}
 <script src="/js/ferramenta-uso.js" defer></script>
+<script src="/js/newsletter.js" defer></script>
 <script src="/js/patrocinio.js" defer></script>
 </body>
 </html>

@@ -6,7 +6,6 @@
     "Paginas que ja tem um convite ao livro escrito a mao nao recebem outro:",
     "o script apenas rotula e mede o que ja esta la (regra de 1 unidade por pagina)."
   ],
-
   "livros": {
     "hvnr": {
       "titulo": "Homem, Você Não É Ridículo",
@@ -31,16 +30,15 @@
     },
     "dinheiro": {
       "titulo": "O Homem e o Dinheiro",
-      "frase": "O livro que nasceu desta seção.",
+      "frase": "O livro que nasceu desta seção. Quem assina a Carta fica sabendo primeiro.",
       "capa": null,
-      "destino": "https://wa.me/5551980482820?text=Quero%20saber%20quando%20o%20livro%20O%20Homem%20e%20o%20Dinheiro%20sair",
-      "acao": "Quero saber quando sair",
+      "destino": "https://romariocruz.substack.com/subscribe",
+      "acao": "Entrar na lista de espera",
       "selo": "Em breve",
       "pre_lancamento": true,
-      "_nota": "Sem pagina e sem capa ainda. O destino e o WhatsApp porque funciona hoje; quando houver captura de e-mail, troque 'destino' por /lista-de-espera/ e pronto."
+      "_nota": "Pre-lancamento: a unidade nao vende, captura. O destino e a Substack, que e onde a lista de espera realmente vive."
     }
   },
-
   "temas": {
     "dinheiro": "dinheiro",
     "economia": "dinheiro",
@@ -52,6 +50,5 @@
     "fe": "decisao",
     "decisao": "amanha"
   },
-
   "padrao": "hvnr"
 }
