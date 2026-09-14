@@ -127,12 +127,6 @@ ESTILO_EXTRA = """
   color:var(--giz);font-weight:400;margin:0 0 6px}
 .hub-sec-head p{color:var(--muted);font-size:.95rem;max-width:62ch;margin:0}
 
-.hub-circulo{max-width:1180px;margin:0 auto clamp(36px,7vw,64px);padding:26px;
-  background:var(--ouro-bg);border:1px solid var(--border-2);border-radius:4px}
-.hub-circulo h2{font-family:'Fraunces',Georgia,serif;font-size:1.35rem;color:var(--giz);
-  font-weight:500;margin:0 0 8px}
-.hub-circulo p{color:var(--muted);font-size:.93rem;line-height:1.6;max-width:66ch;margin:0 0 16px}
-.hub-circulo-acoes{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
 
 .hub-rodape{border-top:1px solid var(--border);max-width:1180px;margin:0 auto;
   padding:26px 0 44px;display:flex;flex-wrap:wrap;gap:8px 20px;
@@ -232,16 +226,6 @@ def main() -> int:
 <!-- PONTO DE PATROCÍNIO -->
 <section class="hub-sec" data-patrocinio aria-label="Patrocínio"></section>
 
-<section class="hub-circulo">
-  <h2>Círculo Rede Bolha</h2>
-  <p>As ferramentas acima são abertas e sempre vão ser. O Círculo é a assinatura
-     mensal para quem quer continuar a conversa: conteúdo e materiais que ficam no
-     Hotmart Club, com novidades em primeira mão.</p>
-  <div class="hub-circulo-acoes">
-    <a href="/assinatura/" class="btn-circulo">Conhecer o Círculo</a>
-    <a href="https://club.hotmart.com" rel="noopener" target="_blank" class="link-saiba">Já assino — entrar</a>
-  </div>
-</section>
 
 <footer class="hub-rodape">
   <span>&copy; 2026 Adm. Romário Cruz · Eldorado do Sul, RS</span>

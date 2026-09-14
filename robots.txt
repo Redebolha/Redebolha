@@ -4,6 +4,7 @@
 User-agent: *
 Allow: /
 Disallow: /admin/
+Disallow: /arquivo/
 Disallow: /*?utm_
 Disallow: /*?fbclid=
 Disallow: /*?gclid=
@@ -13,13 +14,16 @@ Disallow: /*?gclid=
 User-agent: GPTBot
 Allow: /
 Disallow: /admin/
+Disallow: /arquivo/
 
 User-agent: PerplexityBot
 Allow: /
 Disallow: /admin/
+Disallow: /arquivo/
 
 User-agent: ClaudeBot
 Allow: /
 Disallow: /admin/
+Disallow: /arquivo/
 
 Sitemap: https://redebolha.com.br/sitemap.xml

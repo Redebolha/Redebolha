@@ -21,7 +21,7 @@ SITE = "https://redebolha.com.br"
 
 # Fora do sitemap: area logada, painel, utilitarios, redirecionadores e paginas
 # marcadas como noindex. Nada aqui deve disputar busca.
-FORA_PASTAS = {"admin", "membros", "hvnr", "tools"}
+FORA_PASTAS = {"admin", "arquivo", "hvnr", "tools"}
 FORA_ARQUIVOS = {
     "404.html", "offline.html", "logo-3d.html", "instalar-app.html",
     "destaque-promocional-backup.html", "google2811742ec626a64f.html",

@@ -12,7 +12,5 @@
   "cadastro": "https://adm-romrios-newsletter.beehiiv.com/subscribe",
   "_parametro": "Nome do campo que leva o e-mail digitado na URL. Beehiiv e Substack usam 'email'.",
   "parametro_email": "email",
-  "_nota": "Pagina dedicada de inscricao do Beehiiv. Se um dia ela parar de aceitar o e-mail pela URL, a pessoa cai no formulario vazio e digita de novo: um passo a mais, nunca um beco sem saida.",
-  "assinatura": "https://adm-romrios-newsletter.beehiiv.com/upgrade",
-  "_assinatura": "Pagina de assinatura paga do Beehiiv (o Circulo). CONFERIR NO AR: se /upgrade nao existir na sua conta, troque por /subscribe, que mostra os planos quando a assinatura paga esta ligada."
+  "_nota": "A Carta e gratuita. A assinatura paga (o Circulo) saiu do ar em setembro de 2026 e esta guardada em arquivo/circulo/."
 }

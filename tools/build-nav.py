@@ -30,7 +30,10 @@ MENU = [
 
 MARCA_HTML = '<b>Rede</b> Bolha'
 
-# Link utilitario, separado do menu: quem ja assina precisa achar a porta.
+# Link utilitario, separado do menu: o acervo d'A Carta, que e aberto.
+# Ate setembro de 2026 isto era "Entrar", a porta da area de assinantes. A
+# assinatura saiu do ar (arquivo/circulo/) e o que sobrou e publico: nao ha
+# mais o que "entrar".
 # O endereco vem de js/newsletter.json, a mesma fonte que A Carta usa. Ja
 # estragou uma vez: com o endereco cravado aqui, rodar este script depois de
 # trocar de plataforma devolvia as 61 paginas para a plataforma antiga.
@@ -43,13 +46,13 @@ def _destino_entrar() -> str:
         return ""
 
 
-ENTRAR = ("Entrar", _destino_entrar())
+ENTRAR = ("A Carta", _destino_entrar())
 ENTRAR_ATTR = ' rel="noopener" target="_blank"'  # e um endereco de fora
 
 # Pastas que nao recebem cabecalho do site.
 IGNORAR = {
     "admin",            # painel interno
-    "membros",          # area logada
+    "arquivo",          # o que saiu do ar fica congelado como estava
 }
 IGNORAR_ARQUIVOS = {
     "offline.html",                    # tela do service worker
