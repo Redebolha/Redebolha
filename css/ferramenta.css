@@ -143,3 +143,9 @@ body{
 
 :focus-visible{outline:2px solid var(--ouro);outline-offset:2px}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* Lista de itens de uma pagina editorial (o que vem n'A Carta, por exemplo). */
+.f-lista{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:10px}
+.f-lista li{line-height:1.6}
+.f-lista li::marker{color:var(--ouro)}
+.f-lista b{color:var(--tinta)}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Carta do Homem e o Dinheiro — grátis, toda sexta | Rede Bolha</title>
+<meta name="description" content="Um texto por semana sobre dinheiro, masculinidade e as contas que ninguém ensina o homem a fazer. De graça, sem cartão, e você sai quando quiser.">
+<link rel="canonical" href="https://redebolha.com.br/a-carta/">
+<meta property="og:title" content="A Carta do Homem e o Dinheiro">
+<meta property="og:description" content="Uma conversa por semana, na sexta de manhã. De graça e sem pedir cartão.">
+<meta property="og:url" content="https://redebolha.com.br/a-carta/">
+<meta property="og:type" content="website">
+<link rel="icon" href="/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ferramenta.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6DSL2EMZSL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6DSL2EMZSL');
+</script>
+</head>
+<body data-tema="dinheiro">
+
+<header class="topo">
+  <div class="wrap">
+    <a class="logo" href="/"><b>Rede</b> Bolha</a>
+    <nav aria-label="Principal">
+      <ul><li><a href="/financas/">Homem e Dinheiro</a></li><li><a href="/masculinidade/">Masculinidade</a></li><li><a href="/economia/">Economia</a></li><li><a href="/ferramentas/">Ferramentas</a></li><li><a href="/artigos/">Artigos</a></li><li><a href="/sobre-o-autor.html">Sobre</a></li><li><a class="rb-entrar" href="/a-carta/">A Carta</a></li></ul>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+<article>
+
+  <div class="f-abertura">
+    <p class="f-chapeu">A Carta · grátis</p>
+    <h1>Uma conversa por semana, <em>na sexta de manhã.</em></h1>
+    <p class="f-intro">
+      Dinheiro, masculinidade e as contas que ninguém ensina o homem a fazer.
+      <strong>Sem cartão, sem cobrança, e você sai quando quiser.</strong>
+    </p>
+  </div>
+
+  <section class="f-secao">
+    <h2>O que chega na sua caixa</h2>
+    <ul class="f-lista">
+      <li><b>A conversa da semana</b> — trezentas palavras, do jeito que eu falaria com você tomando um café.</li>
+      <li><b>A conta</b> — um número que quase ninguém faz, comentado.</li>
+      <li><b>A ferramenta</b> — uma calculadora daqui, com o que ela revela.</li>
+      <li><b>O bilhete</b> — uma frase para levar o fim de semana.</li>
+    </ul>
+    <div class="f-aviso">
+      A Carta não vende livro. Se algum dia você comprar um dos meus, quero que
+      seja porque a leitura valeu — não porque eu insisti.
+    </div>
+  </section>
+
+  <section class="f-secao">
+    <h2>Receber A Carta</h2>
+    <div data-newsletter data-origem="pagina-a-carta"></div>
+  </section>
+
+  <section class="f-secao">
+    <h2>Antes de assinar, você pode ler</h2>
+    <p>
+      Não precisa confiar em mim de graça. Duas coisas abertas, sem cadastro
+      nenhum:
+    </p>
+    <div class="f-links">
+      <a class="f-btn" href="/leia/homem-voce-nao-e-ridiculo/">O primeiro capítulo do livro →</a>
+      <a class="f-btn vazio" href="/ferramentas/">As oito calculadoras</a>
+    </div>
+    <p style="margin-top:18px">
+      E as cartas já enviadas ficam no
+      <a href="#" data-arquivo rel="noopener" target="_blank">arquivo aberto</a> —
+      leia umas quantas antes de decidir.
+    </p>
+  </section>
+
+  <footer class="f-rodape">
+    <span>&copy; 2026 Adm. Romário Cruz · Eldorado do Sul, RS</span>
+    <a href="/">Início</a>
+    <a href="/financas/">Homem e Dinheiro</a>
+    <a href="/expediente/">Expediente</a>
+  </footer>
+
+</article>
+</main>
+
+<script src="/js/newsletter.js" defer></script>
+<script>
+/* O endereco do arquivo vem de js/newsletter.json, a mesma fonte que a
+   captura usa. Cravar aqui repetiria o erro que ja custou 61 paginas. */
+fetch('/js/newsletter.json', { cache: 'no-cache' })
+  .then(function (r) { return r.json(); })
+  .then(function (c) {
+    document.querySelectorAll('[data-arquivo]').forEach(function (a) {
+      if (c.publicacao) a.href = c.publicacao;
+      else a.removeAttribute('href');
+    });
+  })
+  .catch(function () {});
+</script>
+</body>
+</html>

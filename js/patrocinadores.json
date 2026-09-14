@@ -9,10 +9,11 @@
   "livros": {
     "hvnr": {
       "titulo": "Homem, Você Não É Ridículo",
-      "frase": "O silêncio do homem tem um preço. 25 capítulos sobre isso.",
+      "frase": "O silêncio do homem tem um preço. O primeiro capítulo está aberto, de graça — os outros 24 estão no livro.",
       "capa": "/homem-voce-nao-e-ridiculo-capa-frente.jpg",
-      "destino": "/livros/homem-voce-nao-e-ridiculo.html",
-      "acao": "Conheça o livro"
+      "destino": "/leia/homem-voce-nao-e-ridiculo/",
+      "acao": "Leia o primeiro capítulo",
+      "_nota": "O destino e a AMOSTRA, nao a pagina de venda: o convite da algo antes de pedir algo. A amostra termina nos links de compra, entao o funil fecha do mesmo jeito — so que com o leitor ja tendo lido o autor."
     },
     "decisao": {
       "titulo": "O Poder da Decisão",

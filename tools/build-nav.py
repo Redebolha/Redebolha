@@ -30,24 +30,18 @@ MENU = [
 
 MARCA_HTML = '<b>Rede</b> Bolha'
 
-# Link utilitario, separado do menu: o acervo d'A Carta, que e aberto.
-# Ate setembro de 2026 isto era "Entrar", a porta da area de assinantes. A
-# assinatura saiu do ar (arquivo/circulo/) e o que sobrou e publico: nao ha
-# mais o que "entrar".
+# Link utilitario, separado do menu.
+#
+# Ja foi "Entrar", a porta da area de assinantes. A assinatura saiu do ar
+# (arquivo/circulo/) e virou "A Carta", apontando direto para o Beehiiv —
+# mas o botao mais visivel do menu jogava a pessoa para FORA do site antes
+# de ela saber o que estava assinando. Agora leva a /a-carta/, que explica,
+# captura aqui mesmo e so entrega ao Beehiiv no envio.
 # O endereco vem de js/newsletter.json, a mesma fonte que A Carta usa. Ja
 # estragou uma vez: com o endereco cravado aqui, rodar este script depois de
 # trocar de plataforma devolvia as 61 paginas para a plataforma antiga.
-def _destino_entrar() -> str:
-    import json
-    try:
-        d = json.loads((RAIZ / "js" / "newsletter.json").read_text(encoding="utf-8"))
-        return d.get("publicacao") or ""
-    except Exception:
-        return ""
-
-
-ENTRAR = ("A Carta", _destino_entrar())
-ENTRAR_ATTR = ' rel="noopener" target="_blank"'  # e um endereco de fora
+ENTRAR = ("A Carta", "/a-carta/")
+ENTRAR_ATTR = ""  # agora e uma pagina do proprio site, abre na mesma aba
 
 # Pastas que nao recebem cabecalho do site.
 IGNORAR = {
