@@ -1,0 +1,52 @@
+{
+  "_leia_antes": [
+    "A tira que alterna na home. Cada item vira uma chamada; o js/tira.js",
+    "sorteia uma a cada visita e evita repetir a que apareceu da ultima vez.",
+    "",
+    "Para acrescentar, tirar ou reescrever uma chamada, edite so este arquivo:",
+    "nenhum HTML precisa ser tocado.",
+    "",
+    "Campos: 'selo' (a etiqueta dourada), 'texto' (a pergunta) e 'url'.",
+    "Se a lista ficar vazia, a tira some da pagina em vez de aparecer vazia.",
+    "",
+    "REGRA: a pergunta tem que ser respondida PELA ferramenta. Prometer o que",
+    "a pagina nao entrega e o erro que este site ja cometeu antes."
+  ],
+  "tiras": [
+    {
+      "selo": "Grátis",
+      "texto": "Em que mês o seu dinheiro passa a trabalhar mais que você?",
+      "url": "/financas/simulador-renda-passiva.html"
+    },
+    {
+      "selo": "Grátis",
+      "texto": "Quanto vale uma hora da sua vida, descontando o trânsito e os gastos do trabalho?",
+      "url": "/ferramentas/quanto-vale-sua-hora.html"
+    },
+    {
+      "selo": "Grátis",
+      "texto": "Da sua dívida, quanto ainda é dívida — e quanto já virou só juros?",
+      "url": "/ferramentas/termometro-da-divida.html"
+    },
+    {
+      "selo": "Grátis",
+      "texto": "Quantas horas de trabalho por mês o seu carro custa, contando tudo?",
+      "url": "/ferramentas/custo-real-do-carro.html"
+    },
+    {
+      "selo": "Teste",
+      "texto": "Que tipo de homem você é com o dinheiro? Descubra em quatro perguntas.",
+      "url": "/teste-homem-e-dinheiro/"
+    },
+    {
+      "selo": "Grátis",
+      "texto": "Quanto falta da primeira centena de milhar até o primeiro milhão?",
+      "url": "/financas/simulador-100k-1milhao.html"
+    },
+    {
+      "selo": "Grátis",
+      "texto": "Quanto a sua carteira de fundos imobiliários põe na conta todo mês?",
+      "url": "/financas/calculadora-fii.html"
+    }
+  ]
+}
