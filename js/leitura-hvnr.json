@@ -11,7 +11,10 @@
     "navegacao. E de proposito: melhor faltar um capitulo do que abrir uma tela",
     "em branco na cara de quem veio ler.",
     "",
-    "Tags que o leitor entende: <p>, <em>, <strong>, <blockquote>, <h3>."
+    "Tags que o leitor entende: <p>, <em>, <strong>, <blockquote>, <h3>.",
+    "",
+    "Em 'compra', o campo 'selo' e o icone da loja e 'marca' e o nome dela.",
+    "Sem 'selo', o botao aparece so com o texto — nao quebra."
   ],
   "livro": {
     "titulo": "Homem, Você Não É Ridículo",
@@ -24,15 +27,21 @@
     {
       "rotulo": "Livro físico + e-book, frete grátis — R$ 29,90",
       "url": "https://go.hotmart.com/R106833548K?dp=1&src=leitor_amostra",
+      "selo": "/selo-hotmart.png",
+      "marca": "Hotmart",
       "destaque": true
     },
     {
-      "rotulo": "Com dedicatória, direto comigo pelo WhatsApp",
-      "url": "https://wa.me/5551980482820?text=Ol%C3%A1%2C%20Rom%C3%A1rio!%20Li%20a%20amostra%20no%20site%20e%20quero%20o%20livro%20f%C3%ADsico%20com%20dedicat%C3%B3ria.%20Pago%20por%20Pix."
+      "rotulo": "Com dedicatória, direto comigo",
+      "url": "https://wa.me/5551980482820?text=Ol%C3%A1%2C%20Rom%C3%A1rio!%20Li%20a%20amostra%20no%20site%20e%20quero%20o%20livro%20f%C3%ADsico%20com%20dedicat%C3%B3ria.%20Pago%20por%20Pix.",
+      "selo": "/selo-whatsapp.png",
+      "marca": "WhatsApp"
     },
     {
-      "rotulo": "Na Amazon",
-      "url": "https://www.amazon.com.br/dp/B0GXSNXT3J"
+      "rotulo": "Livro físico, com frete grátis",
+      "url": "https://meli.la/25izgXt",
+      "selo": "/selo-mercadolivre.png",
+      "marca": "Mercado Livre"
     }
   ],
   "capitulos": [

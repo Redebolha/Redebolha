@@ -112,9 +112,31 @@
     var caixa = document.getElementById('lt-compra');
     (dados.compra || []).forEach(function (c) {
       var a = document.createElement('a');
-      a.href = c.url; a.textContent = c.rotulo;
+      a.href = c.url;
       a.rel = 'noopener'; a.target = '_blank';
       if (c.destaque) a.className = 'destaque';
+
+      // O selo da loja fica num quadradinho branco: as marcas tem cores
+      // proprias e sem o fundo claro a do Hotmart sumiria no modo escuro.
+      if (c.selo) {
+        var s = document.createElement('span');
+        s.className = 'lt-selo';
+        var img = document.createElement('img');
+        img.src = c.selo; img.alt = ''; img.loading = 'lazy';
+        img.width = 22; img.height = 22;
+        s.appendChild(img);
+        a.appendChild(s);
+      }
+      var txt = document.createElement('span');
+      txt.className = 'lt-compra-txt';
+      if (c.marca) {
+        var m = document.createElement('b');
+        m.textContent = c.marca;
+        txt.appendChild(m);
+        txt.appendChild(document.createTextNode(' · '));
+      }
+      txt.appendChild(document.createTextNode(c.rotulo));
+      a.appendChild(txt);
       a.addEventListener('click', function () {
         evento('amostra_compra_clique', { destino: c.rotulo });
       });
