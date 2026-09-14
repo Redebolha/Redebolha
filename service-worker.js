@@ -2,7 +2,7 @@
    Troque a versão abaixo sempre que publicar mudanças grandes no site.
    Isso força a atualização do cache no celular das pessoas. */
 
-const VERSAO = 'redebolha-v10';
+const VERSAO = 'redebolha-v11';
 const OFFLINE_URL = '/offline.html';
 
 const PRE_CACHE = [
@@ -73,7 +73,18 @@ self.addEventListener('fetch', (event) => {
      buscava a nova para a VISITA SEGUINTE — então uma publicação parecia
      não ter surtido efeito, mesmo com o HTML já atualizado. Preço a pagar:
      alguns kB por visita. Vale, porque o que sai errado é o site inteiro. */
-  if (req.destination === 'style' || req.destination === 'script') {
+  /* Os .json de configuração entram AQUI, junto com CSS e JS.
+     Eles não têm `destination` ('' para fetch), então caíam na regra de
+     "imagens e o resto", que é cache primeiro — e uma troca de link ou de
+     campanha só aparecia na VISITA SEGUINTE de quem já tinha o site no
+     celular. É o caso de js/leitura-hvnr.json (as lojas da amostra),
+     js/newsletter.json (onde A Carta mora) e js/patrocinadores.json (qual
+     livro patrocina o quê): tudo isso é conteúdo editorial, e tem que
+     chegar na hora. O fetch com no-cache no próprio script não resolvia,
+     porque o service worker responde antes de o pedido sair do aparelho. */
+  const ehConfig = url.pathname.endsWith('.json');
+
+  if (req.destination === 'style' || req.destination === 'script' || ehConfig) {
     event.respondWith(
       /* no-cache pergunta ao servidor "mudou?" em vez de confiar no cache do
          navegador. Se não mudou, volta um 304 e não baixa nada; se mudou, vem
