@@ -257,21 +257,26 @@
         font-size: 1.8rem;
       }
     }
-  </style>
+  
+/* O menu passou de 6 rotulos curtos para 7 mais longos: sem quebra de linha
+   ele estourava 645px numa tela de 420px. */
+.header-content{flex-wrap:wrap;gap:10px 18px}
+.header-content nav{min-width:0;flex:1 1 auto}
+.header-content nav ul{display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:flex-end;
+  margin:0;padding:0;list-style:none}
+.header-content nav a{white-space:nowrap}
+@media(max-width:640px){
+  .header-content{justify-content:center}
+  .header-content nav ul{justify-content:center;gap:8px 12px}
+}
+</style>
 </head>
 <body>
   <header>
     <div class="header-content">
-      <a href="/" class="logo">Rede Bolha</a>
+      <a href="/" class="logo"><b>Rede</b> Bolha</a>
       <nav>
-        <ul>
-          <li><a href="/livros/">Livros</a></li>
-          <li><a href="/artigos/">Artigos</a></li>
-      <li><a href="/assinatura/">Círculo</a></li>
-          <li><a href="/sobre-o-autor.html">O Autor</a></li>
-          <li><a href="/teste-mascara-masculina/">Teste</a></li>
-          <li><a href="/contato/">Contato</a></li>
-        </ul>
+        <ul><li><a href="/financas/">Homem e Dinheiro</a></li><li><a href="/masculinidade/">Masculinidade</a></li><li><a href="/economia/">Economia</a></li><li><a href="/ferramentas/">Ferramentas</a></li><li><a href="/artigos/">Artigos</a></li><li><a href="/sobre-o-autor.html" aria-current="page">Sobre</a></li><li><a class="rb-entrar" href="https://adm-romrios-newsletter.beehiiv.com" rel="noopener" target="_blank">Entrar</a></li></ul>
       </nav>
     </div>
   </header>

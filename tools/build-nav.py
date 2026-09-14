@@ -31,8 +31,20 @@ MENU = [
 MARCA_HTML = '<b>Rede</b> Bolha'
 
 # Link utilitario, separado do menu: quem ja assina precisa achar a porta.
-ENTRAR = ("Entrar", "https://club.hotmart.com")
-ENTRAR_ATTR = ' rel="noopener" target="_blank"'  # o Club e externo
+# O endereco vem de js/newsletter.json, a mesma fonte que A Carta usa. Ja
+# estragou uma vez: com o endereco cravado aqui, rodar este script depois de
+# trocar de plataforma devolvia as 61 paginas para a plataforma antiga.
+def _destino_entrar() -> str:
+    import json
+    try:
+        d = json.loads((RAIZ / "js" / "newsletter.json").read_text(encoding="utf-8"))
+        return d.get("publicacao") or ""
+    except Exception:
+        return ""
+
+
+ENTRAR = ("Entrar", _destino_entrar())
+ENTRAR_ATTR = ' rel="noopener" target="_blank"'  # e um endereco de fora
 
 # Pastas que nao recebem cabecalho do site.
 IGNORAR = {
@@ -117,12 +129,37 @@ def padrao_topo(html: str, atual: str) -> tuple[str, int]:
     )
 
 
+def padrao_menu(html: str, atual: str) -> tuple[str, int]:
+    """<header class="topo"> com <ul class="menu"> — a quarta marcacao.
+
+    Passou despercebida na Fase 1 e deixou 4 paginas com o menu antigo, entre
+    elas a /assinatura/, que e quem vende o Circulo."""
+    return re.subn(
+        r'(<ul class="menu">).*?(</ul>)',
+        lambda m: m.group(1) + itens_lista(atual) + m.group(2),
+        html, flags=re.S,
+    )
+
+
+def padrao_header_content(html: str, atual: str) -> tuple[str, int]:
+    """<div class="header-content"> com <nav><ul> — a /sobre-o-autor.html."""
+    return re.subn(
+        r'(<div class="header-content">.*?<nav>\s*<ul>).*?(</ul>)',
+        lambda m: m.group(1) + itens_lista(atual) + m.group(2),
+        html, flags=re.S,
+    )
+
+
 def corrigir_marca(html: str) -> tuple[str, int]:
-    """A marca do site e Rede Bolha — nao o titulo de um dos livros."""
+    """A marca do site e Rede Bolha — nao o titulo de um dos livros.
+
+    O regex olha o atributo class em qualquer posicao da tag: a versao antiga
+    exigia class como PRIMEIRO atributo e por isso nao pegava a marca da
+    /sobre-o-autor.html, onde vem href antes."""
     n = 0
-    for classe in ("brand", "logo"):
+    for classe in ("brand", "logo", "marca"):
         html, k = re.subn(
-            rf'(<a class="{classe}"[^>]*>).*?(</a>)',
+            rf'(<a(?=[^>]*class="[^"]*\b{classe}\b)[^>]*>).*?(</a>)',
             lambda m: m.group(1) + MARCA_HTML + m.group(2),
             html, flags=re.S,
         )
@@ -136,7 +173,8 @@ def processar(caminho: Path) -> dict:
     atual = secao_da_pagina(caminho)
 
     total = 0
-    for fn in (padrao_topnav, padrao_rb_nav, padrao_topo):
+    for fn in (padrao_topnav, padrao_rb_nav, padrao_topo, padrao_menu,
+               padrao_header_content):
         html, n = fn(html, atual)
         total += n
 

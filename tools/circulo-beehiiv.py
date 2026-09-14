@@ -48,6 +48,39 @@ PROMESSAS = [
 ]
 
 
+# Dois caminhos de pagamento, cada um com o seu prazo dito na cara.
+#   cartao -> Beehiiv cobra e libera sozinho, na hora.
+#   Pix    -> chega no WhatsApp e a liberacao e manual.
+# Prometer acesso imediato no Pix seria mentira: alguem que paga de madrugada
+# vai procurar o acesso e nao vai achar.
+WHATSAPP = ("https://wa.me/5551980482820?text="
+            "Quero%20entrar%20no%20C%C3%ADrculo%20Rede%20Bolha%20pagando%20por%20Pix")
+
+PRAZO_PIX = "em até 24 horas"
+
+PASSOS = """        <ol class="as-passos">
+          <li><b>Você escolhe como pagar</b>Cartão pelo Beehiiv, ou Pix falando comigo no WhatsApp. O preço é o mesmo.</li>
+          <li><b>No cartão, o acesso é na hora</b>O Beehiiv libera sozinho assim que o pagamento passa, mesmo de madrugada.</li>
+          <li><b>No Pix, quem libera sou eu</b>Você me manda o comprovante e eu libero """ + PRAZO_PIX + """. Não é automático — sou eu mesmo do outro lado.</li>
+          <li><b>Toda semana chega coisa nova</b>Você entra na hora que der. Ninguém vai te cobrar presença.</li>
+        </ol>"""
+
+
+def par_de_botoes(assinar: str, marca: str) -> str:
+    return (
+        f'<a class="as-cta" href="{assinar}" rel="noopener" data-rb="assinar-{marca}">'
+        f'Assinar com cartão</a>\n'
+        f'        <a class="as-cta as-cta--pix" href="{WHATSAPP}" rel="noopener" '
+        f'target="_blank" data-rb="pix-{marca}">Pagar com Pix no WhatsApp</a>'
+    )
+
+
+CSS_PIX = """
+.as-cta--pix{background:none;border:1px solid currentColor;margin-top:10px}
+.as-cta--pix:hover{background:rgba(255,255,255,.06)}
+"""
+
+
 def cfg() -> dict:
     d = json.loads(CONFIG.read_text(encoding="utf-8"))
     if not d.get("publicacao"):
@@ -70,17 +103,29 @@ def migrar_assinatura(pub: str, assinar: str) -> int:
 
     t = t.replace(HOTMART_CIRCULO, assinar)
 
+    # Cada CTA vira um par: cartao e Pix. Rodar de novo nao pode empilhar um
+    # segundo botao de Pix — por isso a marca so e trocada se ainda estiver so.
+    for marca in ("topo", "preco", "fim"):
+        if f'data-rb="pix-{marca}"' in t:
+            continue
+        t = re.sub(
+            rf'<a class="as-cta" href="[^"]*" rel="noopener" data-rb="assinar-{marca}">'
+            rf'[^<]*</a>',
+            lambda _m, mc=marca: par_de_botoes(assinar, mc), t, count=1)
+
     # --- microcópia do preço -------------------------------------------------
     t = t.replace(
         "Pagamento pela Hotmart · Pix ou cartão · 7 dias de garantia",
-        "Cartão · cancela quando quiser · sem fidelidade")
-
-    # --- como funciona -------------------------------------------------------
+        "Cartão (na hora) ou Pix (" + PRAZO_PIX + ") · cancela quando quiser")
     t = t.replace(
-        "<li><b>Você assina pela Hotmart</b>Leva dois minutos. Pix ou cartão, "
-        "do jeito que for melhor.</li>",
-        "<li><b>Você assina pelo Beehiiv</b>Leva dois minutos. É onde A Carta "
-        "já mora, então é o mesmo lugar de sempre.</li>")
+        "Cartão · cancela quando quiser · sem fidelidade",
+        "Cartão (na hora) ou Pix (" + PRAZO_PIX + ") · cancela quando quiser")
+    t = t.replace(
+        "R$ 37 por mês · cancela quando quiser · 7 dias de garantia",
+        "R$ 37 por mês · cartão na hora, Pix " + PRAZO_PIX + " · 7 dias de garantia")
+
+    # --- como funciona: os dois caminhos -------------------------------------
+    t = re.sub(r'        <ol class="as-passos">.*?</ol>', PASSOS, t, flags=re.S)
 
     # --- FAQ -----------------------------------------------------------------
     t = re.sub(
@@ -92,15 +137,20 @@ def migrar_assinatura(pub: str, assinar: str) -> int:
     t = t.replace(
         '<p class="as-resp">Cartão ou Pix, pela Hotmart — a mesma plataforma onde '
         'meus livros já são vendidos.</p>',
-        '<p class="as-resp">Cartão, pelo Beehiiv — a mesma plataforma que já envia '
-        'A Carta. Os livros continuam sendo vendidos pela Hotmart, que é outra '
-        'coisa.</p>')
+        '<p class="as-resp">De dois jeitos. No <b>cartão</b>, pelo Beehiiv — que é a '
+        'mesma plataforma que já envia A Carta — e o acesso sai na hora, sozinho. '
+        'No <b>Pix</b>, você me chama no WhatsApp, me manda o comprovante e eu libero '
+        + PRAZO_PIX + '. Nesse caminho não é automático: sou eu mesmo do outro lado, '
+        'então pode não ser de madrugada.</p>')
 
     # --- as promessas --------------------------------------------------------
     ini = t.find('<div class="as-item">')
     fim = t.rfind('</div>', 0, t.find('</div>', t.rfind('<div class="as-item">')) + 6) + 6
     if ini != -1 and fim > ini:
         t = t[:ini] + "\n".join(item(a, b) for a, b in PROMESSAS).lstrip() + t[fim:]
+
+    if ".as-cta--pix{" not in t:
+        t = t.replace("</style>", CSS_PIX + "</style>", 1)
 
     if t != original and "--check" not in sys.argv:
         p.write_text(t, encoding="utf-8", errors="surrogateescape")
@@ -147,6 +197,19 @@ def migrar_membros(pub: str) -> bool:
         "       confirmação — vale conferir o spam.")
     t = t.replace("O e-mail da Hotmart chega logo após a confirmação do pagamento",
                   "O e-mail do Beehiiv chega logo após a confirmação")
+
+    # Quem pagou por Pix nao pode achar que o acesso falhou: o prazo dele e
+    # outro, e a pagina precisa dizer isso, senao o WhatsApp enche de gente
+    # achando que deu errado.
+    t = re.sub(
+        r'(<p class="ajuda">).*?(</p>)',
+        lambda m: m.group(1) +
+        'Pagou no <b>cartão</b> e não recebeu? O e-mail do Beehiiv chega logo após a '
+        'confirmação — vale conferir o spam. Pagou por <b>Pix</b>? Aí quem libera sou '
+        'eu, ' + PRAZO_PIX + ' — se já passou disso, '
+        '<a href="' + WHATSAPP + '" rel="noopener" target="_blank">me chama no '
+        'WhatsApp</a>.' + m.group(2),
+        t, count=1, flags=re.S)
 
     if t != original and "--check" not in sys.argv:
         p.write_text(t, encoding="utf-8", errors="surrogateescape")
