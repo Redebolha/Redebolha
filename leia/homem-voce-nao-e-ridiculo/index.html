@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-tema-leitura="claro" data-corpo="2" data-fonte="serif">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leia o capítulo 1 de Homem, Você Não É Ridículo | Rede Bolha</title>
+<meta name="description" content="Leia de graça o prefácio e o primeiro capítulo — 'A Máscara que Você Usa Todo Dia' — do livro Homem, Você Não É Ridículo, de Adm. Romário Cruz. Sem cadastro.">
+<link rel="canonical" href="https://redebolha.com.br/leia/homem-voce-nao-e-ridiculo/">
+<meta property="og:title" content="A Máscara que Você Usa Todo Dia">
+<meta property="og:description" content="Todo homem carrega um personagem. Leia de graça o primeiro capítulo de Homem, Você Não É Ridículo.">
+<meta property="og:url" content="https://redebolha.com.br/leia/homem-voce-nao-e-ridiculo/">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://redebolha.com.br/homem-voce-nao-e-ridiculo-capa-frente.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
+<link rel="icon" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<link rel="stylesheet" href="/css/leitor.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6DSL2EMZSL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6DSL2EMZSL');
+</script>
+<script>
+  /* Antes de pintar: aplica o tema salvo, para nao dar o flash branco em
+     quem escolheu o modo escuro. */
+  (function () {
+    try {
+      var p = JSON.parse(localStorage.getItem('rb-leitor')) || {};
+      var escuro = window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var r = document.documentElement;
+      r.setAttribute('data-tema-leitura', p.tema || (escuro ? 'escuro' : 'claro'));
+      r.setAttribute('data-corpo', String(p.corpo || 2));
+      r.setAttribute('data-fonte', p.fonte || 'serif');
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+
+<div class="lt-progresso" aria-hidden="true"><i id="lt-barra"></i></div>
+
+<header class="lt-topo">
+  <div class="lt-topo-in">
+    <a class="lt-voltar" href="/livros/homem-voce-nao-e-ridiculo.html">← Sobre o livro</a>
+    <div class="lt-acoes">
+      <button type="button" class="lt-bt" id="lt-abrir" aria-expanded="false" aria-controls="lt-ajustes">Aa</button>
+    </div>
+  </div>
+</header>
+
+<div class="lt-ajustes" id="lt-ajustes" hidden>
+  <div class="lt-ajustes-in">
+    <div class="lt-grupo" role="group" aria-label="Tema de leitura">
+      <span class="lt-rot">Tema</span>
+      <button type="button" class="lt-opcao" data-opcao="tema" data-valor="claro" aria-pressed="false">Claro</button>
+      <button type="button" class="lt-opcao" data-opcao="tema" data-valor="sepia" aria-pressed="false">Sépia</button>
+      <button type="button" class="lt-opcao" data-opcao="tema" data-valor="escuro" aria-pressed="false">Escuro</button>
+    </div>
+    <div class="lt-grupo" role="group" aria-label="Tamanho da letra">
+      <span class="lt-rot">Letra</span>
+      <button type="button" class="lt-opcao" data-opcao="corpo" data-valor="1" aria-pressed="false" style="font-size:.75rem">A</button>
+      <button type="button" class="lt-opcao" data-opcao="corpo" data-valor="2" aria-pressed="false" style="font-size:.9rem">A</button>
+      <button type="button" class="lt-opcao" data-opcao="corpo" data-valor="3" aria-pressed="false" style="font-size:1.05rem">A</button>
+      <button type="button" class="lt-opcao" data-opcao="corpo" data-valor="4" aria-pressed="false" style="font-size:1.2rem">A</button>
+    </div>
+    <div class="lt-grupo" role="group" aria-label="Tipografia">
+      <span class="lt-rot">Tipo</span>
+      <button type="button" class="lt-opcao" data-opcao="fonte" data-valor="serif" aria-pressed="false" style="font-family:Fraunces,Georgia,serif">Com serifa</button>
+      <button type="button" class="lt-opcao" data-opcao="fonte" data-valor="sans" aria-pressed="false">Sem serifa</button>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="lt-aviso" id="lt-carregando">
+    <p>Abrindo a amostra…</p>
+  </div>
+
+  <div id="lt-leitor" hidden>
+    <article class="lt-folha">
+      <p class="lt-marca" id="lt-numero"></p>
+      <h1 id="lt-titulo"></h1>
+      <p class="lt-credito" id="lt-credito" hidden></p>
+      <div class="lt-texto" id="lt-texto"></div>
+    </article>
+
+    <nav class="lt-nav" aria-label="Navegação entre capítulos">
+      <a href="#" id="lt-ant" hidden>←</a>
+      <a href="#" id="lt-prox" hidden>→</a>
+    </nav>
+
+    <section class="lt-fim">
+      <h2>Ainda faltam <span id="lt-restantes">24</span> capítulos.</h2>
+      <p>
+        Este é o começo. O livro segue pelo silêncio que vira doença, pela herança
+        que você recebeu do seu pai sem pedir, pela raiva que esconde outra coisa,
+        pelo corpo que grita o que a boca não diz — e pelo legado que você já está
+        deixando, hoje, sem perceber.
+      </p>
+      <p><strong>Se este capítulo apertou alguma coisa em você, o livro foi escrito exatamente pra esse aperto.</strong></p>
+
+      <div class="lt-compra" id="lt-compra"></div>
+
+      <p>
+        E se você ainda não quer comprar nada — tudo bem. Deixe seu e-mail e receba
+        <em>A Carta</em>: um texto por semana sobre homem, dinheiro e as contas que
+        ninguém ensina a gente a fazer. De graça, e sem pedir cartão.
+      </p>
+      <div data-newsletter data-origem="amostra-hvnr"></div>
+    </section>
+
+    <footer class="lt-rodape">
+      <span>&copy; 2026 Adm. Romário Cruz · Eldorado do Sul, RS</span>
+      <a href="/">Início</a>
+      <a href="/artigos/">Artigos</a>
+      <a href="/livros/">Os livros</a>
+    </footer>
+  </div>
+</main>
+
+<script src="/js/leitor.js" defer></script>
+<script src="/js/newsletter.js" defer></script>
+</body>
+</html>

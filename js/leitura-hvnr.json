@@ -1,0 +1,54 @@
+{
+  "_leia_antes": [
+    "Conteudo do leitor de amostra. Cada item de 'capitulos' vira uma tela.",
+    "",
+    "PARA ACRESCENTAR O CAPITULO 1 (ou qualquer outro):",
+    "  1. Copie o texto do capitulo.",
+    "  2. Envolva cada paragrafo em <p>...</p>.",
+    "  3. Cole no campo 'texto' do capitulo correspondente aqui embaixo.",
+    "",
+    "Capitulo com 'texto' vazio NAO aparece no leitor — nem no indice, nem na",
+    "navegacao. E de proposito: melhor faltar um capitulo do que abrir uma tela",
+    "em branco na cara de quem veio ler.",
+    "",
+    "Tags que o leitor entende: <p>, <em>, <strong>, <blockquote>, <h3>."
+  ],
+  "livro": {
+    "titulo": "Homem, Você Não É Ridículo",
+    "autor": "Adm. Romário Cruz",
+    "capa": "/homem-voce-nao-e-ridiculo-capa-frente.jpg",
+    "total_capitulos": 25,
+    "pagina": "/livros/homem-voce-nao-e-ridiculo.html"
+  },
+  "compra": [
+    {
+      "rotulo": "Livro físico + e-book, frete grátis — R$ 29,90",
+      "url": "https://go.hotmart.com/R106833548K?dp=1&src=leitor_amostra",
+      "destaque": true
+    },
+    {
+      "rotulo": "Com dedicatória, direto comigo pelo WhatsApp",
+      "url": "https://wa.me/5551980482820?text=Ol%C3%A1%2C%20Rom%C3%A1rio!%20Li%20a%20amostra%20no%20site%20e%20quero%20o%20livro%20f%C3%ADsico%20com%20dedicat%C3%B3ria.%20Pago%20por%20Pix."
+    },
+    {
+      "rotulo": "Na Amazon",
+      "url": "https://www.amazon.com.br/dp/B0GXSNXT3J"
+    }
+  ],
+  "capitulos": [
+    {
+      "id": "prefacio",
+      "numero": "Prefácio",
+      "titulo": "Uma Leitura Necessária",
+      "autor": "por Roque Bakof — filósofo, psicanalista e escritor",
+      "texto": "<p class=\"abertura\">Com formação na área das ciências humanas e especialização em psicanálise, nestes vários anos — mais de duas décadas — de vivências e escuta clínica, atividade terapêutica e mediação de conflitos, o meu olhar aprendeu a perceber o que está por baixo, para além, do que as pessoas dizem — e do que deliberadamente não dizem.</p>\n<p>É exatamente por isso que este livro despertou a minha atenção, e entendo que devo recomendar a sua leitura.</p>\n<p>O que chama a atenção, e constitui o diferencial desta obra, é que, embora o autor não seja um profissional da área da psicanálise, da psicologia ou das terapias comportamentais, este \"homem comum\" foi capaz de olhar para dentro de si com a coragem que poucos têm — a coragem de nomear o que viu — e depois decidiu escrever e compartilhar as suas percepções, buscando encontrar significados.</p>\n<p>Livros escritos por profissionais da área descrevem teses, avaliam perspectivas, mas raramente alcançam e explicam o sofrimento do sujeito que vivencia esse desafio. Esta é a contribuição que Romário Cruz oferece ao propor esta obra: ele escreve sob a ótica de quem vive o desafio e busca entender os significados.</p>\n<p>Certamente, muitos leitores vão se identificar com as palavras e com a forma como Romário expõe os seus sentimentos, bem como com as conclusões que formulou após pesquisar e buscar entender a sua trajetória de vida.</p>\n<p>Ao longo de vinte e cinco capítulos, a obra percorre os territórios mais sensíveis da vida masculina: a máscara que o homem usa para parecer forte; o silêncio que acumula o que não foi dito, até que o corpo grite; as reações, os sentimentos — medo, vergonha, solidão, impotência.</p>\n<p>Com a minha formação psicanalítica, reconheço aqui conceitos que a psicologia levou décadas construindo — mas expressos com uma clareza que os manuais técnicos têm dificuldade de traduzir para o leitor comum.</p>\n<p>O texto propõe a análise da raiva como emoção secundária, faz a distinção entre culpa e vergonha — uma que motiva a correção, outra que paralisa — e estas são oportunas contribuições das reflexões que a obra propõe. O capítulo sobre a herança paterna toca a ferida mais funda e mais universal: o homem que não sabe de onde vêm as suas reações está condenado a repeti-las.</p>\n<p>Do ponto de vista das políticas públicas, obras como esta têm importante papel, para além dos atendimentos formais, pois, de uma forma despretensiosa, alcançam quem, por vezes, não seria alcançado. Alcançam o homem que ainda não está pronto para admitir que precisa de ajuda.</p>\n<p>Um livro não muda uma cultura. Mas pode ser o começo da rachadura por onde a luz entra. Pode ser um despertar.</p>\n<p>Há uma passagem neste livro que me fez refletir: Romário Cruz descreve o homem que chega em casa depois de um dia longo e simplesmente não tem mais nada para dar. Sabiamente, interpreta que isso não é fraqueza de caráter. É o resultado inevitável de dar sem receber, de se esforçar sem descansar, de ser forte para todos sem ter um lugar onde ser fraco. Detive-me nessa frase. Não porque seja nova, mas porque raramente ela é dita com essa profundidade e com essa ausência de julgamento, num texto destinado ao homem comum.</p>\n<p>Essa é uma oportuna contribuição deste livro: ele convida o leitor a uma reflexão, estimulando-o a perceber que passou décadas invisível até para si mesmo — esta é uma experiência oportuna e transformadora.</p>\n<p>Este livro é daquelas obras que merecem ser lidas e recomendadas a amigos e familiares, pois é um oportuno despertar.</p>\n<p class=\"assina\">— Roque Bakof<br><span>Filósofo, psicanalista e escritor</span></p>"
+    },
+    {
+      "id": "capitulo-1",
+      "numero": "Capítulo 1",
+      "titulo": "A Máscara que Você Usa Todo Dia",
+      "autor": "",
+      "texto": "<div class=\"epigrafe\">\n<p>“Ser forte não significa nunca cair. Significa se levantar cada vez que cai.”</p>\n<p class=\"ref\">✦ João 11:35 ✦</p>\n<p class=\"verso\">“Jesus chorou.”</p>\n</div>\n\n<h3>O Peso do Personagem</h3>\n\n<p class=\"abertura\">Todo homem carrega um personagem. Não o de um filme ou novela, mas aquele construído ao longo dos anos — tijolo por tijolo, experiência por experiência. Um personagem que aprendeu a reagir de determinada forma, a esconder certas emoções, a performar uma versão de si mesmo que pareça aceitável aos olhos do mundo. Esse personagem tem um nome: a máscara.</p>\n\n<p>A máscara, em si, não é ruim. Ela nasceu como proteção. Em algum momento da infância ou adolescência, você descobriu que mostrar certas emoções era perigoso. Talvez alguém tenha rido quando você chorou. Talvez seu pai tenha dito que homem não chora. E então o seu cérebro, inteligente para a sobrevivência, aprendeu: esconde isso, é arriscado deixar aparecer.</p>\n\n<p>O problema é que a máscara que deveria ser temporária se torna permanente. O que era proteção vira prisão. E um dia você acorda e percebe que perdeu o contato com o homem real que existe por baixo do personagem. A pergunta honesta, então, é simples e devastadora: <em>quando foi a última vez que alguém viu quem você realmente é?</em></p>\n\n<hr class=\"orn\">\n\n<h3>A Máscara e a Imagem de Deus</h3>\n\n<p>Há algo que a cultura raramente menciona: o homem foi criado à imagem de um Deus que sente. O Deus da Bíblia chora — Jesus chorou diante do túmulo de Lázaro (João 11:35). O Deus da Bíblia tem compaixão, sente ira justa, experimenta amor profundo. Suprimir completamente as emoções não torna o homem mais divino — torna-o menos parecido com Aquele que o criou.</p>\n\n<p>A máscara, portanto, não é apenas psicologicamente danosa — é teologicamente equivocada. Ela contradiz a imagem de Deus inscrita em cada homem. Quando você apaga sua humanidade para parecer mais forte, está apagando exatamente o traço que prova que Deus te formou com propósito.</p>\n\n<p>Brené Brown, pesquisadora reconhecida mundialmente em vergonha e vulnerabilidade, demonstrou que vulnerabilidade não é o oposto de coragem — é a sua matéria-prima. Os homens mais corajosos da história não foram os que não sentiam medo, mas os que sentiam medo e agiam mesmo assim, com o coração inteiro disponível.</p>\n\n<hr class=\"orn\">\n\n<h3>Tirando a Máscara — O Primeiro Passo</h3>\n\n<p>Tirar a máscara não significa expor sua intimidade para qualquer estranho. Significa aprender a ser autêntico — ter consciência de suas emoções e expressá-las de formas saudáveis, com as pessoas certas, nos momentos certos. É reabrir um diálogo com aquele homem real que ficou esquecido atrás do personagem.</p>\n\n<p>Pergunte-se honestamente: quem sou eu quando não há ninguém olhando? O que sinto quando estou completamente sozinho? Que emoções surgem em mim quando ninguém pode me julgar? Estas perguntas, feitas com coragem, são o início da reconciliação com a sua humanidade.</p>\n\n<p>Você não é ridículo por ter usado uma máscara. Você fez o que aprendeu, para sobreviver. Mas agora é hora de perguntar se essa máscara ainda serve a você — ou se é você que está servindo a ela. A transformação começa exatamente nesse ponto: <strong>quando você decide que sua vida vale mais do que a sua imagem.</strong></p>\n\n<hr class=\"orn\">"
+    }
+  ]
+}

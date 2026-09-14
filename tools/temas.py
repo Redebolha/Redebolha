@@ -63,7 +63,10 @@ POR_ARQUIVO = {
 # Fora do alcance: painel, area logada, utilitarios e as proprias paginas de
 # venda — anunciar um livro dentro da pagina de outro nao faz sentido.
 IGNORAR_PASTAS = {
-    "admin", "membros", "livros", "oferta", "hvnr",
+    "admin", "arquivo", "livros", "oferta", "hvnr",
+    # O leitor de amostra E o livro. Anunciar o livro dentro da amostra dele
+    # seria interromper a leitura para vender o que a pessoa ja esta lendo.
+    "leia",
     # O quiz fica de fora do motor de patrocinio de proposito: o resultado ja
     # captura pela Carta, e duas capturas na mesma tela competem entre si.
     "teste-homem-e-dinheiro", "teste-mascara-masculina",

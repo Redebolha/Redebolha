@@ -1,0 +1,212 @@
+/* Leitor de amostra — Rede Bolha
+   Tres temas, quatro tamanhos de fonte e duas tipografias. Tudo em variavel
+   CSS: o JavaScript so troca atributo no <html>, nunca estilo inline. */
+
+:root{
+  --largura: 34rem;      /* ~62 caracteres por linha, a medida confortavel */
+  --corpo: 1.125rem;
+  --fonte-corpo: "Fraunces", Georgia, "Times New Roman", serif;
+  --fonte-titulo: "Fraunces", Georgia, serif;
+  --fonte-ui: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* --- temas ------------------------------------------------------------- */
+[data-tema-leitura="claro"]{
+  --papel:#fbfaf7; --tinta:#1b1b19; --suave:#6a675f; --linha:#e4e0d6;
+  --ouro:#9a7526; --barra:rgba(251,250,247,.94);
+}
+[data-tema-leitura="sepia"]{
+  --papel:#f4ecd9; --tinta:#3b3226; --suave:#7a6b55; --linha:#e0d3b6;
+  --ouro:#8a6318; --barra:rgba(244,236,217,.94);
+}
+[data-tema-leitura="escuro"]{
+  --papel:#14171a; --tinta:#dcdad4; --suave:#8e938f; --linha:#2a2f33;
+  --ouro:#cfa254; --barra:rgba(20,23,26,.94);
+}
+
+/* --- tamanhos de fonte -------------------------------------------------- */
+[data-corpo="1"]{--corpo:1rem}
+[data-corpo="2"]{--corpo:1.125rem}
+[data-corpo="3"]{--corpo:1.28rem}
+[data-corpo="4"]{--corpo:1.45rem}
+
+/* --- tipografia --------------------------------------------------------- */
+[data-fonte="sans"]{--fonte-corpo:"DM Sans",-apple-system,BlinkMacSystemFont,sans-serif}
+
+*{box-sizing:border-box}
+html{background:var(--papel)}
+body{
+  margin:0; background:var(--papel); color:var(--tinta);
+  font-family:var(--fonte-ui); -webkit-font-smoothing:antialiased;
+}
+
+/* --- barra de progresso, colada no topo --------------------------------- */
+.lt-progresso{position:fixed;top:0;left:0;right:0;height:3px;background:transparent;z-index:30}
+.lt-progresso i{display:block;height:100%;width:0;background:var(--ouro);transition:width .18s linear}
+
+/* --- barra superior ----------------------------------------------------- */
+.lt-topo{
+  position:sticky;top:0;z-index:20;background:var(--barra);
+  backdrop-filter:saturate(1.6) blur(10px);
+  border-bottom:1px solid var(--linha);
+}
+.lt-topo-in{
+  max-width:var(--largura);margin:0 auto;padding:10px 20px;
+  display:flex;align-items:center;gap:12px;justify-content:space-between;
+}
+.lt-voltar{
+  color:var(--suave);text-decoration:none;font-size:.82rem;
+  display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
+}
+.lt-voltar:hover{color:var(--ouro)}
+.lt-acoes{display:flex;gap:6px}
+.lt-bt{
+  font:inherit;font-size:.8rem;line-height:1;color:var(--suave);
+  background:transparent;border:1px solid var(--linha);border-radius:4px;
+  padding:7px 10px;cursor:pointer;min-height:34px;
+}
+.lt-bt:hover{color:var(--ouro);border-color:var(--ouro)}
+.lt-bt[aria-expanded="true"]{color:var(--ouro);border-color:var(--ouro)}
+
+/* --- painel de ajustes -------------------------------------------------- */
+.lt-ajustes{
+  border-bottom:1px solid var(--linha);background:var(--barra);
+}
+.lt-ajustes-in{max-width:var(--largura);margin:0 auto;padding:14px 20px 18px;
+  display:flex;flex-direction:column;gap:14px}
+.lt-grupo{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.lt-rot{
+  font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--suave);flex:0 0 5.5rem;
+}
+.lt-opcao{
+  font:inherit;font-size:.82rem;color:var(--suave);cursor:pointer;
+  background:transparent;border:1px solid var(--linha);border-radius:4px;
+  padding:7px 12px;min-height:34px;
+}
+.lt-opcao[aria-pressed="true"]{
+  color:var(--papel);background:var(--tinta);border-color:var(--tinta);
+}
+
+/* --- o texto ------------------------------------------------------------ */
+.lt-folha{max-width:var(--largura);margin:0 auto;padding:44px 20px 20px}
+.lt-marca{
+  font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ouro);margin:0 0 10px;
+}
+.lt-folha h1{
+  font-family:var(--fonte-titulo);font-weight:400;
+  font-size:clamp(1.7rem,5.5vw,2.3rem);line-height:1.15;
+  margin:0 0 8px;letter-spacing:-.01em;text-wrap:balance;
+}
+.lt-credito{font-size:.86rem;color:var(--suave);margin:0 0 32px;font-style:italic}
+
+.lt-texto{font-family:var(--fonte-corpo);font-size:var(--corpo);line-height:1.72}
+/* Alinhado a esquerda no celular: justificar uma coluna estreita abre
+   buracos entre as palavras e o olho tropeca neles. So justifica quando a
+   linha e larga o bastante para a conta fechar sem rios de espaco branco. */
+.lt-texto p{margin:0 0 1.15em;hyphens:auto}
+@media (min-width:34rem){ .lt-texto p{text-align:justify} }
+/* O capitular cai no primeiro paragrafo DE VERDADE, marcado com .abertura.
+   Com :first-of-type ele caia na epigrafe, que abre alguns capitulos. */
+.lt-texto p.abertura::first-letter{
+  float:left;font-size:3.1em;line-height:.86;padding:.06em .09em 0 0;color:var(--ouro);
+}
+
+/* --- epigrafe de abertura de capitulo ---------------------------------- */
+.lt-texto .epigrafe{
+  margin:0 0 2.4em;padding:0 0 1.6em;border-bottom:1px solid var(--linha);
+  text-align:center;color:var(--suave);
+}
+.lt-texto .epigrafe p{text-align:center;font-style:italic;margin:0 0 .7em}
+.lt-texto .epigrafe .ref{
+  font-family:var(--fonte-ui);font-style:normal;font-size:.7rem;
+  letter-spacing:.16em;color:var(--ouro);margin:1.1em 0 .5em;
+}
+.lt-texto .epigrafe .verso{margin:0;color:var(--tinta);font-size:1.08em}
+
+/* --- separador ornamental ----------------------------------------------- */
+.lt-texto hr.orn{
+  border:0;margin:2.2em 0;text-align:center;overflow:visible;height:0;
+}
+.lt-texto hr.orn::after{
+  content:"✦ ✦ ✦";color:var(--ouro);font-size:.72em;letter-spacing:.7em;
+  display:block;margin-top:-.6em;
+}
+.lt-texto hr.orn:last-child{margin-bottom:0}
+.lt-texto blockquote{
+  margin:1.6em 0;padding-left:1.1em;border-left:2px solid var(--ouro);
+  font-style:italic;color:var(--suave);
+}
+.lt-texto h3{font-family:var(--fonte-titulo);font-weight:400;font-size:1.3em;margin:1.8em 0 .6em}
+.lt-texto .assina{text-align:right;font-style:italic;color:var(--suave);margin-top:2em}
+.lt-texto .assina span{font-size:.85em;opacity:.75}
+
+/* --- navegacao entre capitulos ------------------------------------------ */
+.lt-nav{
+  max-width:var(--largura);margin:0 auto;padding:8px 20px 0;
+  display:flex;gap:10px;justify-content:space-between;
+}
+.lt-nav a{
+  font-size:.84rem;color:var(--suave);text-decoration:none;
+  border:1px solid var(--linha);border-radius:4px;padding:10px 14px;
+}
+.lt-nav a:hover{color:var(--ouro);border-color:var(--ouro)}
+.lt-nav a[hidden]{display:none}
+
+/* --- o fim da amostra --------------------------------------------------- */
+.lt-fim{
+  max-width:var(--largura);margin:52px auto 0;padding:32px 20px 64px;
+  border-top:1px solid var(--linha);
+}
+.lt-fim h2{
+  font-family:var(--fonte-titulo);font-weight:400;font-size:1.5rem;
+  line-height:1.2;margin:0 0 12px;
+}
+.lt-fim p{font-size:.95rem;line-height:1.65;color:var(--suave);margin:0 0 16px}
+.lt-fim strong{color:var(--tinta)}
+.lt-compra{display:flex;flex-direction:column;gap:9px;margin:22px 0 28px}
+.lt-compra a{
+  display:block;text-align:center;text-decoration:none;font-size:.9rem;
+  padding:13px 16px;border-radius:5px;border:1px solid var(--linha);color:var(--suave);
+}
+.lt-compra a:hover{border-color:var(--ouro);color:var(--ouro)}
+.lt-compra a.destaque{background:var(--ouro);border-color:var(--ouro);color:#fff;font-weight:600}
+.lt-compra a.destaque:hover{opacity:.9;color:#fff}
+.lt-rodape{
+  max-width:var(--largura);margin:0 auto;padding:0 20px 48px;
+  font-size:.78rem;color:var(--suave);display:flex;flex-wrap:wrap;gap:6px 16px;
+}
+.lt-rodape a{color:var(--suave)}
+
+/* --- o aviso de capitulo que falta -------------------------------------- */
+.lt-aviso{
+  max-width:var(--largura);margin:0 auto;padding:20px;
+  border:1px dashed var(--linha);border-radius:6px;color:var(--suave);font-size:.9rem;
+}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media print{.lt-topo,.lt-ajustes,.lt-nav,.lt-progresso{display:none}}
+
+/* --- A Carta dentro do leitor ------------------------------------------
+   O bloco de captura nasceu para o fundo escuro do site e traz as cores
+   cravadas. No papel claro do leitor ele ficava cinza sobre creme, quase
+   invisivel. Aqui ele passa a usar as variaveis do tema de leitura, e
+   acompanha claro, sepia e escuro. A especificidade extra (.lt-fim antes)
+   e o que vence o <style> que o newsletter.js injeta no <head>. */
+.lt-fim .rb-carta{
+  background:transparent;border:1px solid var(--linha);border-radius:6px;
+  font-family:var(--fonte-ui);
+}
+.lt-fim .rb-carta .rb-carta-selo{color:var(--ouro)}
+.lt-fim .rb-carta h2{color:var(--tinta)}
+.lt-fim .rb-carta p{color:var(--suave)}
+.lt-fim .rb-carta input{
+  color:var(--tinta);background:var(--papel);border:1px solid var(--linha);
+}
+.lt-fim .rb-carta input::placeholder{color:var(--suave);opacity:.75}
+.lt-fim .rb-carta input:focus{outline:2px solid var(--ouro);border-color:var(--ouro)}
+.lt-fim .rb-carta button{background:var(--ouro);color:#fff}
+.lt-fim .rb-carta button:hover{opacity:.9}
+.lt-fim .rb-carta .rb-carta-nota{color:var(--suave)}
+.lt-fim .rb-carta .rb-carta-nota a{color:var(--ouro)}
