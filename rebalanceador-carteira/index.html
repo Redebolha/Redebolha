@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rebalanceador de Carteira - Investimento 25/25/25/25</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 Rebalanceador de Carteira</h1>
+            <p>Plano de Investimento: 25% Renda Fixa | 25% Ações Brasil | 25% Ativos Exterior | 25% Imóveis</p>
+        </header>
+
+        <section class="input-section">
+            <h2>1. Adicione seus Ativos</h2>
+            <div class="input-group">
+                <input type="text" id="assetName" placeholder="Ex: GGRC11">
+                <select id="assetType">
+                    <option value="">Selecione o tipo</option>
+                    <option value="acoes-brasil">Ações do Brasil</option>
+                    <option value="renda-fixa">Renda Fixa</option>
+                    <option value="etf-exterior">ETF Internacional</option>
+                    <option value="imovel">Imóvel</option>
+                </select>
+                <input type="number" id="assetQty" placeholder="Quantidade" step="0.0001">
+                <input type="number" id="assetPrice" placeholder="Preço unitário" step="0.01">
+                <button onclick="addAsset()">Adicionar</button>
+            </div>
+        </section>
+
+        <section class="assets-section">
+            <h2>2. Seus Ativos</h2>
+            <div id="assetsList" class="assets-list">
+                <p class="empty-state">Nenhum ativo adicionado ainda</p>
+            </div>
+        </section>
+
+        <section class="analysis-section">
+            <h2>3. Análise de Alocação</h2>
+
+            <div class="allocation-overview">
+                <div class="current-allocation">
+                    <h3>Alocação Atual</h3>
+                    <canvas id="currentChart"></canvas>
+                    <div id="currentStats" class="stats"></div>
+                </div>
+
+                <div class="target-allocation">
+                    <h3>Alocação Alvo (25/25/25/25)</h3>
+                    <canvas id="targetChart"></canvas>
+                    <div class="target-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Renda Fixa</span>
+                            <span class="stat-value">25%</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Ações Brasil</span>
+                            <span class="stat-value">25%</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Ativos Exterior</span>
+                            <span class="stat-value">25%</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Imóveis</span>
+                            <span class="stat-value">25%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary-stats">
+                <div class="stat-box">
+                    <span class="label">Patrimônio Total</span>
+                    <span class="value" id="totalValue">R$ 0,00</span>
+                </div>
+                <div class="stat-box">
+                    <span class="label">Taxa de Desempenho</span>
+                    <span class="value" id="performanceRate">0%</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="rebalance-section">
+            <h2>4. Ações para Rebalancear</h2>
+            <div id="rebalanceActions" class="rebalance-actions">
+                <p class="empty-state">Adicione ativos para ver as ações necessárias</p>
+            </div>
+        </section>
+
+        <section class="actions-section">
+            <button onclick="exportData()" class="btn-primary">📊 Exportar Dados</button>
+            <button onclick="clearAll()" class="btn-secondary">🗑️ Limpar Tudo</button>
+            <button onclick="loadExample()" class="btn-secondary">📋 Carregar Exemplo</button>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
