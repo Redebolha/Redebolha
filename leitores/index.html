@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6DSL2EMZSL"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-6DSL2EMZSL');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Área do Leitor — Rede Bolha</title>
+<meta name="description" content="A área de quem comprou um livro de Romário Cruz. Abre com o código de leitor que vem no livro.">
+<!-- Porta de leitor: fora do Google de propósito. Quem chega aqui chega pelo livro. -->
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://redebolha.com.br/leitores/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Área do Leitor — Rede Bolha">
+<meta property="og:description" content="Comprou um livro meu? O código de leitor que vem nele abre esta área.">
+<meta property="og:image" content="https://redebolha.com.br/homem-voce-nao-e-ridiculo-capa-frente.jpg">
+<meta property="og:url" content="https://redebolha.com.br/leitores/">
+<link rel="stylesheet" href="/artigos/blog.css">
+<style>
+/* ── Área do Leitor ───────────────────────────────────────────────────────
+   Usa os tokens de /artigos/blog.css (--gold, --txt, --line...). Nada aqui
+   é segredo: o que é exclusivo está cifrado no bloco #rb-cofre, lá embaixo. */
+
+.lt{padding:48px 0 30px}
+.lt [hidden]{display:none!important}
+
+/* A porta */
+.lt-porta h1 em{font-style:italic;color:var(--gold-l)}
+.lt-porta .lead{font-size:1.1rem;color:var(--body);max-width:58ch;margin:0 0 30px}
+
+.lt-capas{display:flex;align-items:flex-end;gap:14px;margin:0 0 30px}
+.lt-capas img{width:84px;height:auto;aspect-ratio:2/3;object-fit:cover;border-radius:4px;border:1px solid var(--line);
+  box-shadow:0 16px 30px -14px rgba(0,0,0,.8)}
+.lt-capas img:nth-child(2){width:96px}
+.lt-capas p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.08rem;line-height:1.35;color:var(--gold-l);
+  margin:0 0 6px 8px;max-width:17ch}
+
+.lt-cartao{border:1px solid rgba(201,162,75,.32);background:var(--bg2);border-radius:12px;padding:28px}
+.lt-cartao label{display:block;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.2em;
+  font-size:.7rem;color:var(--gold);margin:0 0 10px}
+.lt-linha{display:flex;flex-wrap:wrap;gap:10px}
+.lt-linha input{flex:1 1 240px;min-width:0;padding:14px 16px;font:inherit;font-size:1rem;color:var(--txt);
+  background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.16);border-radius:6px}
+.lt-linha input.lt-codigo{font-family:'Oswald',sans-serif;font-size:1.25rem;letter-spacing:.2em;text-transform:uppercase}
+.lt-linha input::placeholder{color:#6f6a62}
+.lt-linha input.lt-codigo::placeholder{letter-spacing:.12em}
+.lt-linha input:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
+.lt-linha .btn{border:0;cursor:pointer;flex:0 0 auto}
+.lt-linha .btn[disabled]{opacity:.6;cursor:progress}
+.lt-linha .btn:focus-visible{outline:2px solid var(--txt);outline-offset:2px}
+.lt-erro{margin:12px 0 0;font-size:.92rem;color:#e7a0a0}
+.lt-erro:empty{margin:0}
+.lt-erro a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+.lt-nota{font-size:.84rem;color:var(--dim);margin:14px 0 0;line-height:1.6}
+.lt-nota a{text-decoration:underline;text-underline-offset:2px}
+
+.lt-onde{margin:22px 0 0;border-top:1px solid var(--line);padding-top:18px}
+.lt-onde summary{cursor:pointer;color:var(--gold-l);font-size:.95rem;list-style:none}
+.lt-onde summary::-webkit-details-marker{display:none}
+.lt-onde summary::before{content:'+ ';color:var(--gold)}
+.lt-onde[open] summary::before{content:'− '}
+.lt-onde ul{margin:14px 0 0 1.1rem;font-size:.95rem;line-height:1.7}
+.lt-onde li{margin:0 0 8px}
+.lt-onde b{color:var(--txt);font-weight:600}
+
+.lt-pular{background:none;border:0;padding:0;font:inherit;font-size:.86rem;color:var(--dim);
+  text-decoration:underline;text-underline-offset:2px;cursor:pointer;margin-top:16px}
+.lt-pular:hover{color:var(--body)}
+.lt-ok{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.2em;font-size:.72rem;color:#9fcf9f;margin:0 0 12px}
+
+.lt-esperando{display:flex;align-items:center;gap:14px;color:var(--body);padding:40px 0}
+.lt-esperando::before{content:'';width:18px;height:18px;border-radius:50%;border:2px solid var(--line);
+  border-top-color:var(--gold);animation:lt-gira 0.9s linear infinite}
+@keyframes lt-gira{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.lt-esperando::before{animation:none}}
+
+/* A área, depois de aberta */
+.lt-barra{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;
+  font-size:.82rem;color:var(--dim);border-bottom:1px solid var(--line);padding:0 0 16px;margin:0 0 34px}
+.lt-barra b{color:var(--gold-l);font-weight:500}
+.lt-barra button{background:none;border:1px solid rgba(255,255,255,.14);border-radius:4px;padding:5px 10px;
+  font:inherit;font-size:.78rem;color:var(--dim);cursor:pointer}
+.lt-barra button:hover{color:var(--txt);border-color:var(--gold)}
+.lt-aviso{border-left:2px solid var(--gold);background:rgba(201,162,75,.06);padding:12px 16px;font-size:.92rem;
+  margin:0 0 30px;border-radius:0 6px 6px 0}
+
+.lt-area h1 em{font-style:italic;color:var(--gold-l)}
+.lt-area .lead{font-size:1.1rem;max-width:60ch;margin:0 0 30px}
+.lt-carta{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:30px 30px 10px;margin:0 0 44px;position:relative}
+.lt-carta p{font-size:1.04rem}
+.lt-carta .assina{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.35rem;color:var(--gold-l);margin:4px 0 20px}
+
+.lt-area h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.75rem;color:var(--txt);margin:0 0 16px}
+.lt-grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:0 0 44px}
+.lt-item{border:1px solid var(--line);background:var(--bg2);border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:10px}
+.lt-item h3{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.35rem;line-height:1.2;color:var(--txt)}
+.lt-item p{font-size:.94rem;line-height:1.6;margin:0}
+.lt-item .btn{align-self:flex-start;margin-top:auto;padding:11px 18px;font-size:.74rem}
+.lt-selo{align-self:flex-start;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.16em;font-size:.64rem;
+  padding:3px 8px;border-radius:3px;border:1px solid var(--line);color:var(--dim)}
+.lt-selo.aberto{border-color:rgba(159,207,159,.45);color:#9fcf9f}
+
+.lt-livros{display:flex;flex-wrap:wrap;gap:18px;margin:0 0 20px}
+.lt-livros a{display:flex;flex-direction:column;gap:8px;width:110px;font-size:.82rem;line-height:1.35;color:var(--body)}
+.lt-livros a:hover{color:var(--gold-l)}
+.lt-livros img{width:110px;aspect-ratio:2/3;object-fit:cover;border-radius:4px;border:1px solid var(--line)}
+
+@media (max-width:560px){
+  .lt{padding-top:34px}
+  .lt-cartao{padding:22px 18px}
+  .lt-linha .btn{flex:1 1 100%;text-align:center}
+  .lt-capas img{width:66px}.lt-capas img:nth-child(2){width:76px}
+  .lt-carta{padding:22px 20px 6px}
+  .lt-livros a{width:calc(33.33% - 12px)}
+  .lt-livros img{width:100%}
+}
+</style>
+</head>
+<body data-tema="leitores">
+<header class="topbar"><div class="wrap">
+<a class="brand" href="/"><b>Rede</b> Bolha</a>
+<nav class="topnav"><a href="/financas/">Homem e Dinheiro</a> <a href="/masculinidade/">Masculinidade</a> <a href="/economia/">Economia</a> <a href="/ferramentas/">Ferramentas</a> <a href="/artigos/">Artigos</a> <a href="/sobre-o-autor.html">Sobre</a> <a class="rb-entrar" href="/a-carta/">A Carta</a></nav>
+</div></header>
+<main class="wrap">
+<article class="lt" id="lt">
+
+  <!-- 1. A porta: pede o código -->
+  <section class="lt-porta" id="lt-porta" aria-labelledby="lt-titulo">
+    <p class="eyebrow">Área do Leitor</p>
+    <h1 id="lt-titulo">Esta porta é <em>de quem leu.</em></h1>
+    <p class="lead">Todo livro meu traz um código de leitor. Ele abre esta área — com o que não vai para o site aberto.</p>
+
+    <div class="lt-capas" aria-hidden="true">
+      <img src="/amanha-e-outro-agora-frente.jpg" alt="" width="84" height="126">
+      <img src="/homem-voce-nao-e-ridiculo-capa-frente.jpg" alt="" width="96" height="144">
+      <img src="/o-poder-da-decisao-frente.jpg" alt="" width="84" height="126">
+      <p>Vale o código de qualquer um dos três.</p>
+    </div>
+
+    <div class="lt-cartao">
+      <p class="lt-esperando" id="lt-esperando" hidden>Abrindo a sua área…</p>
+      <form id="lt-form-codigo" novalidate>
+        <label for="lt-codigo">Código do leitor</label>
+        <div class="lt-linha">
+          <input class="lt-codigo" id="lt-codigo" name="codigo" type="text" inputmode="text"
+                 autocomplete="off" autocapitalize="characters" spellcheck="false"
+                 placeholder="XXXX-XXXX-XXXX" required aria-describedby="lt-erro">
+          <button class="btn" type="submit">Abrir a área</button>
+        </div>
+        <p class="lt-erro" id="lt-erro" role="alert" aria-live="polite"></p>
+      </form>
+
+      <details class="lt-onde">
+        <summary>Onde encontro o meu código?</summary>
+        <ul>
+          <li><b>E-book:</b> na última página, depois do agradecimento.</li>
+          <li><b>Livro físico:</b> no cartão que vai dentro do livro.</li>
+          <li><b>Comprou antes de existir o código?</b> Me manda uma foto sua com o livro no
+            <a href="https://wa.me/5551980482820?text=Ol%C3%A1%2C%20Rom%C3%A1rio!%20Comprei%20um%20livro%20seu%20e%20quero%20o%20c%C3%B3digo%20da%20%C3%81rea%20do%20Leitor.%20Vai%20a%20foto%3A" rel="noopener" target="_blank">WhatsApp</a>
+            que eu te passo.</li>
+        </ul>
+      </details>
+    </div>
+  </section>
+
+  <!-- 2. Depois do código certo: o e-mail para A Carta -->
+  <section class="lt-porta" id="lt-passo-email" aria-labelledby="lt-titulo-email" hidden>
+    <p class="eyebrow">Área do Leitor</p>
+    <h1 id="lt-titulo-email" tabindex="-1">Código certo. <em>Seja bem-vindo.</em></h1>
+    <p class="lead">Último passo: pra onde eu mando o aviso quando entrar coisa nova aqui? Vai junto A Carta — uma conversa por semana, na sexta de manhã.</p>
+
+    <div class="lt-cartao">
+      <p class="lt-ok">Livro reconhecido: <span id="lt-livro-nome"></span></p>
+      <form id="lt-form-email" novalidate>
+        <label for="lt-email">Seu e-mail</label>
+        <div class="lt-linha">
+          <input id="lt-email" name="email" type="email" autocomplete="email" placeholder="seu@email.com" required>
+          <button class="btn" type="submit">Entrar e receber A Carta</button>
+        </div>
+        <p class="lt-erro" id="lt-erro-email" role="alert" aria-live="polite"></p>
+      </form>
+      <p class="lt-nota">De graça, sem cartão, e você sai quando quiser. A inscrição termina no
+        <span id="lt-provedor">provedor d'A Carta</span>, numa aba nova — é só confirmar lá.</p>
+      <button class="lt-pular" id="lt-pular" type="button">Entrar sem deixar e-mail</button>
+    </div>
+  </section>
+
+  <!-- 3. A área em si. O conteúdo chega decifrado do #rb-cofre. -->
+  <section class="lt-area" id="lt-area" hidden></section>
+
+  <noscript><p class="lead">A Área do Leitor precisa de JavaScript ligado para conferir o código.</p></noscript>
+
+</article>
+</main>
+<footer class="foot"><div class="wrap">
+<a href="/">Início</a> · <a href="/sobre-o-autor.html">Sobre</a> · <a href="/livros/">Livros</a> · <a href="/artigos/">Artigos</a> · <a href="/contato/">Contato</a>
+<p>© 2026 Adm. Romário Cruz · Eldorado do Sul, RS · Rede Bolha</p>
+</div><p class="rb-assina-expediente" style="margin:1rem auto 0;max-width:60ch;font-size:.78rem;line-height:1.6;opacity:.7;text-align:center">Conteúdo apurado e editado por <b>Adm. Romário Cruz</b>, jornalista registrado — MTb 0021682/RS. &middot; <a href="/expediente/">Expediente e política editorial</a></p>
+</footer>
+
+<!--
+  O COFRE. Tudo o que é exclusivo mora aqui dentro, cifrado (AES-256-GCM).
+  Sem um código de leitor, isto é só texto embaralhado — inclusive para quem
+  abrir o repositório no GitHub. NAO edite à mão: quem escreve este bloco é
+  `python3 tools/leitores.py`. O conteúdo em texto aberto e os códigos ficam
+  FORA do repositório (veja leitores/LEIAME.md).
+-->
+<script type="application/json" id="rb-cofre">{"v":1,"kdf":{"alg":"PBKDF2-SHA256","iter":600000,"salt":"IxHK94iu8jlP0+qvrwQX5w=="},"chaves":[{"iv":"ZHU5N3PetUXH79tv","ct":"bJIMeLrpOC5rGHvHXiI7y8a3P7r3D3v4m4lFX5h+QChmzWPSEupD2nryrGgNe7Vsc857KUMVM93RQRqyX95Y3KB8i5NGb76/mDqEdmU956BbArNqrm7NCSh7DQnkY9H29Ri1MNLsj5zRNoOSvG5ibcMX8DqFXLm0L0KO4BPxCXQ="},{"iv":"79K758FktVDDENcO","ct":"LOm7GJ6JHaN2vgP79rHtKDYcdYnhJ/veACerZUYrlrzPQU21JEoqyiPZXPJAOK8v0u9Gp6guVZS1XfP1OKF/xKV4Fvf1vP0AzYQP+XY/GFexAMa8djN8IZdPrZzhGgwzLRNdwD3IjxlH78VjhXJrN0yKcdvKoA=="},{"iv":"v/AGac1ZFgcmeslF","ct":"3jdWINa3dh7Rh3D8WOjYiYEdYwf+nnZskSXha/swbaHUvJogfHB038m7BOermu8K3jiSBbcI/Zt8RZmj8D4Pu87ur5ZEZ+sOUIegstbNmP3CCDFTJmfF8FqJzmLRFW4sjircIPZPq4/IsNNaugy44nv7T5iAs+Ix5Ts="}],"conteudo":{"iv":"0eyvN+TH4AyntLIO","ct":"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"},"gerado":"2026-09-29"}</script>
+<script src="/js/leitores.js" defer></script>
+</body>
+</html>
