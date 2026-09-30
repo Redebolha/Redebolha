@@ -1,7 +1,8 @@
 # Área do Leitor — `/leitores/`
 
-A área de quem comprou qualquer livro. Abre com o **código de leitor** que vai
-no livro. Fora do Google (`noindex`), fora do menu: quem chega, chega pelo livro.
+A área de quem comprou qualquer livro. Abre com o **código de leitor**, que o
+leitor recebe junto com a dedicatória (não vai impresso no livro nem no e-book).
+Quem não recebeu manda no WhatsApp uma foto lendo o livro e recebe o código. Fora do Google (`noindex`), fora do menu: quem chega, chega pelo livro.
 
 ## Como a porta funciona
 
