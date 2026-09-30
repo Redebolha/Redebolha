@@ -22,7 +22,8 @@ embaralhado.
   `js/newsletter.json`, como no resto do site). Dá para entrar sem deixar
   e-mail: o livro já foi pago, e consentimento arrancado na porta não vale.
 - **GA4.** Eventos `leitor_desbloqueio` (com o livro), `leitor_codigo_errado`,
-  `leitor_pulou_email` e `newsletter_signup` (perfil `leitor-<livro>`).
+  `leitor_pulou_email`, `newsletter_signup` (perfil `leitor-<livro>`) e
+  `leitor_planilha` (formato `excel` ou `google`).
 
 ## O que fica FORA do repositório
 
@@ -51,6 +52,9 @@ Depois: suba `leitores/index.html` e aumente `VERSAO` em `service-worker.js`.
 **Não** coloque neste repositório — qualquer arquivo aqui tem endereço público.
 Suba no Google Drive com "qualquer pessoa com o link" e cole o link dentro do
 `conteudo.html`. O link só aparece para quem abriu a área.
+
+Para trocar um arquivo sem mudar o link (ex.: nova versão da planilha), use
+"Gerenciar versões" no Drive em vez de subir um arquivo novo.
 
 ## O limite, dito com franqueza
 
