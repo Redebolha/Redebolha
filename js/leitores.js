@@ -1,5 +1,5 @@
 /*
- * Área do Leitor — a porta que abre com o código que vem no livro.
+ * Área do Leitor — a porta que abre com o código que chega junto com a dedicatória.
  *
  * POR QUE ASSIM
  * O site é estático e o repositório é público: qualquer "senha" conferida em
@@ -199,7 +199,7 @@
       ev.preventDefault();
       var campo = $('lt-codigo');
       var botao = this.querySelector('button');
-      if (!campo.value.trim()) { erro('Digite o código que veio no livro.'); campo.focus(); return; }
+      if (!campo.value.trim()) { erro('Digite o código que veio com a dedicatória.'); campo.focus(); return; }
 
       botao.disabled = true;
       botao.textContent = 'Conferindo…';
@@ -286,7 +286,7 @@
       esperando(false);
       if (s) { depoisDoCodigo(s, guardado); return; }
       esquecer();
-      erro('O código guardado neste aparelho mudou. Digite o código que está no livro.');
+      erro('O código guardado neste aparelho mudou. Digite o seu código de leitor.');
     }
   }
 
