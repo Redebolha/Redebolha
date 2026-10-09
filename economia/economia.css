@@ -201,3 +201,20 @@ footer .copy{margin-top:12px;font-size:12.5px}
   nav ul{gap:14px} nav a{font-size:13px}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+/* Tabela de números dentro da matéria (estreia em "Fim da Palhaçada").
+   Rola na horizontal se faltar espaço, em vez de espremer o texto. */
+.tabela-num{margin:30px 0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tabela-num table{width:100%;border-collapse:collapse;font-size:15.5px;line-height:1.5}
+.tabela-num caption{caption-side:top;text-align:left;font-family:var(--num);font-size:10.5px;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--sombra);padding-bottom:10px}
+.tabela-num th,.tabela-num td{padding:12px 14px;border-bottom:1px solid var(--linha);
+  text-align:left;vertical-align:top}
+.tabela-num thead th{font-family:var(--num);font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ouro);font-weight:500;border-bottom:1px solid var(--ouro)}
+.tabela-num tbody th{font-weight:600;color:#fff;width:34%}
+.tabela-num tbody tr:nth-child(odd){background:var(--papel)}
+.tabela-num td{color:var(--giz)}
+.tabela-num td b{font-family:var(--num);color:var(--ouro-claro);font-weight:500}
+@media (max-width:480px){.tabela-num table{font-size:14.5px}
+  .tabela-num th,.tabela-num td{padding:10px 10px}}
