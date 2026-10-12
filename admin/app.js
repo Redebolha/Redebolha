@@ -576,9 +576,9 @@ function blocksToHTML(){
     if(t==="quote") return "<blockquote>"+(b.html||"")+"</blockquote>";
     if(t==="ul") return "<ul>"+(b.html||"")+"</ul>";
     if(t==="ol") return "<ol>"+(b.html||"")+"</ol>";
-    if(t==="box") return '<div class="box" style="border:1px solid rgba(201,162,75,.18);border-left:3px solid #C9A24B;background:#121013;border-radius:8px;padding:16px;margin:22px 0">'+(b.html||"")+"</div>";
-    if(t==="divider") return '<hr style="border:none;border-top:1px solid rgba(201,162,75,.18);margin:32px 0">';
-    if(t==="image"){ if(!d.url)return ""; return '<figure style="margin:26px 0"><img class="hero-img" src="'+esc(d.url)+'" alt="'+esc(d.cap||"")+'">'+(d.cap?'<figcaption style="color:#857F75;font-size:.85rem;margin-top:6px">'+esc(d.cap)+"</figcaption>":"")+"</figure>"; }
+    if(t==="box") return '<div class="box" style="border:1px solid rgba(255,223,0,.18);border-left:3px solid #FFDF00;background:#08142D;border-radius:8px;padding:16px;margin:22px 0">'+(b.html||"")+"</div>";
+    if(t==="divider") return '<hr style="border:none;border-top:1px solid rgba(255,223,0,.18);margin:32px 0">';
+    if(t==="image"){ if(!d.url)return ""; return '<figure style="margin:26px 0"><img class="hero-img" src="'+esc(d.url)+'" alt="'+esc(d.cap||"")+'">'+(d.cap?'<figcaption style="color:#93A0B8;font-size:.85rem;margin-top:6px">'+esc(d.cap)+"</figcaption>":"")+"</figure>"; }
     if(t==="button"){ return '<p><a class="btn" href="'+esc(d.url||"#")+'">'+esc(d.lbl||"Botão")+"</a></p>"; }
     if(t==="cta"){ return '<div class="cta"><p class="eyebrow">Rede Bolha</p><h3>'+stripTags(d.title||"")+"</h3><p>"+(d.text||"")+'</p><a class="btn" href="'+esc(d.url||"/#comprar")+'">'+esc(d.lbl||"Saiba mais")+"</a></div>"; }
     if(t==="video"){ return videoEmbed(d.src||""); }
@@ -599,7 +599,7 @@ function videoEmbed(src){
 function sanitizeEmbed(code){
   // permite apenas iframes de dominios confiaveis
   var ok=/^<iframe[^>]+src="https:\/\/(www\.)?(youtube\.com|player\.vimeo\.com|open\.spotify\.com)\//.test(code.trim());
-  return ok? code : '<p style="color:#857F75">[Incorporação bloqueada por segurança]</p>';
+  return ok? code : '<p style="color:#93A0B8">[Incorporação bloqueada por segurança]</p>';
 }
 
 function buildArticleHTML(d){
@@ -627,7 +627,7 @@ function buildArticleHTML(d){
     '<main class="wrap">\n<article>\n'+
     (d.eyebrow?'<p class="eyebrow">'+esc(d.eyebrow)+'</p>\n':'')+
     '<h1>'+esc(title)+'</h1>\n'+
-    (d.sub?'<p class="lead" style="font-style:italic;color:#C6C0B5">'+esc(d.sub)+'</p>\n':'')+
+    (d.sub?'<p class="lead" style="font-style:italic;color:#C3CCDB">'+esc(d.sub)+'</p>\n':'')+
     '<p class="byline">Por '+esc(d.author)+' · Leitura de '+readingTime($("#blocks")?$("#blocks").innerText:"")+' minutos</p>\n'+
     blocksToHTML()+'\n'+
     '<p class="back"><a href="/artigos/">← Voltar para todos os artigos</a></p>\n'+
@@ -680,7 +680,7 @@ function publishArticle(d){
   var when=d.status==="scheduled"?($("#sWhen")||{}).value:"";
   openModal('<button class="close" id="cX">×</button><h3 class="serif">'+(d.status==="scheduled"?"Agendar publicação":"Publicar artigo")+'</h3>'+
     '<p style="color:var(--body);margin:8px 0 14px">Isto irá gravar o arquivo <strong style="color:var(--txt)">artigos/'+esc(d.slug)+'.html</strong> no repositório do site e publicá-lo em <a href="'+SITE+'/artigos/'+esc(d.slug)+'.html" target="_blank">redebolha.com.br</a>.</p>'+
-    (warnings.length?'<div class="msg" style="background:rgba(217,164,65,.12);border:1px solid var(--warn);color:#e6c078">Recomendações (não impedem a publicação):<ul style="margin:6px 0 0 18px">'+warnings.map(function(w){return "<li>"+esc(w)+"</li>";}).join("")+'</ul></div>':'')+
+    (warnings.length?'<div class="msg" style="background:rgba(0,156,59,0.192);border:1px solid var(--warn);color:#FFE566">Recomendações (não impedem a publicação):<ul style="margin:6px 0 0 18px">'+warnings.map(function(w){return "<li>"+esc(w)+"</li>";}).join("")+'</ul></div>':'')+
     (d.status==="scheduled"&&when?'<p style="color:var(--gold)">Agendado para '+fmtDate(when)+' (Porto Alegre).</p>':'')+
     '<div style="display:flex;gap:10px;justify-content:flex-end;margin-top:16px"><button class="btn ghost" id="cCancel">Cancelar</button><button class="btn" id="cGo">'+(d.status==="scheduled"?"Confirmar agendamento":"Publicar agora")+'</button></div>',
     function(m){
@@ -809,7 +809,7 @@ function viewTags(v){
                                    var m=re.exec(html);
                                    var pos=m?m[1].trim():"top";
                                    var card=el("div",{class:"panel",style:"padding:8px;position:relative"});
-                                   var delBtn=el("button",{"aria-label":"Excluir "+f.name,title:"Excluir foto",style:"position:absolute;top:6px;right:6px;z-index:2;width:26px;height:26px;border-radius:50%;background:rgba(10,10,12,.72);color:#fff;border:1px solid rgba(255,255,255,.3);font-size:15px;line-height:1;cursor:pointer"},"×");
+                                   var delBtn=el("button",{"aria-label":"Excluir "+f.name,title:"Excluir foto",style:"position:absolute;top:6px;right:6px;z-index:2;width:26px;height:26px;border-radius:50%;background:rgba(5,14,34,.72);color:#fff;border:1px solid rgba(255,255,255,.3);font-size:15px;line-height:1;cursor:pointer"},"×");
                                    delBtn.onclick=function(e){e.stopPropagation();confirmDeletePhoto(f.name,f.sha);};
                                    var img=el("img",{src:SITE+"/fotos/"+f.name,alt:f.name,style:"width:100%;aspect-ratio:1/1;object-fit:cover;object-position:"+pos+";border-radius:6px;cursor:pointer"});
                                    img.onclick=function(){openCropEditor(f.name,pos,f.sha);};
