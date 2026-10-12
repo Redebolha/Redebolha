@@ -26,10 +26,10 @@ button.btn{border:0;cursor:pointer}
 .btn-ghost{display:inline-flex;align-items:center;gap:6px;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.1em;font-size:.78rem;background:transparent;border:1px solid var(--line);color:var(--body);padding:11px 18px;border-radius:8px;cursor:pointer;font-weight:500}
 .btn-ghost:hover{border-color:var(--gold);color:var(--gold-l)}
 .btn-ghost.confirming{border-color:var(--wine-l);color:var(--gold-l);background:rgba(107,39,55,.28)}
-.btn-add{display:inline-flex;align-items:center;gap:6px;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.1em;font-size:.78rem;background:linear-gradient(180deg,var(--gold-l),var(--gold-d));color:#1a1206;padding:11px 20px;border-radius:8px;font-weight:600;border:0;cursor:pointer}
+.btn-add{display:inline-flex;align-items:center;gap:6px;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.1em;font-size:.78rem;background:linear-gradient(180deg,var(--gold-l),#F2C800);color:#061025;padding:11px 20px;border-radius:8px;font-weight:600;border:0;cursor:pointer}
 .btn-add:hover{filter:brightness(1.06)}
 
-.toast{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:.72rem;font-weight:600;color:var(--gold-l);background:rgba(201,162,75,.12);border:1px solid var(--gold-d);padding:8px 14px;border-radius:20px;opacity:0;transform:translateY(-4px);transition:opacity .18s ease,transform .18s ease;pointer-events:none}
+.toast{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:.72rem;font-weight:600;color:var(--gold-l);background:rgba(0,156,59,0.192);border:1px solid var(--gold-d);padding:8px 14px;border-radius:20px;opacity:0;transform:translateY(-4px);transition:opacity .18s ease,transform .18s ease;pointer-events:none}
 .toast.show{opacity:1;transform:translateY(0)}
 
 .ledger{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden}
@@ -40,14 +40,14 @@ thead th.num{text-align:right}
 thead th.center{text-align:center}
 tbody tr{border-bottom:1px solid var(--line)}
 tbody tr:last-child{border-bottom:none}
-tbody tr:nth-child(even){background:rgba(201,162,75,.035)}
-tbody tr.calc-row:hover{background:rgba(201,162,75,.07)}
+tbody tr:nth-child(even){background:rgba(0,156,59,0.056)}
+tbody tr.calc-row:hover{background:rgba(0,156,59,0.112)}
 td{padding:7px 10px;vertical-align:middle}
 td.num{text-align:right}
 
 .cell-input{width:100%;border:1px solid transparent;background:transparent;color:var(--txt);font-family:'Inter',system-ui,sans-serif;font-size:.92rem;padding:7px 8px;border-radius:6px;min-width:0}
 .cell-input:hover{background:var(--bg2)}
-.cell-input:focus{outline:none;border-color:var(--gold-d);background:var(--bg2);box-shadow:0 0 0 3px rgba(201,162,75,.14)}
+.cell-input:focus{outline:none;border-color:var(--gold-d);background:var(--bg2);box-shadow:0 0 0 3px rgba(255,223,0,.14)}
 .cell-input.ticker{font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.03em;text-transform:uppercase}
 .cell-input.num,.computed{text-align:right;font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;font-variant-numeric:tabular-nums;font-size:.84rem}
 .cell-input.num{color:var(--txt)}
@@ -64,7 +64,7 @@ td.num{text-align:right}
 .row-remove{display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;border:1px solid transparent;background:transparent;color:var(--dim);cursor:pointer;font-size:1rem;line-height:1}
 .row-remove:hover{background:rgba(107,39,55,.28);color:var(--wine-l);border-color:var(--wine-l)}
 
-tfoot td{background:rgba(201,162,75,.09);border-top:2px solid var(--gold);font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;font-weight:700;color:var(--gold-l);padding:13px 10px;white-space:nowrap}
+tfoot td{background:rgba(0,156,59,0.144);border-top:2px solid var(--gold);font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;font-weight:700;color:var(--gold-l);padding:13px 10px;white-space:nowrap}
 tfoot td.label{font-family:'Oswald',sans-serif;text-transform:uppercase;font-size:.66rem;letter-spacing:.09em;color:var(--gold);font-weight:600}
 tfoot td.num{text-align:right}
 
@@ -91,6 +91,7 @@ tfoot td.num{text-align:right}
   .toolbar,.row-remove,.add-row-bar{display:none}
 }
 </style>
+<link rel="stylesheet" href="/css/brasil.css">
 </head>
 <body data-tema="dinheiro">
 <header class="topbar"><div class="wrap">

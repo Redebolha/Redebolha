@@ -11,13 +11,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --tinta:#0C0B09;
-  --breu:#15130E;
-  --borda:#2A2620;
-  --ouro:#C9A227;
-  --ouro-claro:#E3C766;
-  --giz:#EDE9E0;
-  --cinza:#8C8778;
+  --tinta:#050E22;
+  --breu:#08142D;
+  --borda:#142650;
+  --ouro:#FFDF00;
+  --ouro-claro:#FFE566;
+  --giz:#EEF2F8;
+  --cinza:#93A0B8;
   --cobre:#B5643C;
   --display:"Fraunces",Georgia,serif;
   --texto:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
@@ -95,7 +95,7 @@ input[type=range]::-webkit-slider-thumb{
 }
 input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--ouro);border:none}
 input[type=range]:focus-visible{outline:2px solid var(--ouro-claro);outline-offset:4px}
-.extremos{display:flex;justify-content:space-between;font-size:12px;color:#6E6A5F}
+.extremos{display:flex;justify-content:space-between;font-size:12px;color:#7586A3}
 
 .ajustes{
   display:grid;grid-template-columns:repeat(3,1fr);gap:28px;
@@ -107,7 +107,7 @@ input[type=range]:focus-visible{outline:2px solid var(--ouro-claro);outline-offs
   border:none;border-bottom:1px solid var(--borda);padding:2px 0;width:100%;
 }
 .mini input[type=number]:focus{outline:none;border-bottom-color:var(--ouro)}
-.mini .dica{font-size:12px;color:#6E6A5F;margin-top:5px}
+.mini .dica{font-size:12px;color:#7586A3;margin-top:5px}
 .chave{display:flex;align-items:center;gap:10px;margin-bottom:6px;cursor:pointer}
 .chave input{accent-color:var(--ouro);width:17px;height:17px;cursor:pointer}
 .chave span{font-size:14px;color:var(--giz)}
@@ -119,7 +119,7 @@ input[type=range]:focus-visible{outline:2px solid var(--ouro-claro);outline-offs
 .placar div:first-child{border-left:none;padding-left:0}
 .placar .rotulo{font-size:13px;color:var(--cinza);margin-bottom:8px}
 .placar .numero{font-family:var(--display);font-size:clamp(30px,5.6vw,44px);font-weight:300;line-height:1;letter-spacing:-.02em}
-.placar .meses{font-size:13px;color:#6E6A5F;margin-top:8px}
+.placar .meses{font-size:13px;color:#7586A3;margin-top:8px}
 .n-cem{color:var(--ouro-claro)}
 .n-milhao{color:var(--giz)}
 .n-peso{color:var(--cobre)}
@@ -132,7 +132,7 @@ input[type=range]:focus-visible{outline:2px solid var(--ouro-claro);outline-offs
 }
 .degrau:last-child{border-right:none}
 .degrau b{font-family:var(--display);font-weight:400;font-size:14px;color:var(--tinta);white-space:nowrap}
-.reguas{display:flex;width:100%;margin-top:8px;font-size:11px;color:#6E6A5F}
+.reguas{display:flex;width:100%;margin-top:8px;font-size:11px;color:#7586A3}
 .reguas span{overflow:hidden;white-space:nowrap;padding-right:4px}
 .frase{
   font-family:var(--display);font-size:19px;font-weight:300;line-height:1.5;
@@ -148,7 +148,7 @@ th{
   padding:0 0 10px;border-bottom:1px solid var(--borda);
 }
 th:first-child{text-align:left}
-td{padding:11px 0;border-bottom:1px solid #1E1B16;text-align:right;font-variant-numeric:tabular-nums}
+td{padding:11px 0;border-bottom:1px solid #0E1D3D;text-align:right;font-variant-numeric:tabular-nums}
 td:first-child{text-align:left;color:var(--cinza)}
 td.tempo{font-family:var(--display);font-size:17px;color:var(--giz)}
 tr.primeira td.tempo{color:var(--cobre)}
@@ -167,7 +167,7 @@ tr.primeira td.tempo{color:var(--cobre)}
 .mistura .aportes{background:var(--cinza)}
 .mistura .juros{background:var(--ouro)}
 
-footer{border-top:1px solid var(--borda);padding-top:22px;color:#6E6A5F;font-size:13px;max-width:70ch}
+footer{border-top:1px solid var(--borda);padding-top:22px;color:#7586A3;font-size:13px;max-width:70ch}
 footer p{margin:0 0 10px}
 
 @media (max-width:720px){
@@ -195,6 +195,7 @@ footer p{margin:0 0 10px}
 .rb-topo nav a.rb-entrar{border:1px solid var(--ouro);border-radius:3px;padding:4px 10px;color:var(--ouro)}
 @media(max-width:640px){.rb-topo-in{justify-content:center}.rb-topo nav ul{justify-content:center}}
 </style>
+<link rel="stylesheet" href="/css/brasil.css">
 </head>
 <body data-tema="dinheiro">
 <header class="rb-topo">
@@ -414,7 +415,7 @@ footer p{margin:0 0 10px}
       bloco.style.background = corDegrau(k);
       bloco.style.flexGrow = (d === null ? 0 : Math.max(d, 0));
       bloco.style.flexBasis = '0';
-      if(d === null){ bloco.style.background = '#1E1B16'; bloco.style.flexGrow = 0.4; }
+      if(d === null){ bloco.style.background = '#0E1D3D'; bloco.style.flexGrow = 0.4; }
       var faixa = ((k)*100) + 'k → ' + ((k+1)*100) + 'k';
       bloco.title = faixa + ' · ' + (d === null ? 'não alcançado' : fmtTempo(d));
       if(d !== null && d/total > 0.14){
@@ -468,13 +469,13 @@ footer p{margin:0 0 10px}
       var y = Y(v);
       p.push('<line x1="'+pl+'" y1="'+y.toFixed(1)+'" x2="'+(W-pr)+'" y2="'+y.toFixed(1)+'" stroke="#221F19"/>');
       if(v % 200000 === 0 || maxY <= 400000){
-        p.push('<text x="'+(pl-10)+'" y="'+(y+4).toFixed(1)+'" fill="#6E6A5F" font-size="11" text-anchor="end">'+(v/1000)+'k</text>');
+        p.push('<text x="'+(pl-10)+'" y="'+(y+4).toFixed(1)+'" fill="#7586A3" font-size="11" text-anchor="end">'+(v/1000)+'k</text>');
       }
     }
     // marcas de tempo a cada 5 anos
     var passo = n > 480 ? 120 : (n > 180 ? 60 : 24);
     for(var m = passo; m <= n; m += passo){
-      p.push('<text x="'+X(m).toFixed(1)+'" y="'+(H-10)+'" fill="#6E6A5F" font-size="11" text-anchor="middle">'+(m/12)+'a</text>');
+      p.push('<text x="'+X(m).toFixed(1)+'" y="'+(H-10)+'" fill="#7586A3" font-size="11" text-anchor="middle">'+(m/12)+'a</text>');
     }
 
     var linhaSaldo = '', linhaAporte = '';
@@ -487,15 +488,15 @@ footer p{margin:0 0 10px}
     linhaAporte += 'L' + X(n).toFixed(1) + ' ' + Y(serie[n].aportado).toFixed(1);
 
     var area = linhaSaldo + ' L' + X(n).toFixed(1) + ' ' + Y(0) + ' L' + X(0).toFixed(1) + ' ' + Y(0) + ' Z';
-    p.push('<path d="'+area+'" fill="#C9A227" opacity="0.09"/>');
-    p.push('<path d="'+linhaAporte+'" fill="none" stroke="#8C8778" stroke-width="1.5"/>');
-    p.push('<path d="'+linhaSaldo+'" fill="none" stroke="#C9A227" stroke-width="2"/>');
+    p.push('<path d="'+area+'" fill="#FFDF00" opacity="0.09"/>');
+    p.push('<path d="'+linhaAporte+'" fill="none" stroke="#93A0B8" stroke-width="1.5"/>');
+    p.push('<path d="'+linhaSaldo+'" fill="none" stroke="#FFDF00" stroke-width="2"/>');
 
     if(virada && virada.mes <= n){
       p.push('<line x1="'+X(virada.mes).toFixed(1)+'" y1="'+pt+'" x2="'+X(virada.mes).toFixed(1)+'" y2="'+(H-pb)+'" stroke="#B5643C" stroke-width="1" stroke-dasharray="3 3"/>');
       p.push('<circle cx="'+X(virada.mes).toFixed(1)+'" cy="'+Y(virada.saldo).toFixed(1)+'" r="4" fill="#B5643C"/>');
     }
-    p.push('<line x1="'+pl+'" y1="'+(H-pb)+'" x2="'+(W-pr)+'" y2="'+(H-pb)+'" stroke="#2A2620"/>');
+    p.push('<line x1="'+pl+'" y1="'+(H-pb)+'" x2="'+(W-pr)+'" y2="'+(H-pb)+'" stroke="#142650"/>');
     svg.innerHTML = p.join('');
   }
 
