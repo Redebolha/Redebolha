@@ -1,0 +1,44 @@
+name: Dados da brapi
+
+# O token fica no secret BRAPI_TOKEN (Settings → Secrets and variables →
+# Actions) e só existe dentro deste job: nunca vai para o site nem para o
+# repositório. O que é gravado aqui são dados públicos de mercado.
+
+on:
+  workflow_dispatch:
+    inputs:
+      simbolos:
+        description: Códigos separados por vírgula
+        default: PETR4,VALE3
+  # Primeira sondagem, antes de este arquivo chegar na main.
+  push:
+    branches: [claude/friendly-babbage-zdw12g]
+    paths: [tools/brapi.js, .github/workflows/brapi-dados.yml]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: brapi-dados-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  sondar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Buscar na brapi
+        env:
+          BRAPI_TOKEN: ${{ secrets.BRAPI_TOKEN }}
+          SIMBOLOS: ${{ github.event.inputs.simbolos || 'PETR4,VALE3' }}
+        run: node tools/brapi.js --sondar "$SIMBOLOS"
+
+      - name: Commit e Push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add dados/brapi-sondagem.json
+          git diff --cached --quiet || git commit -m "brapi: sondagem de dados"
+          git push
