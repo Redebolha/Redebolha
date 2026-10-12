@@ -7,7 +7,7 @@
 <meta name="description" content="O livro de Romário Cruz na sua casa, com frete grátis, um e-book de presente e uma dedicatória com o seu nome. R$ 29,90.">
 <link rel="canonical" href="https://redebolha.com.br/oferta/">
 <meta name="robots" content="noindex, follow">
-<meta name="theme-color" content="#0C0B09">
+<meta name="theme-color" content="#050E22">
 <meta property="og:type" content="product">
 <meta property="og:title" content="Homem, Você Não É Ridículo: livro físico + frete grátis + dedicatória com o seu nome">
 <meta property="og:description" content="Quando foi a última vez que você disse a alguém o que realmente sente? R$ 29,90 com frete grátis e um e-book de presente.">
@@ -23,18 +23,18 @@
 
 <style>
 :root{
-  --tinta:#0C0B09;      /* o preto da capa */
+  --tinta:#050E22;      /* o preto da capa */
   --tinta-2:#15130F;
-  --giz:#EDE9E0;        /* texto claro */
+  --giz:#EEF2F8;        /* texto claro */
   --corpo:#CFC8BA;      /* texto corrido no escuro */
   --apagado:#8F8879;
-  --ouro:#C9A24B;
-  --ouro-claro:#E7CE8A;
+  --ouro:#FFDF00;
+  --ouro-claro:#FFE566;
   --papel:#F2E9D6;      /* o papel da dedicatória */
   --papel-claro:#FBF6EA;
   --caneta:#1D2B4A;     /* o azul da caneta da dedicatória */
   --vinho:#6E2A38;
-  --fio:rgba(201,162,75,.28);
+  --fio:rgba(255,223,0,.28);
   --serif:'Fraunces',Georgia,'Times New Roman',serif;
   --assinatura:'Mrs Saint Delafield','Brush Script MT',cursive;
 }
@@ -63,7 +63,7 @@ section{padding:clamp(3.4rem,9vw,6.5rem) 0}
 .abertura::before{content:"";position:absolute;inset:0;z-index:-2;
   background:url("/img/hero-fundo-mobile.webp") center 30%/cover no-repeat}
 .abertura::after{content:"";position:absolute;inset:0;z-index:-1;
-  background:linear-gradient(180deg,rgba(12,11,9,.86) 0%,rgba(12,11,9,.55) 34%,rgba(12,11,9,.82) 62%,var(--tinta) 92%)}
+  background:linear-gradient(180deg,rgba(5,14,34,.86) 0%,rgba(5,14,34,.55) 34%,rgba(5,14,34,.82) 62%,var(--tinta) 92%)}
 .abertura h1{font-size:clamp(2.15rem,8.4vw,4.3rem);line-height:1.06;font-weight:440;
   font-variation-settings:"opsz" 144}
 .abertura .sub{font-size:clamp(1.08rem,2.6vw,1.28rem);color:var(--giz);opacity:.86;
@@ -79,7 +79,7 @@ section{padding:clamp(3.4rem,9vw,6.5rem) 0}
 .botao{display:flex;align-items:center;justify-content:center;width:100%;min-height:58px;
   padding:1rem 1.4rem;border-radius:6px;background:var(--ouro);color:var(--tinta);
   font-family:var(--serif);font-weight:600;font-size:1.14rem;text-decoration:none;text-align:center;
-  line-height:1.25;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 18px 36px -16px rgba(201,162,75,.7);
+  line-height:1.25;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 18px 36px -16px rgba(255,223,0,.7);
   transition:background-color .2s,transform .2s}
 .botao:hover{background:var(--ouro-claro)}
 .botao:active{transform:translateY(1px)}
@@ -89,7 +89,7 @@ section{padding:clamp(3.4rem,9vw,6.5rem) 0}
 @media (min-width:860px){
   .abertura{padding-top:calc(120px + env(safe-area-inset-top,0px));padding-bottom:6rem;min-height:92vh}
   .abertura::before{background-image:url("/img/hero-fundo-desktop.webp");background-position:left center}
-  .abertura::after{background:linear-gradient(90deg,rgba(12,11,9,.15) 0%,rgba(12,11,9,.72) 40%,rgba(12,11,9,.94) 62%,var(--tinta) 100%)}
+  .abertura::after{background:linear-gradient(90deg,rgba(5,14,34,.15) 0%,rgba(5,14,34,.72) 40%,rgba(5,14,34,.94) 62%,var(--tinta) 100%)}
   .abertura .wrap{display:flex;justify-content:flex-end}
   .abertura .lado{width:56%}
   .abertura h1{max-width:16ch}
@@ -213,7 +213,7 @@ section{padding:clamp(3.4rem,9vw,6.5rem) 0}
 .secundario{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:.8rem 1.4rem;
   border:1px solid var(--ouro);border-radius:6px;color:var(--ouro-claro);text-decoration:none;font-weight:500;
   white-space:nowrap;transition:background-color .2s}
-.secundario:hover{background:rgba(201,162,75,.1)}
+.secundario:hover{background:rgba(0,156,59,0.16)}
 
 /* ---------- dúvidas ---------- */
 .duvidas{background:var(--tinta-2);border-top:1px solid rgba(255,255,255,.04)}
@@ -255,7 +255,7 @@ footer a:hover{color:var(--ouro-claro)}
 
 /* ---------- barra fixa de compra no celular ---------- */
 .fixa{position:fixed;left:0;right:0;bottom:0;z-index:50;display:none;align-items:center;gap:1rem;
-  padding:.7rem 16px calc(.7rem + env(safe-area-inset-bottom,0px));background:rgba(12,11,9,.96);
+  padding:.7rem 16px calc(.7rem + env(safe-area-inset-bottom,0px));background:rgba(5,14,34,.96);
   -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-top:1px solid var(--fio);
   transform:translateY(110%);transition:transform .3s ease}
 .fixa.on{transform:none}
@@ -289,6 +289,7 @@ fbq('init','2570806596755923');
 fbq('track','PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2570806596755923&amp;ev=PageView&amp;noscript=1" alt=""></noscript>
+<link rel="stylesheet" href="/css/brasil.css">
 </head>
 <body>
 
