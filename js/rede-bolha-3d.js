@@ -18,7 +18,7 @@ class RedeBolha3D extends HTMLElement {
       canvas.width = width;
         canvas.height = height;
         canvas.style.display = 'block';
-        canvas.style.background = 'linear-gradient(135deg, rgba(196, 163, 101, 0.05) 0%, rgba(10, 10, 12, 1) 100%)';
+        canvas.style.background = 'linear-gradient(135deg, rgba(255,223,0, 0.05) 0%, rgba(5,14,34, 1) 100%)';
         canvas.style.borderRadius = '8px';
         canvas.style.marginBottom = '2rem';
 
@@ -34,7 +34,7 @@ class RedeBolha3D extends HTMLElement {
                               width: 100%;
                                     }
                                           canvas {
-                                                  box-shadow: 0 10px 30px rgba(196, 163, 101, 0.2);
+                                                  box-shadow: 0 10px 30px rgba(255,223,0, 0.2);
                                                         }
                                                               @media (max-width: 768px) {
                                                                       canvas {
@@ -67,12 +67,12 @@ class RedeBolha3D extends HTMLElement {
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = 'rgba(196, 163, 101, 0.1)';
+      ctx.fillStyle = 'rgba(255,223,0, 0.1)';
         ctx.beginPath();
         ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
         ctx.fill();
 
-      ctx.strokeStyle = 'rgba(196, 163, 101, 0.4)';
+      ctx.strokeStyle = 'rgba(255,223,0, 0.4)';
         ctx.lineWidth = 2;
         ctx.beginPath();
         ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
@@ -84,19 +84,19 @@ class RedeBolha3D extends HTMLElement {
                 const x = centerX + Math.cos(angulo) * radius * 0.8;
                 const y = centerY + Math.sin(angulo) * radius * 0.8;
 
-          ctx.fillStyle = 'rgba(196, 163, 101, 0.7)';
+          ctx.fillStyle = 'rgba(255,223,0, 0.7)';
                 ctx.beginPath();
                 ctx.arc(x, y, 8, 0, Math.PI * 2);
                 ctx.fill();
 
-          ctx.strokeStyle = 'rgba(196, 163, 101, 1)';
+          ctx.strokeStyle = 'rgba(255,223,0, 1)';
                 ctx.lineWidth = 2;
                 ctx.beginPath();
                 ctx.arc(x, y, 8, 0, Math.PI * 2);
                 ctx.stroke();
         }
 
-      ctx.strokeStyle = 'rgba(196, 163, 101, 0.2)';
+      ctx.strokeStyle = 'rgba(255,223,0, 0.2)';
         ctx.lineWidth = 1;
         for (let i = 0; i < numPontos; i++) {
                 const angulo = (i / numPontos) * Math.PI * 2 + rotacao;
@@ -108,7 +108,7 @@ class RedeBolha3D extends HTMLElement {
                 ctx.stroke();
         }
 
-      ctx.fillStyle = 'rgba(196, 163, 101, 0.9)';
+      ctx.fillStyle = 'rgba(255,223,0, 0.9)';
         ctx.beginPath();
         ctx.arc(centerX, centerY, 12, 0, Math.PI * 2);
         ctx.fill();
