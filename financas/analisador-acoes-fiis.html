@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6DSL2EMZSL"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-6DSL2EMZSL');</script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6315134930280019" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analisador de Ações e FIIs — ROE, Dívida, P/L, P/VP e DY | Rede Bolha</title>
+<meta name="description" content="Digite o código da ação ou do FII e compare ROE, endividamento, P/L, P/VP, dividend yield, vacância e outros indicadores com as referências usadas por Graham, Bazin, Barsi, Buffett e Lynch. Gratuito, sem cadastro.">
+<link rel="canonical" href="https://redebolha.com.br/financas/analisador-acoes-fiis.html">
+<meta name="author" content="Adm. Romário Cruz">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#111113">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Analisador de Ações e FIIs — compare com os indicadores dos especialistas">
+<meta property="og:description" content="Digite o código, confira os números e veja ROE, dívida, P/L, P/VP, DY e vacância lado a lado com as referências de Graham, Bazin, Barsi, Buffett e Lynch.">
+<meta property="og:image" content="https://redebolha.com.br/financas/romario-com-o-livro.jpg">
+<meta property="og:url" content="https://redebolha.com.br/financas/analisador-acoes-fiis.html">
+<meta property="og:site_name" content="Rede Bolha">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebApplication",
+      "name":"Analisador de Ações e FIIs",
+      "url":"https://redebolha.com.br/financas/analisador-acoes-fiis.html",
+      "applicationCategory":"FinanceApplication",
+      "operatingSystem":"Web",
+      "inLanguage":"pt-BR",
+      "description":"Ferramenta educacional que compara indicadores fundamentalistas de ações e fundos imobiliários com as referências usadas por investidores conhecidos.",
+      "isAccessibleForFree":true,
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"BRL"},
+      "author":{"@type":"Person","name":"Adm. Romário Cruz","url":"https://redebolha.com.br/sobre-o-autor.html"},
+      "publisher":{"@type":"Organization","name":"Rede Bolha","url":"https://redebolha.com.br/"}
+    },
+    {
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Início","item":"https://redebolha.com.br/"},
+        {"@type":"ListItem","position":2,"name":"Dinheiro","item":"https://redebolha.com.br/financas/"},
+        {"@type":"ListItem","position":3,"name":"Analisador de Ações e FIIs","item":"https://redebolha.com.br/financas/analisador-acoes-fiis.html"}
+      ]
+    }
+  ]
+}
+</script>
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','2570806596755923');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2570806596755923&ev=PageView&noscript=1" alt=""></noscript>
+<link rel="stylesheet" href="/artigos/blog.css">
+<style>
+:root{ --maxw:1040px; --ok:#5FB37C; --warn:#E0B34A; --bad:#D9606F; }
+
+.passo{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg,14px);padding:22px 24px;margin:26px 0}
+.passo h2{margin-top:0;font-size:1.5rem}
+.passo .num-passo{font-family:'Oswald',sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:4px}
+
+.busca{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch}
+.busca input[type=text]{flex:1 1 180px;font-family:'Oswald',sans-serif;font-size:1.4rem;letter-spacing:.06em;text-transform:uppercase;font-weight:600;padding:12px 16px;border-radius:10px;border:1px solid var(--line);background:var(--bg2);color:var(--txt);min-width:0}
+.busca input[type=text]:focus,.campo input:focus,.campo select:focus,select.sel:focus,textarea:focus{outline:none;border-color:var(--gold-d);box-shadow:0 0 0 3px rgba(201,162,75,.16)}
+select.sel{font-family:'Inter',system-ui,sans-serif;font-size:.95rem;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg2);color:var(--txt)}
+
+.btn-add,.btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:6px;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.1em;font-size:.8rem;padding:12px 20px;border-radius:10px;font-weight:600;cursor:pointer}
+.btn-add{background:linear-gradient(180deg,var(--gold-l),var(--gold-d));color:#1a1206;border:0}
+.btn-add:hover{filter:brightness(1.06)}
+.btn-add[disabled]{opacity:.6;cursor:wait}
+.btn-ghost{background:transparent;border:1px solid var(--line);color:var(--body);font-weight:500}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold-l)}
+
+.linha-opcoes{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:14px;font-size:.88rem;color:var(--body);align-items:center}
+.linha-opcoes label{display:inline-flex;gap:8px;align-items:center;cursor:pointer}
+details.token{margin-top:14px;font-size:.88rem;color:var(--body)}
+details.token summary{cursor:pointer;color:var(--gold-l)}
+details.token input{width:100%;max-width:420px;margin-top:8px;padding:9px 12px;border-radius:8px;border:1px solid var(--line);background:var(--bg2);color:var(--txt);font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.85rem}
+
+.status{margin-top:14px;font-size:.9rem;padding:10px 14px;border-radius:10px;display:none}
+.status.show{display:block}
+.status.info{background:rgba(201,162,75,.08);border:1px solid var(--line);color:var(--body)}
+.status.ok{background:rgba(95,179,124,.1);border:1px solid rgba(95,179,124,.4);color:var(--txt)}
+.status.erro{background:rgba(217,96,111,.1);border:1px solid rgba(217,96,111,.4);color:var(--txt)}
+.ativo-nome{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--txt);margin-top:10px}
+
+.grid-campos{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.campo{display:flex;flex-direction:column;gap:5px}
+.campo label{font-family:'Oswald',sans-serif;font-size:.66rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);display:flex;gap:6px;align-items:center}
+.campo input,.campo select{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.95rem;padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:var(--bg2);color:var(--txt);min-width:0;width:100%}
+.campo .dica{font-size:.74rem;color:var(--dim);line-height:1.35}
+.tag-auto{font-family:'Inter',sans-serif;font-size:.58rem;letter-spacing:.04em;text-transform:none;background:rgba(95,179,124,.16);color:var(--ok);border-radius:5px;padding:1px 6px;display:none}
+.campo.auto .tag-auto{display:inline-block}
+.campo.auto input{border-color:rgba(95,179,124,.45)}
+
+.placar{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:4px 0 18px}
+.stat{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:3px}
+.stat .label{font-family:'Oswald',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.stat .value{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.7rem;font-variant-numeric:tabular-nums;color:var(--txt)}
+.stat .sub{font-size:.76rem;color:var(--dim)}
+.stat.nota .value{color:var(--gold-l);font-size:2.2rem}
+
+.tabela-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table.diag{border-collapse:collapse;width:100%;min-width:720px}
+table.diag th{background:var(--bg2);color:var(--gold-l);text-align:left;font-family:'Oswald',sans-serif;font-size:.64rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;padding:11px 12px;border-bottom:1px solid var(--line)}
+table.diag td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;font-size:.9rem;color:var(--body)}
+table.diag tr:last-child td{border-bottom:0}
+table.diag td.ind{color:var(--txt);font-weight:600;white-space:nowrap}
+table.diag td.val{font-family:ui-monospace,Menlo,Consolas,monospace;color:var(--txt);white-space:nowrap;text-align:right}
+table.diag td.ref{font-size:.82rem}
+table.diag td.pq{font-size:.8rem;color:var(--dim)}
+table.diag tr.grupo td{background:rgba(201,162,75,.06);font-family:'Oswald',sans-serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);padding:7px 12px}
+.selo{display:inline-block;font-family:'Oswald',sans-serif;font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;font-weight:600;border-radius:20px;padding:3px 10px;white-space:nowrap}
+.selo.bom{background:rgba(95,179,124,.16);color:var(--ok)}
+.selo.atencao{background:rgba(224,179,74,.16);color:var(--warn)}
+.selo.ruim{background:rgba(217,96,111,.16);color:var(--bad)}
+.selo.na{background:rgba(133,127,117,.14);color:var(--dim)}
+
+.precos{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:18px}
+.preco{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.preco h4{margin:0 0 4px;font-family:'Oswald',sans-serif;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.preco .v{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--txt);font-weight:600}
+.preco p{font-size:.8rem;color:var(--dim);margin:4px 0 0}
+
+.links-pesquisa{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 18px}
+.links-pesquisa a{font-size:.85rem;border:1px solid var(--line);border-radius:20px;padding:7px 14px;color:var(--gold-l);text-decoration:none;background:var(--bg2)}
+.links-pesquisa a:hover{border-color:var(--gold)}
+.checklist{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.checklist li label{display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-size:.92rem;color:var(--body);line-height:1.45}
+.checklist input{margin-top:4px;accent-color:#C9A24B;flex:0 0 auto}
+
+textarea.parecer{width:100%;min-height:150px;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg2);color:var(--txt);font-family:'Inter',system-ui,sans-serif;font-size:.95rem;line-height:1.55;resize:vertical}
+.acoes-final{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;align-items:center}
+.toast{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:.72rem;font-weight:600;color:var(--gold-l);background:rgba(201,162,75,.12);border:1px solid var(--gold-d);padding:8px 14px;border-radius:20px;opacity:0;transition:opacity .18s ease;pointer-events:none}
+.toast.show{opacity:1}
+
+table.comp{border-collapse:collapse;width:100%;min-width:640px}
+table.comp th,table.comp td{padding:9px 12px;border-bottom:1px solid var(--line);font-size:.86rem;text-align:right;white-space:nowrap}
+table.comp th{background:var(--bg2);color:var(--gold-l);font-family:'Oswald',sans-serif;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase}
+table.comp th:first-child,table.comp td:first-child{text-align:left;position:sticky;left:0;background:var(--card)}
+table.comp th:first-child{background:var(--bg2)}
+table.comp td{font-family:ui-monospace,Menlo,Consolas,monospace;color:var(--body)}
+table.comp td:first-child{font-family:'Inter',sans-serif;color:var(--txt)}
+table.comp td.bom{color:var(--ok)} table.comp td.atencao{color:var(--warn)} table.comp td.ruim{color:var(--bad)}
+.comp-vazio{padding:26px;text-align:center;color:var(--dim);font-size:.92rem}
+.comp-head button{background:none;border:0;color:var(--dim);cursor:pointer;font-size:1rem;margin-left:6px}
+.comp-head button:hover{color:var(--bad)}
+.comp-head a{color:var(--gold-l);cursor:pointer;text-decoration:none}
+
+.metodo dt{font-weight:600;color:var(--txt);margin-top:12px}
+.metodo dd{margin:2px 0 0;color:var(--body);font-size:.93rem}
+.note-small{font-size:.82rem;color:var(--dim);margin-top:14px}
+.oculto{display:none !important}
+
+@media (max-width:620px){
+  .passo{padding:18px 16px}
+  .busca input[type=text]{font-size:1.2rem}
+}
+@media print{
+  .busca,.acoes-final,details.token,.links-pesquisa,.topbar,.foot,.cta{display:none}
+}
+</style>
+</head>
+<body data-tema="dinheiro">
+<header class="topbar"><div class="wrap">
+<a class="brand" href="/"><b>Rede</b> Bolha</a>
+<nav class="topnav"><a href="/financas/" aria-current="page">Homem e Dinheiro</a> <a href="/masculinidade/">Masculinidade</a> <a href="/economia/">Economia</a> <a href="/ferramentas/">Ferramentas</a> <a href="/artigos/">Artigos</a> <a href="/sobre-o-autor.html">Sobre</a> <a class="rb-entrar" href="/a-carta/">A Carta</a></nav>
+</div></header>
+<main class="wrap">
+<article>
+<p class="eyebrow">Ferramenta gratuita · Dinheiro</p>
+<h1>Analisador de Ações e FIIs</h1>
+<p class="lead">Digite o código, confira os números e veja o ativo lado a lado com as referências que os especialistas mais usam: ROE, endividamento, P/L, P/VP, dividend yield, vacância e companhia.</p>
+<p>A ferramenta busca o que dá pra buscar sozinha e deixa todos os campos abertos pra você conferir. Quem bate o martelo é você: o sistema mostra o termômetro, a decisão fica no seu parecer.</p>
+
+<!-- PASSO 1 -->
+<section class="passo" aria-labelledby="t-passo1">
+  <span class="num-passo">Passo 1</span>
+  <h2 id="t-passo1">Código do ativo</h2>
+  <form class="busca" id="form-busca" autocomplete="off">
+    <input type="text" id="ticker" placeholder="Ex.: ITUB4, WEGE3, HGLG11" maxlength="8" aria-label="Código do ativo na B3" spellcheck="false">
+    <select class="sel" id="tipo" aria-label="Tipo de ativo">
+      <option value="auto">Detectar tipo</option>
+      <option value="acao">Ação</option>
+      <option value="fii">FII</option>
+    </select>
+    <button class="btn-add" type="submit" id="btn-buscar">Buscar dados</button>
+    <button class="btn-ghost" type="button" id="btn-manual">Preencher à mão</button>
+  </form>
+  <div class="linha-opcoes" id="opcoes-acao">
+    <label><input type="checkbox" id="financeiro"> Banco, seguradora ou financeira (dívida/EBITDA e liquidez corrente não se aplicam)</label>
+  </div>
+  <div class="linha-opcoes oculto" id="opcoes-fii">
+    <label>Segmento do fundo
+      <select class="sel" id="segmento">
+        <option value="tijolo">Tijolo (imóveis)</option>
+        <option value="papel">Papel (CRIs)</option>
+        <option value="fof">Fundo de fundos</option>
+        <option value="hibrido">Híbrido</option>
+      </select>
+    </label>
+  </div>
+  <details class="token">
+    <summary>Busca automática: token gratuito da brapi (opcional)</summary>
+    <p style="margin:8px 0 0">Os dados automáticos vêm da <a href="https://brapi.dev" target="_blank" rel="noopener">brapi.dev</a>. Sem token, só alguns códigos de teste respondem. Crie um token grátis lá e cole aqui — ele fica guardado só neste navegador.</p>
+    <input type="text" id="token" placeholder="cole seu token aqui" spellcheck="false">
+  </details>
+  <div class="status" id="status" role="status" aria-live="polite"></div>
+  <div class="ativo-nome" id="ativo-nome"></div>
+</section>
+
+<!-- PASSO 2 -->
+<section class="passo oculto" id="passo-dados" aria-labelledby="t-passo2">
+  <span class="num-passo">Passo 2</span>
+  <h2 id="t-passo2">Confira os números</h2>
+  <p style="margin-top:0">Campos com <span class="tag-auto" style="display:inline-block">auto</span> vieram da busca. Compare com o relatório oficial ou com os sites do Passo 4 e corrija o que estiver diferente. Campo em branco fica fora da nota.</p>
+  <div class="grid-campos" id="campos"></div>
+</section>
+
+<!-- PASSO 3 -->
+<section class="passo oculto" id="passo-diag" aria-labelledby="t-passo3">
+  <span class="num-passo">Passo 3</span>
+  <h2 id="t-passo3">Diagnóstico pelos indicadores</h2>
+  <div class="placar">
+    <div class="stat nota"><span class="label">Nota fundamentalista</span><span class="value" id="nota">—</span><span class="sub" id="nota-sub">de 0 a 10</span></div>
+    <div class="stat"><span class="label">Dentro da referência</span><span class="value" id="cnt-bom" style="color:var(--ok)">0</span><span class="sub">indicadores</span></div>
+    <div class="stat"><span class="label">Pedem atenção</span><span class="value" id="cnt-atencao" style="color:var(--warn)">0</span><span class="sub">indicadores</span></div>
+    <div class="stat"><span class="label">Fora da referência</span><span class="value" id="cnt-ruim" style="color:var(--bad)">0</span><span class="sub">indicadores</span></div>
+  </div>
+  <div class="tabela-wrap">
+    <table class="diag">
+      <thead><tr><th>Indicador</th><th style="text-align:right">Valor</th><th>Referência dos especialistas</th><th>Avaliação</th><th>Por que importa</th></tr></thead>
+      <tbody id="diag-corpo"></tbody>
+    </table>
+  </div>
+  <div class="precos" id="precos"></div>
+  <p class="note-small">A nota soma 2 pontos para cada indicador dentro da referência, 1 para os que pedem atenção e 0 para os de fora, e converte para a escala de 0 a 10. Ela é um ponto de partida para a análise, nunca o fim dela.</p>
+</section>
+
+<!-- PASSO 4 -->
+<section class="passo oculto" id="passo-pesquisa" aria-labelledby="t-passo4">
+  <span class="num-passo">Passo 4</span>
+  <h2 id="t-passo4">Pesquisa: o que o número não conta</h2>
+  <p style="margin-top:0">Abra as fontes, leia o último relatório e marque o que você conferiu. Indicador bom com história ruim é armadilha.</p>
+  <div class="links-pesquisa" id="links"></div>
+  <ul class="checklist" id="checklist"></ul>
+</section>
+
+<!-- PASSO 5 -->
+<section class="passo oculto" id="passo-parecer" aria-labelledby="t-passo5">
+  <span class="num-passo">Passo 5</span>
+  <h2 id="t-passo5">Seu parecer</h2>
+  <p style="margin-top:0">Escreva com suas palavras o que você viu. Daqui a seis meses, é este texto que vai te lembrar por que você comprou — ou por que ficou de fora.</p>
+  <div class="campo" style="max-width:280px;margin-bottom:12px">
+    <label for="decisao">Minha decisão</label>
+    <select id="decisao">
+      <option value="">— escolha —</option>
+      <option value="Comprar">Comprar / aumentar posição</option>
+      <option value="Acompanhar">Acompanhar de perto</option>
+      <option value="Manter">Manter o que já tenho</option>
+      <option value="Evitar">Evitar por enquanto</option>
+    </select>
+  </div>
+  <textarea class="parecer" id="parecer" placeholder="Ex.: ROE consistente acima de 15%, dívida baixa, mas o preço já passou do teto de Bazin. Vou esperar uma correção."></textarea>
+  <div class="acoes-final">
+    <button class="btn-add" type="button" id="btn-salvar">Salvar no comparativo</button>
+    <button class="btn-ghost" type="button" id="btn-copiar">Copiar relatório</button>
+    <button class="btn-ghost" type="button" id="btn-imprimir">Imprimir / PDF</button>
+    <span class="toast" id="toast"></span>
+  </div>
+</section>
+
+<!-- COMPARATIVO -->
+<section class="passo" aria-labelledby="t-comp">
+  <span class="num-passo">Comparativo</span>
+  <h2 id="t-comp">Seus ativos lado a lado</h2>
+  <p style="margin-top:0">Cada análise salva entra aqui. Clique no código para reabrir. Fica guardado só neste navegador.</p>
+  <div class="linha-opcoes" style="margin:0 0 12px">
+    <label><input type="radio" name="comp-tipo" value="acao" checked> Ações</label>
+    <label><input type="radio" name="comp-tipo" value="fii"> FIIs</label>
+  </div>
+  <div class="tabela-wrap" id="comp-wrap"></div>
+</section>
+
+<section aria-labelledby="t-metodo">
+<h2 id="t-metodo">De onde vêm as referências</h2>
+<p>Nenhum desses números é lei. São as réguas que investidores conhecidos popularizaram, e cada uma tem contexto: setor, ciclo de juros, momento da empresa.</p>
+<dl class="metodo">
+  <dt>Benjamin Graham — <em>O Investidor Inteligente</em></dt>
+  <dd>P/L até 15, P/VP até 1,5 e P/L × P/VP até 22,5. Daí sai o preço justo de Graham: √(22,5 × LPA × VPA). Também pedia liquidez corrente folgada e dívida controlada.</dd>
+  <dt>Décio Bazin — <em>Faça Fortuna com Ações</em></dt>
+  <dd>Dividend yield de pelo menos 6% ao ano. O preço-teto é a média de dividendos dividida por 0,06. Bazin também fugia de empresa endividada.</dd>
+  <dt>Luiz Barsi Filho</dt>
+  <dd>Carteira previdenciária em setores perenes (bancos, energia, saneamento, seguros, telecom) com dividendos constantes e crescentes.</dd>
+  <dt>Warren Buffett</dt>
+  <dd>ROE alto e sustentado (acima de 15%) com pouca dívida, margens estáveis e vantagem competitiva durável.</dd>
+  <dt>Peter Lynch — <em>O Jeito Peter Lynch de Investir</em></dt>
+  <dd>PEG (P/L dividido pelo crescimento do lucro) perto de 1 ou abaixo indica preço razoável para o crescimento entregue.</dd>
+  <dt>Joel Greenblatt — <em>A Fórmula Mágica</em></dt>
+  <dd>Combina retorno sobre o capital (ROIC) alto com EV/EBITDA (ou EV/EBIT) baixo: empresa boa a preço barato.</dd>
+  <dt>FIIs — práticas de mercado</dt>
+  <dd>P/VP perto de 1, vacância baixa, dividendos todos os meses, liquidez diária acima de R$ 1 milhão, patrimônio e base de cotistas grandes, taxa de administração até 1% e pouca concentração em um só inquilino ou devedor. O DY é comparado com o CDI líquido de IR, porque o rendimento do FII é isento para pessoa física.</dd>
+</dl>
+</section>
+
+<p class="note-small">Ferramenta educacional. Não é recomendação de compra ou venda nem consultoria de investimentos. Os dados automáticos podem estar atrasados ou incompletos — confira sempre nos relatórios oficiais da empresa ou do fundo (RI, CVM e B3) antes de decidir. Seus dados e anotações ficam salvos só neste navegador.</p>
+
+<div class="cta">
+<p class="eyebrow">Continue por aqui</p>
+<h3>Escolheu os ativos? Veja quanto eles rendem</h3>
+<p>Leve os FIIs aprovados para a calculadora de carteira e veja quantas cotas cabem no seu bolso e quanto isso gera por mês.</p>
+<a class="btn" href="/financas/calculadora-fii.html">Abrir a calculadora de FIIs</a>
+</div>
+
+<p class="back"><a href="/financas/">← Voltar para Dinheiro</a></p>
+</article>
+</main>
+<footer class="foot"><div class="wrap">
+<a href="/">Início</a> · <a href="/sobre-o-autor.html">Sobre</a> · <a href="/livros/">Livros</a> · <a href="/artigos/">Artigos</a> · <a href="/contato/">Contato</a>
+<p>© 2026 Adm. Romário Cruz · Eldorado do Sul, RS · Rede Bolha</p>
+</div><p class="rb-assina-expediente" style="margin:1rem auto 0;max-width:60ch;font-size:.78rem;line-height:1.6;opacity:.7;text-align:center">Conteúdo apurado e editado por <b>Adm. Romário Cruz</b>, jornalista registrado — MTb 0021682/RS. &middot; <a href="/expediente/">Expediente e política editorial</a></p>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var K_TOKEN = "redebolha_brapi_token";
+  var K_ANALISES = "redebolha_analises_v1";
+
+  function $(id) { return document.getElementById(id); }
+  function lerLS(k, padrao) { try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : padrao; } catch (e) { return padrao; } }
+  function gravarLS(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+
+  function parseNum(s) {
+    if (s == null) return null;
+    s = String(s).trim().replace(/\s/g, "").replace(/^R\$/i, "").replace(/%$/, "");
+    if (s === "") return null;
+    // "1.234,56" -> 1234.56 ; "1234.56" -> 1234.56 ; "12,5" -> 12.5
+    if (s.indexOf(",") >= 0) s = s.replace(/\./g, "").replace(",", ".");
+    var n = parseFloat(s);
+    return isFinite(n) ? n : null;
+  }
+  function fmt(n, casas) {
+    if (n == null || !isFinite(n)) return "—";
+    return n.toLocaleString("pt-BR", { minimumFractionDigits: casas, maximumFractionDigits: casas });
+  }
+  function brl(n) { return n == null || !isFinite(n) ? "—" : n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }); }
+  function brlCurto(n) {
+    if (n == null || !isFinite(n)) return "—";
+    var a = Math.abs(n);
+    if (a >= 1e9) return "R$ " + fmt(n / 1e9, 2) + " bi";
+    if (a >= 1e6) return "R$ " + fmt(n / 1e6, 2) + " mi";
+    if (a >= 1e3) return "R$ " + fmt(n / 1e3, 1) + " mil";
+    return brl(n);
+  }
+  function arred(n, c) { if (n == null || !isFinite(n)) return ""; var f = Math.pow(10, c); return String(Math.round(n * f) / f).replace(".", ","); }
+
+  // Faixas: devolve "bom" | "atencao" | "ruim"
+  function faixaMaior(v, bom, atencao) { return v >= bom ? "bom" : v >= atencao ? "atencao" : "ruim"; }
+  function faixaMenor(v, bom, atencao) { return v <= bom ? "bom" : v <= atencao ? "atencao" : "ruim"; }
+
+  /* ------------------------------------------------------------------ */
+  /* Campos de entrada                                                   */
+  /* ------------------------------------------------------------------ */
+  var CAMPOS = {
+    acao: [
+      { k: "preco", rotulo: "Cotação (R$)", dica: "Preço atual da ação" },
+      { k: "lpa", rotulo: "LPA (R$)", dica: "Lucro por ação dos últimos 12 meses" },
+      { k: "vpa", rotulo: "VPA (R$)", dica: "Valor patrimonial por ação" },
+      { k: "div12", rotulo: "Dividendos 12m (R$/ação)", dica: "Soma de dividendos e JCP pagos em 12 meses" },
+      { k: "roe", rotulo: "ROE (%)", dica: "Lucro líquido ÷ patrimônio líquido" },
+      { k: "roic", rotulo: "ROIC (%)", dica: "Retorno sobre o capital investido" },
+      { k: "margem", rotulo: "Margem líquida (%)", dica: "Lucro líquido ÷ receita" },
+      { k: "dlEbitda", rotulo: "Dív. líquida / EBITDA (x)", dica: "Negativo = caixa líquido", naoFin: true },
+      { k: "dlPl", rotulo: "Dív. líquida / Patrimônio (x)", dica: "Quanto da empresa é bancado por dívida", naoFin: true },
+      { k: "liqCorr", rotulo: "Liquidez corrente (x)", dica: "Ativo circulante ÷ passivo circulante", naoFin: true },
+      { k: "evEbitda", rotulo: "EV / EBITDA (x)", dica: "Valor da firma ÷ geração de caixa operacional", naoFin: true },
+      { k: "cagr", rotulo: "Crescimento do lucro 5a (% a.a.)", dica: "CAGR dos lucros nos últimos 5 anos" },
+      { k: "liquidez", rotulo: "Liquidez diária (R$)", dica: "Volume financeiro médio negociado por dia" }
+    ],
+    fii: [
+      { k: "preco", rotulo: "Cotação (R$)", dica: "Preço atual da cota" },
+      { k: "vp", rotulo: "Valor patrimonial por cota (R$)", dica: "Patrimônio líquido ÷ número de cotas" },
+      { k: "rend12", rotulo: "Rendimentos 12m (R$/cota)", dica: "Soma dos rendimentos pagos em 12 meses" },
+      { k: "meses", rotulo: "Meses com rendimento (de 12)", dica: "Quantos dos últimos 12 meses pagaram" },
+      { k: "cdi", rotulo: "CDI atual (% a.a.)", dica: "Taxa de referência para comparar o DY" },
+      { k: "vacFis", rotulo: "Vacância física (%)", dica: "Área vaga ÷ área total", seg: ["tijolo", "hibrido"] },
+      { k: "vacFin", rotulo: "Vacância financeira (%)", dica: "Aluguel que deixa de entrar", seg: ["tijolo", "hibrido"] },
+      { k: "ativos", rotulo: "Nº de imóveis / CRIs / fundos", dica: "Diversificação da carteira" },
+      { k: "concentra", rotulo: "Maior inquilino ou devedor (% da receita)", dica: "Dependência de um único pagador" },
+      { k: "liquidez", rotulo: "Liquidez diária (R$)", dica: "Volume financeiro médio por dia" },
+      { k: "pl", rotulo: "Patrimônio líquido (R$ milhões)", dica: "Tamanho do fundo" },
+      { k: "cotistas", rotulo: "Número de cotistas", dica: "Base de investidores" },
+      { k: "taxaAdm", rotulo: "Taxa de administração (% a.a.)", dica: "Somando gestão e administração" },
+      { k: "alav", rotulo: "Alavancagem (% do PL)", dica: "Passivo ou obrigações ÷ patrimônio" }
+    ]
+  };
+
+  /* ------------------------------------------------------------------ */
+  /* Indicadores e referências                                           */
+  /* ------------------------------------------------------------------ */
+  // Cada indicador: calc(d, ctx) -> número | null ; aval(v, d, ctx) -> faixa | "na"
+  var IND = {
+    acao: [
+      { grupo: "Preço (valuation)" },
+      { k: "pl", nome: "P/L", un: "x", ref: "Até 15 (Graham). Acima de 25, o mercado já paga muito crescimento.",
+        pq: "Quantos anos de lucro atual você paga pela empresa.",
+        calc: function (d) { return d.preco != null && d.lpa ? d.preco / d.lpa : null; },
+        aval: function (v) { return v <= 0 ? "ruim" : faixaMenor(v, 15, 25); } },
+      { k: "pvp", nome: "P/VP", un: "x", ref: "Até 1,5 (Graham). Empresas de ROE alto costumam negociar acima.",
+        pq: "Quanto você paga por cada real de patrimônio.",
+        calc: function (d) { return d.preco != null && d.vpa ? d.preco / d.vpa : null; },
+        aval: function (v) { return v <= 0 ? "ruim" : faixaMenor(v, 1.5, 3); } },
+      { k: "evEbitda", nome: "EV/EBITDA", un: "x", ref: "Até 8 barato; 8 a 12 razoável (Greenblatt usa a ideia na Fórmula Mágica).",
+        pq: "Preço da empresa inteira, dívida incluída, contra a geração de caixa.", naoFin: true,
+        calc: function (d) { return d.evEbitda; },
+        aval: function (v) { return v <= 0 ? "ruim" : faixaMenor(v, 8, 12); } },
+      { k: "peg", nome: "PEG", un: "x", ref: "Até 1 (Peter Lynch).",
+        pq: "P/L ajustado pelo crescimento: crescimento caro ou barato?",
+        calc: function (d) { var pl = d.preco != null && d.lpa ? d.preco / d.lpa : null; return pl > 0 && d.cagr > 0 ? pl / d.cagr : null; },
+        aval: function (v) { return faixaMenor(v, 1, 2); } },
+
+      { grupo: "Rentabilidade e eficiência" },
+      { k: "roe", nome: "ROE", un: "%", ref: "Acima de 15% (Buffett). Entre 10% e 15% é mediano.",
+        pq: "Quanto a empresa lucra com o dinheiro dos sócios.",
+        calc: function (d) { return d.roe; }, aval: function (v) { return faixaMaior(v, 15, 10); } },
+      { k: "roic", nome: "ROIC", un: "%", ref: "Acima de 10% (Greenblatt). Precisa superar o custo de capital.",
+        pq: "Retorno sobre todo o capital: próprio e emprestado.",
+        calc: function (d) { return d.roic; }, aval: function (v) { return faixaMaior(v, 10, 6); } },
+      { k: "margem", nome: "Margem líquida", un: "%", ref: "Acima de 10% é saudável; varia muito por setor.",
+        pq: "Quanto sobra de cada R$ 100 vendidos.",
+        calc: function (d) { return d.margem; }, aval: function (v) { return faixaMaior(v, 10, 5); } },
+      { k: "cagr", nome: "Crescimento do lucro (5a)", un: "% a.a.", ref: "Acima de 10% ao ano é forte; negativo é alerta.",
+        pq: "Lucro que não cresce não sustenta dividendo nem preço.",
+        calc: function (d) { return d.cagr; }, aval: function (v) { return v < 0 ? "ruim" : faixaMaior(v, 10, 0); } },
+
+      { grupo: "Endividamento e solidez" },
+      { k: "dlEbitda", nome: "Dív. líquida/EBITDA", un: "x", ref: "Até 2 confortável; acima de 3 é alto (prática de mercado e covenants).",
+        pq: "Quantos anos de geração de caixa pagariam a dívida.", naoFin: true,
+        calc: function (d) { return d.dlEbitda; }, aval: function (v) { return faixaMenor(v, 2, 3); } },
+      { k: "dlPl", nome: "Dív. líquida/Patrimônio", un: "x", ref: "Até 0,5 conservador; acima de 1 a dívida já supera o patrimônio.",
+        pq: "Peso da dívida sobre o capital dos sócios.", naoFin: true,
+        calc: function (d) { return d.dlPl; }, aval: function (v) { return faixaMenor(v, 0.5, 1); } },
+      { k: "liqCorr", nome: "Liquidez corrente", un: "x", ref: "Acima de 1,5 (Graham pedia 2 para indústrias).",
+        pq: "Capacidade de pagar as contas do próximo ano.", naoFin: true,
+        calc: function (d) { return d.liqCorr; }, aval: function (v) { return faixaMaior(v, 1.5, 1); } },
+
+      { grupo: "Dividendos" },
+      { k: "dy", nome: "Dividend yield", un: "%", ref: "6% ou mais (Bazin). Empresas em crescimento pagam menos.",
+        pq: "Quanto volta pro seu bolso por ano, em dinheiro.",
+        calc: function (d) { return d.preco && d.div12 != null ? d.div12 / d.preco * 100 : null; },
+        aval: function (v) { return faixaMaior(v, 6, 3); } },
+      { k: "payout", nome: "Payout", un: "%", ref: "Entre 25% e 80%. Acima de 100% a empresa paga mais do que lucra.",
+        pq: "Fatia do lucro distribuída: equilíbrio entre renda e reinvestimento.",
+        calc: function (d) { return d.lpa > 0 && d.div12 != null ? d.div12 / d.lpa * 100 : null; },
+        aval: function (v) { return v > 100 ? "ruim" : v >= 25 && v <= 80 ? "bom" : "atencao"; } },
+
+      { grupo: "Negociação" },
+      { k: "liquidez", nome: "Liquidez diária", un: "R$", ref: "Acima de R$ 2 milhões/dia para entrar e sair sem sufoco.",
+        pq: "Ação pouco negociada é difícil de vender na hora que você precisa.",
+        calc: function (d) { return d.liquidez; }, aval: function (v) { return faixaMaior(v, 2e6, 5e5); } },
+      { k: "graham", nome: "Preço x valor de Graham", un: "%", ref: "Cotação abaixo de √(22,5 × LPA × VPA).",
+        pq: "Margem de segurança: quanto abaixo (ou acima) do preço justo de Graham.",
+        calc: function (d) { var g = precoGraham(d); return g && d.preco ? (d.preco / g - 1) * 100 : null; },
+        aval: function (v) { return faixaMenor(v, 0, 20); } },
+      { k: "bazin", nome: "Preço x teto de Bazin", un: "%", ref: "Cotação abaixo de dividendos 12m ÷ 6%.",
+        pq: "Quanto o preço está do teto que ainda entrega 6% de dividendo.",
+        calc: function (d) { var b = d.div12 > 0 ? d.div12 / 0.06 : null; return b && d.preco ? (d.preco / b - 1) * 100 : null; },
+        aval: function (v) { return faixaMenor(v, 0, 10); } }
+    ],
+    fii: [
+      { grupo: "Preço e renda" },
+      { k: "pvp", nome: "P/VP", un: "x", ref: "Entre 0,85 e 1,05 é a faixa justa. Desconto muito grande costuma esconder problema.",
+        pq: "Quanto você paga por cada real de patrimônio do fundo.",
+        calc: function (d) { return d.preco && d.vp ? d.preco / d.vp : null; },
+        aval: function (v) { return v >= 0.85 && v <= 1.05 ? "bom" : v >= 0.75 && v <= 1.15 ? "atencao" : "ruim"; } },
+      { k: "dy", nome: "Dividend yield 12m", un: "%", ref: "Igual ou acima do CDI líquido de IR (CDI × 0,85). Sem CDI informado: 8% ou mais.",
+        pq: "Renda isenta de IR que o fundo entrega sobre o preço de hoje.",
+        calc: function (d) { return d.preco && d.rend12 != null ? d.rend12 / d.preco * 100 : null; },
+        aval: function (v, d) {
+          if (d.cdi > 0) { var liq = d.cdi * 0.85; return v >= liq ? "bom" : v >= liq * 0.8 ? "atencao" : "ruim"; }
+          return faixaMaior(v, 8, 6);
+        } },
+      { k: "meses", nome: "Constância dos rendimentos", un: "/12", ref: "12 de 12 meses pagando.",
+        pq: "FII é renda mensal: falhar pagamento é sinal amarelo forte.",
+        calc: function (d) { return d.meses; }, aval: function (v) { return v >= 12 ? "bom" : v >= 10 ? "atencao" : "ruim"; } },
+      { k: "bazin", nome: "Preço x teto (DY alvo 8%)", un: "%", ref: "Cotação abaixo de rendimentos 12m ÷ 8%.",
+        pq: "Quanto o preço está do teto que ainda entrega 8% ao ano.",
+        calc: function (d) { var t = d.rend12 > 0 ? d.rend12 / 0.08 : null; return t && d.preco ? (d.preco / t - 1) * 100 : null; },
+        aval: function (v) { return faixaMenor(v, 0, 10); } },
+
+      { grupo: "Qualidade do portfólio" },
+      { k: "vacFis", nome: "Vacância física", un: "%", ref: "Até 5% ótima; acima de 15% preocupa.", seg: ["tijolo", "hibrido"],
+        pq: "Imóvel vazio não paga aluguel e ainda gera custo.",
+        calc: function (d) { return d.vacFis; }, aval: function (v) { return faixaMenor(v, 5, 15); } },
+      { k: "vacFin", nome: "Vacância financeira", un: "%", ref: "Até 5% ótima; acima de 15% preocupa.", seg: ["tijolo", "hibrido"],
+        pq: "Receita de aluguel que deixou de entrar no caixa.",
+        calc: function (d) { return d.vacFin; }, aval: function (v) { return faixaMenor(v, 5, 15); } },
+      { k: "ativos", nome: "Diversificação", un: "ativos", ref: "Tijolo: 5 ou mais imóveis. Papel: 20 ou mais CRIs. FoF: 15 ou mais fundos.",
+        pq: "Quanto menos ativos, maior o estrago se um der errado.",
+        calc: function (d) { return d.ativos; },
+        aval: function (v, d, ctx) {
+          var m = { tijolo: [5, 2], hibrido: [5, 2], papel: [20, 10], fof: [15, 8] }[ctx.segmento] || [5, 2];
+          return faixaMaior(v, m[0], m[1]);
+        } },
+      { k: "concentra", nome: "Maior inquilino/devedor", un: "%", ref: "Até 20% da receita; acima de 40% é dependência perigosa.",
+        pq: "Se esse pagador sair ou der calote, o rendimento cai junto.",
+        calc: function (d) { return d.concentra; }, aval: function (v) { return faixaMenor(v, 20, 40); } },
+
+      { grupo: "Tamanho, custo e risco" },
+      { k: "liquidez", nome: "Liquidez diária", un: "R$", ref: "Acima de R$ 1 milhão/dia; abaixo de R$ 300 mil é ilíquido.",
+        pq: "Facilidade de vender a cota sem derrubar o preço.",
+        calc: function (d) { return d.liquidez; }, aval: function (v) { return faixaMaior(v, 1e6, 3e5); } },
+      { k: "pl", nome: "Patrimônio líquido", un: "R$ mi", ref: "Acima de R$ 1 bilhão robusto; abaixo de R$ 300 milhões é pequeno.",
+        pq: "Fundos maiores diluem custos e negociam melhor com inquilinos.",
+        calc: function (d) { return d.pl; }, aval: function (v) { return faixaMaior(v, 1000, 300); } },
+      { k: "cotistas", nome: "Cotistas", un: "", ref: "Acima de 50 mil; abaixo de 10 mil é base pequena.",
+        pq: "Base grande costuma significar mais liquidez e escrutínio.",
+        calc: function (d) { return d.cotistas; }, aval: function (v) { return faixaMaior(v, 50000, 10000); } },
+      { k: "taxaAdm", nome: "Taxa de administração", un: "% a.a.", ref: "Até 1% ao ano; acima de 1,5% come a renda.",
+        pq: "Custo cobrado todo ano, pago antes de você receber.",
+        calc: function (d) { return d.taxaAdm; }, aval: function (v) { return faixaMenor(v, 1, 1.5); } },
+      { k: "alav", nome: "Alavancagem", un: "% do PL", ref: "Até 10% conservador; acima de 30% arriscado.",
+        pq: "Obrigações que concorrem com o seu rendimento.",
+        calc: function (d) { return d.alav; }, aval: function (v) { return faixaMenor(v, 10, 30); } }
+    ]
+  };
+
+  function precoGraham(d) { return d.lpa > 0 && d.vpa > 0 ? Math.sqrt(22.5 * d.lpa * d.vpa) : null; }
+
+  var CHECK = {
+    acao: [
+      "Li o último release de resultados e a carta da administração no site de RI",
+      "Entendi como a empresa ganha dinheiro e qual é a vantagem dela sobre os concorrentes",
+      "O lucro e o ROE se repetem há pelo menos 5 anos, sem depender de um evento pontual",
+      "Conferi a governança: segmento de listagem (Novo Mercado), controlador e histórico de minoritários",
+      "Procurei notícias recentes: processos, escândalos, troca de gestão, interferência do governo",
+      "O setor é perene (energia, saneamento, bancos, seguros, telecom) ou cíclico — e eu sei qual",
+      "O dividendo vem do lucro recorrente, não de venda de ativo ou dívida",
+      "Comparei os indicadores com 2 ou 3 concorrentes do mesmo setor"
+    ],
+    fii: [
+      "Li o último relatório gerencial do fundo",
+      "Conheço a gestora e o histórico dela com outros fundos",
+      "Sei onde ficam os imóveis (ou quem são os devedores dos CRIs) e a qualidade deles",
+      "Conferi o vencimento dos contratos e se são típicos ou atípicos",
+      "Nos fundos de papel: vi indexador (IPCA/CDI), garantias e inadimplência dos CRIs",
+      "O rendimento é recorrente, sem depender de venda de imóvel ou reserva acumulada",
+      "Procurei notícias recentes: emissões de cotas, saída de inquilino, renegociações",
+      "Comparei com 2 ou 3 fundos do mesmo segmento"
+    ]
+  };
+
+  /* ------------------------------------------------------------------ */
+  /* Estado                                                              */
+  /* ------------------------------------------------------------------ */
+  var atual = { ticker: "", tipo: "acao", dados: {}, auto: {}, checks: [], nome: "" };
+
+  function tipoProvavel(t) {
+    // FIIs terminam em 11; units (TAEE11, SANB11, KLBN11...) também, por isso o seletor manual existe.
+    var units = ["TAEE11", "SANB11", "KLBN11", "ALUP11", "BPAC11", "ENGI11", "SAPR11", "TIET11", "IGTI11", "BRBI11", "CPLE11", "AESB11", "SULA11", "RNEW11", "PPLA11"];
+    if (units.indexOf(t) >= 0) return "acao";
+    return /11B?$/.test(t) ? "fii" : "acao";
+  }
+  function tipoEscolhido(t) { var v = $("tipo").value; return v === "auto" ? tipoProvavel(t) : v; }
+
+  function ctx() { return { financeiro: $("financeiro").checked, segmento: $("segmento").value }; }
+
+  function aplicavel(item, c, tipo) {
+    if (tipo === "acao" && item.naoFin && c.financeiro) return false;
+    if (tipo === "fii" && item.seg && item.seg.indexOf(c.segmento) < 0) return false;
+    return true;
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Render                                                              */
+  /* ------------------------------------------------------------------ */
+  function renderCampos() {
+    var tipo = atual.tipo, c = ctx(), box = $("campos");
+    box.innerHTML = "";
+    CAMPOS[tipo].forEach(function (f) {
+      if (!aplicavel(f, c, tipo)) return;
+      var div = document.createElement("div");
+      div.className = "campo" + (atual.auto[f.k] ? " auto" : "");
+      var id = "f-" + f.k;
+      div.innerHTML = '<label for="' + id + '"></label><input type="text" inputmode="decimal" id="' + id + '"><span class="dica"></span>';
+      div.querySelector("label").textContent = f.rotulo + " ";
+      var tag = document.createElement("span"); tag.className = "tag-auto"; tag.textContent = "auto";
+      div.querySelector("label").appendChild(tag);
+      div.querySelector(".dica").textContent = f.dica;
+      var inp = div.querySelector("input");
+      var v = atual.dados[f.k];
+      inp.value = v == null ? "" : String(v).replace(".", ",");
+      inp.addEventListener("input", function () {
+        atual.dados[f.k] = parseNum(inp.value);
+        if (atual.auto[f.k]) { atual.auto[f.k] = false; div.classList.remove("auto"); }
+        renderDiag();
+      });
+      box.appendChild(div);
+    });
+  }
+
+  function valorFmt(v, un) {
+    if (v == null) return "—";
+    if (un === "R$") return brlCurto(v);
+    if (un === "R$ mi") return "R$ " + fmt(v, 0) + " mi";
+    if (un === "%" || un === "% a.a." || un === "% do PL") return fmt(v, 2) + "%";
+    if (un === "x") return fmt(v, 2) + "x";
+    if (un === "/12") return fmt(v, 0) + "/12";
+    if (un === "ativos" || un === "") return fmt(v, 0);
+    return fmt(v, 2);
+  }
+  var ROTULO = { bom: "Dentro", atencao: "Atenção", ruim: "Fora", na: "Sem dado" };
+
+  function avaliar(tipo, dados, c) {
+    var res = [];
+    IND[tipo].forEach(function (it) {
+      if (it.grupo) { res.push(it); return; }
+      if (!aplicavel(it, c, tipo)) return;
+      var v = it.calc(dados, c);
+      var f = v == null || !isFinite(v) ? "na" : it.aval(v, dados, c);
+      res.push({ item: it, v: v, f: f });
+    });
+    return res;
+  }
+  function nota(res) {
+    var pts = 0, max = 0, cnt = { bom: 0, atencao: 0, ruim: 0, na: 0 };
+    res.forEach(function (r) {
+      if (!r.item) return;
+      cnt[r.f]++;
+      if (r.f === "na") return;
+      max += 2; pts += r.f === "bom" ? 2 : r.f === "atencao" ? 1 : 0;
+    });
+    return { nota: max ? pts / max * 10 : null, cnt: cnt };
+  }
+
+  function renderDiag() {
+    var tipo = atual.tipo, c = ctx(), d = atual.dados;
+    var res = avaliar(tipo, d, c), n = nota(res);
+    var corpo = $("diag-corpo");
+    corpo.innerHTML = "";
+    var grupoPendente = null;
+    res.forEach(function (r) {
+      if (r.grupo) { grupoPendente = r.grupo; return; }
+      if (grupoPendente) {
+        var g = document.createElement("tr"); g.className = "grupo";
+        g.innerHTML = '<td colspan="5"></td>'; g.firstChild.textContent = grupoPendente;
+        corpo.appendChild(g); grupoPendente = null;
+      }
+      var tr = document.createElement("tr");
+      tr.innerHTML = '<td class="ind"></td><td class="val"></td><td class="ref"></td><td><span class="selo"></span></td><td class="pq"></td>';
+      tr.children[0].textContent = r.item.nome;
+      tr.children[1].textContent = valorFmt(r.v, r.item.un);
+      tr.children[2].textContent = r.item.ref;
+      var s = tr.querySelector(".selo"); s.className = "selo " + r.f; s.textContent = ROTULO[r.f];
+      tr.children[4].textContent = r.item.pq;
+      corpo.appendChild(tr);
+    });
+    $("nota").textContent = n.nota == null ? "—" : fmt(n.nota, 1);
+    $("nota-sub").textContent = n.cnt.na ? "de 0 a 10 · " + n.cnt.na + " sem dado" : "de 0 a 10";
+    $("cnt-bom").textContent = n.cnt.bom;
+    $("cnt-atencao").textContent = n.cnt.atencao;
+    $("cnt-ruim").textContent = n.cnt.ruim;
+    renderPrecos();
+    return { res: res, n: n };
+  }
+
+  function renderPrecos() {
+    var d = atual.dados, box = $("precos"), html = [];
+    function card(t, v, p) { html.push('<div class="preco"><h4>' + t + '</h4><div class="v">' + v + '</div><p>' + p + '</p></div>'); }
+    function dist(alvo) {
+      if (!alvo || !d.preco) return "";
+      var m = (alvo / d.preco - 1) * 100;
+      return m >= 0 ? "Cotação " + fmt(m, 1) + "% abaixo deste preço." : "Cotação " + fmt(-m, 1) + "% acima deste preço.";
+    }
+    if (atual.tipo === "acao") {
+      var g = precoGraham(d);
+      card("Preço justo de Graham", g ? brl(g) : "—", g ? "√(22,5 × LPA × VPA). " + dist(g) : "Precisa de LPA e VPA positivos.");
+      var b = d.div12 > 0 ? d.div12 / 0.06 : null;
+      card("Preço-teto de Bazin (6%)", b ? brl(b) : "—", b ? "Dividendos 12m ÷ 0,06. " + dist(b) : "Precisa dos dividendos de 12 meses.");
+    } else {
+      var t8 = d.rend12 > 0 ? d.rend12 / 0.08 : null;
+      card("Preço-teto (DY 8%)", t8 ? brl(t8) : "—", t8 ? "Rendimentos 12m ÷ 0,08. " + dist(t8) : "Precisa dos rendimentos de 12 meses.");
+      if (d.cdi > 0 && d.rend12 > 0) {
+        var tc = d.rend12 / (d.cdi * 0.85 / 100);
+        card("Preço-teto (CDI líquido)", brl(tc), "Preço em que o DY empata com o CDI × 0,85. " + dist(tc));
+      }
+      if (d.rend12 > 0 && d.preco) {
+        card("Renda de R$ 1.000 investidos", brl(1000 / d.preco * d.rend12 / 12) + "/mês", "Estimativa pela média dos últimos 12 meses.");
+      }
+    }
+    box.innerHTML = html.join("");
+  }
+
+  function renderPesquisa() {
+    var t = atual.ticker, tl = t.toLowerCase(), fii = atual.tipo === "fii";
+    var links = fii ? [
+      ["Status Invest", "https://statusinvest.com.br/fundos-imobiliarios/" + tl],
+      ["Investidor10", "https://investidor10.com.br/fiis/" + tl + "/"],
+      ["FIIs.com.br", "https://fiis.com.br/" + tl + "/"],
+      ["Fundamentus", "https://www.fundamentus.com.br/detalhes.php?papel=" + t],
+      ["Relatórios na B3 (Fundos.NET)", "https://fnet.bmfbovespa.com.br/fnet/publico/abrirGerenciadorDocumentosCVM"],
+      ["Notícias", "https://news.google.com/search?q=" + encodeURIComponent(t + " FII") + "&hl=pt-BR&gl=BR&ceid=BR:pt-419"]
+    ] : [
+      ["Status Invest", "https://statusinvest.com.br/acoes/" + tl],
+      ["Investidor10", "https://investidor10.com.br/acoes/" + tl + "/"],
+      ["Fundamentus", "https://www.fundamentus.com.br/detalhes.php?papel=" + t],
+      ["Site de RI", "https://www.google.com/search?q=" + encodeURIComponent(t + " relações com investidores")],
+      ["Documentos na CVM", "https://www.rad.cvm.gov.br/ENET/frmConsultaExternaCVM.aspx"],
+      ["Notícias", "https://news.google.com/search?q=" + encodeURIComponent(t + " ação") + "&hl=pt-BR&gl=BR&ceid=BR:pt-419"]
+    ];
+    var box = $("links"); box.innerHTML = "";
+    links.forEach(function (l) {
+      var a = document.createElement("a"); a.href = l[1]; a.target = "_blank"; a.rel = "noopener"; a.textContent = l[0] + " ↗";
+      box.appendChild(a);
+    });
+    var ul = $("checklist"); ul.innerHTML = "";
+    CHECK[atual.tipo].forEach(function (txt, i) {
+      var li = document.createElement("li");
+      li.innerHTML = '<label><input type="checkbox"><span></span></label>';
+      li.querySelector("span").textContent = txt;
+      var cb = li.querySelector("input");
+      cb.checked = atual.checks.indexOf(i) >= 0;
+      cb.addEventListener("change", function () {
+        atual.checks = atual.checks.filter(function (x) { return x !== i; });
+        if (cb.checked) atual.checks.push(i);
+      });
+      ul.appendChild(li);
+    });
+  }
+
+  function mostrarPassos() {
+    ["passo-dados", "passo-diag", "passo-pesquisa", "passo-parecer"].forEach(function (id) { $(id).classList.remove("oculto"); });
+    $("opcoes-acao").classList.toggle("oculto", atual.tipo !== "acao");
+    $("opcoes-fii").classList.toggle("oculto", atual.tipo !== "fii");
+    renderCampos(); renderDiag(); renderPesquisa();
+  }
+
+  function status(msg, tipo) {
+    var s = $("status"); s.className = "status show " + tipo; s.innerHTML = msg;
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Busca automática (brapi.dev)                                        */
+  /* ------------------------------------------------------------------ */
+  function pct(x) { if (x == null || !isFinite(x)) return null; return Math.abs(x) <= 2 ? x * 100 : x; }
+  function num(x) { return typeof x === "number" && isFinite(x) ? x : null; }
+
+  function dividendos12m(r) {
+    var lista = r.dividendsData && r.dividendsData.cashDividends;
+    if (!Array.isArray(lista) || !lista.length) return null;
+    var limite = Date.now() - 365 * 864e5, soma = 0, meses = {}, achou = false;
+    lista.forEach(function (x) {
+      var dt = Date.parse(x.paymentDate || x.lastDatePrior || x.approvedOn || "");
+      if (!isFinite(dt) || dt < limite || dt > Date.now() + 60 * 864e5) return;
+      var v = num(x.rate); if (v == null) return;
+      soma += v; achou = true;
+      var dd = new Date(dt); meses[dd.getFullYear() + "-" + dd.getMonth()] = 1;
+    });
+    return achou ? { soma: soma, meses: Math.min(12, Object.keys(meses).length) } : null;
+  }
+
+  function extrair(r, tipo) {
+    var ks = r.defaultKeyStatistics || {}, fd = r.financialData || {}, out = {};
+    var preco = num(r.regularMarketPrice);
+    out.preco = preco;
+    var vol = num(r.averageDailyVolume10Day) || num(r.averageDailyVolume3Month) || num(r.regularMarketVolume);
+    if (vol != null && preco) out.liquidez = Math.round(vol * preco);
+    var div = dividendos12m(r);
+    if (tipo === "acao") {
+      out.lpa = num(r.earningsPerShare) != null ? num(r.earningsPerShare) : num(ks.trailingEps);
+      out.vpa = num(ks.bookValue);
+      if (out.vpa == null && preco && num(r.priceToBook)) out.vpa = preco / r.priceToBook;
+      out.roe = pct(num(fd.returnOnEquity));
+      out.margem = pct(num(fd.profitMargins) != null ? fd.profitMargins : ks.profitMargins);
+      out.liqCorr = num(fd.currentRatio);
+      out.evEbitda = num(ks.enterpriseToEbitda);
+      var dl = num(fd.totalDebt) != null && num(fd.totalCash) != null ? fd.totalDebt - fd.totalCash : null;
+      if (dl != null && num(fd.ebitda)) out.dlEbitda = dl / fd.ebitda;
+      var acoes = num(ks.sharesOutstanding);
+      if (dl != null && out.vpa && acoes) out.dlPl = dl / (out.vpa * acoes);
+      if (div) out.div12 = div.soma;
+      else if (num(ks.dividendYield) != null && preco) out.div12 = pct(ks.dividendYield) / 100 * preco;
+      if (/financ|bank|banco|insurance|segur/i.test(((r.summaryProfile || {}).sector || "") + " " + ((r.summaryProfile || {}).industry || ""))) {
+        $("financeiro").checked = true;
+      }
+    } else {
+      if (num(ks.priceToBook) && preco) out.vp = preco / ks.priceToBook;
+      else if (num(r.priceToBook) && preco) out.vp = preco / r.priceToBook;
+      else if (num(ks.bookValue)) out.vp = ks.bookValue;
+      if (div) { out.rend12 = div.soma; out.meses = div.meses; }
+    }
+    Object.keys(out).forEach(function (k) {
+      if (out[k] == null || !isFinite(out[k])) delete out[k];
+      else out[k] = Math.round(out[k] * 10000) / 10000;
+    });
+    return out;
+  }
+
+  function buscar(t) {
+    var token = $("token").value.trim();
+    var url = "https://brapi.dev/api/quote/" + encodeURIComponent(t) +
+      "?modules=summaryProfile,defaultKeyStatistics,financialData&dividends=true" +
+      (token ? "&token=" + encodeURIComponent(token) : "");
+    var ctrl = typeof AbortController !== "undefined" ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 15000);
+    return fetch(url, ctrl ? { signal: ctrl.signal } : {}).then(function (resp) {
+      clearTimeout(timer);
+      return resp.json().catch(function () { return {}; }).then(function (j) {
+        if (!resp.ok || !j.results || !j.results.length) {
+          var e = new Error(j.message || ("HTTP " + resp.status)); e.status = resp.status; throw e;
+        }
+        return j.results[0];
+      });
+    });
+  }
+
+  function iniciar(t, viaBusca) {
+    t = (t || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+    if (!/^[A-Z]{4}\d{1,2}B?$/.test(t)) {
+      status("Digite um código da B3 válido, como <b>PETR4</b>, <b>TAEE11</b> ou <b>HGLG11</b>.", "erro");
+      return;
+    }
+    $("ticker").value = t;
+    var salvo = lerLS(K_ANALISES, []).filter(function (a) { return a.ticker === t; })[0];
+    var tipo = tipoEscolhido(t);
+    if (salvo && $("tipo").value === "auto") tipo = salvo.tipo;
+    atual = { ticker: t, tipo: tipo, dados: {}, auto: {}, checks: [], nome: "" };
+    if (salvo) {
+      atual.dados = Object.assign({}, salvo.dados); atual.checks = (salvo.checks || []).slice(); atual.nome = salvo.nome || "";
+      $("parecer").value = salvo.parecer || ""; $("decisao").value = salvo.decisao || "";
+      $("financeiro").checked = !!salvo.financeiro; if (salvo.segmento) $("segmento").value = salvo.segmento;
+    } else {
+      $("parecer").value = ""; $("decisao").value = ""; $("financeiro").checked = false;
+    }
+    if (tipo === "fii" && atual.dados.cdi == null) { var cdiAnt = lerLS("redebolha_cdi", null); if (cdiAnt) atual.dados.cdi = cdiAnt; }
+    $("ativo-nome").textContent = (tipo === "fii" ? "FII " : "Ação ") + t + (atual.nome ? " — " + atual.nome : "");
+    if (!viaBusca) {
+      status(salvo ? "Reabri a análise salva de " + t + ". Edite o que precisar." : "Preencha os campos com os dados do ativo. Os links do Passo 4 levam às fontes.", "info");
+      mostrarPassos();
+      return;
+    }
+    var btn = $("btn-buscar"); btn.disabled = true; btn.textContent = "Buscando…";
+    status("Buscando dados de " + t + "…", "info");
+    if (typeof gtag === "function") gtag("event", "analisador_busca", { ticker: t, tipo: tipo });
+    buscar(t).then(function (r) {
+      var ex = extrair(r, tipo);
+      Object.keys(ex).forEach(function (k) { atual.dados[k] = ex[k]; atual.auto[k] = true; });
+      atual.nome = r.longName || r.shortName || "";
+      $("ativo-nome").textContent = (tipo === "fii" ? "FII " : "Ação ") + t + (atual.nome ? " — " + atual.nome : "");
+      var n = Object.keys(ex).length;
+      status("Encontrei " + n + " dado" + (n === 1 ? "" : "s") + " de " + t + ". Confira cada um e complete o que faltar" +
+        (tipo === "fii" ? " (vacância, cotistas, taxa e afins vêm do relatório gerencial)." : " (ROIC e crescimento do lucro costumam faltar)."), "ok");
+      mostrarPassos();
+    }).catch(function (e) {
+      var msg = e && e.status === 401 || e && e.status === 403
+        ? "A brapi pediu um token para " + t + ". Crie um gratuito em <a href=\"https://brapi.dev\" target=\"_blank\" rel=\"noopener\">brapi.dev</a> e cole no campo de token acima — ou preencha os números à mão."
+        : e && e.status === 404
+          ? "Não encontrei " + t + " na base. Confira o código ou preencha os números à mão."
+          : "Não consegui buscar " + t + " agora. Preencha os números à mão com os dados dos sites do Passo 4.";
+      status(msg, "erro");
+      mostrarPassos();
+    }).then(function () { btn.disabled = false; btn.textContent = "Buscar dados"; });
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Relatório, salvar, comparativo                                      */
+  /* ------------------------------------------------------------------ */
+  function relatorio() {
+    var r = renderDiag(), L = [];
+    L.push("Análise de " + atual.ticker + (atual.nome ? " — " + atual.nome : "") + " (" + (atual.tipo === "fii" ? "FII" : "Ação") + ")");
+    L.push("Data: " + new Date().toLocaleDateString("pt-BR"));
+    L.push("Nota fundamentalista: " + (r.n.nota == null ? "—" : fmt(r.n.nota, 1) + "/10") +
+      " · " + r.n.cnt.bom + " dentro, " + r.n.cnt.atencao + " atenção, " + r.n.cnt.ruim + " fora");
+    L.push("");
+    r.res.forEach(function (x) {
+      if (x.grupo) { L.push("[" + x.grupo + "]"); return; }
+      L.push("• " + x.item.nome + ": " + valorFmt(x.v, x.item.un) + " — " + ROTULO[x.f] + " (ref.: " + x.item.ref + ")");
+    });
+    L.push("");
+    L.push("Pesquisa conferida: " + atual.checks.length + " de " + CHECK[atual.tipo].length + " itens");
+    if ($("decisao").value) L.push("Decisão: " + $("decisao").value);
+    if ($("parecer").value.trim()) { L.push(""); L.push("Meu parecer:"); L.push($("parecer").value.trim()); }
+    L.push(""); L.push("Feito com o Analisador de Ações e FIIs da Rede Bolha — redebolha.com.br/financas/analisador-acoes-fiis.html");
+    return L.join("\n");
+  }
+
+  function toast(msg) {
+    var t = $("toast"); t.textContent = msg; t.classList.add("show");
+    clearTimeout(toast._t); toast._t = setTimeout(function () { t.classList.remove("show"); }, 2200);
+  }
+
+  function copiar(texto) {
+    function fallback() {
+      var ta = document.createElement("textarea"); ta.value = texto; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch (e) {} document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(texto).catch(fallback); else fallback();
+    toast("Relatório copiado!");
+  }
+
+  function salvar() {
+    if (!atual.ticker) return;
+    var r = renderDiag(), c = ctx();
+    var lista = lerLS(K_ANALISES, []).filter(function (a) { return a.ticker !== atual.ticker; });
+    var aval = {};
+    r.res.forEach(function (x) { if (x.item) aval[x.item.k] = { v: x.v, f: x.f }; });
+    lista.unshift({
+      ticker: atual.ticker, tipo: atual.tipo, nome: atual.nome, dados: atual.dados, aval: aval,
+      nota: r.n.nota, checks: atual.checks, parecer: $("parecer").value, decisao: $("decisao").value,
+      financeiro: c.financeiro, segmento: c.segmento, data: new Date().toISOString()
+    });
+    gravarLS(K_ANALISES, lista.slice(0, 40));
+    if (atual.dados.cdi) gravarLS("redebolha_cdi", atual.dados.cdi);
+    document.querySelector('input[name="comp-tipo"][value="' + atual.tipo + '"]').checked = true;
+    renderComparativo();
+    toast("Salvo no comparativo");
+  }
+
+  function renderComparativo() {
+    var tipo = document.querySelector('input[name="comp-tipo"]:checked').value;
+    var lista = lerLS(K_ANALISES, []).filter(function (a) { return a.tipo === tipo; });
+    var wrap = $("comp-wrap");
+    if (!lista.length) {
+      wrap.innerHTML = '<div class="comp-vazio">Nenhum' + (tipo === "fii" ? " FII" : "a ação") + ' salvo ainda. Analise um ativo e clique em “Salvar no comparativo”.</div>';
+      return;
+    }
+    var linhas = IND[tipo].filter(function (i) { return !i.grupo; });
+    var tb = document.createElement("table"); tb.className = "comp";
+    var th = "<thead><tr><th>Indicador</th>";
+    lista.forEach(function (a, i) { th += '<th class="comp-head"><a data-abrir="' + i + '"></a><button type="button" data-del="' + i + '" aria-label="Remover">×</button></th>'; });
+    tb.innerHTML = th + "</tr></thead><tbody></tbody>";
+    lista.forEach(function (a, i) { tb.querySelector('[data-abrir="' + i + '"]').textContent = a.ticker; });
+    var body = tb.querySelector("tbody");
+    function linha(rot, cel) {
+      var tr = document.createElement("tr"); var td0 = document.createElement("td"); td0.textContent = rot; tr.appendChild(td0);
+      lista.forEach(function (a) { var td = document.createElement("td"); var r = cel(a); td.textContent = r[0]; if (r[1]) td.className = r[1]; tr.appendChild(td); });
+      body.appendChild(tr);
+    }
+    linha("Nota (0–10)", function (a) { return [a.nota == null ? "—" : fmt(a.nota, 1), a.nota == null ? "" : a.nota >= 7 ? "bom" : a.nota >= 5 ? "atencao" : "ruim"]; });
+    linha("Decisão", function (a) { return [a.decisao || "—", ""]; });
+    linha("Cotação", function (a) { return [brl(a.dados.preco), ""]; });
+    linhas.forEach(function (it) {
+      linha(it.nome, function (a) { var x = a.aval && a.aval[it.k]; return x ? [valorFmt(x.v, it.un), x.f === "na" ? "" : x.f] : ["n/a", ""]; });
+    });
+    linha("Pesquisa conferida", function (a) { return [(a.checks || []).length + "/" + CHECK[tipo].length, ""]; });
+    linha("Atualizado em", function (a) { return [new Date(a.data).toLocaleDateString("pt-BR"), ""]; });
+    wrap.innerHTML = ""; wrap.appendChild(tb);
+    tb.addEventListener("click", function (ev) {
+      var del = ev.target.getAttribute("data-del"), ab = ev.target.getAttribute("data-abrir");
+      if (del != null) {
+        var t = lista[+del].ticker;
+        gravarLS(K_ANALISES, lerLS(K_ANALISES, []).filter(function (a) { return a.ticker !== t; }));
+        renderComparativo();
+      } else if (ab != null) {
+        $("tipo").value = lista[+ab].tipo;
+        iniciar(lista[+ab].ticker, false);
+        $("passo-dados").scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Eventos                                                             */
+  /* ------------------------------------------------------------------ */
+  $("token").value = lerLS(K_TOKEN, "") || "";
+  $("token").addEventListener("change", function () { gravarLS(K_TOKEN, $("token").value.trim()); });
+  $("form-busca").addEventListener("submit", function (ev) { ev.preventDefault(); gravarLS(K_TOKEN, $("token").value.trim()); iniciar($("ticker").value, true); });
+  $("btn-manual").addEventListener("click", function () { iniciar($("ticker").value, false); });
+  $("financeiro").addEventListener("change", function () { if (atual.ticker) { renderCampos(); renderDiag(); } });
+  $("segmento").addEventListener("change", function () { if (atual.ticker) { renderCampos(); renderDiag(); } });
+  $("tipo").addEventListener("change", function () {
+    if (!atual.ticker) return;
+    var novo = tipoEscolhido(atual.ticker);
+    if (novo !== atual.tipo) { atual.tipo = novo; atual.checks = []; $("ativo-nome").textContent = (novo === "fii" ? "FII " : "Ação ") + atual.ticker + (atual.nome ? " — " + atual.nome : ""); mostrarPassos(); }
+  });
+  $("btn-salvar").addEventListener("click", salvar);
+  $("btn-copiar").addEventListener("click", function () { copiar(relatorio()); });
+  $("btn-imprimir").addEventListener("click", function () { window.print(); });
+  Array.prototype.forEach.call(document.querySelectorAll('input[name="comp-tipo"]'), function (r) { r.addEventListener("change", renderComparativo); });
+
+  renderComparativo();
+  var q = new URLSearchParams(location.search).get("ativo");
+  if (q) { $("ticker").value = q; iniciar(q, true); }
+})();
+</script>
+<script src="/js/patrocinio.js" defer></script>
+<script src="/js/ferramenta-uso.js" defer></script>
+<script src="/js/newsletter.js" defer></script>
+</body>
+</html>

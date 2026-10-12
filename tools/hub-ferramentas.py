@@ -63,6 +63,13 @@ FERRAMENTAS = [
         "tags": "Renda passiva · FIIs",
     },
     {
+        "href": "/financas/analisador-acoes-fiis.html",
+        "nome": "Analisador de Ações e FIIs",
+        "desc": "Digite o código e compare ROE, dívida, P/L, P/VP, DY e vacância "
+                "com as referências de Graham, Bazin, Barsi, Buffett e Lynch.",
+        "tags": "Ações · FIIs · Indicadores",
+    },
+    {
         "href": "/financas/simulador-100k-1milhao.html",
         "nome": "Da primeira centena ao primeiro milhão",
         "desc": "Quanto tempo o aporte mensal leva até R$ 100 mil e até R$ 1 "
