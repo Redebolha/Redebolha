@@ -371,6 +371,18 @@
 .tira-txt{flex:1;font-size:.9rem;line-height:1.4}
 .tira-seta{color:var(--gold-l,#E7CE8A);font-size:1.1rem}
 @media(max-width:600px){.tira-txt{font-size:.84rem}}
+/* Tira de NOTICIAS REDE BOLHA: mesma peca da tira, com o ponto vermelho de noticia.
+   Para trocar a noticia, basta mudar o href e o texto da tira no corpo da pagina. */
+.tira-noticia{border-color:var(--gold-l,#E7CE8A);
+  background:linear-gradient(90deg,rgba(214,69,65,.12),rgba(201,162,75,.07) 45%)}
+.tira-noticia:hover{background:linear-gradient(90deg,rgba(214,69,65,.18),rgba(201,162,75,.12) 45%)}
+.tira-noticia .tira-selo{display:inline-flex;align-items:center;gap:7px}
+.tira-noticia .tira-selo i{width:7px;height:7px;border-radius:50%;background:#C0302B;
+  animation:tiraPulso 2s infinite}
+@keyframes tiraPulso{0%{box-shadow:0 0 0 0 rgba(192,48,43,.7)}70%{box-shadow:0 0 0 7px rgba(192,48,43,0)}100%{box-shadow:0 0 0 0 rgba(192,48,43,0)}}
+@media(prefers-reduced-motion:reduce){.tira-noticia .tira-selo i{animation:none}}
+@media(max-width:600px){.tira-noticia{flex-wrap:wrap;row-gap:8px}
+  .tira-noticia .tira-txt{flex:1 1 calc(100% - 34px)}}
 </style>
 <style>
     .rb-gancho{
@@ -1130,6 +1142,12 @@
   </div>
 </nav>
 <div class="hyr" id="livro-homem">
+<!-- TIRA DE NOTICIAS REDE BOLHA — logo abaixo do menu, acima da tira da amostra -->
+<a class="tira-ferramenta tira-noticia" href="/noticias/paulista-pichada-manifestacao-ou-vandalismo.html" data-rb="noticia">
+  <span class="tira-selo"><i aria-hidden="true"></i>Notícias Rede Bolha</span>
+  <span class="tira-txt"><b>Paulista pichada: manifestação ou vandalismo?</b> O que o ato pró-Lula revela antes do dia 25</span>
+  <span class="tira-seta">→</span>
+</a>
 <!-- TIRA DA AMOSTRA — o capitulo 1 aberto, logo abaixo da tira de ferramenta -->
 <a class="tira-ferramenta" href="/leia/homem-voce-nao-e-ridiculo/" data-rb="amostra">
   <span class="tira-selo">Leia grátis</span>
