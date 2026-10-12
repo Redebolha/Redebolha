@@ -8,14 +8,14 @@
    ========================================================================= */
 
 :root{
-  --tinta:#111113;
-  --papel:#191A1E;
-  --papel-alto:#212329;
-  --linha:#2E3037;
-  --ouro:#C9A227;
-  --ouro-claro:#E8D48B;
-  --giz:#EDEAE3;
-  --sombra:#8E9098;
+  --tinta:#08142D;
+  --papel:#0E1D3D;
+  --papel-alto:#142650;
+  --linha:#1F3566;
+  --ouro:#FFDF00;
+  --ouro-claro:#FFE566;
+  --giz:#EEF2F8;
+  --sombra:#93A0B8;
   --alerta:#C9552F;
   --ok:#4E9A6A;
 }
@@ -35,7 +35,7 @@ body{
 .wrap{max-width:1100px;margin:0 auto;padding:0 clamp(18px,4vw,32px)}
 
 /* ---------------------------------------------------------- cabecalho --- */
-.topo{border-bottom:1px solid var(--linha);background:rgba(17,17,19,.92);
+.topo{border-bottom:1px solid var(--linha);background:rgba(8,20,45,.92);
   position:sticky;top:0;z-index:10;backdrop-filter:blur(8px)}
 .topo .wrap{display:flex;flex-wrap:wrap;align-items:center;
   justify-content:space-between;gap:10px 20px;padding-block:15px}
@@ -132,7 +132,7 @@ body{
   background:var(--ouro);color:var(--tinta);border:1px solid var(--ouro)}
 .f-btn:hover{background:var(--ouro-claro);border-color:var(--ouro-claro)}
 .f-btn.vazio{background:none;color:var(--ouro-claro)}
-.f-btn.vazio:hover{background:rgba(201,162,39,.12)}
+.f-btn.vazio:hover{background:rgba(0,156,59,0.192)}
 
 /* -------------------------------------------------------------- rodape --- */
 .f-rodape{border-top:1px solid var(--linha);margin-top:clamp(30px,6vw,50px);

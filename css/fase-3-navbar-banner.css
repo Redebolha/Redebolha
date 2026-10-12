@@ -10,8 +10,8 @@
                left: 0;
                  right: 0;
                    width: 100%;
-                     background-color: #1a1a1a;
-                       border-bottom: 3px solid #C4A365;
+                     background-color: #0E1D3D;
+                       border-bottom: 3px solid #FFDF00;
                          z-index: 1000;
                            padding: 1rem 2rem;
                              display: flex;
@@ -34,7 +34,7 @@
 
                                                    /* Logo/Brand da navbar */
                                                    nav.rb-nav .brand {
-                                                     color: #C4A365;
+                                                     color: #FFDF00;
                                                        font-size: 1.5rem;
                                                          font-weight: 700;
                                                            text-decoration: none;
@@ -43,8 +43,8 @@
                                                                }
 
                                                                nav.rb-nav .brand:hover {
-                                                                 color: #E6D7B8;
-                                                                   text-shadow: 0 0 10px rgba(196, 163, 101, 0.5);
+                                                                 color: #FFE566;
+                                                                   text-shadow: 0 0 10px rgba(255,223,0, 0.5);
                                                                      transform: scale(1.05);
                                                                      }
 
@@ -60,7 +60,7 @@
 
                                                                                  /* Links de navegação */
                                                                                  nav.rb-nav .lnk {
-                                                                                   color: #E5DDD6;
+                                                                                   color: #D5DCE8;
                                                                                      text-decoration: none;
                                                                                        font-weight: 500;
                                                                                          font-size: 1rem;
@@ -70,7 +70,7 @@
                                                                                                }
 
                                                                                                nav.rb-nav .lnk:hover {
-                                                                                                 color: #C4A365;
+                                                                                                 color: #FFDF00;
                                                                                                  }
 
                                                                                                  nav.rb-nav .lnk::after {
@@ -80,7 +80,7 @@
                                                                                                          left: 0;
                                                                                                            width: 0;
                                                                                                              height: 2px;
-                                                                                                               background-color: #C4A365;
+                                                                                                               background-color: #FFDF00;
                                                                                                                  transition: width 0.3s ease;
                                                                                                                  }
                                                                                                                  
@@ -90,30 +90,30 @@
                                                                                                                    
                                                                                                                    /* Botão CTA na navbar */
                                                                                                                    nav.rb-nav .lnk.cta {
-                                                                                                                     background-color: #C4A365;
-                                                                                                                       color: #0a0a0c;
+                                                                                                                     background-color: #FFDF00;
+                                                                                                                       color: #050E22;
                                                                                                                          padding: 10px 25px;
                                                                                                                            border-radius: 5px;
                                                                                                                              font-weight: 700;
                                                                                                                                transition: all 0.3s ease;
-                                                                                                                                 border: 2px solid #C4A365;
+                                                                                                                                 border: 2px solid #FFDF00;
                                                                                                                                  }
                                                                                                                                  
                                                                                                                                  nav.rb-nav .lnk.cta:hover {
                                                                                                                                    background-color: transparent;
-                                                                                                                                     color: #C4A365;
-                                                                                                                                       box-shadow: 0 5px 20px rgba(196, 163, 101, 0.4);
+                                                                                                                                     color: #FFDF00;
+                                                                                                                                       box-shadow: 0 5px 20px rgba(255,223,0, 0.4);
                                                                                                                                          transform: translateY(-2px);
                                                                                                                                          }
                                                                                                                                          
                                                                                                                                          /* ===== BANNER PROMOCIONAL ===== */
                                                                                                                                          section.promotional-banner {
-                                                                                                                                           background: linear-gradient(135deg, #C4A365 0%, #8B7246 100%);
+                                                                                                                                           background: linear-gradient(135deg, #FFDF00 0%, #009C3B 100%);
                                                                                                                                              padding: 3rem 2rem;
                                                                                                                                                margin-top: 6rem;
                                                                                                                                                  margin-bottom: 3rem;
                                                                                                                                                    text-align: center;
-                                                                                                                                                     color: #0a0a0c;
+                                                                                                                                                     color: #050E22;
                                                                                                                                                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
                                                                                                                                                        }
                                                                                                                                                        
@@ -141,9 +141,9 @@
                                                                                                                                                                                  
                                                                                                                                                                                  /* Botão do banner */
                                                                                                                                                                                  .banner-btn {
-                                                                                                                                                                                   background-color: #0a0a0c;
-                                                                                                                                                                                     color: #C4A365;
-                                                                                                                                                                                       border: 2px solid #0a0a0c;
+                                                                                                                                                                                   background-color: #050E22;
+                                                                                                                                                                                     color: #FFDF00;
+                                                                                                                                                                                       border: 2px solid #050E22;
                                                                                                                                                                                          padding: 15px 40px;
                                                                                                                                                                                            font-size: 1.1rem;
                                                                                                                                                                                              border-radius: 5px;
@@ -154,8 +154,8 @@
                                                                                                                                                                                                      }
                                                                                                                                                                                                      
                                                                                                                                                                                                      .banner-btn:hover {
-                                                                                                                                                                                                       background-color: #C4A365;
-                                                                                                                                                                                                         color: #0a0a0c;
+                                                                                                                                                                                                       background-color: #FFDF00;
+                                                                                                                                                                                                         color: #050E22;
                                                                                                                                                                                                            transform: scale(1.08);
                                                                                                                                                                                                              box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
                                                                                                                                                                                                              }
@@ -322,7 +322,7 @@
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            /* Focus states para teclado */
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            nav.rb-nav .lnk:focus-visible,
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            .banner-btn:focus-visible {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             outline: 2px solid #C4A365;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             outline: 2px solid #FFDF00;
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                outline-offset: 2px;
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  border-radius: 3px;
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  }
@@ -330,12 +330,12 @@
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  /* ===== DARK MODE (futuro suporte) ===== */
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  @media (prefers-color-scheme: dark) {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    nav.rb-nav {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       background-color: #1a1a1a;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           color: #E5DDD6;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       background-color: #0E1D3D;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           color: #D5DCE8;
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              }
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                section.promotional-banner {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   background: linear-gradient(135deg, #C4A365 0%, #8B7246 100%);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   background: linear-gradient(135deg, #FFDF00 0%, #009C3B 100%);
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      }
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      }
 
@@ -357,9 +357,9 @@ nav.rb-nav{
   position:sticky; top:0; left:auto; right:auto;
   width:100%; max-width:none; margin:0;
   display:block; padding:0;
-  background-color:rgba(20,20,22,.96);
+  background-color:rgba(8,20,45,.96);
   -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
-  border-bottom:2px solid #C4A365;
+  border-bottom:2px solid #FFDF00;
   box-shadow:0 4px 15px rgba(0,0,0,.3);
   z-index:1000;
 }

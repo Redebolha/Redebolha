@@ -4,18 +4,18 @@
 
       :root {
         /* Cores */
-          --bg: #0A0A0C;
-            --bg2: #121013;
-              --card: #1A171B;
-                --gold: #C9A24B;
-                  --gold-l: #E7CE8A;
-                    --gold-d: #9A7A30;
+          --bg: #050E22;
+            --bg2: #08142D;
+              --card: #0E1D3D;
+                --gold: #FFDF00;
+                  --gold-l: #FFE566;
+                    --gold-d: #009C3B;
                       --wine: #6B2737;
                         --wine-l: #9A3a4c;
-                          --txt: #F1ECE3;
-                            --body: #C6C0B5;
-                              --dim: #857F75;
-                                --line: rgba(201, 162, 75, 0.18);
+                          --txt: #EEF2F8;
+                            --body: #C3CCDB;
+                              --dim: #93A0B8;
+                                --line: rgba(255,223,0, 0.18);
 
                                     /* Layout */
                                       --maxw: 1120px;

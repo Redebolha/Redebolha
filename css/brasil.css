@@ -1,0 +1,65 @@
+/* ============================================================
+   CAMADA BRASIL — verde, amarelo e azul da bandeira
+   ------------------------------------------------------------
+   A paleta do site já foi trocada (fundo azul-marinho, destaques
+   em amarelo). Esta folha põe o VERDE nos lugares certos:
+   chapéus, etiquetas, fios e títulos de rodapé.
+   Está ligada no <head> de todas as páginas. Para voltar ao visual
+   anterior desta camada, basta retirar o <link> de /css/brasil.css.
+   Os seletores começam com "html body" para vencer o CSS próprio
+   de cada página sem precisar de !important.
+   ============================================================ */
+:root{
+  --br-verde:#009C3B;        /* verde da bandeira: fundos e bordas */
+  --br-verde-txt:#2FBF6B;    /* verde para texto sobre o azul-marinho (contraste 7,6:1) */
+  --br-amarelo:#FFDF00;      /* amarelo da bandeira */
+  --br-azul:#002776;         /* azul da bandeira */
+}
+
+/* Chapéus, etiquetas e rótulos de categoria: verde */
+html body .eyebrow,
+html body .cat,
+html body .chapeu,
+html body .f-chapeu,
+html body .as-eyebrow,
+html body .kicker,
+html body .card__tag,
+html body .post .tag,
+html body .rb-art-tag,
+html body .rb-eco .rb-eco-chapeu,
+html body .rb-eco .rb-eco-chamada .et,
+html body .hyr .eyebrow,
+html body .hyr .bcard .kicker,
+html body .hyr .ex .tag,
+html body .hyr .bk-tag,
+html body .materia .chapeu,
+html body .cta .eyebrow,
+html body .corpo .eyebrow,
+html body .rb-gancho-chapeu,
+html body .bd-selo,
+html body .selo-noticia,
+html body .leia h4,
+html body .fatos h3,
+html body .rb-rodape-col h3,
+html body .quiz-hero .chapeu{color:var(--br-verde-txt)}
+
+html body .rb-destaque-tag{color:var(--br-verde-txt);border-color:var(--br-verde)}
+
+/* Fios decorativos: do verde para o amarelo */
+html body .rule{background:linear-gradient(90deg,var(--br-verde),var(--br-amarelo) 70%,transparent)}
+
+/* Linha da editoria de Economia na capa */
+html body .rb-eco .rb-eco-topo{border-bottom-color:var(--br-verde)}
+
+/* Citações e destaques com fio lateral: fio verde */
+html body article .destaque,
+html body blockquote{border-left-color:var(--br-verde)}
+
+/* Tiras de chamada (abaixo do menu e no meio da capa): cartão azul-marinho */
+html body .tira-ferramenta{background:#0E1D3D}
+html body .tira-ferramenta:hover{background:#142650}
+html body .tira-ferramenta.tira-noticia{background:linear-gradient(90deg,rgba(214,69,65,.16),#0E1D3D 45%)}
+html body .tira-ferramenta.tira-noticia:hover{background:linear-gradient(90deg,rgba(214,69,65,.22),#142650 45%)}
+
+/* Seleção de texto nas cores da bandeira */
+::selection{background:var(--br-amarelo);color:#08142D}
