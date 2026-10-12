@@ -805,11 +805,9 @@ table.comp td.bom{color:var(--ok)} table.comp td.atencao{color:var(--warn)} tabl
     return out;
   }
 
-  function buscar(t) {
-    var token = $("token").value.trim();
-    var url = "https://brapi.dev/api/quote/" + encodeURIComponent(t) +
-      "?modules=summaryProfile,defaultKeyStatistics,financialData&dividends=true" +
-      (token ? "&token=" + encodeURIComponent(token) : "");
+  // Uma chamada à brapi. Erro carrega o status e a mensagem que a própria API mandou.
+  function chamarBrapi(t, extras, token) {
+    var url = "https://brapi.dev/api/quote/" + encodeURIComponent(t) + "?" + extras.concat(token ? ["token=" + encodeURIComponent(token)] : []).join("&");
     var ctrl = typeof AbortController !== "undefined" ? new AbortController() : null;
     var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 15000);
     return fetch(url, ctrl ? { signal: ctrl.signal } : {}).then(function (resp) {
@@ -822,6 +820,31 @@ table.comp td.bom{color:var(--ok)} table.comp td.atencao{color:var(--warn)} tabl
       });
     });
   }
+
+  // O plano gratuito da brapi pode recusar os módulos de indicadores ou os
+  // dividendos. Em vez de desistir, pede cada vez menos e fica com o que vier.
+  var NIVEIS = [
+    { extras: ["modules=summaryProfile,defaultKeyStatistics,financialData", "dividends=true"], nome: "completo" },
+    { extras: ["dividends=true"], nome: "cotação e dividendos" },
+    { extras: [], nome: "só a cotação" }
+  ];
+  function buscar(t) {
+    var token = $("token").value.trim();
+    var primeiroErro = null;
+    function tentar(i) {
+      return chamarBrapi(t, NIVEIS[i].extras, token).then(function (r) {
+        r._nivel = i; r._recusa = primeiroErro; return r;
+      }, function (e) {
+        var recusa = e && (e.status === 401 || e.status === 403 || e.status === 402);
+        if (!primeiroErro) primeiroErro = e;
+        if (recusa && i + 1 < NIVEIS.length) return tentar(i + 1);
+        throw e;
+      });
+    }
+    return tentar(0);
+  }
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
 
   function iniciar(t, viaBusca) {
     t = (t || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
@@ -857,15 +880,24 @@ table.comp td.bom{color:var(--ok)} table.comp td.atencao{color:var(--warn)} tabl
       atual.nome = r.longName || r.shortName || "";
       $("ativo-nome").textContent = (tipo === "fii" ? "FII " : "Ação ") + t + (atual.nome ? " — " + atual.nome : "");
       var n = Object.keys(ex).length;
-      status("Encontrei " + n + " dado" + (n === 1 ? "" : "s") + " de " + t + ". Confira cada um e complete o que faltar" +
+      var limite = r._nivel > 0
+        ? " A brapi liberou " + NIVEIS[r._nivel].nome + " no seu plano" + (r._recusa ? " (resposta: “" + esc(r._recusa.message) + "”)" : "") + ", então os indicadores ficam para você preencher."
+        : "";
+      status("Encontrei " + n + " dado" + (n === 1 ? "" : "s") + " de " + t + "." + limite + " Confira cada um e complete o que faltar" +
         (tipo === "fii" ? " (vacância, cotistas, taxa e afins vêm do relatório gerencial)." : " (ROIC e crescimento do lucro costumam faltar)."), "ok");
       mostrarPassos();
     }).catch(function (e) {
-      var msg = e && e.status === 401 || e && e.status === 403
-        ? "A brapi pediu um token para " + t + ". Crie um gratuito em <a href=\"https://brapi.dev\" target=\"_blank\" rel=\"noopener\">brapi.dev</a> e cole no campo de token acima — ou preencha os números à mão."
+      var temToken = !!$("token").value.trim();
+      var api = e && e.message ? " A brapi respondeu: “" + esc(e.message) + "”." : "";
+      var msg = e && (e.status === 401 || e.status === 403 || e.status === 402)
+        ? (temToken
+            ? "A brapi recusou o token para " + t + "." + api + " Confira se ele foi copiado inteiro no painel de <a href=\"https://brapi.dev/dashboard\" target=\"_blank\" rel=\"noopener\">brapi.dev</a> — ou preencha os números à mão."
+            : "A brapi pede um token para " + t + ". Crie um gratuito em <a href=\"https://brapi.dev/dashboard\" target=\"_blank\" rel=\"noopener\">brapi.dev</a> e cole no campo de token acima — ou preencha os números à mão.")
         : e && e.status === 404
-          ? "Não encontrei " + t + " na base. Confira o código ou preencha os números à mão."
-          : "Não consegui buscar " + t + " agora. Preencha os números à mão com os dados dos sites do Passo 4.";
+          ? "Não encontrei " + t + " na base da brapi. Confira o código ou preencha os números à mão."
+          : e && e.status === 429
+            ? "Limite de consultas da brapi atingido. Espere um pouco e tente de novo, ou preencha os números à mão."
+            : "Não consegui buscar " + t + " agora." + api + " Preencha os números à mão com os dados dos sites do Passo 4.";
       status(msg, "erro");
       mostrarPassos();
     }).then(function () { btn.disabled = false; btn.textContent = "Buscar dados"; });
