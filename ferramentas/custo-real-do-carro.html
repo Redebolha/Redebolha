@@ -22,6 +22,7 @@
   gtag('js', new Date());
   gtag('config', 'G-6DSL2EMZSL');
 </script>
+<link rel="stylesheet" href="/css/brasil.css">
 </head>
 <body data-tema="dinheiro">
 
@@ -127,9 +128,9 @@
       </div>
       <div class="f-legenda">
         <span><i style="background:#C9552F"></i> Depreciação</span>
-        <span><i style="background:#C9A227"></i> Combustível</span>
+        <span><i style="background:#FFDF00"></i> Combustível</span>
         <span><i style="background:#4E9A6A"></i> IPVA e seguro</span>
-        <span><i style="background:#8E9098"></i> Manutenção</span>
+        <span><i style="background:#93A0B8"></i> Manutenção</span>
       </div>
 
       <p class="f-nota" id="nota"></p>
@@ -218,8 +219,8 @@
     document.getElementById('c-horas').textContent =
       hora > 0 ? Math.round(total / hora) + ' h' : '—';
 
-    var partes = [['b-dep', cDep, '#C9552F'], ['b-comb', cComb, '#C9A227'],
-                  ['b-fixos', cFixos, '#4E9A6A'], ['b-manut', cManut, '#8E9098']];
+    var partes = [['b-dep', cDep, '#C9552F'], ['b-comb', cComb, '#FFDF00'],
+                  ['b-fixos', cFixos, '#4E9A6A'], ['b-manut', cManut, '#93A0B8']];
     partes.forEach(function (p) {
       var el = document.getElementById(p[0]);
       el.style.width = total > 0 ? (p[1] / total * 100) + '%' : '0';
