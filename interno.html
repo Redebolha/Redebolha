@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Aparelho interno | Rede Bolha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root { --fundo:#0b1d3a; --cartao:#12294f; --texto:#eef2f8; --suave:#a9b7cf; --amarelo:#ffdf00; --verde:#009c3b; --vermelho:#d9534f; }
+  * { box-sizing:border-box; }
+  body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px 16px; background:var(--fundo); color:var(--texto); font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  main { width:100%; max-width:440px; background:var(--cartao); border-radius:16px; padding:28px 24px; border-top:4px solid var(--amarelo); }
+  h1 { font-family:Fraunces,Georgia,serif; font-weight:600; font-size:1.6rem; line-height:1.2; margin:0 0 12px; }
+  p { margin:0 0 16px; color:var(--suave); }
+  .status { display:flex; align-items:center; gap:10px; padding:12px 14px; border-radius:10px; background:rgba(255,255,255,.06); color:var(--texto); font-weight:600; margin-bottom:20px; }
+  .ponto { width:12px; height:12px; border-radius:50%; flex:none; background:var(--suave); }
+  .marcado .ponto { background:var(--verde); }
+  .desmarcado .ponto { background:var(--vermelho); }
+  button { display:block; width:100%; padding:14px 16px; border:0; border-radius:10px; font:inherit; font-weight:700; cursor:pointer; }
+  #marcar { background:var(--amarelo); color:#0b1d3a; }
+  #desmarcar { margin-top:10px; background:transparent; color:var(--suave); border:1px solid rgba(255,255,255,.18); }
+  button[hidden] { display:none; }
+  small { display:block; margin-top:20px; color:var(--suave); font-size:.85rem; }
+  a { color:var(--amarelo); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Este aparelho é seu?</h1>
+  <p>Marque aqui o celular e o computador que você usa para conferir o site. As visitas feitas neles deixam de contar como leitores no Google Analytics.</p>
+  <div id="status" class="status"><span class="ponto"></span><span id="status-texto">Verificando…</span></div>
+  <button id="marcar" type="button">Marcar este aparelho como meu</button>
+  <button id="desmarcar" type="button" hidden>Desmarcar este aparelho</button>
+  <small>Faça isso uma vez em cada aparelho e em cada navegador. Se limpar os dados do navegador, é só voltar aqui e marcar de novo. <a href="/">Voltar para a Rede Bolha</a></small>
+</main>
+<script>
+  (function () {
+    var CHAVE = 'rb_interno';
+    var caixa = document.getElementById('status');
+    var texto = document.getElementById('status-texto');
+    var marcar = document.getElementById('marcar');
+    var desmarcar = document.getElementById('desmarcar');
+
+    function ler() {
+      try { return localStorage.getItem(CHAVE) === '1'; } catch (e) { return null; }
+    }
+
+    function mostrar() {
+      var marcado = ler();
+      if (marcado === null) {
+        caixa.className = 'status desmarcado';
+        texto.textContent = 'Este navegador não permite guardar a marcação (modo anônimo?).';
+        marcar.hidden = true; desmarcar.hidden = true;
+        return;
+      }
+      caixa.className = 'status ' + (marcado ? 'marcado' : 'desmarcado');
+      texto.textContent = marcado ? 'Marcado: suas visitas aqui não contam como leitores.' : 'Não marcado: as visitas deste aparelho contam como leitores.';
+      marcar.hidden = marcado;
+      desmarcar.hidden = !marcado;
+    }
+
+    marcar.addEventListener('click', function () {
+      try { localStorage.setItem(CHAVE, '1'); } catch (e) {}
+      mostrar();
+    });
+    desmarcar.addEventListener('click', function () {
+      try { localStorage.removeItem(CHAVE); } catch (e) {}
+      mostrar();
+    });
+
+    mostrar();
+  })();
+</script>
+</body>
+</html>
