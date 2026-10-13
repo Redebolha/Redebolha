@@ -22,6 +22,15 @@
 (function () {
   'use strict';
 
+  /* Pedido de apoio do leitor (js/apoie.js): vem junto em toda pagina que
+     carrega o patrocinio, para nao precisar mexer em cada HTML. */
+  if (!document.querySelector('script[src*="/js/apoie.js"]')) {
+    var apoie = document.createElement('script');
+    apoie.src = '/js/apoie.js';
+    apoie.defer = true;
+    document.head.appendChild(apoie);
+  }
+
   var DADOS = '/js/patrocinadores.json';
 
   /* ---------------------------------------------------------------- CSS ---
