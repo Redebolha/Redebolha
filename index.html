@@ -519,6 +519,24 @@
   .rb-destaque .rb-destaque-img{display:block;width:100%;height:auto;border-radius:12px;margin:0 0 22px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
   .rb-destaque .rb-destaque-img-link{display:block;line-height:0;transition:transform .25s ease,opacity .25s ease}
   .rb-destaque .rb-destaque-img-link:hover{transform:translateY(-3px);opacity:.94}
+  /* Variante manchete: para a notícia do dia, com o título bem grande */
+  .rb-destaque--manchete .rb-destaque-card{max-width:980px;padding:clamp(22px,4.5vw,46px);border:2px solid rgba(255,223,0,.75);
+    background:radial-gradient(80% 60% at 0% 0%,rgba(0,156,59,.26),transparent 70%),linear-gradient(160deg,#0E1D3D,rgba(0,0,0,.4));
+    box-shadow:0 0 0 6px rgba(255,223,0,.06),0 24px 60px rgba(0,0,0,.45)}
+  .rb-destaque--manchete .rb-destaque-titulo{font-size:clamp(3.1rem,9vw,5.6rem);line-height:.94;letter-spacing:-.01em;margin:0 0 18px;text-wrap:balance}
+  .rb-destaque--manchete .rb-destaque-titulo a{color:inherit;text-decoration:none}
+  .rb-destaque--manchete .rb-destaque-titulo a:hover{color:#fff}
+  .rb-destaque--manchete .rb-destaque-titulo em{font-style:normal;color:#FFDF00;text-decoration:underline;text-decoration-color:#009C3B;text-decoration-thickness:.07em;text-underline-offset:.1em}
+  .rb-destaque--manchete .rb-destaque-sub{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:600;font-size:clamp(1.3rem,2.7vw,1.8rem);line-height:1.22;color:#FFE566;margin:0 0 24px;max-width:36ch}
+  .rb-destaque--manchete .rb-placar{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 22px}
+  .rb-destaque--manchete .rb-placar>div{background:rgba(5,14,34,.6);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px 16px}
+  .rb-destaque--manchete .rb-placar b{display:block;font-family:'Oswald',sans-serif;font-weight:600;font-size:clamp(1.7rem,3.6vw,2.4rem);line-height:1;color:#fff;white-space:nowrap}
+  .rb-destaque--manchete .rb-placar b .f{color:#4ADE8A}
+  .rb-destaque--manchete .rb-placar b .l{color:#FF8C8F}
+  .rb-destaque--manchete .rb-placar>div>span{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#93A0B8;margin-top:8px}
+  @media(max-width:560px){.rb-destaque--manchete .rb-placar{grid-template-columns:1fr;gap:8px}
+    .rb-destaque--manchete .rb-placar>div{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:12px 14px}
+    .rb-destaque--manchete .rb-placar>div>span{margin-top:0;text-align:right;font-size:.66rem;letter-spacing:.08em}}
 </style>
 <style>
 /* LOJAS — o mesmo bloco existe nos artigos (artigos/blog.css); a capa nao
@@ -1144,9 +1162,9 @@
 </nav>
 <div class="hyr" id="livro-homem">
 <!-- TIRA DE NOTICIAS REDE BOLHA — logo abaixo do menu, acima da tira da amostra -->
-<a class="tira-ferramenta tira-noticia" href="/noticias/promessa-e-divida-o-que-lula-prometeu.html" data-rb="noticia">
+<a class="tira-ferramenta tira-noticia" href="/noticias/quem-leva-o-brasil-no-dia-25.html" data-rb="noticia">
   <span class="tira-selo"><i aria-hidden="true"></i>Notícias Rede Bolha</span>
-  <span class="tira-txt"><b>Promessa é dívida:</b> o que Lula prometeu, o que não entregou e o que volta a prometer</span>
+  <span class="tira-txt"><b>Quem leva o Brasil no dia 25?</b> O 2º turno estado por estado, e onde a eleição se decide</span>
   <span class="tira-seta">→</span>
 </a>
 <!-- TIRA DA AMOSTRA — o capitulo 1 aberto, logo abaixo da tira de ferramenta -->
@@ -1247,17 +1265,26 @@
   </script>
 </section>
 <!-- ============ FIM DA CAPA BRASIL ============ -->
-<!-- NOTICIA EM DESTAQUE — Promessa é dívida (15/10/2026) -->
-<section class="sec rb-destaque" aria-label="Notícia em destaque">
+<!-- NOTICIA EM DESTAQUE — Quem leva o Brasil no dia 25? (17/10/2026)
+     Variante "manchete" (rb-destaque--manchete): título grande, subtítulo,
+     placar em três números e o gráfico. Para voltar ao cartão comum,
+     basta tirar a classe rb-destaque--manchete da <section>. -->
+<section class="sec rb-destaque rb-destaque--manchete" aria-label="Notícia em destaque">
   <div class="wrap">
     <p class="eyebrow">Notícia em destaque</p>
     <div class="rb-destaque-card">
-      <a class="rb-destaque-img-link" href="/noticias/promessa-e-divida-o-que-lula-prometeu.html"><img class="rb-destaque-img" src="/noticias/img/promessa-e-divida-infografico.jpg" width="1536" height="1024" alt="Ilustração: caricatura de Lula atrás de uma pilha de papéis carimbada “Não entregue”, entre os quadros “O que foi prometido em 2022”, “O que foi entregue” e “As novas promessas de 2026”, sob o título “Promessa é dívida”." loading="lazy"></a>
-      <span class="rb-destaque-tag">Opinião &middot; 15 de outubro de 2026</span>
-      <h2 class="rb-destaque-titulo">Promessa é dívida: o que Lula prometeu, o que não entregou e o que volta a prometer</h2>
-      <p class="rb-destaque-texto">O plano de 2022 conferido contra o que foi entregue. Duas promessas dependiam só da caneta do presidente, e três voltam requentadas em 2026. <strong>E você, vai renovar o crédito?</strong></p>
-      <p class="rb-destaque-assinatura">Por Adm. Romário Cruz &middot; Ilustração produzida com IA</p>
-      <a class="btn btn--lg" href="/noticias/promessa-e-divida-o-que-lula-prometeu.html">Ler a matéria completa
+      <span class="rb-destaque-tag">Análise &middot; 17 de outubro de 2026</span>
+      <h2 class="rb-destaque-titulo"><a href="/noticias/quem-leva-o-brasil-no-dia-25.html">Quem leva o Brasil no <em>dia&nbsp;25?</em></a></h2>
+      <p class="rb-destaque-sub">O 2º turno estado por estado: Flávio é favorito em 15 unidades, Lula em 11, e Minas decide</p>
+      <div class="rb-placar" role="group" aria-label="Os três números da projeção">
+        <div><b><span class="f">51</span> × <span class="l">49</span></b><span>Média de 11 pesquisas</span></div>
+        <div><b><span class="f">68%</span> × <span class="l">32%</span></b><span>Chance de vitória</span></div>
+        <div><b><span class="f">15</span> × <span class="l">11</span></b><span>Favorito por UF</span></div>
+      </div>
+      <a class="rb-destaque-img-link" href="/noticias/quem-leva-o-brasil-no-dia-25.html"><img class="rb-destaque-img" src="/noticias/img/quem-leva-o-brasil-capa.jpg" width="1200" height="600" alt="Gráfico de colunas com a vantagem projetada no 2º turno em cada estado: verdes para cima onde Flávio é favorito, de Roraima (51,3 pontos) a Minas Gerais (5,4, destacada com a palavra “decide”); Amapá empatado; vermelhas para baixo onde Lula é favorito, do Amazonas (4,0) ao Piauí (49,3)." loading="lazy"></a>
+      <p class="rb-destaque-texto">Juntei o resultado do 1º turno em cada estado com as pesquisas mais recentes. Na média, <strong>51% a 49%</strong>: empate técnico. Flávio aparece com cerca de 2 chances em 3, mas chance não é resultado. <strong>Quem decide é você, na urna.</strong></p>
+      <p class="rb-destaque-assinatura">Por Adm. Romário Cruz &middot; Projeção própria, não é pesquisa eleitoral</p>
+      <a class="btn btn--lg" href="/noticias/quem-leva-o-brasil-no-dia-25.html">Ver o mapa estado por estado
         <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
       </a>
     </div>

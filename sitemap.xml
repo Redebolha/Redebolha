@@ -194,9 +194,15 @@
     </url>
     <url>
         <loc>https://redebolha.com.br/noticias/</loc>
-        <lastmod>2026-10-12</lastmod>
+        <lastmod>2026-10-17</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://redebolha.com.br/noticias/quem-leva-o-brasil-no-dia-25.html</loc>
+        <lastmod>2026-10-17</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
     </url>
     <url>
         <loc>https://redebolha.com.br/noticias/promessa-e-divida-o-que-lula-prometeu.html</loc>
