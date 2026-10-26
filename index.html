@@ -537,6 +537,11 @@
   @media(max-width:560px){.rb-destaque--manchete .rb-placar{grid-template-columns:1fr;gap:8px}
     .rb-destaque--manchete .rb-placar>div{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:12px 14px}
     .rb-destaque--manchete .rb-placar>div>span{margin-top:0;text-align:right;font-size:.66rem;letter-spacing:.08em}}
+  /* Manchete no topo da capa: menos respiro em cima, logo abaixo das tiras */
+  .hyr .sec.rb-destaque--topo{padding:clamp(22px,3.4vw,40px) 0 clamp(36px,5vw,64px)}
+  .rb-destaque--topo .eyebrow{margin-bottom:.4rem}
+  /* Título longo (mais de 30 letras): mesma pegada, um degrau menor */
+  .rb-destaque--manchete .rb-destaque-titulo--longo{font-size:clamp(2.35rem,6.6vw,4.5rem);line-height:.98}
 </style>
 <style>
 /* LOJAS — o mesmo bloco existe nos artigos (artigos/blog.css); a capa nao
@@ -1162,9 +1167,9 @@
 </nav>
 <div class="hyr" id="livro-homem">
 <!-- TIRA DE NOTICIAS REDE BOLHA — logo abaixo do menu, acima da tira da amostra -->
-<a class="tira-ferramenta tira-noticia" href="/noticias/quem-leva-o-brasil-no-dia-25.html" data-rb="noticia">
-  <span class="tira-selo"><i aria-hidden="true"></i>Notícias Rede Bolha</span>
-  <span class="tira-txt"><b>Quem leva o Brasil no dia 25?</b> O 2º turno estado por estado, e onde a eleição se decide</span>
+<a class="tira-ferramenta tira-noticia" href="/economia/o-dia-em-que-a-bolsa-puxou-o-freio-de-mao.html" data-rb="noticia">
+  <span class="tira-selo"><i aria-hidden="true"></i>Fechamento 26/10</span>
+  <span class="tira-txt"><b>Ibovespa −13,88%</b> · Dólar R$ 5,40 (+8,21%) · Risco-país +26%. O pior dia da bolsa em seis anos</span>
   <span class="tira-seta">→</span>
 </a>
 <!-- TIRA DA AMOSTRA — o capitulo 1 aberto, logo abaixo da tira de ferramenta -->
@@ -1173,6 +1178,33 @@
   <span class="tira-txt">O primeiro capítulo de <b>Homem, Você Não É Ridículo</b> — “A Máscara que Você Usa Todo Dia”</span>
   <span class="tira-seta">→</span>
 </a>
+<!-- NOTICIA EM DESTAQUE — O dia em que a bolsa puxou o freio de mão (26/10/2026)
+     Manchete no topo da capa, logo abaixo das tiras e antes da bandeira:
+     é a primeira coisa que o leitor vê, como na capa de jornal.
+     Variante "manchete" (rb-destaque--manchete) + "topo" (rb-destaque--topo,
+     menos respiro em cima). Título longo usa rb-destaque-titulo--longo.
+     Para trocar a notícia: troque link, textos, placar e imagem deste bloco. -->
+<section class="sec rb-destaque rb-destaque--manchete rb-destaque--topo" aria-label="Notícia em destaque">
+  <div class="wrap">
+    <p class="eyebrow">Notícia em destaque</p>
+    <div class="rb-destaque-card">
+      <span class="rb-destaque-tag">Economia &middot; Opinião &middot; 26 de outubro de 2026</span>
+      <h2 class="rb-destaque-titulo rb-destaque-titulo--longo"><a href="/economia/o-dia-em-que-a-bolsa-puxou-o-freio-de-mao.html">O dia em que a bolsa <em>puxou o freio de&nbsp;mão</em></a></h2>
+      <p class="rb-destaque-sub">Lula reeleito, circuit breaker na B3 e dólar a R$ 5,40. O que o mercado avisou na primeira hora da segunda-feira</p>
+      <div class="rb-placar" role="group" aria-label="Os três números do pregão de 26 de outubro">
+        <div><b><span class="l">−13,88%</span></b><span>Ibovespa no dia</span></div>
+        <div><b><span class="l">R$ 5,40</span></b><span>Dólar (+8,21%)</span></div>
+        <div><b><span class="l">+26%</span></b><span>Risco-país (CDS 5 anos)</span></div>
+      </div>
+      <a class="rb-destaque-img-link" href="/economia/o-dia-em-que-a-bolsa-puxou-o-freio-de-mao.html"><img class="rb-destaque-img" src="/economia/img/freio-de-mao-infografico.jpg" width="1536" height="1024" decoding="async" alt="Infográfico “O dia em que a bolsa puxou o freio de mão”: resultado do 2º turno, Lula 51,79% e Flávio Bolsonaro 48,21%; tela com o aviso de circuit breaker, negociações suspensas por 30 minutos; Ibovespa −13,88% (176.608 pontos), dólar R$ 5,40 (+8,21%) e risco-país +26%, maior nível desde junho de 2025. Abaixo, o que o dólar mais caro encarece no dia a dia, quem ganhou e quem perdeu na bolsa, o que pesa no horizonte, o Congresso mais conservador a partir de 2027 e três conselhos para o bolso."></a>
+      <p class="rb-destaque-texto">Às 10h05, a B3 travou os negócios pela primeira vez desde a pandemia. No discurso da vitória, nenhuma palavra sobre ajuste das contas públicas, e o mercado leu o recado. <strong>Dólar a R$ 5,40 não é número de economista: é o pãozinho, o remédio e o crediário.</strong> O que muda daqui pra frente, e o que fazer com o seu dinheiro agora.</p>
+      <p class="rb-destaque-assinatura">Por Adm. Romário Cruz &middot; Jornalista MTb 0021682/RS &middot; Texto de opinião</p>
+      <a class="btn btn--lg" href="/economia/o-dia-em-que-a-bolsa-puxou-o-freio-de-mao.html">Ler a análise completa
+        <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+      </a>
+    </div>
+  </div>
+</section>
 <!-- ============================================================
    CAPA BRASIL — a bandeira tremulando, com a frase do autor.
    A bandeira é a oficial (proporção 10:7, Lei 5.700/71), sem
@@ -1265,31 +1297,6 @@
   </script>
 </section>
 <!-- ============ FIM DA CAPA BRASIL ============ -->
-<!-- NOTICIA EM DESTAQUE — Quem leva o Brasil no dia 25? (17/10/2026)
-     Variante "manchete" (rb-destaque--manchete): título grande, subtítulo,
-     placar em três números e o gráfico. Para voltar ao cartão comum,
-     basta tirar a classe rb-destaque--manchete da <section>. -->
-<section class="sec rb-destaque rb-destaque--manchete" aria-label="Notícia em destaque">
-  <div class="wrap">
-    <p class="eyebrow">Notícia em destaque</p>
-    <div class="rb-destaque-card">
-      <span class="rb-destaque-tag">Análise &middot; 17 de outubro de 2026</span>
-      <h2 class="rb-destaque-titulo"><a href="/noticias/quem-leva-o-brasil-no-dia-25.html">Quem leva o Brasil no <em>dia&nbsp;25?</em></a></h2>
-      <p class="rb-destaque-sub">O 2º turno estado por estado: Flávio é favorito em 15 unidades, Lula em 11, e Minas decide</p>
-      <div class="rb-placar" role="group" aria-label="Os três números da projeção">
-        <div><b><span class="f">51</span> × <span class="l">49</span></b><span>Média de 11 pesquisas</span></div>
-        <div><b><span class="f">68%</span> × <span class="l">32%</span></b><span>Chance de vitória</span></div>
-        <div><b><span class="f">15</span> × <span class="l">11</span></b><span>Favorito por UF</span></div>
-      </div>
-      <a class="rb-destaque-img-link" href="/noticias/quem-leva-o-brasil-no-dia-25.html"><img class="rb-destaque-img" src="/noticias/img/quem-leva-o-brasil-capa.jpg" width="1200" height="600" alt="Gráfico de colunas com a vantagem projetada no 2º turno em cada estado: verdes para cima onde Flávio é favorito, de Roraima (51,3 pontos) a Minas Gerais (5,4, destacada com a palavra “decide”); Amapá empatado; vermelhas para baixo onde Lula é favorito, do Amazonas (4,0) ao Piauí (49,3)." loading="lazy"></a>
-      <p class="rb-destaque-texto">Juntei o resultado do 1º turno em cada estado com as pesquisas mais recentes. Na média, <strong>51% a 49%</strong>: empate técnico. Flávio aparece com cerca de 2 chances em 3, mas chance não é resultado. <strong>Quem decide é você, na urna.</strong></p>
-      <p class="rb-destaque-assinatura">Por Adm. Romário Cruz &middot; Projeção própria, não é pesquisa eleitoral</p>
-      <a class="btn btn--lg" href="/noticias/quem-leva-o-brasil-no-dia-25.html">Ver o mapa estado por estado
-        <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
-      </a>
-    </div>
-  </div>
-</section>
 <!-- POSICIONAMENTO DO VEICULO -->
 <section class="rb-posicionamento" aria-label="O que é a Rede Bolha">
   <div class="wrap">
@@ -1404,32 +1411,32 @@
 
     <div class="rb-eco-grade">
 
-      <a class="rb-eco-principal" href="/economia/fim-da-palhacada-eleicao-bolsa.html">
-        <span class="rb-eco-chapeu">Opini&atilde;o &middot; 9 de outubro</span>
-        <h3 class="rb-eco-titulo">Fim da Palha&ccedil;ada: o eleitor falou, o mercado ouviu</h3>
-        <p class="rb-eco-subtitulo">Tiririca n&atilde;o se elegeu. Caneta Azul tamb&eacute;m n&atilde;o.</p>
-        <img class="rb-eco-foto" src="/economia/img/fim-da-palhacada-capa.jpg" width="1200" height="520"
-             loading="lazy" decoding="async" alt="Infográfico: o palhaço que foi o mais votado em 2010 e ficou de fora em 2026, ao lado de um painel “Bolsa em festa” com Ibovespa +7,70% e dólar −4,12%.">
-        <p class="rb-eco-linhafina">No domingo, o eleitor deixou os famosos de fora. Na segunda, a Bolsa teve a maior alta p&oacute;s-elei&ccedil;&atilde;o desde 2002 e o estrangeiro trouxe R$ 10 bilh&otilde;es num s&oacute; dia. A confian&ccedil;a subiu &mdash; mas devagar com o andor.</p>
-        <p class="rb-eco-assina">Por Adm. Rom&aacute;rio Cruz &middot; 9 de outubro de 2026</p>
+      <a class="rb-eco-principal" href="/economia/o-dia-em-que-a-bolsa-puxou-o-freio-de-mao.html">
+        <span class="rb-eco-chapeu">Opini&atilde;o &middot; 26 de outubro</span>
+        <h3 class="rb-eco-titulo">O dia em que a bolsa puxou o freio de m&atilde;o</h3>
+        <p class="rb-eco-subtitulo">Acordou com o pa&iacute;s mais caro? N&atilde;o foi impress&atilde;o.</p>
+        <img class="rb-eco-foto" src="/economia/img/freio-de-mao-capa.jpg" width="750" height="466"
+             loading="lazy" decoding="async" alt="Ilustração: um homem com a mão na cabeça diante de uma tela com o gráfico despencando e o aviso “Circuit breaker: negociações suspensas por 30 minutos”; ao lado, o painel Ibovespa −13,88% (176.608 pontos), dólar R$ 5,40 (+8,21%) e risco-país +26%, maior nível desde junho de 2025.">
+        <p class="rb-eco-linhafina">A reelei&ccedil;&atilde;o de Lula e a falta de sinais fiscais derrubaram o mercado, fizeram o d&oacute;lar disparar e acenderam o alerta para o bolso dos brasileiros. Selic alta por mais tempo, cr&eacute;dito caro e um Congresso mais conservador a partir de 2027.</p>
+        <p class="rb-eco-assina">Por Adm. Rom&aacute;rio Cruz &middot; 26 de outubro de 2026</p>
         <span class="rb-eco-ler">Ler a mat&eacute;ria &rarr;</span>
       </a>
 
       <div class="rb-eco-lateral">
+        <a class="rb-eco-chamada" href="/economia/fim-da-palhacada-eleicao-bolsa.html">
+          <span class="et">Opini&atilde;o &middot; 9 de outubro</span>
+          <b>Fim da Palha&ccedil;ada: o eleitor falou, o mercado ouviu</b>
+          <span class="d">Depois do 1&ordm; turno, a Bolsa subiu 7,70% e o estrangeiro trouxe R$ 10 bilh&otilde;es num s&oacute; dia.</span>
+        </a>
         <a class="rb-eco-chamada" href="/economia/dique-eldorado-do-sul-um-bilhao.html">
           <span class="et">Eldorado do Sul</span>
           <b>Um bilh&atilde;o para o dique: o que muda e o que ainda n&atilde;o muda</b>
           <span class="d">O dinheiro foi garantido. A primeira m&aacute;quina entra no terreno em 2027.</span>
         </a>
-        <a class="rb-eco-chamada" href="/economia/rico-na-vitrine-quebrado-no-extrato.html">
-          <span class="et">Comportamento</span>
-          <b>Rico na vitrine, quebrado no extrato</b>
-          <span class="d">Existe uma diferen&ccedil;a brutal entre patrim&ocirc;nio e apar&ecirc;ncia.</span>
-        </a>
-        <a class="rb-eco-chamada" href="/financas/simulador-renda-passiva.html">
+        <a class="rb-eco-chamada" href="/ferramentas/termometro-da-divida.html">
           <span class="et">Ferramenta gr&aacute;tis</span>
-          <b>Simulador de renda passiva</b>
-          <span class="d">Quatro n&uacute;meros e voc&ecirc; v&ecirc; em que m&ecirc;s a conta vira. Sem cadastro.</span>
+          <b>Term&ocirc;metro da D&iacute;vida</b>
+          <span class="d">D&iacute;vida cara se paga primeiro. Veja em quanto tempo voc&ecirc; quita e quanto paga de juros. Sem cadastro.</span>
         </a>
       </div>
 
