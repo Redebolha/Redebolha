@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6DSL2EMZSL"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-6DSL2EMZSL');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Acessibilidade RS — guia de lugares acessíveis no Rio Grande do Sul | Rede Bolha</title>
+<meta name="description" content="Mapa por região de hotéis, restaurantes, espaços de eventos, comércio, praças, transporte e serviços acessíveis no RS, com avaliação para mobilidade, deficiência visual, auditiva e intelectual. Cadastre seu negócio de graça.">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#050E22">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<link rel="icon" href="/icon-192.png">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://redebolha.com.br/acessibilidade-rs/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Acessibilidade RS — onde dá para ir no Rio Grande do Sul">
+<meta property="og:description" content="Guia por região de lugares preparados para receber pessoas com deficiência e mobilidade reduzida. Uma iniciativa da Rede Bolha.">
+<meta property="og:url" content="https://redebolha.com.br/acessibilidade-rs/">
+<meta property="og:image" content="https://redebolha.com.br/logo-rede-bolha.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Acessibilidade RS",
+  "url": "https://redebolha.com.br/acessibilidade-rs/",
+  "description": "Guia por região de lugares acessíveis no Rio Grande do Sul: hotéis, restaurantes, espaços de eventos, comércio, praças, transporte e serviços.",
+  "inLanguage": "pt-BR",
+  "about": { "@type": "Thing", "name": "Acessibilidade para pessoas com deficiência e mobilidade reduzida" },
+  "spatialCoverage": { "@type": "State", "name": "Rio Grande do Sul" },
+  "publisher": { "@type": "Organization", "name": "Rede Bolha", "url": "https://redebolha.com.br/" }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;800&family=Atkinson+Hyperlegible+Mono:wght@400;600&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap">
+<style>
+/* Layout: página escura no padrão Rede Bolha (azul-marinho, amarelo e verde da bandeira), cores vivas e contraste alto para baixa visão; mapa SVG com painel lateral. */
+:root {
+  --bg: #050E22;          /* azul-marinho Rede Bolha */
+  --surface: #0B1A3A;
+  --sunken: #071332;
+  --ink: #FFFFFF;
+  --muted: #CFD8EA;       /* 13:1 sobre o fundo */
+  --line: #34507F;
+  --accent: #FFDF00;      /* amarelo da bandeira: ação, foco, aba ativa */
+  --accent-ink: #050E22;
+  --link: #FFE566;
+  --focus: #FFDF00;
+  --n3: #00E07A;          /* plena: verde vivo, "pode ir" */
+  --n2: #2EE6FF;          /* boa: ciano, confiança */
+  --n1: #FF9F1C;          /* básica: laranja, atenção */
+  --n0: #D5DDEB;          /* em análise */
+  --faders: #5EA6FF;      /* selo estadual: azul do símbolo de acesso */
+  --bad: #FF9494;
+  --map-bg: #020817;
+  --mun-line: rgba(255, 255, 255, .20);
+  --reg-line: #FFFFFF;
+  --r01: #3E3416; --r02: #1F4A2A; --r03: #154A55; --r04: #3B2A66;
+  --r05: #183A7A; --r06: #55301A; --r07: #23466E;
+  --font-body: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-mono: "Atkinson Hyperlegible Mono", ui-monospace, Menlo, Consolas, monospace;
+  --radius: 12px;
+  color-scheme: dark;
+}
+/* Alto contraste: preto, branco e amarelo puros */
+:root[data-contrast="alto"] {
+  --bg: #000; --surface: #000; --sunken: #000; --ink: #fff; --muted: #fff; --line: #fff;
+  --accent: #FFFF00; --accent-ink: #000; --link: #FFFF00; --focus: #00FFFF;
+  --map-bg: #000; --mun-line: rgba(255, 255, 255, .5); --reg-line: #FFFF00;
+  --r01: #000; --r02: #000; --r03: #000; --r04: #000; --r05: #000; --r06: #000; --r07: #000;
+}
+
+* { box-sizing: border-box; }
+html { font-size: var(--fs, 112.5%); }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 1rem; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+a { color: var(--link); text-underline-offset: 3px; text-decoration-thickness: 2px; }
+:focus-visible { outline: 4px solid var(--focus); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3 { text-wrap: balance; line-height: 1.15; margin: 0; }
+h2 { font-family: var(--font-display); font-size: 1.85rem; font-weight: 700; letter-spacing: -.01em; }
+h3 { font-size: 1.12rem; font-weight: 800; }
+p { margin: 0; }
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.muted { color: var(--muted); }
+.eyebrow { font-size: .8rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip { position: absolute; left: -9999px; top: 0; background: var(--accent); color: var(--accent-ink); padding: .6rem 1rem; z-index: 50; font-weight: 800; }
+.skip:focus { left: max(16px, env(safe-area-inset-left, 0px)); top: calc(env(safe-area-inset-top, 0px) + 8px); }
+.wrap { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.inner { max-width: 1340px; margin: 0 auto; }
+
+/* Topo */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--bg); border-bottom: 2px solid var(--line); }
+.top .bar { display: flex; align-items: center; gap: 1rem; padding-block: .65rem; }
+.brand { display: flex; align-items: center; gap: .7rem; min-width: 0; text-decoration: none; color: var(--ink); }
+.brand svg { flex: none; }
+.brand b { display: block; font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; letter-spacing: -.01em; }
+.brand span { display: block; font-size: .8rem; color: var(--muted); line-height: 1.2; }
+.brand span em { font-style: normal; color: var(--accent); font-weight: 800; }
+.tools { margin-left: auto; display: flex; gap: .4rem; align-items: center; }
+.tbtn { font: inherit; font-size: .9rem; font-weight: 800; min-height: 44px; min-width: 44px; padding: 0 .7rem; border-radius: 10px; border: 2px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+.tbtn:hover { border-color: var(--accent); }
+.tbtn[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.hc-short { display: none; }
+.hc-sr { display: none; }
+nav.tabs .inner { display: flex; flex-wrap: nowrap; gap: .25rem; overflow-x: auto; scrollbar-width: none; }
+nav.tabs a { flex: none; display: block; padding: .7rem .9rem; color: var(--muted); text-decoration: none; font-weight: 800; font-size: 1rem; border-bottom: 4px solid transparent; }
+nav.tabs a:hover { color: var(--ink); }
+nav.tabs a[aria-current="page"] { color: var(--accent); border-bottom-color: var(--accent); }
+nav.tabs a.adm { margin-left: auto; color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
+
+main { padding-block: 1.25rem 3rem; }
+main:focus { outline: none; }
+.view[hidden] { display: none !important; }
+
+/* Números */
+.stats { display: flex; flex-wrap: wrap; gap: .6rem; padding: .75rem 0 1rem; }
+.stat { display: flex; align-items: center; gap: .55rem; background: var(--surface); border: 2px solid var(--line); border-radius: 999px; padding: .3rem .9rem .3rem .4rem; }
+.stat b { font-size: 1.35rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+.stat span { color: var(--muted); font-size: .92rem; font-weight: 600; }
+.stat.plain { padding-left: .9rem; }
+
+/* Mapa */
+.mapgrid { display: grid; grid-template-columns: minmax(310px, 390px) minmax(0, 1fr); gap: 1.25rem; align-items: start; }
+.side { display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
+.panel { background: var(--surface); border: 2px solid var(--line); border-radius: var(--radius); padding: 1rem; min-width: 0; }
+.mapbox { position: relative; background: var(--map-bg); border: 2px solid var(--line); border-radius: var(--radius); overflow: hidden; min-width: 0; }
+#map { display: block; width: 100%; height: auto; aspect-ratio: 1000 / 960; touch-action: none; cursor: grab; user-select: none; }
+#map.dragging { cursor: grabbing; }
+@media (pointer: coarse) { #map { touch-action: pan-y; } }
+#map .mun { fill: transparent; stroke: var(--mun-line); stroke-width: .7; vector-effect: non-scaling-stroke; cursor: pointer; }
+#map .mun:hover { fill: rgba(255, 223, 0, .22); }
+#map .mun.tem { fill: rgba(255, 255, 255, .07); }
+#map .mun.sel { stroke: var(--accent); stroke-width: 3.5; fill: rgba(255, 223, 0, .18); }
+#map .regline { fill: none; stroke: var(--reg-line); stroke-opacity: .9; stroke-width: 2.2; vector-effect: non-scaling-stroke; pointer-events: none; }
+#map .rsline { fill: none; stroke: var(--reg-line); stroke-width: 2.6; vector-effect: non-scaling-stroke; pointer-events: none; }
+#map .reg.dim { opacity: .35; }
+#map .lbl { font-family: var(--font-body); font-weight: 800; fill: #FFFFFF; paint-order: stroke; stroke: #050E22; stroke-linejoin: round; pointer-events: none; text-anchor: middle; }
+#map .mk { cursor: pointer; }
+#map .mk circle.b, #map .mk rect.b { stroke: #050E22; stroke-width: 2; vector-effect: non-scaling-stroke; }
+#map .mk .ring { fill: none; stroke: var(--faders); stroke-width: 3; vector-effect: non-scaling-stroke; }
+#map .mk text { font-family: var(--font-body); font-weight: 800; fill: #050E22; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+#map .mk.sel circle.b, #map .mk.sel rect.b { stroke: #FFFFFF; stroke-width: 4; }
+.mapctl { position: absolute; right: 10px; top: 10px; display: flex; flex-direction: column; gap: 8px; }
+.mapctl button { font: inherit; font-weight: 800; font-size: 1.25rem; width: 46px; height: 46px; border-radius: 10px; border: 2px solid var(--accent); background: var(--bg); color: var(--accent); cursor: pointer; }
+.mapctl button:hover { background: var(--accent); color: var(--accent-ink); }
+.maphint { position: absolute; left: 12px; bottom: 10px; right: 70px; font-size: .85rem; color: var(--muted); pointer-events: none; }
+@media (max-width: 700px), (pointer: coarse) { .maphint { display: none; } }
+.tip { position: absolute; pointer-events: none; background: var(--accent); color: var(--accent-ink); font-size: .95rem; font-weight: 800; padding: .3rem .6rem; border-radius: 8px; white-space: nowrap; transform: translate(-50%, -135%); }
+.mapnote { margin-top: .6rem; font-size: .88rem; color: var(--muted); }
+
+/* Controles */
+label.f { display: block; font-weight: 800; font-size: .95rem; min-width: 0; }
+label.f > input, label.f > select, label.f > textarea { display: block; margin-top: .35rem; }
+input[type="text"], input[type="search"], input[type="email"], input[type="tel"], input[type="url"], input[type="number"], select, textarea {
+  font: inherit; font-weight: 400; font-size: 1rem; width: 100%; min-height: 48px; padding: .6rem .75rem;
+  border: 2px solid var(--line); border-radius: 10px; background: var(--sunken); color: var(--ink);
+}
+input::placeholder, textarea::placeholder { color: #9FB0CC; }
+textarea { min-height: 100px; resize: vertical; }
+input:hover, select:hover, textarea:hover { border-color: var(--muted); }
+input:focus, select:focus, textarea:focus { border-color: var(--accent); }
+.req { color: var(--accent); }
+.err { color: var(--bad); font-weight: 800; }
+.hint { font-weight: 400; font-size: .88rem; color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; gap: .45rem; }
+.chip { font: inherit; font-size: .92rem; font-weight: 800; min-height: 42px; padding: .2rem .8rem .2rem .45rem; border-radius: 999px; border: 2px solid var(--line); background: var(--sunken); color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; gap: .45rem; }
+.chip.t { padding-left: .8rem; }
+.chip:hover { border-color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.chip[aria-pressed="true"] svg circle.b, .chip[aria-pressed="true"] svg rect.b { stroke: #050E22; }
+.btn { font: inherit; font-weight: 800; font-size: 1rem; min-height: 48px; padding: .55rem 1.2rem; border-radius: 10px; border: 2px solid var(--accent); background: var(--accent); color: var(--accent-ink); cursor: pointer; }
+.btn:hover { filter: brightness(1.08); }
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn.small { min-height: 40px; padding: .3rem .85rem; font-size: .9rem; }
+.btn.danger { background: transparent; color: var(--bad); border-color: var(--bad); }
+.btn.danger.armed { background: var(--bad); color: #050E22; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.row { display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; }
+.checks { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: .45rem 1rem; }
+.checks label { display: flex; gap: .55rem; align-items: flex-start; font-weight: 400; font-size: 1rem; cursor: pointer; }
+.checks input { width: 22px; height: 22px; margin: .15rem 0 0; flex: none; accent-color: var(--accent); }
+fieldset { border: 2px solid var(--line); border-radius: var(--radius); padding: .9rem 1rem 1rem; margin: 0; min-width: 0; }
+legend { font-weight: 800; padding: 0 .4rem; display: inline-flex; align-items: center; gap: .45rem; }
+.formgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.formgrid .full { grid-column: 1 / -1; }
+details.more > summary { cursor: pointer; font-weight: 800; list-style: none; display: flex; align-items: center; gap: .5rem; min-height: 40px; }
+details.more > summary::-webkit-details-marker { display: none; }
+details.more > summary::after { content: "+"; margin-left: auto; font-size: 1.3rem; color: var(--accent); }
+details.more[open] > summary::after { content: "−"; }
+
+/* Nível, dimensões e selo */
+.nivel { display: inline-flex; align-items: center; gap: .4rem; font-size: .88rem; font-weight: 800; padding: .2rem .65rem .2rem .25rem; border-radius: 999px; white-space: nowrap; color: #050E22; }
+.nivel.n3 { background: var(--n3); } .nivel.n2 { background: var(--n2); } .nivel.n1 { background: var(--n1); } .nivel.n0 { background: var(--n0); }
+.nivel .st { letter-spacing: .05em; }
+.fbadge { display: inline-flex; align-items: center; gap: .35rem; font-size: .85rem; font-weight: 800; padding: .15rem .6rem; border-radius: 999px; border: 2px solid var(--faders); color: var(--ink); white-space: nowrap; }
+.dims { display: grid; grid-template-columns: 1fr; gap: .35rem; }
+.dim { display: flex; align-items: center; gap: .45rem; padding: .35rem .55rem; border-radius: 8px; border: 2px solid var(--line); font-size: .9rem; font-weight: 600; min-width: 0; }
+.dim svg { flex: none; }
+.dim .s { margin-left: auto; font-weight: 800; font-size: .82rem; white-space: nowrap; }
+.dim.v2 { border-color: var(--n3); } .dim.v2 .s { color: var(--n3); }
+.dim.v1 { border-color: var(--n1); } .dim.v1 .s { color: var(--n1); }
+.dim.v0 { color: var(--muted); border-style: dashed; }
+.legend { display: flex; flex-direction: column; gap: .45rem; font-size: .95rem; }
+.legend div { display: flex; align-items: center; gap: .55rem; }
+
+/* Listas */
+.reglist { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.reglist button { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: .5rem; font: inherit; text-align: left; padding: .65rem .5rem; background: none; border: 0; border-bottom: 2px solid var(--line); color: var(--ink); cursor: pointer; min-height: 48px; }
+.reglist li:last-child button { border-bottom: 0; }
+.reglist button:hover { background: var(--sunken); color: var(--accent); }
+.reglist .sw { width: 16px; height: 16px; border-radius: 4px; flex: none; border: 2px solid #fff; }
+.reglist .nm { display: flex; align-items: center; gap: .55rem; font-weight: 800; min-width: 0; }
+.reglist .ct { font-family: var(--font-mono); font-size: .88rem; color: var(--muted); white-space: nowrap; }
+.placelist { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .5rem; }
+.pitem { display: block; width: 100%; text-align: left; font: inherit; color: var(--ink); background: var(--sunken); border: 2px solid var(--line); border-radius: 10px; padding: .65rem .75rem; cursor: pointer; }
+.pitem:hover { border-color: var(--accent); }
+.pitem b { display: block; font-weight: 800; }
+.pitem .meta { display: flex; flex-wrap: wrap; gap: .35rem .6rem; align-items: center; font-size: .88rem; color: var(--muted); margin-top: .3rem; }
+.back { font: inherit; font-size: .95rem; font-weight: 800; color: var(--link); background: none; border: 0; padding: .2rem 0; cursor: pointer; align-self: flex-start; text-align: left; text-decoration: underline; text-underline-offset: 3px; }
+.kv { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .35rem 1rem; font-size: .95rem; margin: 0; }
+.kv dt { color: var(--muted); }
+.kv dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.recs { display: flex; flex-wrap: wrap; gap: .35rem; }
+.rec { font-size: .85rem; padding: .15rem .55rem; border-radius: 6px; background: var(--sunken); border: 1px solid var(--line); }
+.stack { display: flex; flex-direction: column; gap: .8rem; }
+.empty { border: 2px dashed var(--line); border-radius: var(--radius); padding: 1rem; color: var(--muted); }
+
+/* Lista em cartões */
+.filters { display: grid; grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr)); gap: .8rem; margin-bottom: 1rem; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1rem; }
+.card { background: var(--surface); border: 2px solid var(--line); border-radius: var(--radius); padding: 1rem; display: flex; flex-direction: column; gap: .6rem; min-width: 0; }
+.card h3 { font-size: 1.1rem; }
+.card .where { font-size: .92rem; color: var(--muted); }
+.card .foot { margin-top: auto; display: flex; gap: .9rem; flex-wrap: wrap; align-items: center; font-size: .95rem; font-weight: 600; }
+
+/* Páginas de texto */
+.prose { max-width: 68ch; display: flex; flex-direction: column; gap: .85rem; }
+.section { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2.4rem; }
+.levels { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+.level { border-radius: var(--radius); background: var(--surface); padding: 1.1rem; display: flex; flex-direction: column; gap: .5rem; border: 2px solid var(--line); border-top-width: 8px; }
+.level.n3 { border-top-color: var(--n3); } .level.n2 { border-top-color: var(--n2); } .level.n1 { border-top-color: var(--n1); } .level.n0 { border-top-color: var(--n0); }
+.level .lv { display: flex; align-items: center; gap: .55rem; font-size: 1.25rem; font-weight: 800; }
+.dimgrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+.dimcard { background: var(--surface); border: 2px solid var(--line); border-radius: var(--radius); padding: 1rem; display: flex; flex-direction: column; gap: .55rem; }
+.dimcard h3 { display: flex; align-items: center; gap: .55rem; }
+.dimcard ul { margin: 0; padding-left: 1.1rem; font-size: .95rem; }
+.dimcard .rule { font-size: .9rem; color: var(--muted); border-top: 2px solid var(--line); padding-top: .5rem; margin-top: auto; }
+.steps { list-style: none; counter-reset: s; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: .9rem; }
+.steps li { counter-increment: s; background: var(--surface); border: 2px solid var(--line); border-radius: var(--radius); padding: 1rem; display: flex; flex-direction: column; gap: .35rem; }
+.steps li::before { content: "Etapa " counter(s); font-size: .8rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); }
+.refs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.ref { background: var(--surface); border: 2px solid var(--line); border-radius: var(--radius); padding: 1rem; display: flex; flex-direction: column; gap: .45rem; }
+.ref .where { font-size: .8rem; font-weight: 800; text-transform: uppercase; letter-spacing: .07em; color: var(--accent); }
+.ref .take { font-size: .95rem; border-top: 2px solid var(--line); padding-top: .5rem; margin-top: auto; }
+.tbl { overflow-x: auto; border: 2px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: .95rem; }
+th, td { text-align: left; padding: .6rem .8rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: .82rem; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); font-weight: 800; background: var(--sunken); }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--font-mono); }
+tr:last-child td, tr:last-child th { border-bottom: 0; }
+.okbox { border: 2px solid var(--n3); background: rgba(0, 224, 122, .1); border-radius: var(--radius); padding: 1rem; }
+.copybox { white-space: pre-wrap; font-family: var(--font-mono); font-size: .9rem; background: var(--sunken); border: 2px solid var(--line); border-radius: 10px; padding: .85rem; overflow-wrap: anywhere; }
+
+.toast { position: fixed; left: 50%; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--accent); color: var(--accent-ink); padding: .8rem 1.2rem; border-radius: 10px; font-weight: 800; z-index: 60; max-width: calc(100% - 32px); }
+footer { border-top: 2px solid var(--line); padding-block: 1.25rem 2rem; font-size: .92rem; color: var(--muted); }
+
+@media (max-width: 1080px) { .levels, .dimgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .refs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 980px) {
+  .mapgrid { grid-template-columns: 1fr; }
+  .mapgrid .mapcol { order: -1; }
+  #ctx { order: -1; }
+  .filters { grid-template-columns: 1fr 1fr; }
+  .filters .q { grid-column: 1 / -1; }
+}
+@media (max-width: 640px) { .refs, .levels, .dimgrid { grid-template-columns: 1fr; } }
+@media (max-width: 560px) {
+  .top { position: static; }
+  .brand b { font-size: .98rem; }
+  .brand span { display: none; }
+  .brand svg { width: 30px; height: 30px; }
+  .tools { gap: .3rem; }
+  .tbtn { padding: 0 .4rem; font-size: .85rem; min-width: 40px; }
+  .mapctl { position: static; flex-direction: row; justify-content: flex-end; padding: 0 8px 8px; }
+  .hc-long { display: none; }
+  .hc-sr { display: inline; }
+  .hc-short { display: inline; }
+  .brand b { white-space: nowrap; }
+  .top .bar { gap: .5rem; }
+  .formgrid { grid-template-columns: 1fr; }
+  .mapctl button { width: 40px; height: 40px; }
+  nav.tabs a.adm { margin-left: 0; }
+  .dims { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+.rb-form-aviso { margin: 0; padding: 1rem; border-radius: var(--radius); border: 2px solid var(--n3); background: rgba(0, 224, 122, .1); font-weight: 600; }
+.rb-form-aviso.is-erro { border-color: var(--bad); background: rgba(255, 148, 148, .1); }
+.rb-form-aviso a { font-weight: 800; }
+.loading { padding: 3rem 1rem; text-align: center; color: var(--muted); font-weight: 600; }
+</style>
+</head>
+<body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="top">
+  <div class="wrap"><div class="inner bar">
+    <a class="brand" href="#mapa">
+      <svg width="42" height="42" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="9" fill="#FFDF00"/><circle cx="17" cy="8.5" r="2.7" fill="#050E22"/><path d="M15 12.5h4l-.6 6h5.2l2.6 6.8-2.2.8-2-5.1h-6.3z" fill="#050E22"/><path d="M13.6 15.6a6.7 6.7 0 1 0 8.9 8.7" fill="none" stroke="#050E22" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <div><b>Acessibilidade RS</b><span>Guia de lugares acessíveis · <em>Rede Bolha</em></span></div>
+    </a>
+    <div class="tools" role="group" aria-label="Ajustes de leitura">
+      <button class="tbtn" id="fs-down" type="button" aria-label="Diminuir texto">A−</button>
+      <button class="tbtn" id="fs-up" type="button" aria-label="Aumentar texto">A+</button>
+      <button class="tbtn" id="hc" type="button" aria-pressed="false"><span class="hc-long">Alto contraste</span><span class="hc-short" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" style="display:block"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg></span><span class="sr hc-sr">Alto contraste</span></button>
+    </div>
+  </div></div>
+  <nav class="tabs" aria-label="Seções">
+    <div class="wrap"><div class="inner">
+      <a href="#mapa" data-view="mapa">Mapa</a>
+      <a href="#lista" data-view="lista">Lista</a>
+      <a href="#avaliacao" data-view="avaliacao">Como avaliamos</a>
+      <a href="#cadastro" data-view="cadastro">Cadastre seu negócio</a>
+      <a href="#sobre" data-view="sobre">Sobre</a>
+      <a href="/" class="adm">Rede Bolha</a>
+    </div></div>
+  </nav>
+</header>
+
+<main id="conteudo" class="wrap" tabindex="-1">
+<div class="inner">
+
+<!-- MAPA -->
+<section class="view" id="v-mapa" aria-labelledby="h-mapa">
+  <h1 id="h-mapa" class="eyebrow">Rio Grande do Sul · 7 regiões · 497 municípios</h1>
+  <div class="stats" id="stats" aria-live="polite"></div>
+  <div class="mapgrid">
+    <div class="side">
+      <div class="panel stack">
+        <label class="f" for="busca">Buscar cidade ou lugar
+          <input type="search" id="busca" list="dl-busca" placeholder="Ex.: Gramado, hotel, Marau" autocomplete="off">
+        </label>
+        <datalist id="dl-busca"></datalist>
+        <div>
+          <p class="eyebrow" id="lbl-niv" style="margin-bottom:.45rem">Nível de acessibilidade</p>
+          <div class="chips" id="f-niv" role="group" aria-labelledby="lbl-niv"></div>
+        </div>
+        <div>
+          <p class="eyebrow" id="lbl-dim" style="margin-bottom:.45rem">Preciso de acessibilidade</p>
+          <div class="chips" id="f-dim" role="group" aria-labelledby="lbl-dim"></div>
+        </div>
+        <details class="more">
+          <summary>Tipo de lugar <span class="hint" id="cat-count"></span></summary>
+          <div class="chips" id="f-cat" role="group" aria-label="Tipo de lugar" style="margin-top:.5rem"></div>
+        </details>
+      </div>
+      <div class="panel" id="ctx" aria-live="polite"><p class="empty">Carregando o mapa…</p></div>
+      <div class="panel">
+        <p class="eyebrow" style="margin-bottom:.55rem">Legenda</p>
+        <div class="legend" id="legend"></div>
+      </div>
+    </div>
+    <div class="mapcol">
+      <div class="mapbox">
+        <svg id="map" viewBox="0 0 1000 960" role="img" aria-labelledby="map-title map-desc">
+          <title id="map-title">Mapa do Rio Grande do Sul por regiões</title>
+          <desc id="map-desc">Mapa interativo. As mesmas informações estão na aba Lista e na lista de regiões ao lado.</desc>
+        </svg>
+        <div class="mapctl">
+          <button type="button" id="z-in" aria-label="Aproximar">+</button>
+          <button type="button" id="z-out" aria-label="Afastar">−</button>
+          <button type="button" id="z-reset" aria-label="Ver o estado inteiro" style="font-size:.85rem">RS</button>
+        </div>
+        <div class="maphint">Clique numa região ou cidade. Arraste para mover. Ctrl + roda do mouse aproxima.</div>
+        <div class="tip" id="tip" hidden></div>
+      </div>
+      <p class="mapnote">Regiões: mesorregiões do IBGE com nomes de uso corrente. Limites municipais: malha do IBGE, simplificada.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LISTA -->
+<section class="view" id="v-lista" aria-labelledby="h-lista" hidden>
+  <div class="section" style="margin-bottom:1rem">
+    <h2 id="h-lista">Lista de lugares</h2>
+    <p class="muted">As mesmas informações do mapa, para ler com leitor de tela ou navegar pelo teclado.</p>
+  </div>
+  <div class="filters">
+    <label class="f q" for="l-q">Buscar<input type="search" id="l-q" placeholder="Nome, cidade ou recurso"></label>
+    <label class="f" for="l-reg">Região<select id="l-reg"></select></label>
+    <label class="f" for="l-cat">Tipo de lugar<select id="l-cat"></select></label>
+    <label class="f" for="l-niv">Nível<select id="l-niv"></select></label>
+  </div>
+  <p class="muted" id="l-count" aria-live="polite" style="margin-bottom:.8rem"></p>
+  <div class="cards" id="l-cards"></div>
+</section>
+
+<!-- COMO AVALIAMOS -->
+<section class="view" id="v-avaliacao" aria-labelledby="h-av" hidden>
+  <div class="section">
+    <p class="eyebrow">Classificação Acessibilidade RS</p>
+    <h2 id="h-av">Quatro perguntas, uma para cada tipo de necessidade</h2>
+    <div class="prose">
+      <p>Cada lugar é avaliado pelo que oferece de fato para quem tem deficiência física ou mobilidade reduzida, deficiência visual, deficiência auditiva e deficiência intelectual ou autismo. O nível sai da soma dessas quatro respostas, sem nota subjetiva.</p>
+    </div>
+  </div>
+  <div class="dimgrid section" id="dimcards"></div>
+  <div class="section">
+    <h3>Os níveis</h3>
+    <div class="levels" id="levelcards"></div>
+  </div>
+  <div class="section">
+    <h3>Quem conferiu</h3>
+    <div class="prose">
+      <p><b>Conferido pela equipe:</b> alguém da Acessibilidade RS visitou ou conferiu fotos e documentos do lugar.</p>
+      <p><b>Informado pelo estabelecimento:</b> os recursos foram declarados pelo próprio negócio no cadastro e ainda não foram conferidos.</p>
+    </div>
+  </div>
+  <div class="section">
+    <h3>Selo Estadual de Acessibilidade (FADERS)</h3>
+    <div class="prose">
+      <p>O Governo do Estado, pela FADERS, tem uma certificação oficial própria, com níveis Bronze, Prata e Ouro, feita por vistoria técnica conforme a NBR 9050. Quando um lugar tem esse selo, mostramos a informação como complemento, com um anel azul no marcador. A classificação deste guia é independente do selo estadual.</p>
+    </div>
+    <div class="tbl"><table>
+      <thead><tr><th scope="col">Município</th><th scope="col">Região</th><th scope="col">Situação no selo estadual</th><th scope="col" class="n">Lugares com selo</th><th scope="col">Fonte</th></tr></thead>
+      <tbody id="t-mun"></tbody>
+    </table></div>
+    <p><a href="https://faders.rs.gov.br/selo-de-acessibilidade-68dbe89fadfef" target="_blank" rel="noopener">Página oficial do Selo Estadual na FADERS</a></p>
+  </div>
+</section>
+
+<!-- CADASTRO -->
+<section class="view" id="v-cadastro" aria-labelledby="h-cad" hidden>
+  <div class="section" style="margin-bottom:1.25rem">
+    <p class="eyebrow">Hotéis, restaurantes, lojas, eventos, transporte e serviços</p>
+    <h2 id="h-cad">Cadastre seu negócio no guia</h2>
+    <div class="prose"><p>Marque o que o seu espaço já oferece. A equipe confere as informações e publica o lugar no mapa. O cadastro é gratuito.</p></div>
+  </div>
+  <form id="f-cad" class="stack rb-form" data-rb-lista="acessibilidade" data-rb-assunto="Cadastro Acessibilidade RS" data-rb-ok="Cadastro recebido. A equipe confere as informações e avisa quando o lugar entrar no mapa." novalidate>
+    <fieldset>
+      <legend>Seu negócio</legend>
+      <div class="formgrid">
+        <label class="f full" for="c-nome">Nome do estabelecimento <span class="req">*</span><input type="text" id="c-nome" name="estabelecimento" data-rotulo="Estabelecimento" required autocomplete="organization"></label>
+        <label class="f" for="c-cat">Tipo de lugar <span class="req">*</span><select id="c-cat" name="tipo_lugar" data-rotulo="Tipo de lugar" required></select></label>
+        <label class="f" for="c-mun">Cidade <span class="req">*</span><input type="text" id="c-mun" name="cidade" data-rotulo="Cidade" list="dl-mun" required autocomplete="off" placeholder="Digite e escolha da lista"></label>
+        <label class="f full" for="c-end">Endereço <span class="req">*</span><input type="text" id="c-end" name="endereco" data-rotulo="Endereço" required autocomplete="street-address"></label>
+        <label class="f" for="c-site">Site ou rede social<input type="url" id="c-site" name="site" data-rotulo="Site" placeholder="https://"></label>
+        <label class="f" for="c-tel">Telefone ou WhatsApp<input type="tel" id="c-tel" name="telefone" data-rotulo="Telefone" autocomplete="tel"></label>
+      </div>
+    </fieldset>
+    <div id="c-dims" class="stack"></div>
+    <fieldset>
+      <legend>Responsável pelo cadastro</legend>
+      <div class="formgrid">
+        <label class="f" for="c-resp">Nome <span class="req">*</span><input type="text" id="c-resp" name="nome" data-rotulo="Responsável" required autocomplete="name"></label>
+        <label class="f" for="c-email">E-mail <span class="req">*</span><input type="email" id="c-email" name="email" data-rotulo="E-mail" required autocomplete="email"></label>
+        <label class="f full" for="c-msg">Observações<textarea id="c-msg" name="observacoes" data-rotulo="Observações" placeholder="Horários, fotos disponíveis, reformas previstas…"></textarea></label>
+      </div>
+      <div class="checks" style="margin-top:1rem">
+        <label><input type="checkbox" id="c-lgpd" name="lgpd" value="Autorizo o uso dos dados para análise e publicação" data-rotulo="LGPD" required> Autorizo o uso destes dados para análise do cadastro e publicação das informações do estabelecimento (LGPD) <span class="req">*</span></label>
+      </div>
+    </fieldset>
+    <div class="calc" id="c-calc" aria-live="polite"></div>
+    <p id="c-err" class="err" role="alert" tabindex="-1" hidden></p>
+    <div class="row"><button class="btn" type="submit">Enviar cadastro</button></div>
+  </form>
+</section>
+
+<!-- SOBRE -->
+<section class="view" id="v-sobre" aria-labelledby="h-sobre" hidden>
+  <div class="section">
+    <p class="eyebrow">Sobre o guia</p>
+    <h2 id="h-sobre">Um lugar só para saber onde dá para ir</h2>
+    <div class="prose">
+      <p>Quem tem deficiência ou mobilidade reduzida costuma descobrir na porta se vai conseguir entrar. A Acessibilidade RS reúne, por região, hotéis, restaurantes, espaços de eventos, comércio, praças, transporte e serviços públicos que se preparam para receber todo mundo.</p>
+      <p>O guia é uma iniciativa da Rede Bolha, independente do poder público. Mostramos também a certificação oficial do Estado quando o lugar a possui.</p>
+    </div>
+  </div>
+  <div class="section">
+    <h3>Referências no Brasil e no mundo</h3>
+    <div class="refs" id="refs"></div>
+  </div>
+  <div class="section">
+    <h3>Fontes</h3>
+    <ul id="fontes" class="stack" style="padding-left:1.2rem;margin:0;font-size:.95rem"></ul>
+  </div>
+</section>
+
+</div>
+</main>
+
+<footer class="wrap"><div class="inner stack">
+  <p><b>Acessibilidade RS</b> · um guia da <a href="/">Rede Bolha</a>. Os níveis do guia são independentes do Selo Estadual de Acessibilidade da FADERS, que aparece como informação complementar.</p>
+  <p><a href="/contato/">Contato</a> · <a href="/politica-de-privacidade.html">Política de Privacidade</a> · <a href="/termos-de-uso.html">Termos de Uso</a></p>
+</div></footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="/acessibilidade-rs/regras.js"></script>
+<script src="/acessibilidade-rs/app.js"></script>
+<script src="/js/rb-lista.js"></script>
+</body>
+</html>

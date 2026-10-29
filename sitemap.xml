@@ -253,6 +253,12 @@
         <priority>0.6</priority>
     </url>
     <url>
+        <loc>https://redebolha.com.br/acessibilidade-rs/</loc>
+        <lastmod>2026-10-29</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>https://redebolha.com.br/ferramentas/</loc>
         <lastmod>2026-09-13</lastmod>
         <changefreq>weekly</changefreq>
