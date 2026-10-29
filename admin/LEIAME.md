@@ -99,3 +99,22 @@ Abra `redebolha.com.br/admin/` no navegador do celular → menu → **Adicionar 
 - `admin/index.html` — interface (login, layout, estilos, versão de celular).
 - `admin/app.js` — toda a lógica (acesso, editor, publicação, capa, mídia).
 - `admin/manifest.json` — configuração do app instalável (PWA).
+
+## 11. Acessibilidade RS
+
+A aba **Acessibilidade RS** cuida do guia de lugares acessíveis em
+**https://redebolha.com.br/acessibilidade-rs/**.
+
+- **Lugares:** inclua hotéis, restaurantes, espaços de eventos, comércio, praças, transporte e
+  serviços. Marque os recursos que o lugar oferece; o nível (Plena, Boa, Básica ou Em análise)
+  é calculado sozinho, pelas mesmas regras da página pública. O Selo Estadual da FADERS entra
+  como informação complementar.
+- **Importar pedido:** os pedidos do formulário "Cadastre seu negócio" chegam pelo Formspree
+  (e-mail) ou pelo WhatsApp. Cole a mensagem e o formulário é preenchido; nada vai ao ar antes
+  de você conferir e salvar. Nome e e-mail do responsável nunca são publicados.
+- **Selo FADERS:** situação dos municípios no programa oficial do Estado.
+- **Resumo:** contagem por região.
+
+Cada gravação é um commit em `acessibilidade-rs/dados.json`. As regras de classificação ficam em
+`acessibilidade-rs/regras.js` (usado pela página e pelo painel) e o mapa em
+`acessibilidade-rs/mapa-rs.json` (malha do IBGE simplificada).

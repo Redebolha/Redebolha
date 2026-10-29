@@ -251,6 +251,28 @@
         .toast { max-width: none; }
         .modal { padding: 22px; }
     }
+    /* ---- Acessibilidade RS ---- */
+    .ars-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+    .ars-tabs .btn.on { background: linear-gradient(180deg, var(--gold-l), #F2C800); color: #061025; border-color: var(--gold); }
+    .ars-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 18px; }
+    .ars-grid .full { grid-column: 1 / -1; }
+    .ars-fs { border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px 14px; margin: 0 0 14px; }
+    .ars-fs legend { color: var(--txt); font-weight: 600; padding: 0 6px; font-size: .92rem; }
+    .ars-fs legend small { color: var(--dim); font-weight: 400; }
+    .ars-checks { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 6px 14px; }
+    .ars-checks label { display: flex; gap: 8px; align-items: flex-start; font-size: .9rem; color: var(--body); cursor: pointer; }
+    .ars-checks input { width: 18px; height: 18px; margin-top: 3px; accent-color: var(--gold); flex: none; }
+    .ars-calc { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; padding: 12px 14px; border: 1px dashed var(--line2); border-radius: 10px; margin-bottom: 18px; font-size: .85rem; color: var(--dim); }
+    .ars-niv { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: .78rem; padding: 3px 10px; border-radius: 20px; color: #050E22; white-space: nowrap; }
+    .ars-niv.n3 { background: #00E07A; } .ars-niv.n2 { background: #2EE6FF; } .ars-niv.n1 { background: #FF9F1C; } .ars-niv.n0 { background: #D5DDEB; }
+    .ars-fad { display: inline-block; font-size: .75rem; font-weight: 600; padding: 3px 9px; border-radius: 20px; border: 1px solid #5EA6FF; color: var(--txt); white-space: nowrap; }
+    .ars-rows { border: 1px solid var(--line); border-radius: 10px; max-height: 560px; overflow-y: auto; }
+    .ars-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+    .ars-row:last-child { border-bottom: 0; }
+    .ars-row .pn { flex: 1 1 220px; min-width: 0; }
+    .ars-row .pn b { display: block; color: var(--txt); font-weight: 600; }
+    .ars-row .pn span { font-size: .8rem; color: var(--dim); }
+    @media (max-width: 780px) { .ars-grid { grid-template-columns: 1fr; } }
     </style>
   </head>
   <body>
@@ -291,6 +313,7 @@
 
     <div id="modals"></div>
     <div id="toasts" aria-live="polite"></div>
+    <script src="/acessibilidade-rs/regras.js"></script>
     <script src="app.js"></script>
 
   </body>

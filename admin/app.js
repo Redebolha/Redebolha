@@ -221,6 +221,7 @@ var NAV=[
   ["categories","Categorias","❏"],
   ["tags","Tags","#"],
   ["media","Biblioteca de Mídia","▣"],
+  ["acessibilidade","Acessibilidade RS","♿"],
   ["users","Usuários","⚇"],
   ["reports","Relatórios","▨"],
   "sep",
@@ -228,7 +229,7 @@ var NAV=[
   ["security","Segurança","🛡"],
   ["help","Ajuda","?"]
 ];
-var TITLES={dashboard:"Visão Geral",home:"Página Inicial — Capa",articles:"Artigos",pages:"Páginas",categories:"Categorias",tags:"Tags",media:"Biblioteca de Mídia",users:"Usuários",reports:"Relatórios",settings:"Configurações",security:"Segurança",help:"Ajuda"};
+var TITLES={dashboard:"Visão Geral",home:"Página Inicial — Capa",articles:"Artigos",pages:"Páginas",categories:"Categorias",tags:"Tags",media:"Biblioteca de Mídia",acessibilidade:"Acessibilidade RS",users:"Usuários",reports:"Relatórios",settings:"Configurações",security:"Segurança",help:"Ajuda"};
 var appStarted=false;
 
 function buildShell(){
@@ -293,7 +294,7 @@ function go(route){
   if(location.hash!=="#"+route) location.hash=route;
   var v=$("#view"); v.innerHTML="";
   window.scrollTo(0,0);
-  ({dashboard:viewDashboard,home:viewHome,articles:viewArticles,categories:viewCategories,tags:viewTags,media:viewMedia,pages:viewPages,users:viewUsers,reports:viewReports,settings:viewSettings,security:viewSecurity,help:viewHelp}[route])(v,route);
+  ({dashboard:viewDashboard,home:viewHome,articles:viewArticles,categories:viewCategories,tags:viewTags,media:viewMedia,acessibilidade:viewAcessibilidade,pages:viewPages,users:viewUsers,reports:viewReports,settings:viewSettings,security:viewSecurity,help:viewHelp}[route])(v,route);
 }
 
 /* ===================================================================
@@ -1601,6 +1602,245 @@ function viewHelp(v){
     '<p style="color:var(--dim);margin-top:14px">O texto é guardado automaticamente neste navegador enquanto você escreve. Rascunhos não vão para o site até você publicar.</p></div>'+
     '<div class="panel"><h3>Trocar os destaques da capa</h3><p style="color:var(--body)">Em <a href="#home">Página Inicial</a>, escolha uma matéria na lista para preencher os campos sozinhos, revise e clique em Salvar. A capa atualiza em 1 a 2 minutos.</p></div>'+
     '<div class="panel"><h3>Tirar um artigo do ar</h3><p style="color:var(--body)">Em Artigos, clique em <strong style="color:var(--txt)">⋯ → Tirar do ar</strong>. O arquivo sai do site, da lista, do sitemap e do feed. Dá para recuperar pelo histórico do GitHub.</p></div>';
+}
+
+/* ===================================================================
+   ACESSIBILIDADE RS — guia de lugares acessiveis (/acessibilidade-rs/)
+   Le e grava acessibilidade-rs/dados.json. As regras de classificacao
+   vem de /acessibilidade-rs/regras.js (window.ARS), as mesmas da pagina.
+   =================================================================== */
+var ARS_FILE="acessibilidade-rs/dados.json";
+var ARS_MAP="acessibilidade-rs/mapa-rs.json";
+var ars={ dados:null, mun:null, munByName:{}, tab:"lugares", editingId:null, q:"" };
+
+function arsNorm(s){ return String(s==null?"":s).normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().trim(); }
+function arsParse(txt){ var d; try{ d=JSON.parse(txt||"{}"); }catch(e){ d={}; } if(!Array.isArray(d.locais)) d.locais=[]; if(!d.municipios||typeof d.municipios!=="object") d.municipios={}; return d; }
+function arsMunName(cod){ return ars.mun&&ars.mun[cod]?ars.mun[cod].n:"—"; }
+function arsReg(cod){ return ars.mun&&ars.mun[cod]?ars.mun[cod].r:null; }
+function arsMunCod(name){ return ars.munByName[arsNorm(name)]||null; }
+function arsCat(k){ var c=window.ARS.CATS.filter(function(x){return x[0]===k;})[0]; return c?c[1]:"—"; }
+function arsNivel(p){ return window.ARS.avaliar(p.recursos||[]).nivel; }
+function arsNivBadge(n){ var N=window.ARS.NIV[n]; return '<span class="ars-niv n'+n+'">'+esc(N.curto)+(n>0?' '+N.stars:'')+'</span>'; }
+function arsFadBadge(f){ return f&&window.ARS.FAD[f]?'<span class="ars-fad">Selo FADERS '+esc(window.ARS.FAD[f])+'</span>':''; }
+
+function viewAcessibilidade(v){
+  if(!window.ARS){ v.innerHTML='<div class="panel"><p class="empty">Não encontrei o arquivo de regras (/acessibilidade-rs/regras.js). Recarregue a página.</p></div>'; return; }
+  v.innerHTML='<p class="muted">Lugares do guia <a href="'+SITE+'/acessibilidade-rs/" target="_blank" rel="noopener">redebolha.com.br/acessibilidade-rs</a>. Cada vez que você salva, o site é atualizado em 1 a 2 minutos.</p>'+
+    '<div class="cards" id="arsStats" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))"></div>'+
+    '<div class="ars-tabs" role="tablist" aria-label="Seções da Acessibilidade RS">'+
+      '<button class="btn ghost sm" role="tab" data-arst="lugares">Lugares</button>'+
+      '<button class="btn ghost sm" role="tab" data-arst="pedido">Importar pedido</button>'+
+      '<button class="btn ghost sm" role="tab" data-arst="faders">Selo FADERS</button>'+
+      '<button class="btn ghost sm" role="tab" data-arst="resumo">Resumo</button>'+
+    '</div><div id="arsBody"><div class="panel"><p class="empty">Carregando o guia…</p></div></div>';
+  $all("[data-arst]",v).forEach(function(b){ b.addEventListener("click",function(){ ars.tab=b.getAttribute("data-arst"); arsRender(); }); });
+  var needMap = ars.mun ? Promise.resolve(null) : ghReadText(ARS_MAP);
+  Promise.all([ghReadText(ARS_FILE), needMap]).then(function(r){
+    ars.dados=arsParse(r[0]);
+    if(r[1]){ var m=JSON.parse(r[1]); ars.mun=m.mun; ars.munByName={}; Object.keys(m.mun).forEach(function(c){ ars.munByName[arsNorm(m.mun[c].n)]=c; }); }
+    if(!$("#arsMunList")){ var dl=el("datalist",{id:"arsMunList"}); dl.innerHTML=Object.keys(ars.mun).map(function(c){return ars.mun[c].n;}).sort(function(a,b){return a.localeCompare(b,"pt-BR");}).map(function(n){return '<option value="'+esc(n)+'"></option>';}).join(""); document.body.appendChild(dl); }
+    arsRender();
+  }).catch(function(e){ $("#arsBody").innerHTML='<div class="panel"><p class="empty">Erro ao carregar o guia: '+esc(e.message)+'</p></div>'; });
+}
+
+function arsRender(){
+  if(!$("#arsBody")||!ars.dados) return;
+  $all("[data-arst]").forEach(function(b){ var on=b.getAttribute("data-arst")===ars.tab; b.classList.toggle("on",on); b.setAttribute("aria-selected",on?"true":"false"); });
+  var L=ars.dados.locais, c={3:0,2:0,1:0,0:0}, f=0;
+  L.forEach(function(p){ c[arsNivel(p)]++; if(p.faders) f++; });
+  $("#arsStats").innerHTML=statCard(L.length,"Lugares no guia")+statCard(c[3],"Plena")+statCard(c[2],"Boa")+statCard(c[1],"Básica")+statCard(f,"Com Selo FADERS");
+  ({lugares:arsLugares,pedido:arsPedido,faders:arsFaders,resumo:arsResumo}[ars.tab])($("#arsBody"));
+}
+
+/* Grava: le a versao mais nova do arquivo, aplica a mudanca e faz um commit */
+function arsCommit(mutate,message){
+  var novo=null;
+  return ghCommitEdit([ARS_FILE],function(files){
+    var d=arsParse(files[ARS_FILE]); mutate(d); d.atualizadoEm=nowISO(); novo=d;
+    return [{ path: ARS_FILE, content: JSON.stringify(d,null,1)+"\n" }];
+  },message+" (via Painel Rede Bolha)").then(function(){ if(novo) ars.dados=novo; return novo; });
+}
+
+/* ---------- Lugares ---------- */
+function arsRecBoxes(){
+  var A=window.ARS;
+  function box(r){ return '<label><input type="checkbox" id="ars-r-'+r[0]+'" value="'+r[0]+'"> '+esc(r[1])+'</label>'; }
+  return A.DIMS.map(function(d){ return '<fieldset class="ars-fs"><legend>'+esc(d.nome)+' <small>· '+esc(d.longo)+'</small></legend><div class="ars-checks">'+d.recs.map(box).join("")+'</div></fieldset>'; }).join("")+
+    '<fieldset class="ars-fs"><legend>Para todos</legend><div class="ars-checks">'+A.GERAIS.map(box).join("")+'</div></fieldset>';
+}
+function arsField(id,label,input,full,small){ return '<div class="field'+(full?' full':'')+'"><label for="'+id+'">'+label+'</label>'+input+(small?'<small>'+small+'</small>':'')+'</div>'; }
+function arsLugares(box){
+  var A=window.ARS;
+  var catOpts='<option value="">Escolha</option>'+A.CATS.map(function(c){return '<option value="'+c[0]+'">'+esc(c[1])+'</option>';}).join("");
+  var fadOpts='<option value="">Não possui</option>'+Object.keys(A.FAD).map(function(k){return '<option value="'+k+'">'+esc(A.FAD[k])+'</option>';}).join("");
+  box.innerHTML=
+    '<form class="panel" id="arsForm" novalidate>'+
+      '<h3 id="arsFormTitle">Incluir lugar</h3>'+
+      '<div class="ars-grid">'+
+        arsField("ars-nome","Nome *",'<input id="ars-nome" required>',true)+
+        arsField("ars-cat","Tipo de lugar *",'<select id="ars-cat">'+catOpts+'</select>')+
+        arsField("ars-mun","Cidade *",'<input id="ars-mun" list="arsMunList" autocomplete="off">')+
+        arsField("ars-end","Endereço",'<input id="ars-end">',true)+
+        arsField("ars-lat","Latitude",'<input id="ars-lat" inputmode="decimal" placeholder="-29.1678">',false,"Sem coordenadas, o ponto aparece no centro da cidade.")+
+        arsField("ars-lon","Longitude",'<input id="ars-lon" inputmode="decimal" placeholder="-51.1794">')+
+        arsField("ars-tel","Contato do estabelecimento",'<input id="ars-tel">')+
+        arsField("ars-site","Site",'<input id="ars-site" type="url" placeholder="https://">')+
+      '</div>'+
+      arsRecBoxes()+
+      '<div class="ars-calc" id="arsCalc" aria-live="polite"></div>'+
+      '<div class="ars-grid">'+
+        arsField("ars-ver","Quem conferiu",'<select id="ars-ver"><option value="nao">Informado pelo estabelecimento</option><option value="sim">Conferido pela equipe</option></select>')+
+        arsField("ars-fad","Selo Estadual FADERS",'<select id="ars-fad">'+fadOpts+'</select>')+
+        arsField("ars-fano","Ano do selo estadual",'<input id="ars-fano" inputmode="numeric">')+
+        arsField("ars-fonte","Fonte (link)",'<input id="ars-fonte" type="url" placeholder="https://">')+
+        arsField("ars-obs","Observação (aparece no site)",'<textarea id="ars-obs" rows="3"></textarea>',true)+
+      '</div>'+
+      '<div id="arsMsg"></div>'+
+      '<div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" type="submit" id="arsSave">Salvar e publicar</button><button class="btn ghost" type="button" id="arsCancel" hidden>Cancelar edição</button></div>'+
+    '</form>'+
+    '<div class="panel"><h3>Lugares publicados <small>'+ars.dados.locais.length+'</small></h3>'+
+      '<div class="toolbar"><input type="search" id="arsQ" placeholder="Filtrar por nome ou cidade" aria-label="Filtrar lugares" value="'+esc(ars.q)+'"></div>'+
+      '<div class="ars-rows" id="arsRows"></div></div>';
+  $("#arsForm").addEventListener("change",arsCalc);
+  $("#arsForm").addEventListener("submit",function(e){ e.preventDefault(); arsSave(); });
+  $("#arsCancel").addEventListener("click",function(){ ars.editingId=null; arsRender(); });
+  $("#arsQ").addEventListener("input",function(){ ars.q=this.value; arsRows(); });
+  if(ars.editingId){ var p=ars.dados.locais.filter(function(x){return x.id===ars.editingId;})[0]; if(p) arsFill(p); else ars.editingId=null; }
+  if(ars.pendente){ arsFill(ars.pendente,true); ars.pendente=null; }
+  arsCalc(); arsRows();
+}
+function arsRows(){
+  var q=arsNorm(ars.q);
+  var list=ars.dados.locais.filter(function(p){ return !q || arsNorm(p.nome+" "+arsMunName(p.mun)).indexOf(q)>=0; }).sort(function(a,b){ return String(a.nome).localeCompare(String(b.nome),"pt-BR"); });
+  var box=$("#arsRows");
+  if(!list.length){ box.innerHTML='<p class="empty" style="padding:24px">Nenhum lugar. Use o formulário acima para incluir o primeiro.</p>'; return; }
+  box.innerHTML=list.map(function(p){ return '<div class="ars-row"><div class="pn"><b>'+esc(p.nome)+'</b><span>'+esc(arsCat(p.categoria))+' · '+esc(arsMunName(p.mun))+(p.verificado?' · conferido':'')+'</span></div>'+arsNivBadge(arsNivel(p))+arsFadBadge(p.faders)+
+    '<button class="btn ghost sm" data-ars-edit="'+esc(p.id)+'">Editar</button><button class="btn danger sm" data-ars-del="'+esc(p.id)+'">Excluir</button></div>'; }).join("");
+  $all("[data-ars-edit]",box).forEach(function(b){ b.addEventListener("click",function(){ ars.editingId=b.getAttribute("data-ars-edit"); arsRender(); $("#arsForm").scrollIntoView({behavior:"smooth"}); }); });
+  $all("[data-ars-del]",box).forEach(function(b){ b.addEventListener("click",function(){
+    var id=b.getAttribute("data-ars-del"), p=ars.dados.locais.filter(function(x){return x.id===id;})[0]; if(!p) return;
+    if(!confirm("Tirar do guia: "+p.nome+"?")) return;
+    b.disabled=true;
+    arsCommit(function(d){ d.locais=d.locais.filter(function(x){return x.id!==id;}); },"Acessibilidade RS: remove "+p.nome).then(function(){
+      toast("Lugar removido. O site atualiza em 1 a 2 minutos.","ok"); logActivity("acessibilidade","Removeu "+p.nome); if(ars.editingId===id) ars.editingId=null; arsRender();
+    }).catch(function(e){ b.disabled=false; toast(e.message,"err"); });
+  }); });
+}
+function arsCalc(){
+  var A=window.ARS, recs=Object.keys(A.REC).filter(function(k){ var c=$("#ars-r-"+k); return c&&c.checked; });
+  var av=A.avaliar(recs), SV={2:"atende",1:"parcial",0:"sem informação"};
+  var box=$("#arsCalc"); if(!box) return;
+  box.innerHTML='<b style="color:var(--txt)">Nível calculado:</b> '+arsNivBadge(av.nivel)+' <span>'+A.DIMS.map(function(d){return esc(d.nome)+": "+SV[av.v[d.k]];}).join(" · ")+'</span>';
+}
+function arsFill(p,fromImport){
+  $("#arsFormTitle").textContent=fromImport?"Incluir lugar (pedido importado)":"Editar lugar";
+  $("#arsCancel").hidden=false;
+  $("#ars-nome").value=p.nome||""; $("#ars-cat").value=p.categoria||""; $("#ars-mun").value=p.mun?arsMunName(p.mun):(p.cidade||"");
+  $("#ars-end").value=p.endereco||""; $("#ars-lat").value=p.lat==null?"":p.lat; $("#ars-lon").value=p.lon==null?"":p.lon;
+  $("#ars-tel").value=p.contato||""; $("#ars-site").value=p.site||""; $("#ars-ver").value=p.verificado?"sim":"nao";
+  $("#ars-fad").value=p.faders||""; $("#ars-fano").value=p.fadersAno||""; $("#ars-fonte").value=p.fonte||""; $("#ars-obs").value=p.obs||"";
+  Object.keys(window.ARS.REC).forEach(function(k){ var c=$("#ars-r-"+k); if(c) c.checked=(p.recursos||[]).indexOf(k)>=0; });
+  if(p.responsavel) $("#arsMsg").innerHTML='<div class="msg warn">Pedido de <b>'+esc(p.responsavel)+'</b>'+(p.email?' ('+esc(p.email)+')':'')+'. Esses dados de contato não são publicados no site.</div>';
+  arsCalc();
+}
+function arsSave(){
+  var A=window.ARS, msg=$("#arsMsg"); msg.innerHTML="";
+  var latS=$("#ars-lat").value.trim().replace(",","."), lonS=$("#ars-lon").value.trim().replace(",",".");
+  var rec={ nome:$("#ars-nome").value.trim(), categoria:$("#ars-cat").value, mun:arsMunCod($("#ars-mun").value), endereco:$("#ars-end").value.trim(),
+    contato:$("#ars-tel").value.trim(), site:$("#ars-site").value.trim(), recursos:Object.keys(A.REC).filter(function(k){ var c=$("#ars-r-"+k); return c&&c.checked; }),
+    verificado:$("#ars-ver").value==="sim", faders:$("#ars-fad").value, fadersAno:$("#ars-fano").value?Number($("#ars-fano").value):null,
+    fonte:$("#ars-fonte").value.trim(), obs:$("#ars-obs").value.trim(), lat:null, lon:null };
+  var miss=[]; if(!rec.nome) miss.push("nome"); if(!rec.categoria) miss.push("tipo de lugar"); if(!rec.mun) miss.push("cidade (escolha um nome da lista)");
+  if(latS||lonS){ var la=Number(latS), lo=Number(lonS); if(!(la<=-27&&la>=-34&&lo>=-58&&lo<=-49)) miss.push("coordenadas dentro do RS (latitude entre -27 e -34, longitude entre -49 e -58)"); else { rec.lat=la; rec.lon=lo; } }
+  if(miss.length){ msg.innerHTML='<div class="msg err">Confira: '+esc(miss.join(", "))+'.</div>'; return; }
+  var editing=ars.editingId, now=nowISO();
+  if(!editing){ var base=slugify(rec.nome+"-"+arsMunName(rec.mun))||"lugar", id=base, n=2; while(ars.dados.locais.some(function(x){return x.id===id;})) id=base+"-"+(n++); rec.id=id; } else rec.id=editing;
+  var btn=$("#arsSave"); btn.disabled=true; btn.textContent="Publicando…";
+  arsCommit(function(d){
+    var i=-1; d.locais.forEach(function(x,j){ if(x.id===rec.id) i=j; });
+    rec.atualizadoEm=now;
+    if(i>=0){ rec.criadoEm=d.locais[i].criadoEm||now; d.locais[i]=rec; } else { rec.criadoEm=now; d.locais.push(rec); }
+  },(editing?"Acessibilidade RS: atualiza ":"Acessibilidade RS: inclui ")+rec.nome).then(function(){
+    toast((editing?"Lugar atualizado":"Lugar publicado")+". O site atualiza em 1 a 2 minutos.","ok");
+    logActivity("acessibilidade",(editing?"Atualizou ":"Incluiu ")+rec.nome);
+    ars.editingId=null; arsRender();
+  }).catch(function(e){ btn.disabled=false; btn.textContent="Salvar e publicar"; msg.innerHTML='<div class="msg err">'+esc(e.message)+'</div>'; });
+}
+
+/* ---------- Importar pedido (mensagem do formulário do site) ---------- */
+function arsPedido(box){
+  box.innerHTML='<div class="panel"><h3>Importar pedido de cadastro</h3>'+
+    '<p class="muted">Os pedidos feitos em “Cadastre seu negócio” chegam no e-mail do Formspree ou no WhatsApp. Cole a mensagem inteira aqui para preencher o formulário. Nada é publicado antes de você conferir e salvar.</p>'+
+    '<div class="field"><label for="arsImp">Mensagem recebida</label><textarea id="arsImp" rows="12"></textarea></div>'+
+    '<div id="arsImpMsg"></div><button class="btn" id="arsImpGo">Preencher formulário</button></div>';
+  $("#arsImpGo").addEventListener("click",function(){
+    var A=window.ARS, map={};
+    $("#arsImp").value.split(/\r?\n/).forEach(function(l){ var i=l.indexOf(":"); if(i<1) return; var k=arsNorm(l.slice(0,i)).replace(/^[-*•\s]+/,""), v=l.slice(i+1).trim(); if(!v) return; (map[k]=map[k]||[]).push(v); });
+    function get(){ for(var i=0;i<arguments.length;i++){ if(map[arguments[i]]) return map[arguments[i]][0]; } return ""; }
+    var nome=get("estabelecimento");
+    if(!nome){ $("#arsImpMsg").innerHTML='<div class="msg err">Não encontrei a linha “Estabelecimento: …”. Cole a mensagem completa do pedido.</div>'; return; }
+    var tipo=arsNorm(get("tipo de lugar","tipo_lugar")), cat=A.CATS.filter(function(c){ return arsNorm(c[1])===tipo; })[0];
+    var recs=[];
+    Object.keys(map).forEach(function(k){
+      if(k!=="recurso" && k.indexOf("recurso_")!==0) return;
+      map[k].forEach(function(v){ var key=k.indexOf("recurso_")===0?k.slice(8):null;
+        if(key&&A.REC[key]){ if(recs.indexOf(key)<0) recs.push(key); return; }
+        Object.keys(A.REC).forEach(function(r){ if(arsNorm(A.REC[r])===arsNorm(v)&&recs.indexOf(r)<0) recs.push(r); });
+      });
+    });
+    var cidade=get("cidade");
+    ars.pendente={ nome:nome, categoria:cat?cat[0]:"", mun:arsMunCod(cidade), cidade:cidade, endereco:get("endereco"), contato:get("telefone"), site:get("site"),
+      recursos:recs, verificado:false, obs:get("observacoes"), responsavel:get("responsavel","nome"), email:get("e-mail","email") };
+    ars.editingId=null; ars.tab="lugares"; arsRender();
+    $("#arsForm").scrollIntoView({behavior:"smooth"});
+    toast("Formulário preenchido. Confira e publique.","ok");
+  });
+}
+
+/* ---------- Selo FADERS: municipios ---------- */
+function arsFaders(box){
+  var A=window.ARS, M=ars.dados.municipios;
+  var stOpts=Object.keys(A.MST).map(function(k){return '<option value="'+k+'">'+esc(A.MST[k])+'</option>';}).join("");
+  var cods=Object.keys(M).sort(function(a,b){ return arsMunName(a).localeCompare(arsMunName(b),"pt-BR"); });
+  box.innerHTML='<form class="panel" id="arsMunForm" novalidate><h3>Município no Selo Estadual (FADERS)</h3>'+
+    '<p class="muted">Situação dos municípios no programa oficial do Estado. Aparece na página “Como avaliamos” e na ficha de cada cidade.</p>'+
+    '<div class="ars-grid">'+
+      arsField("arsm-mun","Município *",'<input id="arsm-mun" list="arsMunList" autocomplete="off">')+
+      arsField("arsm-st","Situação",'<select id="arsm-st">'+stOpts+'</select>')+
+      arsField("arsm-data","Data da adesão",'<input id="arsm-data" placeholder="2025-10-15">')+
+      arsField("arsm-fonte","Fonte (link)",'<input id="arsm-fonte" type="url" placeholder="https://">')+
+      arsField("arsm-obs","Observação",'<textarea id="arsm-obs" rows="2"></textarea>',true)+
+    '</div><div id="arsmMsg"></div><button class="btn" type="submit">Salvar município</button></form>'+
+    '<div class="panel"><h3>Municípios informados <small>'+cods.length+'</small></h3>'+(cods.length?'<div style="overflow-x:auto"><table><thead><tr><th>Município</th><th>Situação</th><th>Data</th><th></th></tr></thead><tbody>'+
+      cods.map(function(c){ var i=M[c]; return '<tr><td>'+esc(arsMunName(c))+'</td><td>'+esc(A.MST[i.status]||i.status)+'</td><td>'+esc(i.data||"—")+'</td><td style="white-space:nowrap"><button class="btn ghost sm" data-arsm-edit="'+c+'">Editar</button> <button class="btn danger sm" data-arsm-del="'+c+'">Remover</button></td></tr>'; }).join("")+
+      '</tbody></table></div>':'<p class="empty">Nenhum município informado.</p>')+'</div>';
+  $("#arsMunForm").addEventListener("submit",function(e){
+    e.preventDefault();
+    var cod=arsMunCod($("#arsm-mun").value);
+    if(!cod){ $("#arsmMsg").innerHTML='<div class="msg err">Escolha um município da lista.</div>'; return; }
+    var item={ status:$("#arsm-st").value, data:$("#arsm-data").value.trim(), fonte:$("#arsm-fonte").value.trim(), obs:$("#arsm-obs").value.trim(), atualizadoEm:nowISO() };
+    arsCommit(function(d){ d.municipios[cod]=item; },"Acessibilidade RS: selo estadual em "+arsMunName(cod)).then(function(){ toast(arsMunName(cod)+" salvo.","ok"); arsRender(); })
+      .catch(function(er){ $("#arsmMsg").innerHTML='<div class="msg err">'+esc(er.message)+'</div>'; });
+  });
+  $all("[data-arsm-edit]",box).forEach(function(b){ b.addEventListener("click",function(){ var c=b.getAttribute("data-arsm-edit"), i=M[c]||{}; $("#arsm-mun").value=arsMunName(c); $("#arsm-st").value=i.status||"adesao"; $("#arsm-data").value=i.data||""; $("#arsm-fonte").value=i.fonte||""; $("#arsm-obs").value=i.obs||""; $("#arsm-mun").focus(); }); });
+  $all("[data-arsm-del]",box).forEach(function(b){ b.addEventListener("click",function(){
+    var c=b.getAttribute("data-arsm-del"); if(!confirm("Remover "+arsMunName(c)+" da lista do selo estadual?")) return;
+    arsCommit(function(d){ delete d.municipios[c]; },"Acessibilidade RS: remove "+arsMunName(c)+" do selo estadual").then(function(){ toast("Município removido.","ok"); arsRender(); }).catch(function(er){ toast(er.message,"err"); });
+  }); });
+}
+
+/* ---------- Resumo por regiao ---------- */
+function arsResumo(box){
+  var A=window.ARS, tot={3:0,2:0,1:0,0:0,f:0,t:0};
+  var rows=A.REG_ORDER.map(function(r){
+    var l=ars.dados.locais.filter(function(p){return arsReg(p.mun)===r;}), c={3:0,2:0,1:0,0:0}, f=0;
+    l.forEach(function(p){ c[arsNivel(p)]++; if(p.faders) f++; });
+    [3,2,1,0].forEach(function(n){ tot[n]+=c[n]; }); tot.f+=f; tot.t+=l.length;
+    return '<tr><td>'+esc(A.REGIOES[r].nome)+'</td><td>'+c[3]+'</td><td>'+c[2]+'</td><td>'+c[1]+'</td><td>'+c[0]+'</td><td>'+f+'</td><td><b>'+l.length+'</b></td></tr>';
+  }).join("");
+  box.innerHTML='<div class="panel"><h3>Resumo por região</h3><div style="overflow-x:auto"><table><thead><tr><th>Região</th><th>Plena</th><th>Boa</th><th>Básica</th><th>Em análise</th><th>Selo FADERS</th><th>Total</th></tr></thead><tbody>'+rows+
+    '<tr><td><b>Total</b></td><td><b>'+tot[3]+'</b></td><td><b>'+tot[2]+'</b></td><td><b>'+tot[1]+'</b></td><td><b>'+tot[0]+'</b></td><td><b>'+tot.f+'</b></td><td><b>'+tot.t+'</b></td></tr></tbody></table></div>'+
+    '<p class="muted" style="margin-top:14px">Última atualização do guia: '+esc(fmtDate(ars.dados.atualizadoEm))+'</p></div>';
 }
 
 /* ===================================================================
