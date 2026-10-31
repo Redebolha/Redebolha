@@ -19,12 +19,12 @@
 <meta property="og:description" content="Guia gratuito, por região, de lugares preparados para receber pessoas com deficiência e mobilidade reduzida. Tem um negócio acessível? Cadastre de graça. Uma iniciativa da Rede Bolha.">
 <meta property="og:url" content="https://redebolha.com.br/acessibilidade-rs/">
 <!-- Imagem da prévia do link (Facebook, WhatsApp, LinkedIn, X): 1200x630 -->
-<meta property="og:image" content="https://redebolha.com.br/img/og-acessibilidade-rs.jpg">
+<meta property="og:image" content="https://redebolha.com.br/img/og-acessibilidade-rs.jpg?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Acessibilidade RS: onde dá para ir no Rio Grande do Sul. Mapa do RS com sete regiões e marcadores nas cidades, e os ícones de mobilidade, visão, audição e autismo.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://redebolha.com.br/img/og-acessibilidade-rs.jpg">
+<meta name="twitter:image" content="https://redebolha.com.br/img/og-acessibilidade-rs.jpg?v=2">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -50,10 +50,13 @@
   --ink: #FFFFFF;
   --muted: #CFD8EA;       /* 13:1 sobre o fundo */
   --line: #34507F;
-  --accent: #FFDF00;      /* amarelo da bandeira: ação, foco, aba ativa */
+  --accent: #FFF500;      /* amarelo da bandeira do RS: ação, foco, aba ativa (17:1 sobre o fundo) */
+  --rs-verde: #00923F;    /* bandeira do RS: só na faixa do topo e na bandeira */
+  --rs-vermelho: #DA251D; /* acento decorativo; nunca indica nível nem erro */
+  --rs-amarelo: #FFF500;
   --accent-ink: #050E22;
   --link: #FFE566;
-  --focus: #FFDF00;
+  --focus: #FFF500;
   --n3: #00E07A;          /* plena: verde vivo, "pode ir" */
   --n2: #2EE6FF;          /* boa: ciano, confiança */
   --n1: #FF9F1C;          /* básica: laranja, atenção */
@@ -100,6 +103,11 @@ p { margin: 0; }
 
 /* Topo */
 .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--bg); border-bottom: 2px solid var(--line); }
+/* Faixa com as cores da bandeira do RS, em diagonal como no pano */
+.top::after { content: ""; display: block; height: 6px; margin-bottom: -2px; background: linear-gradient(100deg, var(--rs-verde) 0 33.4%, var(--rs-vermelho) 33.4% 66.7%, var(--rs-amarelo) 66.7%); }
+:root[data-contrast="alto"] .top::after { display: none; }
+@media (max-width: 359px) { .brand .rs-flag { display: none; } }
+.brand .rs-flag { display: inline-block; width: 30px; height: 21px; margin-left: .45rem; vertical-align: -2px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(255, 255, 255, .4); }
 .top .bar { display: flex; align-items: center; gap: 1rem; padding-block: .65rem; }
 .brand { display: flex; align-items: center; gap: .7rem; min-width: 0; text-decoration: none; color: var(--ink); }
 .brand svg { flex: none; }
@@ -138,9 +146,9 @@ main:focus { outline: none; }
 #map.dragging { cursor: grabbing; }
 @media (pointer: coarse) { #map { touch-action: pan-y; } }
 #map .mun { fill: transparent; stroke: var(--mun-line); stroke-width: .7; vector-effect: non-scaling-stroke; cursor: pointer; }
-#map .mun:hover { fill: rgba(255, 223, 0, .22); }
+#map .mun:hover { fill: rgba(255, 245, 0, .22); }
 #map .mun.tem { fill: rgba(255, 255, 255, .07); }
-#map .mun.sel { stroke: var(--accent); stroke-width: 3.5; fill: rgba(255, 223, 0, .18); }
+#map .mun.sel { stroke: var(--accent); stroke-width: 3.5; fill: rgba(255, 245, 0, .18); }
 #map .regline { fill: none; stroke: var(--reg-line); stroke-opacity: .9; stroke-width: 2.2; vector-effect: non-scaling-stroke; pointer-events: none; }
 #map .rsline { fill: none; stroke: var(--reg-line); stroke-width: 2.6; vector-effect: non-scaling-stroke; pointer-events: none; }
 #map .reg.dim { opacity: .35; }
@@ -329,8 +337,8 @@ footer { border-top: 2px solid var(--line); padding-block: 1.25rem 2rem; font-si
 <header class="top">
   <div class="wrap"><div class="inner bar">
     <a class="brand" href="#mapa">
-      <svg width="42" height="42" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="9" fill="#FFDF00"/><circle cx="17" cy="8.5" r="2.7" fill="#050E22"/><path d="M15 12.5h4l-.6 6h5.2l2.6 6.8-2.2.8-2-5.1h-6.3z" fill="#050E22"/><path d="M13.6 15.6a6.7 6.7 0 1 0 8.9 8.7" fill="none" stroke="#050E22" stroke-width="2.4" stroke-linecap="round"/></svg>
-      <div><b>Acessibilidade RS</b><span>Guia de lugares acessíveis · <em>Rede Bolha</em></span></div>
+      <svg width="42" height="42" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="9" fill="#FFF500"/><circle cx="17" cy="8.5" r="2.7" fill="#050E22"/><path d="M15 12.5h4l-.6 6h5.2l2.6 6.8-2.2.8-2-5.1h-6.3z" fill="#050E22"/><path d="M13.6 15.6a6.7 6.7 0 1 0 8.9 8.7" fill="none" stroke="#050E22" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <div><b>Acessibilidade RS<img class="rs-flag" src="/img/bandeira-rs.webp" width="30" height="21" alt="" aria-hidden="true"></b><span>Guia de lugares acessíveis · <em>Rede Bolha</em></span></div>
     </a>
     <div class="tools" role="group" aria-label="Ajustes de leitura">
       <button class="tbtn" id="fs-down" type="button" aria-label="Diminuir texto">A−</button>
