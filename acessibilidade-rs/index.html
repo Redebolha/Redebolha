@@ -264,6 +264,21 @@ tr:last-child td, tr:last-child th { border-bottom: 0; }
 .okbox { border: 2px solid var(--n3); background: rgba(0, 224, 122, .1); border-radius: var(--radius); padding: 1rem; }
 .copybox { white-space: pre-wrap; font-family: var(--font-mono); font-size: .9rem; background: var(--sunken); border: 2px solid var(--line); border-radius: 10px; padding: .85rem; overflow-wrap: anywhere; }
 
+/* Nível calculado no cadastro: rótulo e selo lado a lado, dimensões na linha de baixo (corrige o selo sobreposto ao texto) */
+.calc { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem .6rem; }
+.calc > .hint:last-child { flex-basis: 100%; }
+
+/* Apoio por Pix */
+.apoio { max-width: 68ch; background: var(--surface); border: 2px solid var(--line); border-left: 8px solid var(--accent); border-radius: var(--radius); padding: 1.1rem 1.2rem; display: flex; flex-direction: column; gap: .7rem; }
+.apoio h3 { margin: 0; font-size: 1.15rem; }
+.apoio p { margin: 0; }
+.pix { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .75rem; background: var(--sunken); border: 2px dashed var(--accent); border-radius: 10px; padding: .6rem .8rem; }
+.pix .rot { font-size: .8rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); flex-basis: 100%; }
+.pix code { font-family: var(--font-mono); font-size: clamp(.85rem, 3.6vw, 1.05rem); font-weight: 600; color: var(--ink); overflow-wrap: anywhere; }
+.pix .btn { margin-left: auto; }
+@media (max-width: 560px) { .apoio { padding: 1rem; } }
+footer .pixlink { background: none; border: 0; padding: 0; font: inherit; font-weight: 800; color: var(--link); text-decoration: underline; cursor: pointer; }
+
 .toast { position: fixed; left: 50%; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--accent); color: var(--accent-ink); padding: .8rem 1.2rem; border-radius: 10px; font-weight: 800; z-index: 60; max-width: calc(100% - 32px); }
 footer { border-top: 2px solid var(--line); padding-block: 1.25rem 2rem; font-size: .92rem; color: var(--muted); }
 
@@ -436,8 +451,19 @@ footer { border-top: 2px solid var(--line); padding-block: 1.25rem 2rem; font-si
     <p class="eyebrow">Hotéis, restaurantes, lojas, eventos, transporte e serviços</p>
     <h2 id="h-cad">Cadastre seu negócio no guia</h2>
     <div class="prose"><p>Marque o que o seu espaço já oferece. A equipe confere as informações e publica o lugar no mapa. O cadastro é gratuito.</p></div>
+    <aside class="apoio" aria-labelledby="h-apoio">
+      <h3 id="h-apoio">Ajude a Acessibilidade RS a chegar a mais cidades</h3>
+      <p>Quem tem deficiência ou mobilidade reduzida não deveria descobrir na porta que não consegue entrar. Este guia existe para mudar isso, e é uma iniciativa independente da Rede Bolha. Cada lugar conferido, cada cidade nova no mapa e cada pessoa que sai de casa sabendo para onde pode ir dependem de quem acredita que o Rio Grande do Sul tem que ser de todos.</p>
+      <p>Se este projeto faz sentido para você, para a sua família ou para o seu negócio, contribua com um Pix de qualquer valor. Toda ajuda conta.</p>
+      <div class="pix">
+        <span class="rot">Chave Pix (e-mail)</span>
+        <code>redebolhaoficial@gmail.com</code>
+        <button class="btn small" type="button" data-copiar="redebolhaoficial@gmail.com">Copiar chave Pix</button>
+      </div>
+      <p class="hint">O cadastro continua gratuito, com ou sem contribuição. O Pix aparece em nome de Romário Cruz, criador da Rede Bolha.</p>
+    </aside>
   </div>
-  <form id="f-cad" class="stack rb-form" data-rb-lista="acessibilidade" data-rb-assunto="Cadastro Acessibilidade RS" data-rb-ok="Cadastro recebido. A equipe confere as informações e avisa quando o lugar entrar no mapa." novalidate>
+  <form id="f-cad" class="stack rb-form" data-rb-lista="acessibilidade" data-rb-assunto="Cadastro Acessibilidade RS" data-rb-ok="Cadastro recebido. A equipe confere as informações e avisa quando o lugar entrar no mapa. Se puder, apoie o guia com um Pix de qualquer valor para redebolhaoficial@gmail.com." novalidate>
     <fieldset>
       <legend>Seu negócio</legend>
       <div class="formgrid">
@@ -457,7 +483,7 @@ footer { border-top: 2px solid var(--line); padding-block: 1.25rem 2rem; font-si
         <label class="f" for="c-email">E-mail <span class="req">*</span><input type="email" id="c-email" name="email" data-rotulo="E-mail" required autocomplete="email"></label>
         <label class="f full" for="c-msg">Observações<textarea id="c-msg" name="observacoes" data-rotulo="Observações" placeholder="Horários, fotos disponíveis, reformas previstas…"></textarea></label>
       </div>
-      <div class="checks" style="margin-top:1rem">
+      <div class="checks" style="margin-top:1rem;grid-template-columns:1fr">
         <label><input type="checkbox" id="c-lgpd" name="lgpd" value="Autorizo o uso dos dados para análise e publicação" data-rotulo="LGPD" required> Autorizo o uso destes dados para análise do cadastro e publicação das informações do estabelecimento (LGPD) <span class="req">*</span></label>
       </div>
     </fieldset>
@@ -492,6 +518,7 @@ footer { border-top: 2px solid var(--line); padding-block: 1.25rem 2rem; font-si
 
 <footer class="wrap"><div class="inner stack">
   <p><b>Acessibilidade RS</b> · um guia da <a href="/">Rede Bolha</a>. Os níveis do guia são independentes do Selo Estadual de Acessibilidade da FADERS, que aparece como informação complementar.</p>
+  <p><b>Apoie a Acessibilidade RS:</b> contribua com um Pix de qualquer valor para <button class="pixlink" type="button" data-copiar="redebolhaoficial@gmail.com" aria-label="Copiar a chave Pix redebolhaoficial@gmail.com">redebolhaoficial@gmail.com</button>. É assim que o guia segue crescendo.</p>
   <p><a href="/contato/">Contato</a> · <a href="/politica-de-privacidade.html">Política de Privacidade</a> · <a href="/termos-de-uso.html">Termos de Uso</a></p>
 </div></footer>
 
@@ -500,5 +527,16 @@ footer { border-top: 2px solid var(--line); padding-block: 1.25rem 2rem; font-si
 <script src="/acessibilidade-rs/regras.js"></script>
 <script src="/acessibilidade-rs/app.js"></script>
 <script src="/js/rb-lista.js"></script>
+<script>
+/* Copiar a chave Pix (botões com data-copiar) */
+document.addEventListener('click', function (e) {
+  var b = e.target.closest && e.target.closest('[data-copiar]');
+  if (!b) return;
+  var v = b.getAttribute('data-copiar'), t = document.getElementById('toast');
+  function ok() { if (!t) return; t.textContent = 'Chave Pix copiada. Obrigado por apoiar a Acessibilidade RS!'; t.hidden = false; clearTimeout(window.__pixT); window.__pixT = setTimeout(function () { t.hidden = true; }, 3800); }
+  function manual() { window.prompt('Copie a chave Pix:', v); }
+  if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(v).then(ok, manual); else manual();
+});
+</script>
 </body>
 </html>
