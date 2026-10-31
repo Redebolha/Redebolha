@@ -542,6 +542,9 @@
   .rb-destaque--topo .eyebrow{margin-bottom:.4rem}
   /* Título longo (mais de 30 letras): mesma pegada, um degrau menor */
   .rb-destaque--manchete .rb-destaque-titulo--longo{font-size:clamp(2.35rem,6.6vw,4.5rem);line-height:.98}
+  /* Dois botões lado a lado no destaque; no celular, um embaixo do outro */
+  .rb-destaque-acoes{display:flex;flex-wrap:wrap;gap:12px}
+  @media(max-width:560px){.rb-destaque-acoes .btn{width:100%;justify-content:center}}
 </style>
 <style>
 /* LOJAS — o mesmo bloco existe nos artigos (artigos/blog.css); a capa nao
@@ -1166,10 +1169,12 @@
   </div>
 </nav>
 <div class="hyr" id="livro-homem">
-<!-- TIRA DE NOTICIAS REDE BOLHA — logo abaixo do menu, acima da tira da amostra -->
-<a class="tira-ferramenta tira-noticia" href="/economia/o-dia-em-que-a-bolsa-puxou-o-freio-de-mao.html" data-rb="noticia">
-  <span class="tira-selo"><i aria-hidden="true"></i>Fechamento 26/10</span>
-  <span class="tira-txt"><b>Ibovespa −13,88%</b> · Dólar R$ 5,40 (+8,21%) · Risco-país +26%. O pior dia da bolsa em seis anos</span>
+<!-- TIRA DE NOTICIAS REDE BOLHA — logo abaixo do menu, acima da tira da amostra
+     Lançamento do Acessibilidade RS (31/10/2026). A notícia anterior
+     (bolsa, 26/10) segue na seção Economia, mais abaixo na capa. -->
+<a class="tira-ferramenta tira-noticia" href="/acessibilidade-rs/#mapa" data-rb="acessibilidade">
+  <span class="tira-selo"><i aria-hidden="true"></i>Novo serviço</span>
+  <span class="tira-txt"><b>Acessibilidade RS</b> · o guia gratuito de lugares acessíveis do Rio Grande do Sul. Veja no mapa</span>
   <span class="tira-seta">→</span>
 </a>
 <!-- TIRA DA AMOSTRA — o capitulo 1 aberto, logo abaixo da tira de ferramenta -->
@@ -1178,30 +1183,35 @@
   <span class="tira-txt">O primeiro capítulo de <b>Homem, Você Não É Ridículo</b> — “A Máscara que Você Usa Todo Dia”</span>
   <span class="tira-seta">→</span>
 </a>
-<!-- NOTICIA EM DESTAQUE — O dia em que a bolsa puxou o freio de mão (26/10/2026)
+<!-- DESTAQUE DA CAPA — Lançamento do Acessibilidade RS (31/10/2026)
      Manchete no topo da capa, logo abaixo das tiras e antes da bandeira:
      é a primeira coisa que o leitor vê, como na capa de jornal.
      Variante "manchete" (rb-destaque--manchete) + "topo" (rb-destaque--topo,
      menos respiro em cima). Título longo usa rb-destaque-titulo--longo.
+     A manchete anterior (bolsa, 26/10) está no histórico do GitHub e
+     continua listada na seção Economia.
      Para trocar a notícia: troque link, textos, placar e imagem deste bloco. -->
-<section class="sec rb-destaque rb-destaque--manchete rb-destaque--topo" aria-label="Notícia em destaque">
+<section class="sec rb-destaque rb-destaque--manchete rb-destaque--topo" aria-label="Destaque: Acessibilidade RS">
   <div class="wrap">
-    <p class="eyebrow">Notícia em destaque</p>
+    <p class="eyebrow">Novo na Rede Bolha</p>
     <div class="rb-destaque-card">
-      <span class="rb-destaque-tag">Economia &middot; Opinião &middot; 26 de outubro de 2026</span>
-      <h2 class="rb-destaque-titulo rb-destaque-titulo--longo"><a href="/economia/o-dia-em-que-a-bolsa-puxou-o-freio-de-mao.html">O dia em que a bolsa <em>puxou o freio de&nbsp;mão</em></a></h2>
-      <p class="rb-destaque-sub">Lula reeleito, circuit breaker na B3 e dólar a R$ 5,40. O que o mercado avisou na primeira hora da segunda-feira</p>
-      <div class="rb-placar" role="group" aria-label="Os três números do pregão de 26 de outubro">
-        <div><b><span class="l">−13,88%</span></b><span>Ibovespa no dia</span></div>
-        <div><b><span class="l">R$ 5,40</span></b><span>Dólar (+8,21%)</span></div>
-        <div><b><span class="l">+26%</span></b><span>Risco-país (CDS 5 anos)</span></div>
+      <span class="rb-destaque-tag">Acessibilidade RS &middot; Serviço gratuito</span>
+      <h2 class="rb-destaque-titulo rb-destaque-titulo--longo"><a href="/acessibilidade-rs/#mapa">Antes de sair de casa, saiba <em>onde dá para&nbsp;entrar</em></a></h2>
+      <p class="rb-destaque-sub">O guia de hotéis, restaurantes, praias, comércio e serviços preparados para receber pessoas com deficiência, nas sete regiões do Rio Grande do Sul</p>
+      <div class="rb-placar" role="group" aria-label="O Acessibilidade RS em três números">
+        <div><b><span class="f">7</span></b><span>Regiões do RS no mapa</span></div>
+        <div><b><span class="f">4</span></b><span>Tipos de necessidade</span></div>
+        <div><b><span class="f">R$ 0</span></b><span>Para usar e cadastrar</span></div>
       </div>
-      <a class="rb-destaque-img-link" href="/economia/o-dia-em-que-a-bolsa-puxou-o-freio-de-mao.html"><img class="rb-destaque-img" src="/economia/img/freio-de-mao-infografico.jpg" width="1536" height="1024" decoding="async" alt="Infográfico “O dia em que a bolsa puxou o freio de mão”: resultado do 2º turno, Lula 51,79% e Flávio Bolsonaro 48,21%; tela com o aviso de circuit breaker, negociações suspensas por 30 minutos; Ibovespa −13,88% (176.608 pontos), dólar R$ 5,40 (+8,21%) e risco-país +26%, maior nível desde junho de 2025. Abaixo, o que o dólar mais caro encarece no dia a dia, quem ganhou e quem perdeu na bolsa, o que pesa no horizonte, o Congresso mais conservador a partir de 2027 e três conselhos para o bolso."></a>
-      <p class="rb-destaque-texto">Às 10h05, a B3 travou os negócios pela primeira vez desde a pandemia. No discurso da vitória, nenhuma palavra sobre ajuste das contas públicas, e o mercado leu o recado. <strong>Dólar a R$ 5,40 não é número de economista: é o pãozinho, o remédio e o crediário.</strong> O que muda daqui pra frente, e o que fazer com o seu dinheiro agora.</p>
-      <p class="rb-destaque-assinatura">Por Adm. Romário Cruz &middot; Jornalista MTb 0021682/RS &middot; Texto de opinião</p>
-      <a class="btn btn--lg" href="/economia/o-dia-em-que-a-bolsa-puxou-o-freio-de-mao.html">Ler a análise completa
-        <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
-      </a>
+      <a class="rb-destaque-img-link" href="/acessibilidade-rs/#mapa"><img class="rb-destaque-img" src="/img/destaque-capa-acessibilidade-rs.jpg" width="1600" height="900" decoding="async" alt="Mapa do Rio Grande do Sul dividido em sete regiões coloridas, com marcadores amarelos nas cidades que já têm lugares no guia. Ao lado, a busca por cidade ou lugar, os três níveis de acessibilidade (plena, boa e básica) e as quatro perguntas da avaliação: mobilidade, visual, auditiva e intelectual e TEA. Embaixo, o aviso: cadastro gratuito para negócios."></a>
+      <p class="rb-destaque-texto">Quem tem deficiência ou mobilidade reduzida costuma descobrir na porta se vai conseguir entrar. O Acessibilidade RS reúne, por região e por cidade, os lugares que se prepararam para receber todo mundo. Cada um é avaliado em quatro perguntas: mobilidade, visão, audição e deficiência intelectual ou autismo. <strong>Tem um hotel, restaurante, loja ou espaço de eventos acessível? O cadastro é gratuito e coloca o seu negócio no mapa.</strong></p>
+      <p class="rb-destaque-assinatura">Uma iniciativa independente da Rede Bolha &middot; Por Adm. Romário Cruz</p>
+      <div class="rb-destaque-acoes">
+        <a class="btn btn--lg" href="/acessibilidade-rs/#mapa">Abrir o mapa
+          <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+        </a>
+        <a class="btn btn--lg btn--ghost" href="/acessibilidade-rs/#cadastro">Cadastrar meu negócio</a>
+      </div>
     </div>
   </div>
 </section>
