@@ -343,6 +343,10 @@
 .rb-nav a.lnk:hover{color:#FFE566;}
 .rb-nav .cta{font-family:'Oswald',sans-serif;font-weight:600;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:#050E22;background:linear-gradient(135deg,#FFE566,#FFDF00);padding:.5rem 1rem;border-radius:3px;text-decoration:none;white-space:nowrap;}
 @media(max-width:860px){.rb-nav .inner{flex-direction:column;align-items:flex-start;}.rb-nav ul{gap:.8rem 1rem;}}
+/* Menu: Baixar o app. Verde = "seguro, pode ir"; destaca sem disputar com A Carta (amarelo) */
+.rb-nav a.lnk.rb-app{display:inline-flex;align-items:center;gap:6px;border:1px solid #2FBF6B;border-radius:3px;padding:5px 12px;color:#9CF2C0;text-decoration:none;transition:background .2s,color .2s}
+.rb-nav a.lnk.rb-app:hover,.rb-nav a.lnk.rb-app:focus-visible{background:#2FBF6B;color:#050E22}
+.rb-nav a.lnk.rb-app svg{flex:none;margin-top:-1px}
 /* ===== LOGOMARCA REDE BOLHA - identidade visual (topo + rodapé) ===== */
 :root{--rb-logo:url("/logo-rede-bolha.png");--rb-blue:#12295a}
 .rb-nav .brand{display:inline-flex;align-items:center;gap:12px}
@@ -1198,9 +1202,28 @@
 <nav class="rb-nav" aria-label="Navegação principal">
   <div class="inner">
     <a class="brand" href="/"><b>Rede</b> Bolha</a>
-    <ul><li><a class="lnk" href="/financas/">Homem e Dinheiro</a></li><li><a class="lnk" href="/masculinidade/">Masculinidade</a></li><li><a class="lnk" href="/economia/">Economia</a></li><li><a class="lnk" href="/ferramentas/">Ferramentas</a></li><li><a class="lnk" href="/artigos/">Artigos</a></li><li><a class="lnk" href="/acessibilidade-rs/">Acessibilidade RS</a></li><li><a class="lnk" href="/sobre-o-autor.html">Sobre</a></li><li><a class="lnk rb-entrar" href="/a-carta/">A Carta</a></li></ul>
+    <ul><li><a class="lnk" href="/financas/">Homem e Dinheiro</a></li><li><a class="lnk" href="/masculinidade/">Masculinidade</a></li><li><a class="lnk" href="/economia/">Economia</a></li><li><a class="lnk" href="/ferramentas/">Ferramentas</a></li><li><a class="lnk" href="/artigos/">Artigos</a></li><li><a class="lnk" href="/acessibilidade-rs/">Acessibilidade RS</a></li><li><a class="lnk" href="/sobre-o-autor.html">Sobre</a></li><li><a class="lnk rb-app" href="/instalar-app.html" data-rb="app" title="Instale a Rede Bolha no celular"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Baixar o app</a></li><li><a class="lnk rb-entrar" href="/a-carta/">A Carta</a></li></ul>
   </div>
 </nav>
+<script>
+/* Menu "Baixar o app": no Android e no Chrome do computador abre a instalação
+   na hora; no iPhone e nos outros casos leva à página /instalar-app.html com o
+   passo a passo. Se a pessoa já está usando o app instalado, o item some. */
+(function(){
+  var a=document.querySelector('.rb-nav .rb-app');if(!a)return;
+  var li=a.parentNode,adiado=null;
+  var instalado=(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||navigator.standalone===true;
+  if(instalado){li.style.display='none';return;}
+  window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();adiado=e;});
+  a.addEventListener('click',function(e){
+    if(!adiado)return;
+    e.preventDefault();
+    try{adiado.prompt();adiado.userChoice.then(function(){adiado=null;});}
+    catch(err){location.href=a.href;}
+  });
+  window.addEventListener('appinstalled',function(){li.style.display='none';});
+})();
+</script>
 <div class="hyr" id="livro-homem">
 <!-- TIRA DE NOTICIAS REDE BOLHA — logo abaixo do menu, acima da tira da amostra
      Lançamento do Acessibilidade RS (31/10/2026). A notícia anterior
