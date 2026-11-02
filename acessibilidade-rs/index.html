@@ -317,6 +317,8 @@ tr:last-child td, tr:last-child th { border-bottom: 0; }
 footer .pixlink { background: none; border: 0; padding: 0; font: inherit; font-weight: 800; color: var(--link); text-decoration: underline; cursor: pointer; }
 
 .toast { position: fixed; left: 50%; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--accent); color: var(--accent-ink); padding: .8rem 1.2rem; border-radius: 10px; font-weight: 800; z-index: 60; max-width: calc(100% - 32px); }
+footer .tres { font-family: system-ui, sans-serif; font-weight: 700; color: var(--accent); }
+footer .mio { display: inline-block; vertical-align: -3px; margin-left: .3rem; }
 footer { border-top: 2px solid var(--line); padding-block: 1.25rem 2rem; font-size: .92rem; color: var(--muted); }
 
 @media (max-width: 1080px) { .levels, .dimgrid, .quem { grid-template-columns: repeat(2, minmax(0, 1fr)); } .refs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -640,7 +642,7 @@ footer { border-top: 2px solid var(--line); padding-block: 1.25rem 2rem; font-si
 </main>
 
 <footer class="wrap"><div class="inner stack">
-  <p><b>Acessibilidade RS</b> · uma rede colaborativa da <a href="/">Rede Bolha</a>. As informações do guia não são certificação nem vistoria técnica. O Selo Estadual de Acessibilidade da FADERS aparece à parte, como informação complementar.</p>
+  <p><b>Acessibilidade RS</b> <span class="tres" aria-hidden="true">∴</span><span class="sr">·</span> uma rede colaborativa da <a href="/">Rede Bolha</a><svg class="mio" width="17" height="17" viewBox="-9 -9 18 18" aria-hidden="true" focusable="false"><g fill="#7DB4FF" stroke="#4F86D9" stroke-width=".6"><circle cx="0.00" cy="-4.30" r="3.7"/><circle cx="4.09" cy="-1.33" r="3.7"/><circle cx="2.53" cy="3.48" r="3.7"/><circle cx="-2.53" cy="3.48" r="3.7"/><circle cx="-4.09" cy="-1.33" r="3.7"/></g><circle r="2.5" fill="#FFFFFF"/><circle r="1.5" fill="#FFF500"/></svg>. As informações do guia não são certificação nem vistoria técnica. O Selo Estadual de Acessibilidade da FADERS aparece à parte, como informação complementar.</p>
   <p><b>Apoie a Acessibilidade RS:</b> contribua com um Pix de qualquer valor para <button class="pixlink" type="button" data-copiar="redebolhaoficial@gmail.com" aria-label="Copiar a chave Pix redebolhaoficial@gmail.com">redebolhaoficial@gmail.com</button>. É assim que o guia segue crescendo.</p>
   <p><a href="/contato/">Contato</a> · <a href="/politica-de-privacidade.html">Política de Privacidade</a> · <a href="/termos-de-uso.html">Termos de Uso</a></p>
 </div></footer>
