@@ -1619,8 +1619,9 @@ function arsMunName(cod){ return ars.mun&&ars.mun[cod]?ars.mun[cod].n:"—"; }
 function arsReg(cod){ return ars.mun&&ars.mun[cod]?ars.mun[cod].r:null; }
 function arsMunCod(name){ return ars.munByName[arsNorm(name)]||null; }
 function arsCat(k){ var c=window.ARS.CATS.filter(function(x){return x[0]===k;})[0]; return c?c[1]:"—"; }
-function arsNivel(p){ return window.ARS.avaliar(p.recursos||[]).nivel; }
-function arsNivBadge(n){ var N=window.ARS.NIV[n]; return '<span class="ars-niv n'+n+'">'+esc(N.curto)+(n>0?' '+N.stars:'')+'</span>'; }
+/* Situacao da informacao (c = cadastrado, a = avaliado pela comunidade, v = verificado) */
+function arsSit(p){ return window.ARS.situacao(p||{}); }
+function arsSitBadge(s,n){ var S=window.ARS.SITU[s]; return '<span class="ars-niv s'+s+'">'+esc(S.curto)+(s==="a"&&n?' · '+n:'')+'</span>'; }
 function arsFadBadge(f){ return f&&window.ARS.FAD[f]?'<span class="ars-fad">Selo FADERS '+esc(window.ARS.FAD[f])+'</span>':''; }
 
 function viewAcessibilidade(v){
@@ -1646,9 +1647,9 @@ function viewAcessibilidade(v){
 function arsRender(){
   if(!$("#arsBody")||!ars.dados) return;
   $all("[data-arst]").forEach(function(b){ var on=b.getAttribute("data-arst")===ars.tab; b.classList.toggle("on",on); b.setAttribute("aria-selected",on?"true":"false"); });
-  var L=ars.dados.locais, c={3:0,2:0,1:0,0:0}, f=0;
-  L.forEach(function(p){ c[arsNivel(p)]++; if(p.faders) f++; });
-  $("#arsStats").innerHTML=statCard(L.length,"Lugares no guia")+statCard(c[3],"Plena")+statCard(c[2],"Boa")+statCard(c[1],"Básica")+statCard(f,"Com Selo FADERS");
+  var L=ars.dados.locais, c={v:0,a:0,c:0}, f=0, av=0;
+  L.forEach(function(p){ c[arsSit(p)]++; av+=parseInt(p.avaliacoes,10)||0; if(p.faders) f++; });
+  $("#arsStats").innerHTML=statCard(L.length,"Lugares no guia")+statCard(c.v,"Verificados")+statCard(c.a,"Avaliados pela comunidade")+statCard(c.c,"Cadastrados")+statCard(av,"Avaliações recebidas")+statCard(f,"Com Selo FADERS");
   ({lugares:arsLugares,pedido:arsPedido,faders:arsFaders,resumo:arsResumo}[ars.tab])($("#arsBody"));
 }
 
@@ -1685,11 +1686,13 @@ function arsLugares(box){
         arsField("ars-lon","Longitude",'<input id="ars-lon" inputmode="decimal" placeholder="-51.1794">')+
         arsField("ars-tel","Contato do estabelecimento",'<input id="ars-tel">')+
         arsField("ars-site","Site",'<input id="ars-site" type="url" placeholder="https://">')+
+        arsField("ars-fotos","Fotos (link)",'<input id="ars-fotos" type="url" placeholder="https://">',false,"Aparece como “Ver fotos” na ficha do lugar.")+
       '</div>'+
       arsRecBoxes()+
       '<div class="ars-calc" id="arsCalc" aria-live="polite"></div>'+
       '<div class="ars-grid">'+
-        arsField("ars-ver","Quem conferiu",'<select id="ars-ver"><option value="nao">Informado pelo estabelecimento</option><option value="sim">Conferido pela equipe</option></select>')+
+        arsField("ars-aval","Avaliações da comunidade",'<input id="ars-aval" type="number" min="0" step="1" inputmode="numeric" value="0">',false,"Quantas avaliações de quem visitou você já conferiu. Com 1 ou mais, o lugar vira “Avaliado pela comunidade”.")+
+        arsField("ars-ver","Informações verificadas?",'<select id="ars-ver"><option value="nao">Não: só cadastro ou avaliações</option><option value="sim">Sim: a equipe conferiu fotos e documentos</option></select>')+
         arsField("ars-fad","Selo Estadual FADERS",'<select id="ars-fad">'+fadOpts+'</select>')+
         arsField("ars-fano","Ano do selo estadual",'<input id="ars-fano" inputmode="numeric">')+
         arsField("ars-fonte","Fonte (link)",'<input id="ars-fonte" type="url" placeholder="https://">')+
@@ -1714,7 +1717,7 @@ function arsRows(){
   var list=ars.dados.locais.filter(function(p){ return !q || arsNorm(p.nome+" "+arsMunName(p.mun)).indexOf(q)>=0; }).sort(function(a,b){ return String(a.nome).localeCompare(String(b.nome),"pt-BR"); });
   var box=$("#arsRows");
   if(!list.length){ box.innerHTML='<p class="empty" style="padding:24px">Nenhum lugar. Use o formulário acima para incluir o primeiro.</p>'; return; }
-  box.innerHTML=list.map(function(p){ return '<div class="ars-row"><div class="pn"><b>'+esc(p.nome)+'</b><span>'+esc(arsCat(p.categoria))+' · '+esc(arsMunName(p.mun))+(p.verificado?' · conferido':'')+'</span></div>'+arsNivBadge(arsNivel(p))+arsFadBadge(p.faders)+
+  box.innerHTML=list.map(function(p){ return '<div class="ars-row"><div class="pn"><b>'+esc(p.nome)+'</b><span>'+esc(arsCat(p.categoria))+' · '+esc(arsMunName(p.mun))+'</span></div>'+arsSitBadge(arsSit(p),parseInt(p.avaliacoes,10)||0)+arsFadBadge(p.faders)+
     '<button class="btn ghost sm" data-ars-edit="'+esc(p.id)+'">Editar</button><button class="btn danger sm" data-ars-del="'+esc(p.id)+'">Excluir</button></div>'; }).join("");
   $all("[data-ars-edit]",box).forEach(function(b){ b.addEventListener("click",function(){ ars.editingId=b.getAttribute("data-ars-edit"); arsRender(); $("#arsForm").scrollIntoView({behavior:"smooth"}); }); });
   $all("[data-ars-del]",box).forEach(function(b){ b.addEventListener("click",function(){
@@ -1730,7 +1733,8 @@ function arsCalc(){
   var A=window.ARS, recs=Object.keys(A.REC).filter(function(k){ var c=$("#ars-r-"+k); return c&&c.checked; });
   var av=A.avaliar(recs), SV={2:"atende",1:"parcial",0:"sem informação"};
   var box=$("#arsCalc"); if(!box) return;
-  box.innerHTML='<b style="color:var(--txt)">Nível calculado:</b> '+arsNivBadge(av.nivel)+' <span>'+A.DIMS.map(function(d){return esc(d.nome)+": "+SV[av.v[d.k]];}).join(" · ")+'</span>';
+  var n=Math.max(0,parseInt(($("#ars-aval")||{}).value,10)||0), s=arsSit({ verificado:($("#ars-ver")||{}).value==="sim", avaliacoes:n });
+  box.innerHTML='<b style="color:var(--txt)">Aparece no site como:</b> '+arsSitBadge(s,n)+' <span>'+A.DIMS.map(function(d){return esc(d.nome)+": "+SV[av.v[d.k]];}).join(" · ")+'</span>';
 }
 function arsFill(p,fromImport){
   $("#arsFormTitle").textContent=fromImport?"Incluir lugar (pedido importado)":"Editar lugar";
@@ -1738,6 +1742,7 @@ function arsFill(p,fromImport){
   $("#ars-nome").value=p.nome||""; $("#ars-cat").value=p.categoria||""; $("#ars-mun").value=p.mun?arsMunName(p.mun):(p.cidade||"");
   $("#ars-end").value=p.endereco||""; $("#ars-lat").value=p.lat==null?"":p.lat; $("#ars-lon").value=p.lon==null?"":p.lon;
   $("#ars-tel").value=p.contato||""; $("#ars-site").value=p.site||""; $("#ars-ver").value=p.verificado?"sim":"nao";
+  $("#ars-fotos").value=p.fotos||""; $("#ars-aval").value=Math.max(0,parseInt(p.avaliacoes,10)||0);
   $("#ars-fad").value=p.faders||""; $("#ars-fano").value=p.fadersAno||""; $("#ars-fonte").value=p.fonte||""; $("#ars-obs").value=p.obs||"";
   Object.keys(window.ARS.REC).forEach(function(k){ var c=$("#ars-r-"+k); if(c) c.checked=(p.recursos||[]).indexOf(k)>=0; });
   if(p.responsavel) $("#arsMsg").innerHTML='<div class="msg warn">Pedido de <b>'+esc(p.responsavel)+'</b>'+(p.email?' ('+esc(p.email)+')':'')+'. Esses dados de contato não são publicados no site.</div>';
@@ -1748,7 +1753,8 @@ function arsSave(){
   var latS=$("#ars-lat").value.trim().replace(",","."), lonS=$("#ars-lon").value.trim().replace(",",".");
   var rec={ nome:$("#ars-nome").value.trim(), categoria:$("#ars-cat").value, mun:arsMunCod($("#ars-mun").value), endereco:$("#ars-end").value.trim(),
     contato:$("#ars-tel").value.trim(), site:$("#ars-site").value.trim(), recursos:Object.keys(A.REC).filter(function(k){ var c=$("#ars-r-"+k); return c&&c.checked; }),
-    verificado:$("#ars-ver").value==="sim", faders:$("#ars-fad").value, fadersAno:$("#ars-fano").value?Number($("#ars-fano").value):null,
+    verificado:$("#ars-ver").value==="sim", avaliacoes:Math.max(0,parseInt($("#ars-aval").value,10)||0), fotos:$("#ars-fotos").value.trim(),
+    faders:$("#ars-fad").value, fadersAno:$("#ars-fano").value?Number($("#ars-fano").value):null,
     fonte:$("#ars-fonte").value.trim(), obs:$("#ars-obs").value.trim(), lat:null, lon:null };
   var miss=[]; if(!rec.nome) miss.push("nome"); if(!rec.categoria) miss.push("tipo de lugar"); if(!rec.mun) miss.push("cidade (escolha um nome da lista)");
   if(latS||lonS){ var la=Number(latS), lo=Number(lonS); if(!(la<=-27&&la>=-34&&lo>=-58&&lo<=-49)) miss.push("coordenadas dentro do RS (latitude entre -27 e -34, longitude entre -49 e -58)"); else { rec.lat=la; rec.lon=lo; } }
@@ -1790,7 +1796,7 @@ function arsPedido(box){
     });
     var cidade=get("cidade");
     ars.pendente={ nome:nome, categoria:cat?cat[0]:"", mun:arsMunCod(cidade), cidade:cidade, endereco:get("endereco"), contato:get("telefone"), site:get("site"),
-      recursos:recs, verificado:false, obs:get("observacoes"), responsavel:get("responsavel","nome"), email:get("e-mail","email") };
+      recursos:recs, verificado:false, avaliacoes:0, fotos:get("fotos"), obs:get("observacoes"), responsavel:get("responsavel","nome"), email:get("e-mail","email") };
     ars.editingId=null; ars.tab="lugares"; arsRender();
     $("#arsForm").scrollIntoView({behavior:"smooth"});
     toast("Formulário preenchido. Confira e publique.","ok");
@@ -1803,7 +1809,7 @@ function arsFaders(box){
   var stOpts=Object.keys(A.MST).map(function(k){return '<option value="'+k+'">'+esc(A.MST[k])+'</option>';}).join("");
   var cods=Object.keys(M).sort(function(a,b){ return arsMunName(a).localeCompare(arsMunName(b),"pt-BR"); });
   box.innerHTML='<form class="panel" id="arsMunForm" novalidate><h3>Município no Selo Estadual (FADERS)</h3>'+
-    '<p class="muted">Situação dos municípios no programa oficial do Estado. Aparece na página “Como avaliamos” e na ficha de cada cidade.</p>'+
+    '<p class="muted">Situação dos municípios no programa oficial do Estado. Aparece na página “Como funciona” e na ficha de cada cidade.</p>'+
     '<div class="ars-grid">'+
       arsField("arsm-mun","Município *",'<input id="arsm-mun" list="arsMunList" autocomplete="off">')+
       arsField("arsm-st","Situação",'<select id="arsm-st">'+stOpts+'</select>')+
@@ -1831,15 +1837,15 @@ function arsFaders(box){
 
 /* ---------- Resumo por regiao ---------- */
 function arsResumo(box){
-  var A=window.ARS, tot={3:0,2:0,1:0,0:0,f:0,t:0};
+  var A=window.ARS, tot={v:0,a:0,c:0,f:0,t:0};
   var rows=A.REG_ORDER.map(function(r){
-    var l=ars.dados.locais.filter(function(p){return arsReg(p.mun)===r;}), c={3:0,2:0,1:0,0:0}, f=0;
-    l.forEach(function(p){ c[arsNivel(p)]++; if(p.faders) f++; });
-    [3,2,1,0].forEach(function(n){ tot[n]+=c[n]; }); tot.f+=f; tot.t+=l.length;
-    return '<tr><td>'+esc(A.REGIOES[r].nome)+'</td><td>'+c[3]+'</td><td>'+c[2]+'</td><td>'+c[1]+'</td><td>'+c[0]+'</td><td>'+f+'</td><td><b>'+l.length+'</b></td></tr>';
+    var l=ars.dados.locais.filter(function(p){return arsReg(p.mun)===r;}), c={v:0,a:0,c:0}, f=0;
+    l.forEach(function(p){ c[arsSit(p)]++; if(p.faders) f++; });
+    ["v","a","c"].forEach(function(s){ tot[s]+=c[s]; }); tot.f+=f; tot.t+=l.length;
+    return '<tr><td>'+esc(A.REGIOES[r].nome)+'</td><td>'+c.v+'</td><td>'+c.a+'</td><td>'+c.c+'</td><td>'+f+'</td><td><b>'+l.length+'</b></td></tr>';
   }).join("");
-  box.innerHTML='<div class="panel"><h3>Resumo por região</h3><div style="overflow-x:auto"><table><thead><tr><th>Região</th><th>Plena</th><th>Boa</th><th>Básica</th><th>Em análise</th><th>Selo FADERS</th><th>Total</th></tr></thead><tbody>'+rows+
-    '<tr><td><b>Total</b></td><td><b>'+tot[3]+'</b></td><td><b>'+tot[2]+'</b></td><td><b>'+tot[1]+'</b></td><td><b>'+tot[0]+'</b></td><td><b>'+tot.f+'</b></td><td><b>'+tot.t+'</b></td></tr></tbody></table></div>'+
+  box.innerHTML='<div class="panel"><h3>Resumo por região</h3><div style="overflow-x:auto"><table><thead><tr><th>Região</th><th>Verificado</th><th>Avaliado pela comunidade</th><th>Cadastrado</th><th>Selo FADERS</th><th>Total</th></tr></thead><tbody>'+rows+
+    '<tr><td><b>Total</b></td><td><b>'+tot.v+'</b></td><td><b>'+tot.a+'</b></td><td><b>'+tot.c+'</b></td><td><b>'+tot.f+'</b></td><td><b>'+tot.t+'</b></td></tr></tbody></table></div>'+
     '<p class="muted" style="margin-top:14px">Última atualização do guia: '+esc(fmtDate(ars.dados.atualizadoEm))+'</p></div>';
 }
 
