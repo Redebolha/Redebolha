@@ -234,6 +234,15 @@ details.more[open] > summary::after { content: "−"; }
 .pitem { display: block; width: 100%; text-align: left; font: inherit; color: var(--ink); background: var(--sunken); border: 2px solid var(--line); border-radius: 10px; padding: .65rem .75rem; cursor: pointer; }
 .pitem:hover { border-color: var(--accent); }
 .pitem b { display: block; font-weight: 800; }
+/* Ícone do tipo de lugar ao lado do nome (hotel, câmara, praia…) */
+.ttl { display: flex; align-items: center; gap: .55rem; }
+.pitem b.ttl { display: flex; gap: .45rem; }
+.cat-ic { flex: none; display: inline-grid; place-items: center; width: 2.3rem; height: 2.3rem; border-radius: 9px; background: var(--sunken); border: 2px solid var(--line); color: var(--accent); }
+.cat-ic svg { display: block; }
+.pitem .cat-ic { width: 1.85rem; height: 1.85rem; border-radius: 7px; }
+h2.ttl .cat-ic { width: 2.5rem; height: 2.5rem; border-radius: 10px; }
+.card .cat-ic { background: var(--bg); }
+.chip.t svg { flex: none; }
 .pitem .meta { display: flex; flex-wrap: wrap; gap: .35rem .6rem; align-items: center; font-size: .88rem; color: var(--muted); margin-top: .3rem; }
 .back { font: inherit; font-size: .95rem; font-weight: 800; color: var(--link); background: none; border: 0; padding: .2rem 0; cursor: pointer; align-self: flex-start; text-align: left; text-decoration: underline; text-underline-offset: 3px; }
 .kv { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .35rem 1rem; font-size: .95rem; margin: 0; }

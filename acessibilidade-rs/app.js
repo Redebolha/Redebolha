@@ -75,6 +75,26 @@
     int: '<path d="M12 12c-1.6-2.4-3.2-3.6-4.8-3.6a3.6 3.6 0 0 0 0 7.2c1.6 0 3.2-1.2 4.8-3.6zm0 0c1.6 2.4 3.2 3.6 4.8 3.6a3.6 3.6 0 0 0 0-7.2c-1.6 0-3.2 1.2-4.8 3.6z" fill="none" stroke="currentColor" stroke-width="2.2"/>'
   };
   function icon(k, size) { size = size || 22; return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 24 24" aria-hidden="true">' + ICON[k] + '</svg>'; }
+
+  /* Ícone do tipo de lugar, ao lado do nome (hotel, câmara, praia…).
+     Sai da categoria do lugar: lugar novo já entra com o ícone certo. */
+  var CAT_ICON = {
+    hospedagem: '<path d="M3 18.5V6.5M3 14h18v4.5M21 14v-2a2.5 2.5 0 0 0-2.5-2.5H11V14"/><circle cx="7" cy="11" r="1.9"/>',
+    alimentacao: '<path d="M6.5 3v7.5M4.5 3v5a2 2 0 0 0 4 0V3M6.5 10.5V21M16.5 21V3c-2.2 1.4-3.5 4-3.5 7.5h3.5"/>',
+    eventos: '<rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="m12 12.4.95 1.9 2.1.3-1.5 1.5.35 2.1-1.9-1-1.9 1 .35-2.1-1.5-1.5 2.1-.3z"/>',
+    turismo: '<path d="M4 8h3l1.6-2.2h6.8L17 8h3a1 1 0 0 1 1 1v9.5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.3" r="3.4"/>',
+    comercio: '<path d="M5 8h14l-1.1 12.5H6.1z"/><path d="M9 10V6.5a3 3 0 0 1 6 0V10"/>',
+    parques: '<path d="M12 3c-3.3 0-5.4 2.6-5 5.6C4.6 9.4 4.2 13.8 7.4 15h9.2c3.2-1.2 2.8-5.6.4-6.4.4-3-1.7-5.6-5-5.6z"/><path d="M12 21v-9M12 15.5l-2.6-2.2M12 13.8l2.4-1.9"/>',
+    lazer: '<path d="M3.5 11.5a8.5 8.5 0 0 1 17 0z"/><path d="M12 11.5v6.5M12 3v1"/><path d="M2.5 20.5c1.6 0 1.6-1 3.2-1s1.6 1 3.2 1 1.6-1 3.1-1 1.6 1 3.2 1 1.6-1 3.2-1 1.6 1 3.1 1"/>',
+    cultura: '<rect x="4" y="4" width="16" height="16" rx="1.5"/><path d="m4 16.5 4.5-4.5 3.5 3.5 2.5-2.5 5.5 5.5"/><circle cx="15" cy="8.7" r="1.6"/>',
+    publico: '<path d="M12 3 3.5 8h17z"/><path d="M4.5 10.5h15M6 10.5v7M10 10.5v7M14 10.5v7M18 10.5v7M4 17.5h16M3 21h18"/>',
+    transporte: '<rect x="5" y="3.5" width="14" height="14" rx="2.5"/><path d="M5 10.5h14M8 17.5V20.5M16 17.5V20.5"/><circle cx="8.6" cy="14" r="1" fill="currentColor" stroke="none"/><circle cx="15.4" cy="14" r="1" fill="currentColor" stroke="none"/>',
+    educacao: '<path d="M2.5 9 12 4.5 21.5 9 12 13.5z"/><path d="M6.5 11.2v4.3c0 1.6 2.5 3 5.5 3s5.5-1.4 5.5-3v-4.3M21.5 9v5"/>',
+    saude: '<path d="M9.5 3.5h5V9h5.5v5h-5.5v5.5h-5V14H4V9h5.5z"/>'
+  };
+  function catSvg(k, size) { return CAT_ICON[k] ? '<svg width="' + size + '" height="' + size + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + CAT_ICON[k] + '</svg>' : ''; }
+  function catIcon(k, size) { return CAT_ICON[k] ? '<span class="cat-ic" aria-hidden="true" title="' + esc(CAT[k] || '') + '">' + catSvg(k, size || 22) + '</span>' : ''; }
+  function titulo(p, size) { return catIcon(p.categoria, size) + '<span>' + esc(p.nome) + '</span>'; }
   var MK_FILL = { v: 'var(--sv)', a: 'var(--sa)', c: 'var(--sc)', f: 'var(--faders)' };
   /* Símbolos dentro do marcador (raio 1): ✓ verificado, balão de conversa
      para avaliado pela comunidade (alguém contou como foi), alfinete para
@@ -140,7 +160,7 @@
     $('#a-dims').innerHTML = recFieldsets('ar', true);
     $('#f-niv').innerHTML = A.SITU_ORDER.map(function (s) { return '<button type="button" class="chip" aria-pressed="false" data-sit="' + s + '">' + mkIcon(s, false, 24) + esc(A.SITU[s].curto) + '</button>'; }).join('') + '<button type="button" class="chip" aria-pressed="false" data-sit="f">' + mkIcon('f', false, 24) + 'Selo FADERS</button>';
     $('#f-dim').innerHTML = A.DIMS.map(function (d) { return '<button type="button" class="chip" aria-pressed="false" data-dim="' + d.k + '">' + icon(d.k, 22) + esc(d.nome) + '</button>'; }).join('');
-    $('#f-cat').innerHTML = A.CATS.map(function (c) { return '<button type="button" class="chip t" aria-pressed="false" data-cat="' + c[0] + '">' + esc(c[1]) + '</button>'; }).join('');
+    $('#f-cat').innerHTML = A.CATS.map(function (c) { return '<button type="button" class="chip t" aria-pressed="false" data-cat="' + c[0] + '">' + catSvg(c[0], 18) + esc(c[1]) + '</button>'; }).join('');
     $('#legend').innerHTML = A.SITU_ORDER.map(function (s) { return '<div>' + mkIcon(s, false, 28) + '<span><b>' + esc(A.SITU[s].nome) + '</b></span></div>'; }).join('')
       + '<div>' + mkIcon('f', false, 28) + '<span><b>Só Selo Estadual FADERS</b></span></div><div>' + mkIcon('c', true, 32) + '<span>Anel azul: também tem o Selo FADERS</span></div>'
       + '<p class="hint" style="margin-top:.2rem">A cor diz de onde veio a informação, não dá nota ao lugar. <a href="#avaliacao">Como funciona</a></p>';
@@ -318,7 +338,7 @@
     max = max || 50;
     if (!list.length) return '<p class="empty">Nenhum lugar com os filtros atuais.</p>';
     var sorted = list.slice().sort(byNivelNome);
-    return '<ul class="placelist">' + sorted.slice(0, max).map(function (p) { return '<li><button type="button" class="pitem" data-place="' + esc(p.id) + '"><b>' + esc(p.nome) + '</b><span class="meta">' + sitBadge(p) + (p.faders ? fadersBadge(p.faders) : '') + '<span>' + esc(CAT[p.categoria] || '—') + ' · ' + esc(munName(p.mun)) + '</span></span></button></li>'; }).join('') + '</ul>' + (sorted.length > max ? '<p class="hint">Mostrando ' + max + ' de ' + sorted.length + '. Veja todos na aba Lista.</p>' : '');
+    return '<ul class="placelist">' + sorted.slice(0, max).map(function (p) { return '<li><button type="button" class="pitem" data-place="' + esc(p.id) + '"><b class="ttl">' + titulo(p, 20) + '</b><span class="meta">' + sitBadge(p) + (p.faders ? fadersBadge(p.faders) : '') + '<span>' + esc(CAT[p.categoria] || '—') + ' · ' + esc(munName(p.mun)) + '</span></span></button></li>'; }).join('') + '</ul>' + (sorted.length > max ? '<p class="hint">Mostrando ' + max + ' de ' + sorted.length + '. Veja todos na aba Lista.</p>' : '');
   }
   function notice() {
     if (state.status === 'loading') return '<p class="empty">Carregando lugares…</p>';
@@ -345,7 +365,7 @@
       if (!p) { state.sel = { type: 'estado', id: null }; renderSide(); return; }
       var site = safeUrl(p.site), fonte = safeUrl(p.fonte), fotos = safeUrl(p.fotos);
       ctx.innerHTML = '<div class="stack"><button type="button" class="back" data-mun="' + esc(p.mun) + '">← ' + esc(munName(p.mun)) + '</button>'
-        + '<div><p class="eyebrow">' + esc(CAT[p.categoria] || 'Lugar') + '</p><h2 style="font-size:1.45rem">' + esc(p.nome) + '</h2></div>'
+        + '<div><p class="eyebrow">' + esc(CAT[p.categoria] || 'Lugar') + '</p><h2 class="ttl" style="font-size:1.45rem">' + titulo(p, 27) + '</h2></div>'
         + '<div class="row">' + sitBadge(p) + fadersBadge(p.faders, p.fadersAno) + '</div>'
         + '<p class="hint">' + esc(A.SITU[p.st].desc) + '</p>'
         + dimsHTML(p)
@@ -413,7 +433,7 @@
     if (!list.length) { $('#l-cards').innerHTML = '<p class="empty">Nenhum lugar com esses filtros.</p>'; return; }
     $('#l-cards').innerHTML = list.map(function (p) {
       var fonte = safeUrl(p.fonte), site = safeUrl(p.site);
-      return '<article class="card"><h3>' + esc(p.nome) + '</h3><div class="row">' + sitBadge(p) + fadersBadge(p.faders, p.fadersAno) + '</div>'
+      return '<article class="card"><h3 class="ttl">' + titulo(p, 25) + '</h3><div class="row">' + sitBadge(p) + fadersBadge(p.faders, p.fadersAno) + '</div>'
         + '<p class="where">' + esc(CAT[p.categoria] || '—') + ' · ' + esc(munName(p.mun)) + ' · ' + esc(REG[regOf(p.mun)] ? REG[regOf(p.mun)].nome : '') + '</p>'
         + dimsHTML(p)
         + (p.obs ? '<p style="font-size:.95rem" class="muted">' + esc(p.obs) + '</p>' : '')
