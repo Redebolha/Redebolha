@@ -26,7 +26,7 @@
       recs: [['libras', 'Atendimento em Libras'], ['escrita', 'Atendimento por escrito ou informação em tela'], ['alarme', 'Alarme ou aviso luminoso']],
       regra: 'Atende: Libras, ou atendimento por escrito com aviso luminoso. Parcial: um recurso.' },
     { k: 'int', nome: 'Intelectual e TEA', longo: 'Deficiência intelectual, autismo e neurodivergências',
-      recs: [['sensorial', 'Ambiente calmo ou sala sensorial'], ['simples', 'Comunicação simples, com figuras'], ['horario', 'Horário com menos barulho e luz'], ['girassol', 'Reconhece o cordão de girassol']],
+      recs: [['sensorial', 'Ambiente calmo ou sala sensorial'], ['simples', 'Comunicação simples, com figuras'], ['horario', 'Horário com menos barulho e luz'], ['girassol', 'Reconhece o cordão do Autismo e do Girassol']],
       regra: 'Atende: dois recursos ou mais. Parcial: um recurso.' }
   ];
   var GERAIS = [['equipe', 'Equipe treinada em atendimento inclusivo'], ['prioritario', 'Atendimento prioritário e assentos de espera'], ['acompanhante', 'Condições para acompanhante (assento ao lado, entrada facilitada)']];
