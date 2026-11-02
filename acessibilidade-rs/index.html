@@ -273,6 +273,29 @@ h2.ttl .cat-ic { width: 2.5rem; height: 2.5rem; border-radius: 10px; }
 .quem article .btn { align-self: flex-start; margin-top: auto; }
 .quem h4 { margin: 0; font-size: 1.08rem; font-weight: 800; line-height: 1.2; }
 
+/* Manchete na abertura do mapa e matéria da aba Praia Acessível */
+.manchete { display: flex; gap: 1rem; align-items: flex-start; max-width: 980px; margin: .6rem 0 .2rem; background: var(--surface); border: 2px solid var(--line); border-left: 8px solid var(--accent); border-radius: var(--radius); padding: 1rem 1.1rem; }
+.manchete > .cat-ic { width: 3.4rem; height: 3.4rem; border-radius: 12px; }
+.manchete h2 { font-size: clamp(1.2rem, 3vw, 1.6rem); margin: .25rem 0 .4rem; }
+.manchete h2 a { color: var(--ink); text-decoration: none; }
+.manchete h2 a:hover { text-decoration: underline; }
+.manchete p.muted { margin-bottom: .7rem; max-width: 72ch; }
+.materia { max-width: 76ch; display: flex; flex-direction: column; gap: 1rem; }
+.materia h2 { font-size: clamp(1.6rem, 4.2vw, 2.3rem); }
+.materia h3 { margin-top: .6rem; }
+.credito { font-size: .88rem; color: var(--muted); }
+.placar { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem; }
+.placar div { background: var(--surface); border: 2px solid var(--line); border-top: 6px solid var(--accent); border-radius: var(--radius); padding: .75rem .9rem; display: flex; flex-direction: column; gap: .25rem; }
+.placar b { font-size: 2.1rem; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
+.placar span { color: var(--muted); font-size: .9rem; font-family: var(--font-mono); }
+.pilares { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem; }
+.pilares li { background: var(--surface); border: 2px solid var(--line); border-radius: var(--radius); padding: 1rem; display: flex; flex-direction: column; gap: .45rem; }
+.pilares h4 { margin: 0; font-size: 1.08rem; font-weight: 800; }
+.pilares p { font-size: .95rem; }
+.nobox { background: var(--surface); border: 2px solid var(--line); border-left: 8px solid var(--sv); border-radius: var(--radius); padding: 1rem 1.1rem; display: flex; flex-direction: column; gap: .6rem; }
+@media (max-width: 760px) { .pilares { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .manchete { flex-direction: column; gap: .6rem; } .manchete > .cat-ic { width: 2.8rem; height: 2.8rem; } .placar { gap: .45rem; } .placar div { padding: .6rem .6rem; } .placar b { font-size: 1.7rem; } .placar span { font-size: .78rem; } }
+
 /* Abertura do mapa: posicionamento em uma frase e os dois convites */
 .intro { display: flex; flex-direction: column; gap: .55rem; padding-bottom: .4rem; max-width: 76ch; }
 .intro h1 { font-family: var(--font-display); font-size: clamp(1.55rem, 4.2vw, 2.25rem); font-weight: 700; letter-spacing: -.01em; }
@@ -383,6 +406,7 @@ footer { border-top: 2px solid var(--line); padding-block: 1.25rem 2rem; font-si
     <div class="wrap"><div class="inner">
       <a href="#mapa" data-view="mapa">Mapa</a>
       <a href="#lista" data-view="lista">Lista</a>
+      <a href="#praia" data-view="praia">Praia Acessível</a>
       <a href="#avaliar" data-view="avaliar">Avalie um lugar</a>
       <a href="#cadastro" data-view="cadastro">Cadastre seu negócio</a>
       <a href="#avaliacao" data-view="avaliacao">Como funciona</a>
@@ -403,6 +427,16 @@ footer { border-top: 2px solid var(--line); padding-block: 1.25rem 2rem; font-si
     <p class="muted">Um espaço colaborativo que conecta pessoas com deficiência a estabelecimentos, serviços, turismo, cultura e lazer, com informação sobre acessibilidade feita junto com quem usa.</p>
     <div class="row"><a class="btn small" href="#avaliar">Avaliar um lugar</a><a class="btn small ghost" href="#cadastro">Cadastrar meu negócio</a></div>
   </div>
+  <!-- MANCHETE: Rede Praia Acessível (temporada 2026/2027). Matéria completa na aba #praia. -->
+  <article class="manchete" aria-labelledby="h-manchete">
+    <span class="cat-ic"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11.5a8.5 8.5 0 0 1 17 0z"/><path d="M12 11.5v6.5M12 3v1"/><path d="M2.5 20.5c1.6 0 1.6-1 3.2-1s1.6 1 3.2 1 1.6-1 3.1-1 1.6 1 3.2 1 1.6-1 3.2-1 1.6 1 3.1 1"/></svg></span>
+    <div>
+      <p class="eyebrow">Manchete · Verão 2026/2027</p>
+      <h2 id="h-manchete"><a href="#praia">Rede Praia Acessível está em preparativos para a temporada de verão 2026/2027</a></h2>
+      <p class="muted">Banho de mar, rio e lago com segurança e dignidade para pessoas com deficiência e mobilidade reduzida. Na última temporada foram 61 guaritas, balneários e piscinas acessíveis. Os pontos da nova temporada serão anunciados em breve.</p>
+      <a class="btn small" href="#praia">Ler a matéria</a>
+    </div>
+  </article>
   <div class="stats" id="stats" aria-live="polite"></div>
   <div class="mapgrid">
     <div class="side">
@@ -497,6 +531,38 @@ footer { border-top: 2px solid var(--line); padding-block: 1.25rem 2rem; font-si
     </table></div>
     <p><a href="https://faders.rs.gov.br/selo-de-acessibilidade-68dbe89fadfef" target="_blank" rel="noopener">Página oficial do Selo Estadual na FADERS</a></p>
   </div>
+</section>
+
+<!-- PRAIA ACESSÍVEL: matéria (texto da Ascom Faders, edição Ascom Casa Civil) -->
+<section class="view" id="v-praia" aria-labelledby="h-praia" hidden>
+  <article class="materia">
+    <p class="eyebrow">Rede Praia Acessível · Verão 2026/2027</p>
+    <h2 id="h-praia">Rede Praia Acessível está em preparativos para a temporada de verão 2026/2027</h2>
+    <p class="credito">Texto: Ascom Faders · Edição: Ascom Casa Civil · Fonte: <a href="https://operacaoveraototal.rs.gov.br/praia-acessivel" target="_blank" rel="noopener">Operação Verão Total, Governo do RS</a></p>
+    <p>O verão se aproxima e, assim, chega a hora de nova temporada do programa Rede Praia Acessível. A iniciativa é coordenada pela Faders - Acessibilidade e Inclusão, e executada pelo Corpo de Bombeiros Militar do Rio Grande do Sul (CBMRS), por meio dos guarda-vidas, e conta com o apoio de municípios.</p>
+    <p>O objetivo é assegurar que pessoas com deficiência e com mobilidade reduzida também possam aproveitar o mar, os rios e os lagos do Estado com segurança e dignidade.</p>
+    <p>O programa da Faders, vinculada à Secretaria de Desenvolvimento Social (Sedes), está maior a cada temporada. Passou de 21 guaritas acessíveis no verão 2023/2024 para 53 em 2024/2025 e chegou a 61 na temporada 2025/2026, entre guaritas, balneários e piscinas acessíveis, com centenas de banhos assistidos a cada verão.</p>
+    <p class="credito" id="placar-tit" style="margin-bottom:-.5rem"><b>Pontos acessíveis por temporada</b> (guaritas, balneários e piscinas)</p>
+    <div class="placar" role="group" aria-labelledby="placar-tit">
+      <div><b>21</b><span>2023/2024</span></div>
+      <div><b>53</b><span>2024/2025</span></div>
+      <div><b>61</b><span>2025/2026</span></div>
+    </div>
+    <h3>Modelo de atendimento e inovação</h3>
+    <p>O Rede Praia Acessível é um serviço gratuito e se apoia em três pilares:</p>
+    <ul class="pilares">
+      <li><span class="cat-ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2.5 9c1.6 0 1.6-1 3.2-1s1.6 1 3.2 1 1.6-1 3.1-1 1.6 1 3.2 1 1.6-1 3.2-1 1.6 1 3.1 1M2.5 14c1.6 0 1.6-1 3.2-1s1.6 1 3.2 1 1.6-1 3.1-1 1.6 1 3.2 1 1.6-1 3.2-1 1.6 1 3.1 1M2.5 19c1.6 0 1.6-1 3.2-1s1.6 1 3.2 1 1.6-1 3.1-1 1.6 1 3.2 1 1.6-1 3.2-1 1.6 1 3.1 1"/></svg></span><h4>Banhos assistidos</h4><p>Banhos de mar, rio ou lago acompanhados por profissionais do início ao fim.</p></li>
+      <li><span class="cat-ic"><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="4.2" r="2.2" fill="currentColor"/><path d="M10.6 7.5h3l-.5 5h4.6l2.2 5.7-1.9.7-1.7-4.3h-5.4z" fill="currentColor"/><path d="M9.4 10.2a5.6 5.6 0 1 0 7.5 7.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><h4>Cadeiras anfíbias</h4><p>Equipamentos especializados que garantem conforto e total segurança durante a entrada e a permanência na água.</p></li>
+      <li><span class="cat-ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M5.6 5.6l3.6 3.6M14.8 14.8l3.6 3.6M18.4 5.6l-3.6 3.6M9.2 14.8l-3.6 3.6"/></svg></span><h4>Equipe qualificada</h4><p>Os atendimentos são feitos por guarda-vidas do CBMRS capacitados previamente pela equipe da Faders - Acessibilidade e Inclusão. A formação, a capacitação e os treinamentos dos profissionais que atuam no programa são realizados pela Faders.</p></li>
+    </ul>
+    <p><b>As guaritas, balneários e piscinas que vão oferecer o serviço na temporada 2026/2027 serão anunciados em breve pelos canais oficiais da Faders Acessibilidade e Inclusão.</b></p>
+    <p class="credito">Texto: Ascom Faders · Edição: Ascom Casa Civil. Leia na fonte: <a href="https://operacaoveraototal.rs.gov.br/praia-acessivel" target="_blank" rel="noopener">operacaoveraototal.rs.gov.br/praia-acessivel</a></p>
+    <aside class="nobox" aria-labelledby="h-nobox">
+      <h3 id="h-nobox">No Acessibilidade RS</h3>
+      <p>Assim que a lista oficial for divulgada, as guaritas, balneários e piscinas da temporada 2026/2027 entram no mapa do guia, cada uma na sua cidade. Usou o serviço? Conte como foi: sua avaliação ajuda outras famílias a planejar o verão.</p>
+      <div class="row"><a class="btn small" href="#avaliar">Avaliar um lugar</a><a class="btn small ghost" href="#mapa">Ver o mapa</a></div>
+    </aside>
+  </article>
 </section>
 
 <!-- AVALIE UM LUGAR -->

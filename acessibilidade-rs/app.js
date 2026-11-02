@@ -25,6 +25,7 @@
     ['Prefeitura de Marau · Primeiro Selo Ouro do RS', 'https://www.pmmarau.com.br/noticias-geral/1155-primeiro-selo-ouro-de-acessibilidade-do-rs-e-de-marau'],
     ['Empreendimentos de Farroupilha recebem selo (2024)', 'https://miriamcaravaggio.com.br/empreendimentos-de-farroupilha-recebem-selo-de-acessibilidade/'],
     ['Faders entrega Selo de Acessibilidade para quatro instituições em abril', 'https://social.rs.gov.br/faders-entrega-selo-de-acessibilidade-para-quatro-instituicoes-em-abril'],
+    ['Operação Verão Total · Rede Praia Acessível (temporada 2026/2027)', 'https://operacaoveraototal.rs.gov.br/praia-acessivel'],
     ['Governo do RS · Rede Praia Acessível (2023)', 'https://estado.rs.gov.br/servico-telefonico-amplia-acesso-a-cadeiras-especiais-que-permitem-banho-de-mar-a-pessoas-com-deficiencia-e-mobilidade-reduzi'],
     ['IBGE · malha municipal e mesorregiões', 'https://www.ibge.gov.br/geociencias/organizacao-do-territorio/malhas-territoriais.html']
   ];
@@ -136,7 +137,7 @@
   applyFs(); applyHc(store.get('ars_hc') === '1');
 
   /* ---------- Navegação ---------- */
-  var VIEWS = ['mapa', 'lista', 'avaliar', 'cadastro', 'avaliacao', 'sobre'];
+  var VIEWS = ['mapa', 'lista', 'praia', 'avaliar', 'cadastro', 'avaliacao', 'sobre'];
   function route() {
     var h = location.hash.slice(1), v = VIEWS.indexOf(h) >= 0 ? h : 'mapa';
     VIEWS.forEach(function (n) { $('#v-' + n).hidden = n !== v; });
