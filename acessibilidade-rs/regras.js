@@ -29,14 +29,24 @@
       recs: [['sensorial', 'Ambiente calmo ou sala sensorial'], ['simples', 'Comunicação simples, com figuras'], ['horario', 'Horário com menos barulho e luz'], ['girassol', 'Reconhece o cordão de girassol']],
       regra: 'Atende: dois recursos ou mais. Parcial: um recurso.' }
   ];
-  var GERAIS = [['equipe', 'Equipe treinada em atendimento inclusivo'], ['prioritario', 'Atendimento prioritário e assentos de espera']];
+  var GERAIS = [['equipe', 'Equipe treinada em atendimento inclusivo'], ['prioritario', 'Atendimento prioritário e assentos de espera'], ['acompanhante', 'Condições para acompanhante (assento ao lado, entrada facilitada)']];
 
-  var NIV = {
-    3: { nome: 'Acessibilidade plena', curto: 'Plena', stars: '★★★', desc: 'Atende três ou quatro tipos de necessidade.' },
-    2: { nome: 'Boa acessibilidade', curto: 'Boa', stars: '★★', desc: 'Atende dois tipos, ou um tipo e parte de outros dois.' },
-    1: { nome: 'Acessibilidade básica', curto: 'Básica', stars: '★', desc: 'Atende um tipo ou tem parte dos recursos.' },
-    0: { nome: 'Em análise', curto: 'Em análise', stars: '?', desc: 'Ainda sem recursos informados.' }
+  /* Situação da informação: diz DE ONDE veio o que o guia mostra, não dá nota
+     ao lugar. "Cadastrado" não é "certificado": nenhuma etapa do guia é
+     vistoria técnica. A certificação oficial do RS é o Selo Estadual da
+     FADERS, que aparece à parte (campo faders).
+     Regra: verificado = true → v; avaliacoes >= 1 → a; senão → c. */
+  var SITU = {
+    v: { nome: 'Informações verificadas', curto: 'Verificado', ordem: 3, desc: 'A equipe da Rede Bolha conferiu fotos e documentos das informações publicadas. Não é vistoria técnica nem certificação.' },
+    a: { nome: 'Avaliado pela comunidade', curto: 'Avaliado pela comunidade', ordem: 2, desc: 'Pessoas com deficiência ou seus acompanhantes visitaram o lugar e contaram como foi.' },
+    c: { nome: 'Cadastrado', curto: 'Cadastrado', ordem: 1, desc: 'Informações enviadas pelo próprio estabelecimento ou reunidas de fontes públicas, ainda sem avaliação de quem visitou.' }
   };
+  var SITU_ORDER = ['v', 'a', 'c'];
+  function situacao(p) {
+    if (p && p.verificado) return 'v';
+    if (p && parseInt(p.avaliacoes, 10) > 0) return 'a';
+    return 'c';
+  }
   /* Regiões: mesorregiões do IBGE (código) com nomes de uso corrente */
   var REGIOES = {
     '05': { nome: 'Metropolitana e Litoral', sub: 'Porto Alegre, Vale do Sinos, Litoral Norte, Gramado-Canela e Camaquã', ibge: 'Metropolitana de Porto Alegre' },
@@ -68,9 +78,9 @@
     };
     var A = 0, P = 0;
     ['mob', 'vis', 'aud', 'int'].forEach(function (k) { if (v[k] === 2) A++; else if (v[k] === 1) P++; });
-    var nivel = A >= 3 ? 3 : (A === 2 || (A === 1 && P >= 2)) ? 2 : (A >= 1 || P >= 1) ? 1 : 0;
-    return { v: v, nivel: nivel };
+    /* atende/parcial: quantos tipos de necessidade o lugar cobre (só ordena a lista) */
+    return { v: v, atende: A, parcial: P };
   }
 
-  w.ARS = { REGIOES: REGIOES, REG_ORDER: REG_ORDER, CATS: CATS, DIMS: DIMS, GERAIS: GERAIS, NIV: NIV, FAD: FAD, MST: MST, REC: REC, avaliar: avaliar };
+  w.ARS = { REGIOES: REGIOES, REG_ORDER: REG_ORDER, CATS: CATS, DIMS: DIMS, GERAIS: GERAIS, SITU: SITU, SITU_ORDER: SITU_ORDER, situacao: situacao, FAD: FAD, MST: MST, REC: REC, avaliar: avaliar };
 })(window);

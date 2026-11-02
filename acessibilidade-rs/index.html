@@ -4,8 +4,8 @@
   <!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6DSL2EMZSL"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-6DSL2EMZSL');</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Acessibilidade RS — guia de lugares acessíveis no Rio Grande do Sul | Rede Bolha</title>
-<meta name="description" content="Mapa por região de hotéis, restaurantes, espaços de eventos, comércio, praças, transporte e serviços acessíveis no RS, com avaliação para mobilidade, deficiência visual, auditiva e intelectual. Cadastre seu negócio de graça.">
+<title>Acessibilidade RS — encontre, avalie e divulgue lugares acessíveis no Rio Grande do Sul | Rede Bolha</title>
+<meta name="description" content="Rede colaborativa que conecta pessoas com deficiência a estabelecimentos, serviços, turismo, cultura e lazer no RS. Mapa por região, recursos por tipo de necessidade e avaliações de quem visitou. Cadastro gratuito.">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#050E22">
 <link rel="apple-touch-icon" href="/icon-192.png">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Rede Bolha">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:title" content="Acessibilidade RS — onde dá para ir no Rio Grande do Sul">
-<meta property="og:description" content="Guia gratuito, por região, de lugares preparados para receber pessoas com deficiência e mobilidade reduzida. Tem um negócio acessível? Cadastre de graça. Uma iniciativa da Rede Bolha.">
+<meta property="og:description" content="Encontre, avalie e divulgue lugares acessíveis no RS. Uma rede colaborativa que junta pessoas com deficiência, estabelecimentos, entidades e poder público. Uma iniciativa da Rede Bolha.">
 <meta property="og:url" content="https://redebolha.com.br/acessibilidade-rs/">
 <!-- Imagem da prévia do link (Facebook, WhatsApp, LinkedIn, X): 1200x630 -->
 <meta property="og:image" content="https://redebolha.com.br/img/og-acessibilidade-rs.jpg?v=2">
@@ -31,7 +31,7 @@
   "@type": "WebPage",
   "name": "Acessibilidade RS",
   "url": "https://redebolha.com.br/acessibilidade-rs/",
-  "description": "Guia por região de lugares acessíveis no Rio Grande do Sul: hotéis, restaurantes, espaços de eventos, comércio, praças, transporte e serviços.",
+  "description": "Rede colaborativa para encontrar, avaliar e divulgar lugares acessíveis no Rio Grande do Sul: hotéis, restaurantes, turismo, cultura, lazer, comércio, transporte e serviços.",
   "inLanguage": "pt-BR",
   "about": { "@type": "Thing", "name": "Acessibilidade para pessoas com deficiência e mobilidade reduzida" },
   "spatialCoverage": { "@type": "State", "name": "Rio Grande do Sul" },
@@ -57,10 +57,12 @@
   --accent-ink: #050E22;
   --link: #FFE566;
   --focus: #FFF500;
-  --n3: #00E07A;          /* plena: verde vivo, "pode ir" */
-  --n2: #2EE6FF;          /* boa: ciano, confiança */
-  --n1: #FF9F1C;          /* básica: laranja, atenção */
-  --n0: #D5DDEB;          /* em análise */
+  /* Situação da informação (de onde veio, não nota do lugar) */
+  --sv: #00E07A;          /* verificado: verde vivo */
+  --sa: #2EE6FF;          /* avaliado pela comunidade: ciano */
+  --sc: #FF9F1C;          /* cadastrado: laranja, "confira" */
+  --n3: var(--sv);        /* "atende" na leitura por tipo de necessidade */
+  --n1: var(--sc);        /* "parcial" */
   --faders: #5EA6FF;      /* selo estadual: azul do símbolo de acesso */
   --bad: #FF9494;
   --map-bg: #020817;
@@ -169,7 +171,7 @@ main:focus { outline: none; }
 /* Controles */
 label.f { display: block; font-weight: 800; font-size: .95rem; min-width: 0; }
 label.f > input, label.f > select, label.f > textarea { display: block; margin-top: .35rem; }
-input[type="text"], input[type="search"], input[type="email"], input[type="tel"], input[type="url"], input[type="number"], select, textarea {
+input[type="text"], input[type="search"], input[type="email"], input[type="tel"], input[type="url"], input[type="number"], input[type="date"], select, textarea {
   font: inherit; font-weight: 400; font-size: 1rem; width: 100%; min-height: 48px; padding: .6rem .75rem;
   border: 2px solid var(--line); border-radius: 10px; background: var(--sunken); color: var(--ink);
 }
@@ -208,8 +210,7 @@ details.more[open] > summary::after { content: "−"; }
 
 /* Nível, dimensões e selo */
 .nivel { display: inline-flex; align-items: center; gap: .4rem; font-size: .88rem; font-weight: 800; padding: .2rem .65rem .2rem .25rem; border-radius: 999px; white-space: nowrap; color: #050E22; }
-.nivel.n3 { background: var(--n3); } .nivel.n2 { background: var(--n2); } .nivel.n1 { background: var(--n1); } .nivel.n0 { background: var(--n0); }
-.nivel .st { letter-spacing: .05em; }
+.nivel.sv { background: var(--sv); } .nivel.sa { background: var(--sa); } .nivel.sc { background: var(--sc); }
 .fbadge { display: inline-flex; align-items: center; gap: .35rem; font-size: .85rem; font-weight: 800; padding: .15rem .6rem; border-radius: 999px; border: 2px solid var(--faders); color: var(--ink); white-space: nowrap; }
 .dims { display: grid; grid-template-columns: 1fr; gap: .35rem; }
 .dim { display: flex; align-items: center; gap: .45rem; padding: .35rem .55rem; border-radius: 8px; border: 2px solid var(--line); font-size: .9rem; font-weight: 600; min-width: 0; }
@@ -256,7 +257,19 @@ details.more[open] > summary::after { content: "−"; }
 .section { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2.4rem; }
 .levels { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
 .level { border-radius: var(--radius); background: var(--surface); padding: 1.1rem; display: flex; flex-direction: column; gap: .5rem; border: 2px solid var(--line); border-top-width: 8px; }
-.level.n3 { border-top-color: var(--n3); } .level.n2 { border-top-color: var(--n2); } .level.n1 { border-top-color: var(--n1); } .level.n0 { border-top-color: var(--n0); }
+.level.sv { border-top-color: var(--sv); } .level.sa { border-top-color: var(--sa); } .level.sc { border-top-color: var(--sc); } .level.sf { border-top-color: var(--faders); }
+.aviso { max-width: 68ch; border: 2px solid var(--line); border-left: 8px solid var(--faders); background: var(--surface); border-radius: var(--radius); padding: 1rem 1.1rem; }
+.quem { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+.quem article { background: var(--surface); border: 2px solid var(--line); border-radius: var(--radius); padding: 1rem; display: flex; flex-direction: column; gap: .45rem; }
+.quem article .btn { align-self: flex-start; margin-top: auto; }
+.quem h4 { margin: 0; font-size: 1.08rem; font-weight: 800; line-height: 1.2; }
+
+/* Abertura do mapa: posicionamento em uma frase e os dois convites */
+.intro { display: flex; flex-direction: column; gap: .55rem; padding-bottom: .4rem; max-width: 76ch; }
+.intro h1 { font-family: var(--font-display); font-size: clamp(1.55rem, 4.2vw, 2.25rem); font-weight: 700; letter-spacing: -.01em; }
+.intro p.muted { font-size: 1.02rem; }
+.intro .row { margin-top: .25rem; }
+a.btn { display: inline-flex; align-items: center; text-decoration: none; }
 .level .lv { display: flex; align-items: center; gap: .55rem; font-size: 1.25rem; font-weight: 800; }
 .dimgrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
 .dimcard { background: var(--surface); border: 2px solid var(--line); border-radius: var(--radius); padding: 1rem; display: flex; flex-direction: column; gap: .55rem; }
@@ -297,7 +310,7 @@ footer .pixlink { background: none; border: 0; padding: 0; font: inherit; font-w
 .toast { position: fixed; left: 50%; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--accent); color: var(--accent-ink); padding: .8rem 1.2rem; border-radius: 10px; font-weight: 800; z-index: 60; max-width: calc(100% - 32px); }
 footer { border-top: 2px solid var(--line); padding-block: 1.25rem 2rem; font-size: .92rem; color: var(--muted); }
 
-@media (max-width: 1080px) { .levels, .dimgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .refs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 1080px) { .levels, .dimgrid, .quem { grid-template-columns: repeat(2, minmax(0, 1fr)); } .refs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 980px) {
   .mapgrid { grid-template-columns: 1fr; }
   .mapgrid .mapcol { order: -1; }
@@ -305,7 +318,16 @@ footer { border-top: 2px solid var(--line); padding-block: 1.25rem 2rem; font-si
   .filters { grid-template-columns: 1fr 1fr; }
   .filters .q { grid-column: 1 / -1; }
 }
-@media (max-width: 640px) { .refs, .levels, .dimgrid { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .refs, .levels, .dimgrid, .quem { grid-template-columns: 1fr; } }
+/* Celular: números em grade 2 x 2, para o mapa subir na tela */
+@media (max-width: 560px) {
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: .45rem; }
+  .stat { border-radius: 12px; padding: .35rem .55rem .35rem .35rem; gap: .4rem; min-width: 0; }
+  .stat.plain { grid-column: 1 / -1; padding-left: .7rem; }
+  .stat b { font-size: 1.15rem; }
+  .stat span { font-size: .8rem; line-height: 1.2; }
+  .intro p.muted { font-size: .95rem; }
+}
 @media (max-width: 560px) {
   .top { position: static; }
   .brand b { font-size: .98rem; }
@@ -338,7 +360,7 @@ footer { border-top: 2px solid var(--line); padding-block: 1.25rem 2rem; font-si
   <div class="wrap"><div class="inner bar">
     <a class="brand" href="#mapa">
       <svg width="42" height="42" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="9" fill="#FFF500"/><circle cx="17" cy="8.5" r="2.7" fill="#050E22"/><path d="M15 12.5h4l-.6 6h5.2l2.6 6.8-2.2.8-2-5.1h-6.3z" fill="#050E22"/><path d="M13.6 15.6a6.7 6.7 0 1 0 8.9 8.7" fill="none" stroke="#050E22" stroke-width="2.4" stroke-linecap="round"/></svg>
-      <div><b>Acessibilidade RS<img class="rs-flag" src="/img/bandeira-rs.webp" width="30" height="21" alt="" aria-hidden="true"></b><span>Guia de lugares acessíveis · <em>Rede Bolha</em></span></div>
+      <div><b>Acessibilidade RS<img class="rs-flag" src="/img/bandeira-rs.webp" width="30" height="21" alt="" aria-hidden="true"></b><span>Encontre, avalie e divulgue · <em>Rede Bolha</em></span></div>
     </a>
     <div class="tools" role="group" aria-label="Ajustes de leitura">
       <button class="tbtn" id="fs-down" type="button" aria-label="Diminuir texto">A−</button>
@@ -350,9 +372,10 @@ footer { border-top: 2px solid var(--line); padding-block: 1.25rem 2rem; font-si
     <div class="wrap"><div class="inner">
       <a href="#mapa" data-view="mapa">Mapa</a>
       <a href="#lista" data-view="lista">Lista</a>
-      <a href="#avaliacao" data-view="avaliacao">Como avaliamos</a>
+      <a href="#avaliar" data-view="avaliar">Avalie um lugar</a>
       <a href="#cadastro" data-view="cadastro">Cadastre seu negócio</a>
-      <a href="#sobre" data-view="sobre">Sobre</a>
+      <a href="#avaliacao" data-view="avaliacao">Como funciona</a>
+      <a href="#sobre" data-view="sobre">Quem participa</a>
       <a href="/" class="adm">Rede Bolha</a>
     </div></div>
   </nav>
@@ -363,7 +386,12 @@ footer { border-top: 2px solid var(--line); padding-block: 1.25rem 2rem; font-si
 
 <!-- MAPA -->
 <section class="view" id="v-mapa" aria-labelledby="h-mapa">
-  <h1 id="h-mapa" class="eyebrow">Rio Grande do Sul · 7 regiões · 497 municípios</h1>
+  <div class="intro">
+    <p class="eyebrow">Rede colaborativa · Rio Grande do Sul · 7 regiões · 497 municípios</p>
+    <h1 id="h-mapa">Encontre, avalie e divulgue lugares acessíveis no Rio Grande do Sul</h1>
+    <p class="muted">Um espaço colaborativo que conecta pessoas com deficiência a estabelecimentos, serviços, turismo, cultura e lazer, com informação sobre acessibilidade feita junto com quem usa.</p>
+    <div class="row"><a class="btn small" href="#avaliar">Avaliar um lugar</a><a class="btn small ghost" href="#cadastro">Cadastrar meu negócio</a></div>
+  </div>
   <div class="stats" id="stats" aria-live="polite"></div>
   <div class="mapgrid">
     <div class="side">
@@ -373,7 +401,7 @@ footer { border-top: 2px solid var(--line); padding-block: 1.25rem 2rem; font-si
         </label>
         <datalist id="dl-busca"></datalist>
         <div>
-          <p class="eyebrow" id="lbl-niv" style="margin-bottom:.45rem">Nível de acessibilidade</p>
+          <p class="eyebrow" id="lbl-niv" style="margin-bottom:.45rem">Situação da informação</p>
           <div class="chips" id="f-niv" role="group" aria-labelledby="lbl-niv"></div>
         </div>
         <div>
@@ -420,37 +448,37 @@ footer { border-top: 2px solid var(--line); padding-block: 1.25rem 2rem; font-si
     <label class="f q" for="l-q">Buscar<input type="search" id="l-q" placeholder="Nome, cidade ou recurso"></label>
     <label class="f" for="l-reg">Região<select id="l-reg"></select></label>
     <label class="f" for="l-cat">Tipo de lugar<select id="l-cat"></select></label>
-    <label class="f" for="l-niv">Nível<select id="l-niv"></select></label>
+    <label class="f" for="l-niv">Situação<select id="l-niv"></select></label>
   </div>
   <p class="muted" id="l-count" aria-live="polite" style="margin-bottom:.8rem"></p>
   <div class="cards" id="l-cards"></div>
 </section>
 
-<!-- COMO AVALIAMOS -->
+<!-- COMO FUNCIONA (o endereço #avaliacao fica, para não quebrar links antigos) -->
 <section class="view" id="v-avaliacao" aria-labelledby="h-av" hidden>
   <div class="section">
-    <p class="eyebrow">Classificação Acessibilidade RS</p>
-    <h2 id="h-av">Quatro perguntas, uma para cada tipo de necessidade</h2>
+    <p class="eyebrow">Como funciona</p>
+    <h2 id="h-av">Informação de acessibilidade feita junto com quem usa</h2>
     <div class="prose">
-      <p>Cada lugar é avaliado pelo que oferece de fato para quem tem deficiência física ou mobilidade reduzida, deficiência visual, deficiência auditiva e deficiência intelectual ou autismo. O nível sai da soma dessas quatro respostas, sem nota subjetiva.</p>
+      <p>Em vez de dizer só "acessível" ou "não acessível", cada lugar do guia mostra duas coisas: <b>o que ele oferece</b> para cada tipo de necessidade e <b>de onde veio essa informação</b>.</p>
     </div>
   </div>
-  <div class="dimgrid section" id="dimcards"></div>
   <div class="section">
-    <h3>Os níveis</h3>
+    <h3>De onde vem a informação</h3>
+    <div class="prose"><p>Todo lugar entra como Cadastrado. Ele sobe de etapa quando quem visitou conta como foi e quando a equipe confere fotos e documentos.</p></div>
     <div class="levels" id="levelcards"></div>
+    <p class="aviso"><b>Cadastrado não quer dizer certificado.</b> Nenhuma etapa deste guia é vistoria técnica. A certificação oficial do Rio Grande do Sul é o Selo Estadual de Acessibilidade, da FADERS. Quando o lugar tem o selo, ele aparece à parte, como informação complementar.</p>
   </div>
   <div class="section">
-    <h3>Quem conferiu</h3>
-    <div class="prose">
-      <p><b>Conferido pela equipe:</b> alguém da Acessibilidade RS visitou ou conferiu fotos e documentos do lugar.</p>
-      <p><b>Informado pelo estabelecimento:</b> os recursos foram declarados pelo próprio negócio no cadastro e ainda não foram conferidos.</p>
-    </div>
+    <h3>O que cada lugar oferece: quatro perguntas</h3>
+    <div class="prose"><p>Os recursos são agrupados pelo tipo de necessidade. Para cada um, o guia mostra se o lugar atende, atende em parte ou ainda não informou.</p></div>
+    <div class="dimgrid" id="dimcards"></div>
+    <p class="muted" style="max-width:68ch"><b>Para todos os públicos:</b> <span id="gerais"></span></p>
   </div>
   <div class="section">
     <h3>Selo Estadual de Acessibilidade (FADERS)</h3>
     <div class="prose">
-      <p>O Governo do Estado, pela FADERS, tem uma certificação oficial própria, com níveis Bronze, Prata e Ouro, feita por vistoria técnica conforme a NBR 9050. Quando um lugar tem esse selo, mostramos a informação como complemento, com um anel azul no marcador. A classificação deste guia é independente do selo estadual.</p>
+      <p>O Governo do Estado, pela FADERS, tem uma certificação oficial própria, com níveis Bronze, Prata e Ouro, feita por vistoria técnica conforme a NBR 9050. Quando um lugar tem esse selo, mostramos a informação como complemento, com um anel azul no marcador. As informações deste guia são independentes do selo estadual.</p>
     </div>
     <div class="tbl"><table>
       <thead><tr><th scope="col">Município</th><th scope="col">Região</th><th scope="col">Situação no selo estadual</th><th scope="col" class="n">Lugares com selo</th><th scope="col">Fonte</th></tr></thead>
@@ -460,12 +488,72 @@ footer { border-top: 2px solid var(--line); padding-block: 1.25rem 2rem; font-si
   </div>
 </section>
 
+<!-- AVALIE UM LUGAR -->
+<section class="view" id="v-avaliar" aria-labelledby="h-avl" hidden>
+  <div class="section" style="margin-bottom:1.25rem">
+    <p class="eyebrow">Para pessoas com deficiência, familiares e acompanhantes</p>
+    <h2 id="h-avl">Avalie um lugar que você visitou</h2>
+    <div class="prose">
+      <p>Quem melhor sabe se um lugar é acessível é quem esteve lá. Conte o que você encontrou e o que faltou. Sua avaliação ajuda outra pessoa a decidir para onde ir.</p>
+      <p class="hint">Vale para lugares que já estão no guia e para os que ainda não estão. A equipe lê cada avaliação antes de atualizar o guia. Não publicamos seu nome completo nem seu e-mail.</p>
+    </div>
+  </div>
+  <form id="f-av" class="stack rb-form" data-rb-lista="acessibilidade-avaliacao" data-rb-assunto="Avaliação Acessibilidade RS" data-rb-ok="Avaliação recebida. Obrigado! A equipe lê com atenção e atualiza o lugar no guia." novalidate>
+    <datalist id="dl-lugares"></datalist>
+    <input type="hidden" id="a-id" name="id_lugar" data-rotulo="ID do lugar">
+    <fieldset>
+      <legend>O lugar</legend>
+      <div class="formgrid">
+        <label class="f" for="a-lugar">Nome do lugar <span class="req">*</span><input type="text" id="a-lugar" name="lugar" data-rotulo="Lugar avaliado" list="dl-lugares" required autocomplete="off" placeholder="Ex.: Hotel, restaurante, praia, museu"></label>
+        <label class="f" for="a-mun">Cidade <span class="req">*</span><input type="text" id="a-mun" name="cidade" data-rotulo="Cidade" list="dl-mun" required autocomplete="off" placeholder="Digite e escolha da lista"></label>
+        <label class="f" for="a-data">Quando você foi<input type="date" id="a-data" name="data_visita" data-rotulo="Data da visita"></label>
+        <label class="f" for="a-indica">Você indicaria para quem tem a mesma necessidade? <span class="req">*</span><select id="a-indica" name="indicaria" data-rotulo="Indicaria" required><option value="">Escolha</option><option>Sim, indico</option><option>Indico, com ressalvas</option><option>Não indico</option></select></label>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Você avalia como</legend>
+      <div class="checks">
+        <label><input type="checkbox" name="perfil_mob" value="Pessoa com deficiência física ou mobilidade reduzida" data-rotulo="Avalia como"> Pessoa com deficiência física ou mobilidade reduzida</label>
+        <label><input type="checkbox" name="perfil_vis" value="Pessoa cega ou com baixa visão" data-rotulo="Avalia como"> Pessoa cega ou com baixa visão</label>
+        <label><input type="checkbox" name="perfil_aud" value="Pessoa surda ou com deficiência auditiva" data-rotulo="Avalia como"> Pessoa surda ou com deficiência auditiva</label>
+        <label><input type="checkbox" name="perfil_int" value="Pessoa com deficiência intelectual, autista ou neurodivergente" data-rotulo="Avalia como"> Pessoa com deficiência intelectual, autista ou neurodivergente</label>
+        <label><input type="checkbox" name="perfil_acomp" value="Familiar ou acompanhante" data-rotulo="Avalia como"> Familiar ou acompanhante</label>
+      </div>
+    </fieldset>
+    <div class="stack">
+      <p class="eyebrow">O que você encontrou lá</p>
+      <p class="hint" style="margin-top:-.5rem">Marque só o que você viu funcionando. O que não tinha, conte no campo de baixo.</p>
+      <div id="a-dims" class="stack"></div>
+    </div>
+    <fieldset>
+      <legend>Conte como foi</legend>
+      <div class="formgrid">
+        <label class="f full" for="a-relato">O que funcionou, o que faltou, o que atrapalhou<textarea id="a-relato" name="relato" data-rotulo="Relato" placeholder="Ex.: a rampa da entrada é boa, mas o banheiro adaptado estava trancado e ninguém sabia da chave."></textarea></label>
+        <label class="f full" for="a-fotos">Link para fotos (opcional)<input type="url" id="a-fotos" name="fotos" data-rotulo="Fotos" placeholder="https:// (Google Drive, Instagram, álbum)"></label>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Você</legend>
+      <div class="formgrid">
+        <label class="f" for="a-nome">Nome <span class="req">*</span><input type="text" id="a-nome" name="nome" data-rotulo="Nome" required autocomplete="name"></label>
+        <label class="f" for="a-email">E-mail <span class="req">*</span><input type="email" id="a-email" name="email" data-rotulo="E-mail" required autocomplete="email"></label>
+        <label class="f full" for="a-entidade">Entidade ou grupo (opcional)<input type="text" id="a-entidade" name="entidade" data-rotulo="Entidade" placeholder="Se você avalia por uma associação, conselho ou grupo"></label>
+      </div>
+      <div class="checks" style="margin-top:1rem;grid-template-columns:1fr">
+        <label><input type="checkbox" id="a-lgpd" name="lgpd" value="Autorizo o uso dos dados para análise e publicação da avaliação" data-rotulo="LGPD" required> Autorizo o uso destes dados para análise e publicação da avaliação, sem meu nome completo e sem meu e-mail (LGPD) <span class="req">*</span></label>
+      </div>
+    </fieldset>
+    <p id="a-err" class="err" role="alert" tabindex="-1" hidden></p>
+    <div class="row"><button class="btn" type="submit">Enviar avaliação</button></div>
+  </form>
+</section>
+
 <!-- CADASTRO -->
 <section class="view" id="v-cadastro" aria-labelledby="h-cad" hidden>
   <div class="section" style="margin-bottom:1.25rem">
-    <p class="eyebrow">Hotéis, restaurantes, lojas, eventos, transporte e serviços</p>
+    <p class="eyebrow">Hotéis, restaurantes, lojas, turismo, cultura, eventos, transporte e serviços</p>
     <h2 id="h-cad">Cadastre seu negócio no guia</h2>
-    <div class="prose"><p>Marque o que o seu espaço já oferece. A equipe confere as informações e publica o lugar no mapa. O cadastro é gratuito.</p></div>
+    <div class="prose"><p>Marque o que o seu espaço já oferece. A equipe revisa e publica o lugar no mapa como <b>Cadastrado</b>. Depois, as avaliações de quem visita e a conferência de fotos e documentos fazem a informação ganhar força. O cadastro é gratuito.</p></div>
     <aside class="apoio" aria-labelledby="h-apoio">
       <h3 id="h-apoio">Ajude a Acessibilidade RS a chegar a mais cidades</h3>
       <p>Quem tem deficiência ou mobilidade reduzida não deveria descobrir na porta que não consegue entrar. Este guia existe para mudar isso, e é uma iniciativa independente da Rede Bolha. Cada lugar conferido, cada cidade nova no mapa e cada pessoa que sai de casa sabendo para onde pode ir dependem de quem acredita que o Rio Grande do Sul tem que ser de todos.</p>
@@ -478,7 +566,7 @@ footer { border-top: 2px solid var(--line); padding-block: 1.25rem 2rem; font-si
       <p class="hint">O cadastro continua gratuito, com ou sem contribuição. O Pix aparece em nome de Romário Cruz, criador da Rede Bolha.</p>
     </aside>
   </div>
-  <form id="f-cad" class="stack rb-form" data-rb-lista="acessibilidade" data-rb-assunto="Cadastro Acessibilidade RS" data-rb-ok="Cadastro recebido. A equipe confere as informações e avisa quando o lugar entrar no mapa. Se puder, apoie o guia com um Pix de qualquer valor para redebolhaoficial@gmail.com." novalidate>
+  <form id="f-cad" class="stack rb-form" data-rb-lista="acessibilidade" data-rb-assunto="Cadastro Acessibilidade RS" data-rb-ok="Cadastro recebido. A equipe revisa as informações e avisa quando o lugar entrar no mapa. Se puder, apoie o guia com um Pix de qualquer valor para redebolhaoficial@gmail.com." novalidate>
     <fieldset>
       <legend>Seu negócio</legend>
       <div class="formgrid">
@@ -488,6 +576,7 @@ footer { border-top: 2px solid var(--line); padding-block: 1.25rem 2rem; font-si
         <label class="f full" for="c-end">Endereço <span class="req">*</span><input type="text" id="c-end" name="endereco" data-rotulo="Endereço" required autocomplete="street-address"></label>
         <label class="f" for="c-site">Site ou rede social<input type="url" id="c-site" name="site" data-rotulo="Site" placeholder="https://"></label>
         <label class="f" for="c-tel">Telefone ou WhatsApp<input type="tel" id="c-tel" name="telefone" data-rotulo="Telefone" autocomplete="tel"></label>
+        <label class="f full" for="c-fotos">Link para fotos do espaço<input type="url" id="c-fotos" name="fotos" data-rotulo="Fotos" placeholder="https:// (entrada, banheiro, circulação)"><span class="hint">Fotos da entrada, do banheiro e da circulação ajudam a equipe a verificar as informações.</span></label>
       </div>
     </fieldset>
     <div id="c-dims" class="stack"></div>
@@ -511,12 +600,22 @@ footer { border-top: 2px solid var(--line); padding-block: 1.25rem 2rem; font-si
 <!-- SOBRE -->
 <section class="view" id="v-sobre" aria-labelledby="h-sobre" hidden>
   <div class="section">
-    <p class="eyebrow">Sobre o guia</p>
-    <h2 id="h-sobre">Um lugar só para saber onde dá para ir</h2>
+    <p class="eyebrow">Acessibilidade RS, da Rede Bolha</p>
+    <h2 id="h-sobre">Uma rede para saber onde dá para ir</h2>
     <div class="prose">
-      <p>Quem tem deficiência ou mobilidade reduzida costuma descobrir na porta se vai conseguir entrar. A Acessibilidade RS reúne, por região, hotéis, restaurantes, espaços de eventos, comércio, praças, transporte e serviços públicos que se preparam para receber todo mundo.</p>
-      <p>O guia é uma iniciativa da Rede Bolha, independente do poder público. Mostramos também a certificação oficial do Estado quando o lugar a possui.</p>
+      <p>Quem tem deficiência ou mobilidade reduzida costuma descobrir na porta se vai conseguir entrar. O Acessibilidade RS existe para mudar isso: é um espaço colaborativo para encontrar, avaliar e divulgar lugares acessíveis no Rio Grande do Sul, de hotéis e restaurantes a turismo, cultura, lazer, comércio, transporte e serviços públicos.</p>
+      <p>A informação é construída por várias mãos, e cada uma tem o seu papel.</p>
     </div>
+  </div>
+  <div class="section">
+    <h3>Quem participa</h3>
+    <div class="quem">
+      <article><h4>Pessoas com deficiência e famílias</h4><p>Visitam, avaliam e contam o que funcionou e o que faltou. São a fonte mais importante do guia.</p><a class="btn small" href="#avaliar">Avaliar um lugar</a></article>
+      <article><h4>Estabelecimentos</h4><p>Informam os recursos que oferecem e mantêm os dados em dia. Quem se prepara para receber todo mundo merece ser encontrado.</p><a class="btn small ghost" href="#cadastro">Cadastrar meu negócio</a></article>
+      <article><h4>Entidades</h4><p>Associações, conselhos e grupos de pessoas com deficiência divulgam o guia, indicam lugares e mobilizam quem pode avaliar na sua cidade.</p><a class="btn small ghost" href="/contato/">Quero participar</a></article>
+      <article><h4>Poder público</h4><p>Prefeituras e órgãos públicos podem indicar equipamentos acessíveis. A certificação oficial, o Selo Estadual da FADERS, aparece à parte quando o lugar a possui.</p><a class="btn small ghost" href="#avaliacao">Como funciona</a></article>
+    </div>
+    <p class="muted" style="max-width:68ch">O Acessibilidade RS é uma iniciativa independente da Rede Bolha. Não é um serviço do Governo do Estado nem substitui a certificação oficial.</p>
   </div>
   <div class="section">
     <h3>Referências no Brasil e no mundo</h3>
@@ -532,7 +631,7 @@ footer { border-top: 2px solid var(--line); padding-block: 1.25rem 2rem; font-si
 </main>
 
 <footer class="wrap"><div class="inner stack">
-  <p><b>Acessibilidade RS</b> · um guia da <a href="/">Rede Bolha</a>. Os níveis do guia são independentes do Selo Estadual de Acessibilidade da FADERS, que aparece como informação complementar.</p>
+  <p><b>Acessibilidade RS</b> · uma rede colaborativa da <a href="/">Rede Bolha</a>. As informações do guia não são certificação nem vistoria técnica. O Selo Estadual de Acessibilidade da FADERS aparece à parte, como informação complementar.</p>
   <p><b>Apoie a Acessibilidade RS:</b> contribua com um Pix de qualquer valor para <button class="pixlink" type="button" data-copiar="redebolhaoficial@gmail.com" aria-label="Copiar a chave Pix redebolhaoficial@gmail.com">redebolhaoficial@gmail.com</button>. É assim que o guia segue crescendo.</p>
   <p><a href="/contato/">Contato</a> · <a href="/politica-de-privacidade.html">Política de Privacidade</a> · <a href="/termos-de-uso.html">Termos de Uso</a></p>
 </div></footer>

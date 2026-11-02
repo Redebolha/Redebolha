@@ -47,16 +47,25 @@
   function proj(lon, lat) { var s = MAP.proj.s, tx = MAP.proj.tx, ty = MAP.proj.ty; var l = lon * Math.PI / 180, p = lat * Math.PI / 180; return [s * l + tx, ty - s * Math.log(Math.tan(Math.PI / 4 + p / 2))]; }
   function validCoord(lat, lon) { return isFinite(lat) && isFinite(lon) && lat <= -27 && lat >= -34 && lon >= -58 && lon <= -49; }
   function hasCoord(p) { return p.lat !== null && p.lat !== undefined && p.lat !== '' && validCoord(Number(p.lat), Number(p.lon)); }
+  /* "Como chegar": abre o mapa do celular pela coordenada ou pelo endereço */
+  function rotaUrl(p) {
+    var q = hasCoord(p) ? Number(p.lat) + ',' + Number(p.lon) : [p.nome, p.endereco, munName(p.mun), 'RS'].filter(Boolean).join(', ');
+    return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q);
+  }
 
   function normPlace(d) {
     var recursos = Array.isArray(d.recursos) ? d.recursos.filter(function (k) { return A.REC[k]; }) : [];
     var av = A.avaliar(recursos);
     var o = {}; for (var k in d) o[k] = d[k];
     o.faders = A.FAD[d.faders] ? d.faders : '';
-    o.recursos = recursos; o.verificado = !!d.verificado; o.nivel = av.nivel; o.dimv = av.v;
+    o.recursos = recursos; o.verificado = !!d.verificado;
+    o.avaliacoes = Math.max(0, parseInt(d.avaliacoes, 10) || 0);
+    o.st = A.situacao(o); o.rank = A.SITU[o.st].ordem; o.atende = av.atende; o.dimv = av.v;
     return o;
   }
-  function mkType(p) { return p.nivel > 0 ? 'n' + p.nivel : p.faders ? 'f' : 'n0'; }
+  /* Marcador: cor e símbolo da situação da informação. Lugar que só tem o
+     Selo FADERS, sem recursos informados, aparece como quadrado "F". */
+  function mkType(p) { return (p.st === 'c' && !p.recursos.length && p.faders) ? 'f' : p.st; }
 
   /* ---------- Ícones ---------- */
   var ICON = {
@@ -66,22 +75,35 @@
     int: '<path d="M12 12c-1.6-2.4-3.2-3.6-4.8-3.6a3.6 3.6 0 0 0 0 7.2c1.6 0 3.2-1.2 4.8-3.6zm0 0c1.6 2.4 3.2 3.6 4.8 3.6a3.6 3.6 0 0 0 0-7.2c-1.6 0-3.2 1.2-4.8 3.6z" fill="none" stroke="currentColor" stroke-width="2.2"/>'
   };
   function icon(k, size) { size = size || 22; return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 24 24" aria-hidden="true">' + ICON[k] + '</svg>'; }
-  var MK_FILL = { n3: 'var(--n3)', n2: 'var(--n2)', n1: 'var(--n1)', n0: 'var(--n0)', f: 'var(--faders)' };
-  var MK_TXT = { n3: '3', n2: '2', n1: '1', n0: '?', f: 'F' };
+  var MK_FILL = { v: 'var(--sv)', a: 'var(--sa)', c: 'var(--sc)', f: 'var(--faders)' };
+  /* Símbolos dentro do marcador (raio 1): ✓ verificado, balão de conversa
+     para avaliado pela comunidade (alguém contou como foi), alfinete para
+     cadastrado, F para o selo. A cor nunca é a única pista. */
+  function mkGlyph(t) {
+    var k = '#050E22';
+    if (t === 'v') return '<path d="M-.5 .03 L-.14 .38 L.5 -.34" fill="none" stroke="' + k + '" stroke-width=".27" stroke-linecap="round" stroke-linejoin="round"/>';
+    if (t === 'a') return '<path d="M-.42-.5h.84a.16 .16 0 0 1 .16 .16v.56a.16 .16 0 0 1-.16 .16H.04L-.36 .62V.38h-.06a.16 .16 0 0 1-.16-.16v-.56a.16 .16 0 0 1 .16-.16z" fill="' + k + '"/><circle cx="-.27" cy="-.06" r=".085" fill="' + MK_FILL.a + '"/><circle cy="-.06" r=".085" fill="' + MK_FILL.a + '"/><circle cx=".27" cy="-.06" r=".085" fill="' + MK_FILL.a + '"/>';
+    if (t === 'c') return '<path d="M0 .62C-.1 .44-.42 .1-.42-.13a.42 .42 0 0 1 .84 0C.42 .1 .1 .44 0 .62z" fill="' + k + '"/><circle cy="-.14" r=".15" fill="' + MK_FILL.c + '"/>';
+    return '<text y=".05" font-size="1.25" font-weight="800" text-anchor="middle" dominant-baseline="central" fill="' + k + '" font-family="Atkinson Hyperlegible Next, system-ui, sans-serif">F</text>';
+  }
   function mkIcon(t, ring, size) {
     size = size || 26;
     var shape = t === 'f' ? '<rect class="b" x="-1" y="-1" width="2" height="2" rx=".35" fill="' + MK_FILL[t] + '" stroke="#050E22" stroke-width=".14"/>' : '<circle class="b" r="1" fill="' + MK_FILL[t] + '" stroke="#050E22" stroke-width=".14"/>';
     var vb = ring ? '-1.45 -1.45 2.9 2.9' : '-1.12 -1.12 2.24 2.24';
-    return '<svg width="' + size + '" height="' + size + '" viewBox="' + vb + '" aria-hidden="true">' + (ring ? '<circle r="1.32" fill="none" stroke="var(--faders)" stroke-width=".22"/>' : '') + shape + '<text y=".05" font-size="1.25" font-weight="800" text-anchor="middle" dominant-baseline="central" fill="#050E22" font-family="Atkinson Hyperlegible Next, system-ui, sans-serif">' + MK_TXT[t] + '</text></svg>';
+    return '<svg width="' + size + '" height="' + size + '" viewBox="' + vb + '" aria-hidden="true">' + (ring ? '<circle r="1.32" fill="none" stroke="var(--faders)" stroke-width=".22"/>' : '') + shape + mkGlyph(t) + '</svg>';
   }
-  function nivelBadge(n) { return '<span class="nivel n' + n + '">' + mkIcon('n' + n, false, 20) + '<span>' + esc(A.NIV[n].curto) + '</span>' + (n > 0 ? '<span class="st" aria-hidden="true">' + A.NIV[n].stars + '</span>' : '') + '</span>'; }
+  function sitBadge(p) {
+    var s = p.st, txt = A.SITU[s].curto + (s === 'a' && p.avaliacoes ? ' · ' + p.avaliacoes : '');
+    return '<span class="nivel s' + s + '">' + mkIcon(s, false, 20) + '<span>' + esc(txt) + '</span>' + (s === 'a' && p.avaliacoes ? '<span class="sr"> ' + (p.avaliacoes === 1 ? 'avaliação' : 'avaliações') + '</span>' : '') + '</span>';
+  }
+  function sitBadgeKey(s) { return '<span class="nivel s' + s + '">' + mkIcon(s, false, 20) + '<span>' + esc(A.SITU[s].curto) + '</span></span>'; }
   function fadersBadge(f, ano) { return f ? '<span class="fbadge">' + mkIcon('f', false, 18) + 'Selo FADERS ' + esc(A.FAD[f]) + (ano ? ' · ' + esc(ano) : '') + '</span>' : ''; }
   var SV = { 2: 'Atende', 1: 'Parcial', 0: 'Sem informação' };
   var SVC = { 2: '✓ Atende', 1: '◐ Parcial', 0: '— Sem info' };
   function dimsHTML(p) { return '<div class="dims">' + A.DIMS.map(function (d) { return '<div class="dim v' + p.dimv[d.k] + '">' + icon(d.k, 22) + '<span>' + esc(d.nome) + '</span><span class="s">' + SVC[p.dimv[d.k]] + '</span></div>'; }).join('') + '</div>'; }
 
   /* ---------- Estado ---------- */
-  var state = { locais: [], municipios: {}, status: 'loading', fNiv: new Set(), fDim: new Set(), fCat: new Set(), sel: { type: 'estado', id: null }, vb: { x: 0, y: 0, w: 1000, h: 960 } };
+  var state = { locais: [], municipios: {}, status: 'loading', fSit: new Set(), fDim: new Set(), fCat: new Set(), sel: { type: 'estado', id: null }, vb: { x: 0, y: 0, w: 1000, h: 960 } };
 
   /* ---------- Leitura: tamanho do texto e contraste ---------- */
   var FS = [100, 112.5, 125, 137.5, 150, 162.5];
@@ -94,7 +116,7 @@
   applyFs(); applyHc(store.get('ars_hc') === '1');
 
   /* ---------- Navegação ---------- */
-  var VIEWS = ['mapa', 'lista', 'avaliacao', 'cadastro', 'sobre'];
+  var VIEWS = ['mapa', 'lista', 'avaliar', 'cadastro', 'avaliacao', 'sobre'];
   function route() {
     var h = location.hash.slice(1), v = VIEWS.indexOf(h) >= 0 ? h : 'mapa';
     VIEWS.forEach(function (n) { $('#v-' + n).hidden = n !== v; });
@@ -113,15 +135,19 @@
     $('#c-cat').innerHTML = '<option value="">Escolha</option>' + A.CATS.map(function (c) { return '<option value="' + esc(c[1]) + '">' + esc(c[1]) + '</option>'; }).join('');
     $('#l-reg').innerHTML = '<option value="">Todas</option>' + REG_ORDER.map(function (r) { return '<option value="' + r + '">' + esc(REG[r].nome) + '</option>'; }).join('');
     $('#l-cat').innerHTML = '<option value="">Todos</option>' + A.CATS.map(function (c) { return '<option value="' + c[0] + '">' + esc(c[1]) + '</option>'; }).join('');
-    $('#l-niv').innerHTML = '<option value="">Todos</option>' + [3, 2, 1, 0].map(function (n) { return '<option value="' + n + '">' + esc(A.NIV[n].nome) + '</option>'; }).join('') + '<option value="f">Com Selo FADERS</option>';
+    $('#l-niv').innerHTML = '<option value="">Todas</option>' + A.SITU_ORDER.map(function (s) { return '<option value="' + s + '">' + esc(A.SITU[s].nome) + '</option>'; }).join('') + '<option value="f">Com Selo FADERS</option>';
     $('#c-dims').innerHTML = recFieldsets('cr', true);
-    $('#f-niv').innerHTML = [3, 2, 1, 0].map(function (n) { return '<button type="button" class="chip" aria-pressed="false" data-niv="' + n + '">' + mkIcon('n' + n, false, 24) + esc(A.NIV[n].curto) + '</button>'; }).join('') + '<button type="button" class="chip" aria-pressed="false" data-niv="f">' + mkIcon('f', false, 24) + 'Selo FADERS</button>';
+    $('#a-dims').innerHTML = recFieldsets('ar', true);
+    $('#f-niv').innerHTML = A.SITU_ORDER.map(function (s) { return '<button type="button" class="chip" aria-pressed="false" data-sit="' + s + '">' + mkIcon(s, false, 24) + esc(A.SITU[s].curto) + '</button>'; }).join('') + '<button type="button" class="chip" aria-pressed="false" data-sit="f">' + mkIcon('f', false, 24) + 'Selo FADERS</button>';
     $('#f-dim').innerHTML = A.DIMS.map(function (d) { return '<button type="button" class="chip" aria-pressed="false" data-dim="' + d.k + '">' + icon(d.k, 22) + esc(d.nome) + '</button>'; }).join('');
     $('#f-cat').innerHTML = A.CATS.map(function (c) { return '<button type="button" class="chip t" aria-pressed="false" data-cat="' + c[0] + '">' + esc(c[1]) + '</button>'; }).join('');
-    $('#legend').innerHTML = [3, 2, 1, 0].map(function (n) { return '<div>' + mkIcon('n' + n, false, 28) + '<span><b>' + esc(A.NIV[n].nome) + '</b></span></div>'; }).join('')
-      + '<div>' + mkIcon('f', false, 28) + '<span><b>Só Selo Estadual FADERS</b></span></div><div>' + mkIcon('n2', true, 32) + '<span>Anel azul: também tem o Selo FADERS</span></div>';
+    $('#legend').innerHTML = A.SITU_ORDER.map(function (s) { return '<div>' + mkIcon(s, false, 28) + '<span><b>' + esc(A.SITU[s].nome) + '</b></span></div>'; }).join('')
+      + '<div>' + mkIcon('f', false, 28) + '<span><b>Só Selo Estadual FADERS</b></span></div><div>' + mkIcon('c', true, 32) + '<span>Anel azul: também tem o Selo FADERS</span></div>'
+      + '<p class="hint" style="margin-top:.2rem">A cor diz de onde veio a informação, não dá nota ao lugar. <a href="#avaliacao">Como funciona</a></p>';
     $('#dimcards').innerHTML = A.DIMS.map(function (d) { return '<article class="dimcard"><h3>' + icon(d.k, 28) + esc(d.nome) + '</h3><p class="hint">' + esc(d.longo) + '</p><ul>' + d.recs.map(function (r) { return '<li>' + esc(r[1]) + '</li>'; }).join('') + '</ul><p class="rule">' + esc(d.regra) + '</p></article>'; }).join('');
-    $('#levelcards').innerHTML = [3, 2, 1, 0].map(function (n) { return '<div class="level n' + n + '"><div class="lv">' + mkIcon('n' + n, false, 34) + esc(A.NIV[n].nome) + '</div><p>' + esc(A.NIV[n].desc) + '</p></div>'; }).join('');
+    $('#gerais').textContent = A.GERAIS.map(function (r) { return r[1].replace(/ \(.*\)$/, '').toLowerCase(); }).join('; ') + '.';
+    $('#levelcards').innerHTML = A.SITU_ORDER.slice().reverse().map(function (s, i) { return '<div class="level s' + s + '"><span class="eyebrow">Etapa ' + (i + 1) + '</span><div class="lv">' + mkIcon(s, false, 34) + esc(A.SITU[s].nome) + '</div><p>' + esc(A.SITU[s].desc) + '</p></div>'; }).join('')
+      + '<div class="level sf"><span class="eyebrow">À parte</span><div class="lv">' + mkIcon('f', false, 34) + 'Selo FADERS</div><p>Certificação oficial do Governo do Estado, por vistoria técnica. Quando o lugar tem, mostramos junto, com um anel azul no marcador.</p></div>';
     $('#refs').innerHTML = REFS.map(function (r) { return '<article class="ref"><span class="where">' + esc(r.onde) + '</span><h3>' + esc(r.nome) + '</h3><p>' + esc(r.txt) + '</p><a href="' + esc(r.url) + '" target="_blank" rel="noopener">Ver fonte (' + esc(host(r.url)) + ')</a></article>'; }).join('');
     $('#fontes').innerHTML = FONTES.map(function (f) { return '<li><a href="' + esc(f[1]) + '" target="_blank" rel="noopener">' + esc(f[0]) + '</a></li>'; }).join('');
   }
@@ -171,12 +197,13 @@
   function filteredLocais() {
     return state.locais.filter(function (p) {
       if (state.fCat.size && !state.fCat.has(p.categoria)) return false;
-      if (state.fNiv.size && !(state.fNiv.has(String(p.nivel)) || (state.fNiv.has('f') && p.faders))) return false;
+      if (state.fSit.size && !(state.fSit.has(p.st) || (state.fSit.has('f') && p.faders))) return false;
       var ok = true; state.fDim.forEach(function (d) { if (p.dimv[d] !== 2) ok = false; });
       return ok;
     });
   }
-  function byNivelNome(a, b) { return b.nivel - a.nivel || String(a.nome).localeCompare(String(b.nome), 'pt-BR'); }
+  /* Ordem: informação mais confiável primeiro, depois quem cobre mais tipos de necessidade */
+  function byNivelNome(a, b) { return b.rank - a.rank || b.atende - a.atende || String(a.nome).localeCompare(String(b.nome), 'pt-BR'); }
   function placePositions(list) {
     var byMun = {}, out = new Map();
     list.slice().sort(byNivelNome).forEach(function (p) {
@@ -191,11 +218,11 @@
   function renderMarkers() {
     if (!gMk) return;
     var list = filteredLocais(), pos = placePositions(list), h = '';
-    list.slice().sort(function (a, b) { return a.nivel - b.nivel; }).forEach(function (p) {
+    list.slice().sort(function (a, b) { return a.rank - b.rank; }).forEach(function (p) {
       var xy = pos.get(p.id); if (!xy) return;
       var t = mkType(p), sel = state.sel.type === 'local' && state.sel.id === p.id ? ' sel' : '';
       var shape = t === 'f' ? '<rect class="b" x="-1" y="-1" width="2" height="2" rx=".35" fill="' + MK_FILL[t] + '"/>' : '<circle class="b" r="1" fill="' + MK_FILL[t] + '"/>';
-      h += '<g class="mk' + sel + '" data-id="' + esc(p.id) + '" data-x="' + xy[0].toFixed(1) + '" data-y="' + xy[1].toFixed(1) + '"><title>' + esc(p.nome) + ' · ' + esc(A.NIV[p.nivel].nome) + (p.faders ? ' · Selo FADERS ' + esc(A.FAD[p.faders]) : '') + '</title>' + (p.faders && t !== 'f' ? '<circle class="ring" r="1.3"/>' : '') + shape + '<text y=".04" font-size="1.25">' + MK_TXT[t] + '</text></g>';
+      h += '<g class="mk' + sel + '" data-id="' + esc(p.id) + '" data-x="' + xy[0].toFixed(1) + '" data-y="' + xy[1].toFixed(1) + '"><title>' + esc(p.nome) + ' · ' + esc(A.SITU[p.st].nome) + (p.faders ? ' · Selo FADERS ' + esc(A.FAD[p.faders]) : '') + '</title>' + (p.faders && t !== 'f' ? '<circle class="ring" r="1.3"/>' : '') + shape + mkGlyph(t) + '</g>';
     });
     gMk.innerHTML = h;
     updateMarkerScale();
@@ -291,7 +318,7 @@
     max = max || 50;
     if (!list.length) return '<p class="empty">Nenhum lugar com os filtros atuais.</p>';
     var sorted = list.slice().sort(byNivelNome);
-    return '<ul class="placelist">' + sorted.slice(0, max).map(function (p) { return '<li><button type="button" class="pitem" data-place="' + esc(p.id) + '"><b>' + esc(p.nome) + '</b><span class="meta">' + nivelBadge(p.nivel) + (p.faders ? fadersBadge(p.faders) : '') + '<span>' + esc(CAT[p.categoria] || '—') + ' · ' + esc(munName(p.mun)) + '</span></span></button></li>'; }).join('') + '</ul>' + (sorted.length > max ? '<p class="hint">Mostrando ' + max + ' de ' + sorted.length + '. Veja todos na aba Lista.</p>' : '');
+    return '<ul class="placelist">' + sorted.slice(0, max).map(function (p) { return '<li><button type="button" class="pitem" data-place="' + esc(p.id) + '"><b>' + esc(p.nome) + '</b><span class="meta">' + sitBadge(p) + (p.faders ? fadersBadge(p.faders) : '') + '<span>' + esc(CAT[p.categoria] || '—') + ' · ' + esc(munName(p.mun)) + '</span></span></button></li>'; }).join('') + '</ul>' + (sorted.length > max ? '<p class="hint">Mostrando ' + max + ' de ' + sorted.length + '. Veja todos na aba Lista.</p>' : '');
   }
   function notice() {
     if (state.status === 'loading') return '<p class="empty">Carregando lugares…</p>';
@@ -316,16 +343,17 @@
     } else if (sel.type === 'local') {
       var p = state.locais.filter(function (x) { return x.id === sel.id; })[0];
       if (!p) { state.sel = { type: 'estado', id: null }; renderSide(); return; }
-      var site = safeUrl(p.site), fonte = safeUrl(p.fonte);
+      var site = safeUrl(p.site), fonte = safeUrl(p.fonte), fotos = safeUrl(p.fotos);
       ctx.innerHTML = '<div class="stack"><button type="button" class="back" data-mun="' + esc(p.mun) + '">← ' + esc(munName(p.mun)) + '</button>'
         + '<div><p class="eyebrow">' + esc(CAT[p.categoria] || 'Lugar') + '</p><h2 style="font-size:1.45rem">' + esc(p.nome) + '</h2></div>'
-        + '<div class="row">' + nivelBadge(p.nivel) + fadersBadge(p.faders, p.fadersAno) + '</div>'
+        + '<div class="row">' + sitBadge(p) + fadersBadge(p.faders, p.fadersAno) + '</div>'
+        + '<p class="hint">' + esc(A.SITU[p.st].desc) + '</p>'
         + dimsHTML(p)
-        + '<p class="hint">' + (p.verificado ? 'Conferido pela equipe' : 'Informado pelo estabelecimento ou por fonte pública') + '</p>'
-        + '<dl class="kv"><dt>Cidade</dt><dd>' + esc(munName(p.mun)) + ' · ' + esc(REG[regOf(p.mun)] ? REG[regOf(p.mun)].nome : '') + '</dd>' + (p.endereco ? '<dt>Endereço</dt><dd>' + esc(p.endereco) + '</dd>' : '') + (p.contato ? '<dt>Contato</dt><dd>' + esc(p.contato) + '</dd>' : '') + (site ? '<dt>Site</dt><dd><a href="' + esc(site) + '" target="_blank" rel="noopener">' + esc(host(site)) + '</a></dd>' : '') + '</dl>'
+        + '<dl class="kv"><dt>Cidade</dt><dd>' + esc(munName(p.mun)) + ' · ' + esc(REG[regOf(p.mun)] ? REG[regOf(p.mun)].nome : '') + '</dd>' + (p.endereco ? '<dt>Endereço</dt><dd>' + esc(p.endereco) + '</dd>' : '') + (p.contato ? '<dt>Contato</dt><dd>' + esc(p.contato) + '</dd>' : '') + (site ? '<dt>Site</dt><dd><a href="' + esc(site) + '" target="_blank" rel="noopener">' + esc(host(site)) + '</a></dd>' : '') + '<dt>Avaliações</dt><dd>' + (p.avaliacoes ? p.avaliacoes + ' da comunidade' : 'Ainda nenhuma. Seja a primeira pessoa a avaliar.') + '</dd></dl>'
         + (p.recursos.length ? '<div><p class="eyebrow" style="margin-bottom:.4rem">Recursos</p><div class="recs">' + p.recursos.map(function (r) { return '<span class="rec">' + esc(A.REC[r]) + '</span>'; }).join('') + '</div></div>' : '')
         + (p.obs ? '<p style="font-size:.95rem">' + esc(p.obs) + '</p>' : '')
-        + (fonte ? '<p style="font-size:.92rem"><a href="' + esc(fonte) + '" target="_blank" rel="noopener">Fonte: ' + esc(host(fonte)) + '</a></p>' : '') + '</div>';
+        + '<div class="row"><a class="btn small" href="#avaliar" data-avaliar="' + esc(p.id) + '">Avaliar este lugar</a><a class="btn small ghost" href="' + esc(rotaUrl(p)) + '" target="_blank" rel="noopener">Como chegar</a></div>'
+        + ((fotos || fonte) ? '<p style="font-size:.92rem">' + (fotos ? '<a href="' + esc(fotos) + '" target="_blank" rel="noopener">Ver fotos</a>' : '') + (fotos && fonte ? ' · ' : '') + (fonte ? '<a href="' + esc(fonte) + '" target="_blank" rel="noopener">Fonte: ' + esc(host(fonte)) + '</a>' : '') + '</p>' : '') + '</div>';
     } else {
       var byReg = {}; list.forEach(function (p) { var r = regOf(p.mun); byReg[r] = (byReg[r] || 0) + 1; });
       ctx.innerHTML = '<div class="stack"><div><p class="eyebrow">Regiões</p><p class="muted" style="font-size:.95rem">Escolha uma região para ver as cidades e os lugares.</p></div>'
@@ -341,7 +369,7 @@
       else if (b.dataset.go === 'estado') { state.sel = { type: 'estado', id: null }; resetView(); renderSide(); renderMunClasses(); }
     });
     function toggle(set, key, b) { if (set.has(key)) set.delete(key); else set.add(key); b.setAttribute('aria-pressed', set.has(key)); renderMarkers(); renderSide(); }
-    $('#f-niv').addEventListener('click', function (e) { var b = e.target.closest('[data-niv]'); if (b) toggle(state.fNiv, b.dataset.niv, b); });
+    $('#f-niv').addEventListener('click', function (e) { var b = e.target.closest('[data-sit]'); if (b) toggle(state.fSit, b.dataset.sit, b); });
     $('#f-dim').addEventListener('click', function (e) { var b = e.target.closest('[data-dim]'); if (b) toggle(state.fDim, b.dataset.dim, b); });
     $('#f-cat').addEventListener('click', function (e) { var b = e.target.closest('[data-cat]'); if (!b) return; toggle(state.fCat, b.dataset.cat, b); $('#cat-count').textContent = state.fCat.size ? '· ' + state.fCat.size + ' escolhido' + (state.fCat.size > 1 ? 's' : '') : ''; });
     var last = '';
@@ -364,18 +392,19 @@
 
   /* ---------- Números ---------- */
   function renderStats() {
-    var ok = state.status === 'ok', c = { 3: 0, 2: 0, 1: 0, 0: 0 }, f = 0;
-    state.locais.forEach(function (p) { c[p.nivel]++; if (p.faders) f++; });
+    var ok = state.status === 'ok', c = { v: 0, a: 0, c: 0 }, f = 0;
+    state.locais.forEach(function (p) { c[p.st]++; if (p.faders) f++; });
     function v(n) { return ok ? n : '–'; }
+    var rot = { v: ['verificado', 'verificados'], a: ['avaliado pela comunidade', 'avaliados pela comunidade'], c: ['cadastrado', 'cadastrados'] };
     $('#stats').innerHTML = '<div class="stat plain"><b>' + v(state.locais.length) + '</b><span>lugares no guia</span></div>'
-      + [3, 2, 1].map(function (n) { return '<div class="stat">' + mkIcon('n' + n, false, 26) + '<b>' + v(c[n]) + '</b><span>' + esc(A.NIV[n].curto) + '</span></div>'; }).join('')
+      + A.SITU_ORDER.map(function (s) { return '<div class="stat">' + mkIcon(s, false, 26) + '<b>' + v(c[s]) + '</b><span>' + rot[s][c[s] === 1 ? 0 : 1] + '</span></div>'; }).join('')
       + '<div class="stat">' + mkIcon('f', false, 26) + '<b>' + v(f) + '</b><span>com Selo FADERS</span></div>';
   }
 
   /* ---------- Lista ---------- */
   function renderList() {
     var q = norm($('#l-q').value), r = $('#l-reg').value, c = $('#l-cat').value, n = $('#l-niv').value;
-    var list = state.locais.filter(function (p) { return (!r || regOf(p.mun) === r) && (!c || p.categoria === c) && (!n || (n === 'f' ? !!p.faders : String(p.nivel) === n)); });
+    var list = state.locais.filter(function (p) { return (!r || regOf(p.mun) === r) && (!c || p.categoria === c) && (!n || (n === 'f' ? !!p.faders : p.st === n)); });
     if (q) list = list.filter(function (p) { return norm([p.nome, munName(p.mun), CAT[p.categoria], p.endereco].concat(p.recursos.map(function (k) { return A.REC[k]; })).join(' ')).indexOf(q) >= 0; });
     list.sort(byNivelNome);
     $('#l-count').textContent = state.status !== 'ok' ? '' : list.length + ' ' + (list.length === 1 ? 'lugar' : 'lugares');
@@ -384,11 +413,11 @@
     if (!list.length) { $('#l-cards').innerHTML = '<p class="empty">Nenhum lugar com esses filtros.</p>'; return; }
     $('#l-cards').innerHTML = list.map(function (p) {
       var fonte = safeUrl(p.fonte), site = safeUrl(p.site);
-      return '<article class="card"><h3>' + esc(p.nome) + '</h3><div class="row">' + nivelBadge(p.nivel) + fadersBadge(p.faders, p.fadersAno) + '</div>'
+      return '<article class="card"><h3>' + esc(p.nome) + '</h3><div class="row">' + sitBadge(p) + fadersBadge(p.faders, p.fadersAno) + '</div>'
         + '<p class="where">' + esc(CAT[p.categoria] || '—') + ' · ' + esc(munName(p.mun)) + ' · ' + esc(REG[regOf(p.mun)] ? REG[regOf(p.mun)].nome : '') + '</p>'
         + dimsHTML(p)
         + (p.obs ? '<p style="font-size:.95rem" class="muted">' + esc(p.obs) + '</p>' : '')
-        + '<div class="foot"><a href="#mapa" data-show="' + esc(p.id) + '">Ver no mapa</a>' + (site ? '<a href="' + esc(site) + '" target="_blank" rel="noopener">Site</a>' : '') + (fonte ? '<a href="' + esc(fonte) + '" target="_blank" rel="noopener">Fonte</a>' : '') + '</div></article>';
+        + '<div class="foot"><a href="#mapa" data-show="' + esc(p.id) + '">Ver no mapa</a><a href="#avaliar" data-avaliar="' + esc(p.id) + '">Avaliar</a>' + (site ?'<a href="' + esc(site) + '" target="_blank" rel="noopener">Site</a>' : '') + (fonte ? '<a href="' + esc(fonte) + '" target="_blank" rel="noopener">Fonte</a>' : '') + '</div></article>';
     }).join('');
   }
   ['#l-q', '#l-reg', '#l-cat', '#l-niv'].forEach(function (s) { $(s).addEventListener('input', renderList); });
@@ -408,7 +437,8 @@
   function readRecs(pre) { return Object.keys(A.REC).filter(function (k) { var el = $('#' + pre + '-' + k); return el && el.checked; }); }
   function calcBox() {
     var av = A.avaliar(readRecs('cr'));
-    $('#c-calc').innerHTML = '<span class="hint" style="font-weight:800">Nível calculado:</span>' + nivelBadge(av.nivel) + '<span class="hint">' + A.DIMS.map(function (d) { return d.nome + ': ' + SV[av.v[d.k]].toLowerCase(); }).join(' · ') + '</span>';
+    $('#c-calc').innerHTML = '<span class="hint" style="font-weight:800">O lugar entra no guia como</span>' + sitBadgeKey('c') + '<span class="hint">' + A.DIMS.map(function (d) { return d.nome + ': ' + SV[av.v[d.k]].toLowerCase(); }).join(' · ') + '</span>'
+      + '<span class="hint">Depois sobe para <b>Avaliado pela comunidade</b>, quando pessoas com deficiência avaliarem a visita, e para <b>Verificado</b>, quando a equipe conferir fotos e documentos.</span>';
   }
   var form = $('#f-cad');
   $('#c-dims').addEventListener('change', calcBox);
@@ -431,8 +461,43 @@
     }
   }, true);
 
+  /* ---------- Avaliação de quem visitou ----------
+     Chega como mensagem (Formspree/WhatsApp, pelo /js/rb-lista.js). A equipe
+     confere e soma a avaliação no painel; com uma ou mais, o lugar passa a
+     "Avaliado pela comunidade". */
+  function fillPlaceList() {
+    $('#dl-lugares').innerHTML = state.locais.slice().sort(function (a, b) { return String(a.nome).localeCompare(String(b.nome), 'pt-BR'); })
+      .map(function (p) { return '<option value="' + esc(p.nome) + '">' + esc(munName(p.mun)) + '</option>'; }).join('');
+  }
+  function prefillAval(id) {
+    var p = state.locais.filter(function (x) { return x.id === id; })[0]; if (!p) return;
+    $('#a-lugar').value = p.nome; $('#a-mun').value = munName(p.mun); $('#a-id').value = p.id;
+  }
+  document.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('[data-avaliar]'); if (a) prefillAval(a.dataset.avaliar); });
+  $('#f-av').addEventListener('reset', function () { setTimeout(function () { $('#a-id').value = ''; }, 0); });
+  $('#a-lugar').addEventListener('change', function () {
+    var q = norm(this.value), p = state.locais.filter(function (x) { return norm(x.nome) === q; })[0];
+    $('#a-id').value = p ? p.id : '';
+    if (p && !$('#a-mun').value.trim()) $('#a-mun').value = munName(p.mun);
+  });
+  $('#f-av').addEventListener('submit', function (e) {
+    var err = $('#a-err'); err.hidden = true;
+    var miss = [];
+    if (!$('#a-lugar').value.trim()) miss.push('nome do lugar');
+    var cod = munCod($('#a-mun').value);
+    if (!cod) miss.push('cidade (escolha um nome da lista)'); else $('#a-mun').value = munName(cod);
+    if (!$('#a-indica').value) miss.push('se você indicaria o lugar');
+    if ($('#a-nome').value.trim().length < 2) miss.push('seu nome');
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test($('#a-email').value.trim())) miss.push('e-mail válido');
+    if (!$('#a-lgpd').checked) miss.push('autorização de uso dos dados');
+    if (miss.length) {
+      e.preventDefault(); e.stopImmediatePropagation();
+      err.textContent = 'Falta preencher: ' + miss.join(', ') + '.'; err.hidden = false; err.focus();
+    }
+  }, true);
+
   /* ---------- Render geral ---------- */
-  function renderAll() { renderStats(); renderMunClasses(); renderMarkers(); renderSide(); renderList(); renderSeloMun(); fillSearchList(); }
+  function renderAll() { renderStats(); renderMunClasses(); renderMarkers(); renderSide(); renderList(); renderSeloMun(); fillSearchList(); fillPlaceList(); }
 
   /* ---------- Início ---------- */
   fillStatic();
