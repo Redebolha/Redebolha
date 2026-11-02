@@ -2,12 +2,11 @@
    Troque a versão abaixo sempre que publicar mudanças grandes no site.
    Isso força a atualização do cache no celular das pessoas. */
 
-const VERSAO = 'redebolha-v27';
+const VERSAO = 'redebolha-v28';
 const OFFLINE_URL = '/offline.html';
 
 const PRE_CACHE = [
   '/',
-  '/inicio/',
   '/acessibilidade-rs/',
   '/artigos/',
   '/economia/',
