@@ -24,7 +24,7 @@
     ['FADERS · Selo de Acessibilidade', 'https://faders.rs.gov.br/selo-de-acessibilidade-68dbe89fadfef'],
     ['Prefeitura de Marau · Primeiro Selo Ouro do RS', 'https://www.pmmarau.com.br/noticias-geral/1155-primeiro-selo-ouro-de-acessibilidade-do-rs-e-de-marau'],
     ['Empreendimentos de Farroupilha recebem selo (2024)', 'https://miriamcaravaggio.com.br/empreendimentos-de-farroupilha-recebem-selo-de-acessibilidade/'],
-    ['SEDES · entrega de selos a quatro instituições (2024)', 'https://social.rs.gov.br/faders-entrega-selo-de-acessibilidade-para-quatro-instituicoes-em-abril'],
+    ['Faders entrega Selo de Acessibilidade para quatro instituições em abril', 'https://social.rs.gov.br/faders-entrega-selo-de-acessibilidade-para-quatro-instituicoes-em-abril'],
     ['Governo do RS · Rede Praia Acessível (2023)', 'https://estado.rs.gov.br/servico-telefonico-amplia-acesso-a-cadeiras-especiais-que-permitem-banho-de-mar-a-pessoas-com-deficiencia-e-mobilidade-reduzi'],
     ['IBGE · malha municipal e mesorregiões', 'https://www.ibge.gov.br/geociencias/organizacao-do-territorio/malhas-territoriais.html']
   ];
