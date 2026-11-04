@@ -4,6 +4,27 @@
   <!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6DSL2EMZSL"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-6DSL2EMZSL');</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<!-- LANÇAMENTO 2027: PÁGINA TRAVADA (nov/2026)
+     Até o lançamento oficial, o público vê só a tela "Lançamento Acessibilidade RS 2027".
+     - LIBERAR em janeiro: troque  TRAVADO = true  por  TRAVADO = false  e publique.
+     - PRÉVIA da equipe (ver a página completa enquanto ajusta e cadastra empresas):
+       abra /acessibilidade-rs/?previa=rb2027  (o navegador lembra; para sair: ?previa=sair).
+       A prévia não é senha: só esconde a página de quem chega pelo site. -->
+<script>
+(function () {
+  var TRAVADO = true;
+  var CHAVE = 'rb2027';
+  var q = location.search, pede = new RegExp('[?&]previa=' + CHAVE + '(&|$)').test(q), previa = pede;
+  try {
+    if (/[?&]previa=sair(&|$)/.test(q)) { localStorage.removeItem('ars_previa'); previa = false; }
+    else if (pede) localStorage.setItem('ars_previa', '1');
+    else previa = localStorage.getItem('ars_previa') === '1';
+  } catch (e) {}
+  var c = document.documentElement.classList;
+  if (!TRAVADO || previa) c.add('rb-aberto');
+  if (TRAVADO && previa) c.add('rb-previa');
+})();
+</script>
 <title>Acessibilidade RS — encontre, avalie e divulgue lugares acessíveis no Rio Grande do Sul | Rede Bolha</title>
 <meta name="description" content="Rede colaborativa que conecta pessoas com deficiência a estabelecimentos, serviços, turismo, cultura e lazer no RS. Mapa por região, recursos por tipo de necessidade e avaliações de quem visitou. Cadastro gratuito.">
 <link rel="manifest" href="/manifest.json">
@@ -385,9 +406,69 @@ footer { border-top: 2px solid var(--line); padding-block: 1.25rem 2rem; font-si
 .rb-form-aviso.is-erro { border-color: var(--bad); background: rgba(255, 148, 148, .1); }
 .rb-form-aviso a { font-weight: 800; }
 .loading { padding: 3rem 1rem; text-align: center; color: var(--muted); font-weight: 600; }
+
+/* LANÇAMENTO 2027 — tela que trava a página até o lançamento oficial.
+   Sem a classe rb-aberto no <html>, só esta tela aparece (o resto da página
+   continua no código, pronto para janeiro). Designer: ajuste daqui até o fim
+   do bloco; os textos ficam logo abaixo de <body>. */
+html:not(.rb-aberto) body > :not(.rb-lanc) { display: none !important; }
+html.rb-aberto .rb-lanc { display: none; }
+.rb-lanc { position: relative; overflow: hidden; min-height: 100vh; min-height: 100svh; display: flex; align-items: center; justify-content: center; padding: clamp(40px, 7vw, 88px) 16px clamp(32px, 6vw, 64px);
+  background:
+    radial-gradient(70% 55% at 0% 0%, rgba(0, 146, 63, .40), transparent 70%),
+    radial-gradient(55% 45% at 100% 100%, rgba(218, 37, 29, .18), transparent 70%),
+    radial-gradient(50% 40% at 100% 0%, rgba(255, 245, 0, .08), transparent 70%),
+    var(--bg); }
+.rb-lanc::before { content: ""; position: absolute; inset: 0 0 auto; height: 10px;
+  background: linear-gradient(100deg, var(--rs-verde) 0 33.4%, var(--rs-vermelho) 33.4% 66.7%, var(--rs-amarelo) 66.7%); }
+.rb-lanc-card { width: 100%; max-width: 820px; text-align: center; }
+.rb-lanc-marca { display: inline-flex; align-items: center; gap: .65rem; margin: 0 0 clamp(1.6rem, 4.5vw, 2.6rem); color: var(--ink); font-weight: 800; font-size: 1rem; text-decoration: none; }
+.rb-lanc-marca svg { flex: none; }
+.rb-lanc-marca img { display: block; width: 30px; height: 21px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(255, 255, 255, .35); }
+.rb-lanc-selo { display: inline-block; margin: 0 0 1.3rem; padding: .4rem 1rem; border: 2px solid rgba(75, 224, 140, .75); border-radius: 999px; color: #9CF2C0; font-size: .75rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+.rb-lanc h1 { margin: 0; font-family: var(--font-display); font-weight: 700; letter-spacing: -.015em; line-height: .95; text-wrap: balance; }
+.rb-lanc h1 .l1 { display: block; margin-bottom: .8rem; font-family: var(--font-body); font-size: clamp(.95rem, 2.4vw, 1.25rem); font-weight: 800; letter-spacing: .34em; text-transform: uppercase; color: var(--muted); }
+.rb-lanc h1 .l2 { display: block; font-size: clamp(2.05rem, 8.4vw, 4.6rem); color: #fff; }
+.rb-lanc h1 .l3 { display: block; margin-top: .12em; font-size: clamp(4.4rem, 19vw, 9.5rem); line-height: .88; color: var(--rs-amarelo); text-shadow: 0 12px 40px rgba(255, 245, 0, .22); }
+.rb-lanc-data { display: inline-flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 12px; margin: 1.6rem 0 0; padding: 6px 18px 6px 6px; border: 2px solid var(--rs-amarelo); border-radius: 999px; background: rgba(255, 245, 0, .1); font-size: clamp(1rem, 2.6vw, 1.2rem); line-height: 1.2; }
+.rb-lanc-data span { padding: 6px 12px; border-radius: 999px; background: var(--rs-amarelo); color: #050E22; font-size: .72em; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.rb-lanc-texto { max-width: 58ch; margin: 1.4rem auto 0; color: var(--muted); }
+.rb-lanc-texto strong { color: var(--ink); }
+.rb-lanc-acoes { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 2rem; }
+.rb-lanc-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: .8rem 1.5rem; border: 2px solid var(--rs-amarelo); border-radius: 999px; background: var(--rs-amarelo); color: #050E22; font-weight: 800; text-decoration: none; }
+.rb-lanc-btn--ghost { background: transparent; color: #9CF2C0; border-color: rgba(75, 224, 140, .75); }
+.rb-lanc-assinatura { margin: 2.2rem 0 0; color: var(--muted); font-size: .85rem; }
+@media (max-width: 560px) { .rb-lanc-btn { width: 100%; } .rb-lanc h1 .l1 { letter-spacing: .24em; } .rb-lanc-data { border-radius: 18px; padding: 8px 12px 10px; } }
+/* Faixa que só a equipe vê na prévia */
+.rb-previa-aviso { display: none; }
+html.rb-previa .rb-previa-aviso { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem .8rem; position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 60; max-width: 640px; margin: 0 auto; padding: .6rem 1rem; border: 2px solid var(--rs-amarelo); border-radius: 12px; background: #050E22; color: #fff; font-size: .85rem; box-shadow: 0 10px 30px rgba(0, 0, 0, .5); }
+html.rb-previa .rb-previa-aviso a { color: var(--rs-amarelo); font-weight: 800; }
 </style>
 </head>
 <body>
+<!-- LANÇAMENTO ACESSIBILIDADE RS 2027 — tela de bloqueio (textos editáveis).
+     Como liberar: veja o comentário "LANÇAMENTO 2027" no <head>. -->
+<section class="rb-lanc" aria-labelledby="rb-lanc-titulo">
+  <div class="rb-lanc-card">
+    <a class="rb-lanc-marca" href="/" aria-label="Rede Bolha, página inicial">
+      <svg width="40" height="40" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="9" fill="#FFF500"/><circle cx="17" cy="8.5" r="2.7" fill="#050E22"/><path d="M15 12.5h4l-.6 6h5.2l2.6 6.8-2.2.8-2-5.1h-6.3z" fill="#050E22"/><path d="M13.6 15.6a6.7 6.7 0 1 0 8.9 8.7" fill="none" stroke="#050E22" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <span>Acessibilidade RS</span>
+      <img src="/img/bandeira-rs.webp" width="30" height="21" alt="">
+    </a>
+    <div>
+      <p class="rb-lanc-selo">Em breve &middot; Rio Grande do Sul</p>
+    </div>
+    <h1 id="rb-lanc-titulo"><span class="l1">Lançamento</span> <span class="l2">Acessibilidade RS</span> <span class="l3">2027</span></h1>
+    <p class="rb-lanc-data"><span>Lançamento oficial</span><b>Janeiro de 2027</b></p>
+    <p class="rb-lanc-texto">Antes de sair de casa, saiba onde dá para entrar. Estamos preparando o mapa e cadastrando mais lugares acessíveis nas sete regiões do Rio Grande do Sul. <strong>Em janeiro, o guia abre para todo mundo.</strong></p>
+    <div class="rb-lanc-acoes">
+      <a class="rb-lanc-btn" href="/">Voltar para a Rede Bolha</a>
+      <a class="rb-lanc-btn rb-lanc-btn--ghost" href="/contato/">Quero meu negócio no guia</a>
+    </div>
+    <p class="rb-lanc-assinatura">Uma iniciativa independente da Rede Bolha &middot; Por Adm. Romário Cruz</p>
+  </div>
+</section>
+<div class="rb-previa-aviso" role="note"><b>Prévia da equipe.</b> O público vê a tela de lançamento. <a href="?previa=sair">Sair da prévia</a></div>
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 
 <header class="top">
