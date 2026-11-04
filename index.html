@@ -580,6 +580,11 @@
   .rb-rs-bandeira{margin:4px 0 0}
   .rb-rs-bandeira canvas,.rb-rs-bandeira img{display:block;width:100%;height:auto;filter:drop-shadow(0 14px 22px rgba(0,0,0,.45))}
   @media(max-width:640px){.rb-rs-topo{grid-template-columns:1fr;gap:6px}.rb-rs-bandeira{order:-1;width:150px;margin:0 0 4px}}
+  /* Observação "Lançamento oficial · Janeiro de 2027" logo abaixo do título */
+  .rb-lancamento{display:inline-flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin:18px 0 0;padding:6px 18px 6px 6px;border:2px solid var(--rs-amarelo,#FFF500);border-radius:999px;background:rgba(255,245,0,.1);color:#fff;font-size:clamp(.95rem,2.2vw,1.1rem);line-height:1.2}
+  .rb-lancamento-rot{background:var(--rs-amarelo,#FFF500);color:#050E22;border-radius:999px;padding:6px 12px;font-size:.72em;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+  .rb-lancamento b{font-weight:700;letter-spacing:.01em}
+  @media(max-width:560px){.rb-lancamento{border-radius:16px;padding:8px 14px 10px 8px}.rb-lancamento b{padding-left:4px}}
   /* Mini bandeira do RS na tira do topo */
   .tira-bandeira{flex:none;display:block;width:30px;height:21px;border-radius:2px;box-shadow:0 0 0 1px rgba(255,255,255,.35)}
 </style>
@@ -1259,6 +1264,9 @@
         <div>
           <span class="rb-destaque-tag">Acessibilidade RS &middot; Serviço gratuito</span>
           <h2 class="rb-destaque-titulo rb-destaque-titulo--longo"><a href="/acessibilidade-rs/#mapa">Antes de sair de casa, saiba <em>onde dá para&nbsp;entrar</em></a></h2>
+          <!-- Observação de lançamento (nov/2026). Em janeiro de 2027, quando a
+               página for liberada, troque o texto ou apague este parágrafo. -->
+          <p class="rb-lancamento"><span class="rb-lancamento-rot">Lançamento oficial</span><b>Janeiro de 2027</b></p>
         </div>
         <figure class="rb-rs-bandeira">
           <canvas id="rb-bandeira-rs" width="840" height="640" role="img" aria-label="Bandeira do Rio Grande do Sul tremulando ao vento">
