@@ -31,6 +31,15 @@
     document.head.appendChild(apoie);
   }
 
+  /* Faixa de livros no topo da pagina (js/vitrine.js): vem junto, pelo
+     mesmo motivo do apoie.js. */
+  if (!document.querySelector('script[src*="/js/vitrine.js"]')) {
+    var vitrine = document.createElement('script');
+    vitrine.src = '/js/vitrine.js';
+    vitrine.defer = true;
+    document.head.appendChild(vitrine);
+  }
+
   var DADOS = '/js/patrocinadores.json';
 
   /* ---------------------------------------------------------------- CSS ---

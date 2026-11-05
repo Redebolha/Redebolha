@@ -51,5 +51,46 @@
     "fe": "decisao",
     "decisao": "amanha"
   },
-  "padrao": "hvnr"
+  "padrao": "hvnr",
+  "vitrine": {
+    "_leia_antes": [
+      "A faixa de livros no topo das paginas (js/vitrine.js): um livro por vez, girando.",
+      "Cada item usa o titulo do livro em 'livros' acima; aqui ficam o formato, o preco,",
+      "a frase curta, a capa pequena e o destino do clique (a pagina do livro no site).",
+      "Para tirar um livro da faixa, apague o item. Para mudar o tempo, troque 'intervalo_segundos'.",
+      "A faixa nao aparece na capa do site, que ja tem a secao 'Nossos livros'."
+    ],
+    "selo": "Patrocínio",
+    "rotulo": "Livros de Adm. Romário Cruz",
+    "intervalo_segundos": 6,
+    "itens": [
+      {
+        "livro": "hvnr",
+        "formato": "E-book",
+        "preco": "R$ 9,90",
+        "frase": "O silêncio do homem tem um preço.",
+        "capa": "/img/vitrine-hvnr.webp",
+        "destino": "/livros/homem-voce-nao-e-ridiculo.html",
+        "acao": "Conheça o livro"
+      },
+      {
+        "livro": "amanha",
+        "formato": "E-book",
+        "preco": "R$ 9,90",
+        "frase": "Um convite a parar de adiar a vida e agir no presente.",
+        "capa": "/img/vitrine-amanha.webp",
+        "destino": "/livros/amanha-e-outro-agora.html",
+        "acao": "Conheça o livro"
+      },
+      {
+        "livro": "decisao",
+        "formato": "E-book",
+        "preco": "R$ 9,90",
+        "frase": "Todo homem carrega decisões que adiou.",
+        "capa": "/img/vitrine-decisao.webp",
+        "destino": "/livros/o-poder-da-decisao.html",
+        "acao": "Conheça o livro"
+      }
+    ]
+  }
 }
