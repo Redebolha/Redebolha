@@ -40,6 +40,14 @@
     document.head.appendChild(vitrine);
   }
 
+  /* Banner lateral de livros (js/vitrine-lateral.js): so aparece onde cabe. */
+  if (!document.querySelector('script[src*="/js/vitrine-lateral.js"]')) {
+    var lateral = document.createElement('script');
+    lateral.src = '/js/vitrine-lateral.js';
+    lateral.defer = true;
+    document.head.appendChild(lateral);
+  }
+
   var DADOS = '/js/patrocinadores.json';
 
   /* ---------------------------------------------------------------- CSS ---

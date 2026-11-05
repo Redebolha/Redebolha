@@ -92,5 +92,52 @@
         "acao": "Conheça o livro"
       }
     ]
+  },
+  "lateral": {
+    "_leia_antes": [
+      "Banner vertical no lado direito (js/vitrine-lateral.js): um livro por vez, girando.",
+      "So aparece em tela larga, quando sobra espaco ao lado do conteudo, e some quando",
+      "outro anuncio de livro ou o rodape estao na tela. O leitor pode fechar no X.",
+      "Cada item usa o titulo do livro em 'livros'; aqui ficam formato, preco, texto extra,",
+      "capa e destino. Para tirar um item, apague. Para mudar o tempo, troque 'intervalo_segundos'."
+    ],
+    "selo": "Patrocínio",
+    "rotulo": "Livros de Adm. Romário Cruz",
+    "intervalo_segundos": 7,
+    "itens": [
+      {
+        "livro": "hvnr",
+        "formato": "E-book",
+        "preco": "R$ 9,90",
+        "capa": "/img/lateral-hvnr.webp",
+        "destino": "/livros/homem-voce-nao-e-ridiculo.html",
+        "acao": "Conheça o livro"
+      },
+      {
+        "livro": "amanha",
+        "formato": "E-book",
+        "preco": "R$ 9,90",
+        "capa": "/img/lateral-amanha.webp",
+        "destino": "/livros/amanha-e-outro-agora.html",
+        "acao": "Conheça o livro"
+      },
+      {
+        "livro": "decisao",
+        "formato": "E-book",
+        "preco": "R$ 9,90",
+        "capa": "/img/lateral-decisao.webp",
+        "destino": "/livros/o-poder-da-decisao.html",
+        "acao": "Conheça o livro"
+      },
+      {
+        "livro": "hvnr",
+        "formato": "Livro físico",
+        "preco": "R$ 29,90",
+        "extra": "+ e-book + frete grátis",
+        "capa": "/img/lateral-hvnr.webp",
+        "destino": "/livros/homem-voce-nao-e-ridiculo.html",
+        "acao": "Quero o livro"
+      }
+    ]
   }
 }
