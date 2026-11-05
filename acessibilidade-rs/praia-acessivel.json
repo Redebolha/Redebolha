@@ -1,0 +1,480 @@
+{
+ "_leia": "Pontos do programa Rede Praia Acessível (FADERS e CBMRS) mostrados no mapa com o símbolo do cadeirante. Temporada 2025/2026, conforme as listas da Operação Verão Total. Coordenadas aproximadas, na praia, rio, lagoa ou piscina de cada cidade. Quando sair a lista 2026/2027, troque 'temporada' e os pontos.",
+ "temporada": "2025/2026",
+ "fonte": "https://operacaoveraototal.rs.gov.br/praia-acessivel",
+ "fonteNome": "Operação Verão Total, Governo do RS",
+ "disque": "(51) 98594-5900",
+ "pontos": [
+  {
+   "id": "ln-torres",
+   "nome": "Torres",
+   "trecho": "Litoral Norte",
+   "tipo": "mar",
+   "mun": "4321501",
+   "guaritas": "Guaritas 03 e 07",
+   "lat": -29.3388,
+   "lon": -49.7431
+  },
+  {
+   "id": "ln-itapeva",
+   "nome": "Itapeva",
+   "trecho": "Litoral Norte",
+   "tipo": "mar",
+   "mun": "4321501",
+   "guaritas": "Guarita 17",
+   "lat": -29.3841,
+   "lon": -49.7602
+  },
+  {
+   "id": "ln-atlantico",
+   "nome": "Balneário Atlântico",
+   "trecho": "Litoral Norte",
+   "tipo": "mar",
+   "mun": "4301057",
+   "guaritas": "Guarita 26",
+   "lat": -29.4641,
+   "lon": -49.8227
+  },
+  {
+   "id": "ln-areias-brancas",
+   "nome": "Areias Brancas",
+   "trecho": "Litoral Norte",
+   "tipo": "mar",
+   "mun": "4301057",
+   "guaritas": "Guarita 34",
+   "lat": -29.5074,
+   "lon": -49.8543
+  },
+  {
+   "id": "ln-arroio-do-sal",
+   "nome": "Arroio do Sal",
+   "trecho": "Litoral Norte",
+   "tipo": "mar",
+   "mun": "4301057",
+   "guaritas": "Guarita 38",
+   "lat": -29.546,
+   "lon": -49.884
+  },
+  {
+   "id": "ln-figueirinha",
+   "nome": "Balneário Figueirinha",
+   "trecho": "Litoral Norte",
+   "tipo": "mar",
+   "mun": "4301057",
+   "guaritas": "Guarita 42",
+   "lat": -29.572,
+   "lon": -49.902
+  },
+  {
+   "id": "ln-santa-rita",
+   "nome": "Balneário Santa Rita",
+   "trecho": "Litoral Norte",
+   "tipo": "mar",
+   "mun": "4301057",
+   "guaritas": "Guarita 49",
+   "lat": -29.6,
+   "lon": -49.922,
+   "cidade": "Litoral Norte, entre Arroio do Sal e Capão da Canoa"
+  },
+  {
+   "id": "ln-curumim",
+   "nome": "Curumim",
+   "trecho": "Litoral Norte",
+   "tipo": "mar",
+   "mun": "4304630",
+   "guaritas": "Guarita 50",
+   "lat": -29.6261,
+   "lon": -49.9375
+  },
+  {
+   "id": "ln-arroio-teixeira",
+   "nome": "Arroio Teixeira",
+   "trecho": "Litoral Norte",
+   "tipo": "mar",
+   "mun": "4304630",
+   "guaritas": "Guarita 56",
+   "lat": -29.64,
+   "lon": -49.948
+  },
+  {
+   "id": "ln-capao-novo",
+   "nome": "Capão Novo",
+   "trecho": "Litoral Norte",
+   "tipo": "mar",
+   "mun": "4304630",
+   "guaritas": "Guarita 61",
+   "lat": -29.672,
+   "lon": -49.968
+  },
+  {
+   "id": "ln-capao-da-canoa",
+   "nome": "Capão da Canoa",
+   "trecho": "Litoral Norte",
+   "tipo": "mar",
+   "mun": "4304630",
+   "guaritas": "Guaritas 69, 73, 75, 76 e 80",
+   "lat": -29.746,
+   "lon": -50.008
+  },
+  {
+   "id": "ln-xangri-la",
+   "nome": "Xangri-lá",
+   "trecho": "Litoral Norte",
+   "tipo": "mar",
+   "mun": "4323804",
+   "guaritas": "Guaritas 84 e 104",
+   "lat": -29.8,
+   "lon": -50.038
+  },
+  {
+   "id": "ln-osorio",
+   "nome": "Osório (Atlântida Sul)",
+   "trecho": "Litoral Norte",
+   "tipo": "mar",
+   "mun": "4313508",
+   "guaritas": "Guarita 108",
+   "lat": -29.8575,
+   "lon": -50.069
+  },
+  {
+   "id": "ln-imara",
+   "nome": "Imara",
+   "trecho": "Litoral Norte",
+   "tipo": "mar",
+   "mun": "4310330",
+   "guaritas": "Guarita 111",
+   "lat": -29.9013,
+   "lon": -50.0843
+  },
+  {
+   "id": "ln-mariluz",
+   "nome": "Mariluz",
+   "trecho": "Litoral Norte",
+   "tipo": "mar",
+   "mun": "4310330",
+   "guaritas": "Guarita 123",
+   "lat": -29.924,
+   "lon": -50.104
+  },
+  {
+   "id": "ln-nordeste",
+   "nome": "Praia Nordeste",
+   "trecho": "Litoral Norte",
+   "tipo": "mar",
+   "mun": "4310330",
+   "guaritas": "Guarita 125",
+   "lat": -29.934,
+   "lon": -50.11
+  },
+  {
+   "id": "ln-presidente",
+   "nome": "Presidente",
+   "trecho": "Litoral Norte",
+   "tipo": "mar",
+   "mun": "4310330",
+   "guaritas": "Guarita 127",
+   "lat": -29.944,
+   "lon": -50.115
+  },
+  {
+   "id": "ln-imbe-centro",
+   "nome": "Imbé Centro",
+   "trecho": "Litoral Norte",
+   "tipo": "mar",
+   "mun": "4310330",
+   "guaritas": "Guarita 130",
+   "lat": -29.958,
+   "lon": -50.121
+  },
+  {
+   "id": "ln-imbe-central",
+   "nome": "Imbé Central",
+   "trecho": "Litoral Norte",
+   "tipo": "mar",
+   "mun": "4310330",
+   "guaritas": "Guarita 133",
+   "lat": -29.968,
+   "lon": -50.126
+  },
+  {
+   "id": "ln-tramandai",
+   "nome": "Tramandaí",
+   "trecho": "Litoral Norte",
+   "tipo": "mar",
+   "mun": "4321600",
+   "guaritas": "Guaritas 145, 146 e 152",
+   "lat": -29.99,
+   "lon": -50.131
+  },
+  {
+   "id": "ln-nova-tramandai",
+   "nome": "Nova Tramandaí",
+   "trecho": "Litoral Norte",
+   "tipo": "mar",
+   "mun": "4321600",
+   "guaritas": "Guaritas 159 e 167",
+   "lat": -30.04,
+   "lon": -50.15
+  },
+  {
+   "id": "ln-cidreira",
+   "nome": "Cidreira",
+   "trecho": "Litoral Norte",
+   "tipo": "mar",
+   "mun": "4305454",
+   "guaritas": "Guaritas 180, 184 e 192",
+   "lat": -30.172,
+   "lon": -50.203
+  },
+  {
+   "id": "ln-pinhal",
+   "nome": "Balneário Pinhal",
+   "trecho": "Litoral Norte",
+   "tipo": "mar",
+   "mun": "4301636",
+   "guaritas": "Guaritas 199 e 209",
+   "lat": -30.247,
+   "lon": -50.232
+  },
+  {
+   "id": "ln-palmares",
+   "nome": "Palmares do Sul (Quintão)",
+   "trecho": "Litoral Norte",
+   "tipo": "mar",
+   "mun": "4313656",
+   "guaritas": "Guaritas 215 e 224",
+   "lat": -30.3987,
+   "lon": -50.2942
+  },
+  {
+   "id": "ln-mostardas",
+   "nome": "Mostardas",
+   "trecho": "Litoral Norte",
+   "tipo": "mar",
+   "mun": "4312500",
+   "guaritas": "Guaritas 225 e 227",
+   "lat": -31.096,
+   "lon": -50.7631
+  },
+  {
+   "id": "ls-sao-jose-do-norte",
+   "nome": "São José do Norte",
+   "trecho": "Litoral Sul",
+   "tipo": "mar",
+   "mun": "4318507",
+   "guaritas": "Guarita 02",
+   "lat": -32.04,
+   "lon": -51.98
+  },
+  {
+   "id": "ls-rio-grande",
+   "nome": "Rio Grande (Cassino)",
+   "trecho": "Litoral Sul",
+   "tipo": "mar",
+   "mun": "4315602",
+   "guaritas": "Guaritas 04, 10 e 16",
+   "lat": -32.188,
+   "lon": -52.16
+  },
+  {
+   "id": "ls-santa-vitoria",
+   "nome": "Santa Vitória do Palmar",
+   "trecho": "Litoral Sul",
+   "tipo": "mar",
+   "mun": "4317301",
+   "guaritas": "Guaritas 24 e 28",
+   "lat": -33.6655,
+   "lon": -53.2646
+  },
+  {
+   "id": "ls-tavares",
+   "nome": "Tavares",
+   "trecho": "Litoral Sul",
+   "tipo": "mar",
+   "mun": "4321352",
+   "guaritas": "Guarita 31",
+   "lat": -31.3384,
+   "lon": -51.0158
+  },
+  {
+   "id": "ai-lami",
+   "nome": "Lami",
+   "trecho": "Águas internas",
+   "tipo": "aguas",
+   "mun": "4314902",
+   "guaritas": "Guarita 01",
+   "lat": -30.238,
+   "lon": -51.093
+  },
+  {
+   "id": "ai-laranjal",
+   "nome": "Laranjal",
+   "trecho": "Águas internas",
+   "tipo": "aguas",
+   "mun": "4314407",
+   "guaritas": "Guarita 10",
+   "lat": -31.766,
+   "lon": -52.234
+  },
+  {
+   "id": "ai-sao-lourenco",
+   "nome": "São Lourenço do Sul",
+   "trecho": "Águas internas",
+   "tipo": "aguas",
+   "mun": "4318804",
+   "guaritas": "Guarita 14",
+   "lat": -31.37,
+   "lon": -51.965
+  },
+  {
+   "id": "ai-cachoeira",
+   "nome": "Praia Nova",
+   "trecho": "Águas internas",
+   "tipo": "aguas",
+   "mun": "4303004",
+   "guaritas": "Guarita 30",
+   "lat": -30.052,
+   "lon": -52.885
+  },
+  {
+   "id": "ai-rio-pardo",
+   "nome": "Rio Pardo",
+   "trecho": "Águas internas",
+   "tipo": "aguas",
+   "mun": "4315701",
+   "guaritas": "Guarita 31",
+   "lat": -29.992,
+   "lon": -52.374
+  },
+  {
+   "id": "ai-general-camara",
+   "nome": "General Câmara",
+   "trecho": "Águas internas",
+   "tipo": "aguas",
+   "mun": "4308805",
+   "guaritas": "Guarita 36",
+   "lat": -29.905,
+   "lon": -51.76
+  },
+  {
+   "id": "ai-itapua",
+   "nome": "Itapuã",
+   "trecho": "Águas internas",
+   "tipo": "aguas",
+   "mun": "4323002",
+   "guaritas": "Guarita 38",
+   "lat": -30.385,
+   "lon": -51.022
+  },
+  {
+   "id": "ai-arambare",
+   "nome": "Arambaré",
+   "trecho": "Águas internas",
+   "tipo": "aguas",
+   "mun": "4300851",
+   "guaritas": "Guarita 44",
+   "lat": -30.91,
+   "lon": -51.503
+  },
+  {
+   "id": "ai-barra-do-ribeiro",
+   "nome": "Barra do Ribeiro",
+   "trecho": "Águas internas",
+   "tipo": "aguas",
+   "mun": "4301909",
+   "guaritas": "Guarita 51",
+   "lat": -30.2931,
+   "lon": -51.3034
+  },
+  {
+   "id": "ai-cristal",
+   "nome": "Cristal",
+   "trecho": "Águas internas",
+   "tipo": "aguas",
+   "mun": "4306056",
+   "guaritas": "Guarita 52",
+   "lat": -31.003,
+   "lon": -52.05
+  },
+  {
+   "id": "ai-sao-jeronimo",
+   "nome": "Praia do Encontro",
+   "trecho": "Águas internas",
+   "tipo": "aguas",
+   "mun": "4318408",
+   "guaritas": "Guarita 53",
+   "lat": -29.958,
+   "lon": -51.722
+  },
+  {
+   "id": "ai-rondinha",
+   "nome": "Prainha Lagoa Rondinha",
+   "trecho": "Águas internas",
+   "tipo": "aguas",
+   "mun": "4301636",
+   "guaritas": "Guarita 54",
+   "lat": -30.236,
+   "lon": -50.262
+  },
+  {
+   "id": "ai-fortaleza",
+   "nome": "Lagoa da Fortaleza",
+   "trecho": "Águas internas",
+   "tipo": "aguas",
+   "mun": "4305454",
+   "guaritas": "Guarita 56",
+   "lat": -30.14,
+   "lon": -50.238
+  },
+  {
+   "id": "ai-santo-antonio",
+   "nome": "Santo Antônio da Patrulha",
+   "trecho": "Águas internas",
+   "tipo": "aguas",
+   "mun": "4317608",
+   "guaritas": "Guarita 57",
+   "lat": -29.912,
+   "lon": -50.42
+  },
+  {
+   "id": "ai-parque-nautico",
+   "nome": "Parque Náutico",
+   "trecho": "Águas internas",
+   "tipo": "aguas",
+   "mun": "4304630",
+   "guaritas": "Guarita 59",
+   "lat": -29.7226,
+   "lon": -50.0497
+  },
+  {
+   "id": "pi-santiago",
+   "nome": "Apae de Santiago",
+   "trecho": "Piscinas",
+   "tipo": "piscina",
+   "mun": "4317400",
+   "guaritas": "Piscina acessível",
+   "lat": -29.191,
+   "lon": -54.867
+  },
+  {
+   "id": "pi-bage",
+   "nome": "Bagé Tênis Clube",
+   "trecho": "Piscinas",
+   "tipo": "piscina",
+   "mun": "4301602",
+   "guaritas": "Piscina acessível",
+   "lat": -31.329,
+   "lon": -54.105
+  },
+  {
+   "id": "pi-poa",
+   "nome": "Centros comunitários de Porto Alegre",
+   "trecho": "Piscinas",
+   "tipo": "piscina",
+   "mun": "4314902",
+   "guaritas": "Cevi (Vila Ingá), Cecores (Restinga), Ceprima (Vila Elisabeth), Cecopam (Cavalhada) e Cecoflor (Floresta)",
+   "lat": -30.035,
+   "lon": -51.205
+  }
+ ]
+}

@@ -119,12 +119,30 @@
   }
   function sitBadgeKey(s) { return '<span class="nivel s' + s + '">' + mkIcon(s, false, 20) + '<span>' + esc(A.SITU[s].curto) + '</span></span>'; }
   function fadersBadge(f, ano) { return f ? '<span class="fbadge">' + mkIcon('f', false, 18) + 'Selo FADERS ' + esc(A.FAD[f]) + (ano ? ' · ' + esc(ano) : '') + '</span>' : ''; }
+  /* ---------- Rede Praia Acessível: guaritas, balneários e piscinas ----------
+     Vêm de praia-acessivel.json (a temporada está no próprio arquivo). No
+     mapa, o símbolo do cadeirante num quadrado azul, como nas placas de
+     acesso, para não confundir com os lugares do guia (círculos). */
+  var PRAIA_TRECHOS = ['Litoral Norte', 'Litoral Sul', 'Águas internas', 'Piscinas'];
+  var PRAIA_TIPO = { mar: 'Mar', aguas: 'Rio ou lagoa', piscina: 'Piscina' };
+  var PRAIA_SERV = {
+    mar: 'Banho de mar assistido, com cadeira anfíbia e guarda-vidas do CBMRS. Gratuito.',
+    aguas: 'Banho assistido em rio ou lagoa, com cadeira anfíbia e guarda-vidas do CBMRS. Gratuito.',
+    piscina: 'Banho assistido em piscina acessível. Gratuito.'
+  };
+  function praiaGlyph() { return '<g transform="scale(.078) translate(-12 -11.8)" style="color:#fff">' + ICON.mob + '</g>'; }
+  function praiaIcon(size) { size = size || 26; return '<svg class="pr-ic" width="' + size + '" height="' + size + '" viewBox="-1.12 -1.12 2.24 2.24" aria-hidden="true"><rect x="-1" y="-1" width="2" height="2" rx=".38" fill="var(--praia)" stroke="#fff" stroke-width=".12"/>' + praiaGlyph() + '</svg>'; }
+  function praiaById(id) { return state.praia.filter(function (x) { return x.id === id; })[0]; }
+  function praiaCidade(p) { return p.cidade || munName(p.mun); }
+  function praiaRota(p) { return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent([p.tipo === 'piscina' ? p.nome : (p.tipo === 'mar' ? 'Praia ' : '') + p.nome, p.cidade ? '' : munName(p.mun), 'RS'].filter(Boolean).join(', ')); }
+  function praiaItem(p) { return '<li><button type="button" class="pitem" data-praia="' + esc(p.id) + '"><b class="ttl">' + praiaIcon(24) + '<span>' + esc(p.nome) + '</span></b><span class="meta"><span>' + esc(p.guaritas) + ' · ' + esc(praiaCidade(p)) + '</span></span></button></li>'; }
+
   var SV = { 2: 'Atende', 1: 'Parcial', 0: 'Sem informação' };
   var SVC = { 2: '✓ Atende', 1: '◐ Parcial', 0: '— Sem info' };
   function dimsHTML(p) { return '<div class="dims">' + A.DIMS.map(function (d) { return '<div class="dim v' + p.dimv[d.k] + '">' + icon(d.k, 22) + '<span>' + esc(d.nome) + '</span><span class="s">' + SVC[p.dimv[d.k]] + '</span></div>'; }).join('') + '</div>'; }
 
   /* ---------- Estado ---------- */
-  var state = { locais: [], municipios: {}, status: 'loading', fSit: new Set(), fDim: new Set(), fCat: new Set(), sel: { type: 'estado', id: null }, vb: { x: 0, y: 0, w: 1000, h: 960 } };
+  var state = { locais: [], municipios: {}, praia: [], praiaInfo: {}, showPraia: true, status: 'loading', fSit: new Set(), fDim: new Set(), fCat: new Set(), sel: { type: 'estado', id: null }, vb: { x: 0, y: 0, w: 1000, h: 960 } };
 
   /* ---------- Leitura: tamanho do texto e contraste ---------- */
   var FS = [100, 112.5, 125, 137.5, 150, 162.5];
@@ -164,6 +182,7 @@
     $('#f-cat').innerHTML = A.CATS.map(function (c) { return '<button type="button" class="chip t" aria-pressed="false" data-cat="' + c[0] + '">' + catSvg(c[0], 18) + esc(c[1]) + '</button>'; }).join('');
     $('#legend').innerHTML = A.SITU_ORDER.map(function (s) { return '<div>' + mkIcon(s, false, 28) + '<span><b>' + esc(A.SITU[s].nome) + '</b></span></div>'; }).join('')
       + '<div>' + mkIcon('f', false, 28) + '<span><b>Só Selo Estadual FADERS</b></span></div><div>' + mkIcon('c', true, 32) + '<span>Anel azul: também tem o Selo FADERS</span></div>'
+      + '<div>' + praiaIcon(28) + '<span><b>Praia Acessível</b>: guarita, balneário ou piscina com banho assistido</span></div>'
       + '<p class="hint" style="margin-top:.2rem">A cor diz de onde veio a informação, não dá nota ao lugar. <a href="#avaliacao">Como funciona</a></p>';
     $('#dimcards').innerHTML = A.DIMS.map(function (d) { return '<article class="dimcard"><h3>' + icon(d.k, 28) + esc(d.nome) + '</h3><p class="hint">' + esc(d.longo) + '</p><ul>' + d.recs.map(function (r) { return '<li>' + esc(r[1]) + '</li>'; }).join('') + '</ul><p class="rule">' + esc(d.regra) + '</p></article>'; }).join('');
     $('#gerais').textContent = A.GERAIS.map(function (r) { return r[1].replace(/ \(.*\)$/, '').toLowerCase(); }).join('; ') + '.';
@@ -174,7 +193,7 @@
   }
 
   /* ---------- Mapa ---------- */
-  var svg = $('#map'), gMk = null, gLbl = null;
+  var svg = $('#map'), gMk = null, gLbl = null, gPr = null;
   function buildMap() {
     var h = '<g id="g-reg">';
     MAP.regioes.forEach(function (r) { h += '<path class="reg" data-reg="' + r.cod + '" d="' + r.d + '" style="fill:var(--r' + r.cod + ')"/>'; });
@@ -182,9 +201,9 @@
     MUNS.forEach(function (m) { if (m.d) h += '<path class="mun" data-cod="' + m.cod + '" d="' + m.d + '"/>'; });
     h += '</g><g>';
     MAP.regioes.forEach(function (r) { h += '<path class="regline" d="' + r.d + '"/>'; });
-    h += '</g><path class="rsline" d="' + MAP.rs + '"/><g id="g-lbl"></g><g id="g-mk"></g>';
+    h += '</g><path class="rsline" d="' + MAP.rs + '"/><g id="g-lbl"></g><g id="g-praia"></g><g id="g-mk"></g>';
     svg.insertAdjacentHTML('beforeend', h);
-    gMk = $('#g-mk'); gLbl = $('#g-lbl');
+    gMk = $('#g-mk'); gLbl = $('#g-lbl'); gPr = $('#g-praia');
     var pts = {}; MUNS.forEach(function (m) { (pts[m.r] = pts[m.r] || []).push([m.x, m.y]); });
     var fix = { '05': [-10, 12], '06': [-10, 10], '07': [-20, 0] };
     MAP.regioes.forEach(function (r) {
@@ -246,12 +265,24 @@
       h += '<g class="mk' + sel + '" data-id="' + esc(p.id) + '" data-x="' + xy[0].toFixed(1) + '" data-y="' + xy[1].toFixed(1) + '"><title>' + esc(p.nome) + ' · ' + esc(A.SITU[p.st].nome) + (p.faders ? ' · Selo FADERS ' + esc(A.FAD[p.faders]) : '') + '</title>' + (p.faders && t !== 'f' ? '<circle class="ring" r="1.3"/>' : '') + shape + mkGlyph(t) + '</g>';
     });
     gMk.innerHTML = h;
+    renderPraia();
+  }
+  /* Guaritas da Rede Praia Acessível (o selecionado fica por cima) */
+  function renderPraia() {
+    if (!gPr) return;
+    var h = '', selId = state.sel.type === 'praia' ? state.sel.id : null, T = state.praiaInfo.temporada || '';
+    if (state.showPraia) state.praia.slice().sort(function (a, b) { return (a.id === selId) - (b.id === selId); }).forEach(function (p) {
+      var xy = proj(p.lon, p.lat);
+      h += '<g class="mk mkp' + (p.id === selId ? ' sel' : '') + '" data-praia="' + esc(p.id) + '" data-x="' + xy[0].toFixed(1) + '" data-y="' + xy[1].toFixed(1) + '"><title>' + esc(p.nome) + ' · Praia Acessível ' + esc(T) + '</title><rect class="b" x="-1" y="-1" width="2" height="2" rx=".38"/>' + praiaGlyph() + '</g>';
+    });
+    gPr.innerHTML = h;
     updateMarkerScale();
   }
   function updateMarkerScale() {
     if (!gMk || !svgW()) return;
     var u = unitsPerPx(), k = 11 * u * (FS[fsIdx] / 112.5);
     Array.prototype.forEach.call(gMk.children, function (g) { g.setAttribute('transform', 'translate(' + g.dataset.x + ',' + g.dataset.y + ') scale(' + k.toFixed(3) + ')'); });
+    if (gPr) Array.prototype.forEach.call(gPr.children, function (g) { g.setAttribute('transform', 'translate(' + g.dataset.x + ',' + g.dataset.y + ') scale(' + (k * 0.86).toFixed(3) + ')'); });
     renderLabels(u);
   }
   function renderLabels(u) {
@@ -287,7 +318,8 @@
       var t = e.target.closest('.mk, .mun');
       if (!t) { tip.hidden = true; return; }
       var pb = svg.parentElement.getBoundingClientRect();
-      if (t.classList.contains('mk')) { var pl = state.locais.filter(function (p) { return p.id === t.dataset.id; })[0]; tip.textContent = pl ? pl.nome : ''; }
+      if (t.classList.contains('mk') && t.dataset.praia) { var pg = praiaById(t.dataset.praia); tip.textContent = pg ? pg.nome + ' · ' + pg.guaritas : ''; }
+      else if (t.classList.contains('mk')) { var pl = state.locais.filter(function (p) { return p.id === t.dataset.id; })[0]; tip.textContent = pl ? pl.nome : ''; }
       else tip.textContent = munName(t.dataset.cod);
       tip.style.left = (e.clientX - pb.left) + 'px'; tip.style.top = (e.clientY - pb.top) + 'px'; tip.hidden = !tip.textContent;
     });
@@ -297,7 +329,8 @@
       try { svg.releasePointerCapture(e.pointerId); } catch (x) {}
       if (wasMoved) return;
       var t = e.target.closest('.mk, .mun, .reg'); if (!t) return;
-      if (t.classList.contains('mk')) selectPlace(t.dataset.id, false);
+      if (t.classList.contains('mk') && t.dataset.praia) selectPraia(t.dataset.praia, false);
+      else if (t.classList.contains('mk')) selectPlace(t.dataset.id, false);
       else if (t.classList.contains('mun')) {
         var zoom = MAP.W / state.vb.w, r = regOf(t.dataset.cod), other = state.sel.type === 'regiao' && state.sel.id !== r;
         if (zoom < 1.6 && (state.sel.type === 'estado' || other)) selectRegion(r); else selectMun(t.dataset.cod);
@@ -333,6 +366,23 @@
     if (zoom !== false || MAP.W / state.vb.w < 1.6) zoomMun(p.mun);
     renderSide(); renderMunClasses(); renderMarkers();
   }
+  function selectPraia(id, zoom) {
+    var p = praiaById(id); if (!p) return;
+    state.sel = { type: 'praia', id: id };
+    if (zoom !== false || MAP.W / state.vb.w < 1.6) zoomMun(p.mun);
+    renderSide(); renderMunClasses(); renderMarkers();
+  }
+  /* Todas as guaritas: aproxima no Litoral Norte, onde fica a maioria */
+  function selectPraias() {
+    if (!MAP || !state.praia.length) return;
+    if (!state.showPraia) { state.showPraia = true; var fp = $('#f-praia'); if (fp) fp.setAttribute('aria-pressed', 'true'); }
+    state.sel = { type: 'praias', id: null };
+    var xs = [], ys = [];
+    state.praia.forEach(function (p) { if (p.trecho !== 'Litoral Norte') return; var q = proj(p.lon, p.lat); xs.push(q[0]); ys.push(q[1]); });
+    var x0 = Math.min.apply(null, xs), y0 = Math.min.apply(null, ys);
+    animateTo(fitBox({ x: x0, y: y0, width: Math.max.apply(null, xs) - x0, height: Math.max.apply(null, ys) - y0 }, 1.25));
+    renderSide(); renderMunClasses(); renderMarkers();
+  }
 
   /* ---------- Painel lateral ---------- */
   function placeItems(list, max) {
@@ -360,7 +410,22 @@
       ctx.innerHTML = '<div class="stack"><button type="button" class="back" data-reg="' + m.r + '">← ' + esc(REG[m.r].nome) + '</button>'
         + '<div><p class="eyebrow">Cidade</p><h2 style="font-size:1.45rem">' + esc(m.n) + '</h2></div>'
         + '<dl class="kv"><dt>Região</dt><dd>' + esc(REG[m.r].nome) + '</dd><dt>Microrregião</dt><dd>' + esc(m.m) + '</dd>' + (info ? '<dt>Selo FADERS</dt><dd>' + esc(A.MST[info.status] || info.status) + (info.data ? ' · <span class="mono">' + esc(info.data) + '</span>' : '') + (f ? ' · <a href="' + esc(f) + '" target="_blank" rel="noopener">fonte</a>' : '') + '</dd>' : '') + '</dl>'
-        + '<div><p class="eyebrow" style="margin-bottom:.45rem">Lugares (' + inMun.length + ')</p>' + (notice() || placeItems(inMun)) + '</div></div>';
+        + '<div><p class="eyebrow" style="margin-bottom:.45rem">Lugares (' + inMun.length + ')</p>' + (notice() || placeItems(inMun)) + '</div>' + praiaMunHTML(sel.id) + '</div>';
+    } else if (sel.type === 'praia') {
+      var g = praiaById(sel.id), I = state.praiaInfo;
+      if (!g) { state.sel = { type: 'estado', id: null }; renderSide(); return; }
+      var pf = safeUrl(I.fonte), tel = String(I.disque || '').replace(/\D/g, '');
+      ctx.innerHTML = '<div class="stack"><button type="button" class="back" data-go="praias">← Todas as guaritas</button>'
+        + '<div><p class="eyebrow">Rede Praia Acessível · ' + esc(I.temporada || '') + '</p><h2 class="ttl" style="font-size:1.45rem">' + praiaIcon(34) + '<span>' + esc(g.nome) + '</span></h2></div>'
+        + '<dl class="kv"><dt>Onde</dt><dd>' + esc(g.guaritas) + '</dd><dt>Cidade</dt><dd>' + esc(praiaCidade(g)) + '</dd><dt>Trecho</dt><dd>' + esc(g.trecho) + ' · ' + esc(PRAIA_TIPO[g.tipo] || '') + '</dd><dt>Serviço</dt><dd>' + esc(PRAIA_SERV[g.tipo] || '') + '</dd>'
+        + (tel ? '<dt>Contato</dt><dd>Disque Banho Assistido: <a href="tel:+55' + esc(tel) + '">' + esc(I.disque) + '</a></dd>' : '') + '</dl>'
+        + '<p class="hint">Ponto da temporada ' + esc(I.temporada || '') + '. A lista da próxima temporada é divulgada pela FADERS e pelo Governo do RS: confirme antes de ir.</p>'
+        + '<div class="row"><a class="btn small" href="#avaliar" data-avaliar-praia="' + esc(g.id) + '">Avaliar este ponto</a><a class="btn small ghost" href="' + esc(praiaRota(g)) + '" target="_blank" rel="noopener">Como chegar</a>' + (g.cidade ? '' : '<button type="button" class="btn small ghost" data-mun="' + esc(g.mun) + '">Ver ' + esc(munName(g.mun)) + '</button>') + '</div>'
+        + (pf ? '<p style="font-size:.92rem"><a href="' + esc(pf) + '" target="_blank" rel="noopener">Fonte: ' + esc(I.fonteNome || host(pf)) + '</a></p>' : '') + '</div>';
+    } else if (sel.type === 'praias') {
+      ctx.innerHTML = '<div class="stack"><button type="button" class="back" data-go="estado">← Estado inteiro</button>'
+        + '<div><p class="eyebrow">Rede Praia Acessível · ' + esc(state.praiaInfo.temporada || '') + '</p><h2 class="ttl" style="font-size:1.45rem">' + praiaIcon(34) + '<span>Onde teve guarita acessível</span></h2><p class="muted" style="font-size:.95rem">' + state.praia.length + ' pontos com banho assistido no mar, em rios, lagoas e piscinas. Escolha um para ver os detalhes.</p></div>'
+        + '<div class="praias-scroll" tabindex="0" role="region" aria-label="Lista das guaritas acessíveis">' + PRAIA_TRECHOS.map(function (t) { var l = state.praia.filter(function (p) { return p.trecho === t; }); return l.length ? '<div><p class="eyebrow" style="margin-bottom:.45rem">' + esc(t) + ' (' + l.length + ')</p><ul class="placelist">' + l.map(praiaItem).join('') + '</ul></div>' : ''; }).join('') + '</div></div>';
     } else if (sel.type === 'local') {
       var p = state.locais.filter(function (x) { return x.id === sel.id; })[0];
       if (!p) { state.sel = { type: 'estado', id: null }; renderSide(); return; }
@@ -378,17 +443,36 @@
     } else {
       var byReg = {}; list.forEach(function (p) { var r = regOf(p.mun); byReg[r] = (byReg[r] || 0) + 1; });
       ctx.innerHTML = '<div class="stack"><div><p class="eyebrow">Regiões</p><p class="muted" style="font-size:.95rem">Escolha uma região para ver as cidades e os lugares.</p></div>'
-        + '<ul class="reglist">' + REG_ORDER.map(function (r) { return '<li><button type="button" data-reg="' + r + '"><span class="nm"><span class="sw" style="background:var(--r' + r + ')"></span>' + esc(REG[r].nome) + '</span><span class="ct">' + (state.status === 'ok' ? (byReg[r] || 0) + ' lugares' : '') + '</span></button></li>'; }).join('') + '</ul>' + notice() + '</div>';
+        + '<ul class="reglist">' + REG_ORDER.map(function (r) { return '<li><button type="button" data-reg="' + r + '"><span class="nm"><span class="sw" style="background:var(--r' + r + ')"></span>' + esc(REG[r].nome) + '</span><span class="ct">' + (state.status === 'ok' ? (byReg[r] || 0) + ' lugares' : '') + '</span></button></li>'; }).join('') + '</ul>' + notice()
+        + (state.praia.length ? '<div class="praia-box"><p class="eyebrow">Rede Praia Acessível · ' + esc(state.praiaInfo.temporada || '') + '</p><p>' + praiaIcon(26) + '<span>' + state.praia.length + ' pontos com banho assistido: mar, rios, lagoas e piscinas. No mapa, o símbolo do cadeirante.</span></p><button type="button" class="btn small" data-go="praias">Ver as guaritas</button></div>' : '')
+        + '</div>';
     }
+  }
+  function praiaMunHTML(cod) {
+    var l = state.praia.filter(function (p) { return p.mun === cod; }); if (!l.length) return '';
+    return '<div><p class="eyebrow" style="margin-bottom:.45rem">Praia Acessível · ' + esc(state.praiaInfo.temporada || '') + ' (' + l.length + ')</p><ul class="placelist">' + l.map(praiaItem).join('') + '</ul></div>';
+  }
+  /* Lista da aba Praia Acessível, por trecho; cada item abre o ponto no mapa */
+  function renderPraiaLista() {
+    var box = $('#praia-lista'); if (!box || !state.praia.length) return;
+    box.innerHTML = PRAIA_TRECHOS.map(function (t) {
+      var l = state.praia.filter(function (p) { return p.trecho === t; }); if (!l.length) return '';
+      return '<div class="pl-grupo"><h4>' + esc(t) + '</h4><ul>' + l.map(function (p) { return '<li><a href="#mapa" data-praia-ir="' + esc(p.id) + '">' + praiaIcon(22) + '<span><b>' + esc(p.nome) + '</b><span>' + esc(p.guaritas) + (p.cidade || norm(p.nome) === norm(munName(p.mun)) ? '' : ' · ' + esc(munName(p.mun))) + '</span></span></a></li>'; }).join('') + '</ul></div>';
+    }).join('');
+    var t = $('#praia-temporada'); if (t) t.textContent = state.praiaInfo.temporada || '';
   }
   function bindSide() {
     $('#ctx').addEventListener('click', function (e) {
       var b = e.target.closest('button'); if (!b || !MAP) return;
       if (b.dataset.place) selectPlace(b.dataset.place);
+      else if (b.dataset.praia) selectPraia(b.dataset.praia);
       else if (b.dataset.mun) selectMun(b.dataset.mun);
       else if (b.dataset.reg) selectRegion(b.dataset.reg);
-      else if (b.dataset.go === 'estado') { state.sel = { type: 'estado', id: null }; resetView(); renderSide(); renderMunClasses(); }
+      else if (b.dataset.go === 'praias') selectPraias();
+      else if (b.dataset.go === 'estado') { state.sel = { type: 'estado', id: null }; resetView(); renderSide(); renderMunClasses(); renderMarkers(); }
     });
+    var fp = $('#f-praia');
+    if (fp) fp.addEventListener('click', function () { state.showPraia = !state.showPraia; fp.setAttribute('aria-pressed', state.showPraia); renderPraia(); });
     function toggle(set, key, b) { if (set.has(key)) set.delete(key); else set.add(key); b.setAttribute('aria-pressed', set.has(key)); renderMarkers(); renderSide(); }
     $('#f-niv').addEventListener('click', function (e) { var b = e.target.closest('[data-sit]'); if (b) toggle(state.fSit, b.dataset.sit, b); });
     $('#f-dim').addEventListener('click', function (e) { var b = e.target.closest('[data-dim]'); if (b) toggle(state.fDim, b.dataset.dim, b); });
@@ -400,12 +484,15 @@
   function fillSearchList() {
     var opts = MUNS.map(function (m) { return '<option value="' + esc(m.n) + '">Cidade · ' + esc(REG[m.r].nome) + '</option>'; });
     state.locais.forEach(function (p) { opts.push('<option value="' + esc(p.nome) + '">' + esc(CAT[p.categoria] || 'Lugar') + ' · ' + esc(munName(p.mun)) + '</option>'); });
+    state.praia.forEach(function (p) { if (norm(p.nome) !== norm(munName(p.mun))) opts.push('<option value="' + esc(p.nome) + '">Praia Acessível · ' + esc(praiaCidade(p)) + '</option>'); });
     $('#dl-busca').innerHTML = opts.join('');
   }
   function runSearch(v) {
     var q = norm(v); if (!q || !MAP) return;
     var cod = MUN_BY_NAME.get(q); if (cod) return selectMun(cod);
     var exact = state.locais.filter(function (p) { return norm(p.nome) === q; })[0]; if (exact) return selectPlace(exact.id);
+    if (/guarita|praia acessivel|cadeira anfibia|banho assistido/.test(q)) return selectPraias();
+    var pr = state.praia.filter(function (p) { return norm(p.nome) === q; })[0] || state.praia.filter(function (p) { return norm(p.nome).indexOf(q) >= 0; })[0]; if (pr) return selectPraia(pr.id);
     var part = state.locais.filter(function (p) { return norm(p.nome).indexOf(q) >= 0 || norm(CAT[p.categoria]).indexOf(q) >= 0; })[0]; if (part) return selectPlace(part.id);
     var mp = MUNS.filter(function (m) { return norm(m.n).indexOf(q) === 0; })[0]; if (mp) return selectMun(mp.cod);
     toast('Nada encontrado para essa busca.');
@@ -495,6 +582,17 @@
     $('#a-lugar').value = p.nome; $('#a-mun').value = munName(p.mun); $('#a-id').value = p.id;
   }
   document.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('[data-avaliar]'); if (a) prefillAval(a.dataset.avaliar); });
+  /* Praia Acessível: avaliar um ponto, abrir um ponto no mapa (aba Praia) e "ver as guaritas" (manchete) */
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest) return;
+    var a = e.target.closest('[data-avaliar-praia]');
+    if (a) { var p = praiaById(a.dataset.avaliarPraia); if (p) { $('#a-lugar').value = 'Praia Acessível · ' + p.nome + ' (' + p.guaritas + ')'; $('#a-mun').value = p.cidade ? '' : munName(p.mun); $('#a-id').value = 'praia:' + p.id; } return; }
+    var ir = e.target.closest('[data-praia-ir]');
+    if (ir) { setTimeout(function () { selectPraia(ir.dataset.praiaIr); irAoMapa(); }, 80); return; }
+    var ver = e.target.closest('[data-ver-praia]');
+    if (ver) { e.preventDefault(); if (location.hash !== '#mapa' && location.hash !== '') location.hash = '#mapa'; setTimeout(function () { selectPraias(); irAoMapa(); }, 80); }
+  });
+  function irAoMapa() { var mg = $('.mapgrid'); if (mg) mg.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' }); }
   $('#f-av').addEventListener('reset', function () { setTimeout(function () { $('#a-id').value = ''; }, 0); });
   $('#a-lugar').addEventListener('change', function () {
     var q = norm(this.value), p = state.locais.filter(function (x) { return norm(x.nome) === q; })[0];
@@ -534,6 +632,13 @@
     buildMap(); mapEvents(); bindSide();
     setVB({ x: 0, y: 0, w: MAP.W, h: MAP.H });
     renderAll();
+    /* Rede Praia Acessível: arquivo à parte, não depende do painel */
+    fetch(BASE + 'praia-acessivel.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
+      if (!d) return;
+      state.praiaInfo = d;
+      state.praia = (d.pontos || []).filter(function (p) { return p && p.id && MAP.mun[p.mun] && validCoord(Number(p.lat), Number(p.lon)); });
+      renderPraia(); renderSide(); fillSearchList(); renderPraiaLista();
+    }).catch(function () {});
     return fetch(BASE + 'dados.json', { cache: 'no-cache' });
   }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (d) {
     state.locais = (d.locais || []).filter(function (p) { return p && p.id && MAP.mun[p.mun]; }).map(normPlace);

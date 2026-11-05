@@ -7,8 +7,9 @@
 <!-- LANÇAMENTO 2027: PÁGINA TRAVADA (nov/2026)
      Até o lançamento oficial, o público vê só a tela "Lançamento Acessibilidade RS 2027".
      - LIBERAR em janeiro: troque  TRAVADO = true  por  TRAVADO = false  e publique.
-     - PRÉVIA da equipe (ver a página completa enquanto ajusta e cadastra empresas):
-       abra /acessibilidade-rs/?previa=rb2027  (o navegador lembra; para sair: ?previa=sair).
+     - PRÉVIA (equipe e apoiadores; serve de portfólio): a página completa abre em
+       /acessibilidade-rs/?previa=rb2027  (o navegador lembra; para sair: ?previa=sair).
+       Logos de apoio (COEPEDE, FADERS), garoto-propaganda e guaritas só aparecem na prévia.
        A prévia não é senha: só esconde a página de quem chega pelo site. -->
 <script>
 (function () {
@@ -85,6 +86,7 @@
   --n3: var(--sv);        /* "atende" na leitura por tipo de necessidade */
   --n1: var(--sc);        /* "parcial" */
   --faders: #5EA6FF;      /* selo estadual: azul do símbolo de acesso */
+  --praia: #1565D8;       /* Rede Praia Acessível: azul das placas de acesso, com o símbolo do cadeirante */
   --bad: #FF9494;
   --map-bg: #020817;
   --mun-line: rgba(255, 255, 255, .20);
@@ -101,7 +103,7 @@
 :root[data-contrast="alto"] {
   --bg: #000; --surface: #000; --sunken: #000; --ink: #fff; --muted: #fff; --line: #fff;
   --accent: #FFFF00; --accent-ink: #000; --link: #FFFF00; --focus: #00FFFF;
-  --map-bg: #000; --mun-line: rgba(255, 255, 255, .5); --reg-line: #FFFF00;
+  --map-bg: #000; --mun-line: rgba(255, 255, 255, .5); --reg-line: #FFFF00; --praia: #0050FF;
   --r01: #000; --r02: #000; --r03: #000; --r04: #000; --r05: #000; --r06: #000; --r07: #000;
 }
 
@@ -181,6 +183,8 @@ main:focus { outline: none; }
 #map .mk .ring { fill: none; stroke: var(--faders); stroke-width: 3; vector-effect: non-scaling-stroke; }
 #map .mk text { font-family: var(--font-body); font-weight: 800; fill: #050E22; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
 #map .mk.sel circle.b, #map .mk.sel rect.b { stroke: #FFFFFF; stroke-width: 4; }
+#map .mkp rect.b { fill: var(--praia); stroke: #FFFFFF; stroke-width: 2; }
+#map .mkp.sel rect.b { stroke: var(--accent); stroke-width: 4; }
 .mapctl { position: absolute; right: 10px; top: 10px; display: flex; flex-direction: column; gap: 8px; }
 .mapctl button { font: inherit; font-weight: 800; font-size: 1.25rem; width: 46px; height: 46px; border-radius: 10px; border: 2px solid var(--accent); background: var(--bg); color: var(--accent); cursor: pointer; }
 .mapctl button:hover { background: var(--accent); color: var(--accent-ink); }
@@ -407,6 +411,50 @@ footer { border-top: 2px solid var(--line); padding-block: 1.25rem 2rem; font-si
 .rb-form-aviso a { font-weight: 800; }
 .loading { padding: 3rem 1rem; text-align: center; color: var(--muted); font-weight: 600; }
 
+/* SÍMBOLO INTERNACIONAL DE ACESSIBILIDADE — marca do Acessibilidade RS
+   (todas as deficiências). O cadeirante fica para a Rede Praia Acessível. */
+.ars-simbolo { flex: none; display: block; }
+/* Capa da aba Mapa: texto + garoto-propaganda da Rede Praia Acessível */
+.hero-ars { display: grid; grid-template-columns: minmax(0, 1fr) minmax(240px, 400px); gap: clamp(1rem, 3vw, 2rem); align-items: center; }
+.hero-ars .intro { max-width: 68ch; }
+.garoto { margin: 0; }
+.garoto-foto { display: block; position: relative; }
+.garoto img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius); border: 3px solid var(--accent); box-shadow: 0 18px 40px -18px rgba(0, 0, 0, .8); }
+.garoto-foto::after { content: ""; position: absolute; left: 3px; right: 3px; bottom: 3px; height: 8px; border-radius: 0 0 9px 9px; background: linear-gradient(90deg, var(--rs-verde) 0 33.4%, var(--rs-vermelho) 33.4% 66.7%, var(--rs-amarelo) 66.7%); pointer-events: none; }
+.garoto figcaption { margin-top: .5rem; font-size: .85rem; color: var(--muted); line-height: 1.35; }
+.garoto figcaption b { color: var(--ink); }
+@media (max-width: 760px) { .hero-ars { grid-template-columns: 1fr; } .garoto { max-width: 440px; } }
+/* Apoio: logos sobre cartão branco (as marcas são escuras) */
+.apoio-band { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1rem; }
+.apoio-band .eyebrow { margin: 0; color: var(--muted); }
+.apoio-logos { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .6rem; }
+.apoio-logos li { display: flex; align-items: center; justify-content: center; height: 72px; padding: 8px 14px; background: #FFFFFF; border-radius: 12px; box-shadow: 0 0 0 2px rgba(255, 255, 255, .15); }
+.apoio-logos img { display: block; height: 56px; width: auto; }
+.apoio-band.mini .apoio-logos li { height: 58px; padding: 6px 12px; }
+.apoio-band.mini .apoio-logos img { height: 44px; }
+footer .apoio-band { padding-bottom: 1rem; margin-bottom: .4rem; border-bottom: 1px solid var(--line); }
+footer .ars-simbolo { display: inline-block; vertical-align: -6px; margin-right: .4rem; }
+/* Rede Praia Acessível no painel e na aba Praia */
+.pr-ic { flex: none; display: block; }
+.praia-box { margin-top: .4rem; padding: .85rem .9rem; border: 2px solid var(--praia); border-radius: 10px; background: rgba(21, 101, 216, .12); display: flex; flex-direction: column; gap: .55rem; }
+.praia-box .eyebrow { margin: 0; }
+.praia-box p:not(.eyebrow) { display: flex; gap: .6rem; align-items: flex-start; margin: 0; font-size: .95rem; }
+.praia-box .btn { align-self: flex-start; }
+.praias-scroll { display: flex; flex-direction: column; gap: 1rem; max-height: min(68vh, 620px); overflow: auto; padding-right: .35rem; overscroll-behavior: contain; }
+.praia-fotos { margin: 0; }
+.praia-fotos img { display: block; width: 100%; max-width: 440px; height: auto; border-radius: var(--radius); border: 2px solid var(--line); }
+.praia-fotos figcaption { margin-top: .45rem; font-size: .88rem; color: var(--muted); }
+.praia-lista { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 1.2rem; }
+.pl-grupo h4 { margin: 0 0 .45rem; font-size: 1.05rem; font-weight: 800; color: var(--accent); }
+.pl-grupo ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .35rem; }
+.pl-grupo a { display: flex; align-items: flex-start; gap: .55rem; padding: .4rem .5rem; border-radius: 8px; color: var(--ink); text-decoration: none; }
+.pl-grupo a:hover { background: var(--surface); }
+.pl-grupo a > span { display: flex; flex-direction: column; line-height: 1.25; }
+.pl-grupo a b { font-weight: 800; }
+.pl-grupo a b + span { font-size: .85rem; color: var(--muted); }
+.disque { background: var(--surface); border: 2px solid var(--praia); border-radius: var(--radius); padding: .8rem 1rem; }
+@media (max-width: 640px) { .praia-lista { grid-template-columns: 1fr; } }
+
 /* LANÇAMENTO 2027 — tela que trava a página até o lançamento oficial.
    Sem a classe rb-aberto no <html>, só esta tela aparece (o resto da página
    continua no código, pronto para janeiro). Designer: ajuste daqui até o fim
@@ -442,7 +490,11 @@ html.rb-aberto .rb-lanc { display: none; }
 /* Faixa que só a equipe vê na prévia */
 .rb-previa-aviso { display: none; }
 html.rb-previa .rb-previa-aviso { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem .8rem; position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 60; max-width: 640px; margin: 0 auto; padding: .6rem 1rem; border: 2px solid var(--rs-amarelo); border-radius: 12px; background: #050E22; color: #fff; font-size: .85rem; box-shadow: 0 10px 30px rgba(0, 0, 0, .5); }
-html.rb-previa .rb-previa-aviso a { color: var(--rs-amarelo); font-weight: 800; }
+html.rb-previa .rb-previa-aviso[hidden] { display: none; }
+html.rb-previa .rb-previa-aviso { flex-wrap: nowrap; }
+html.rb-previa .rb-previa-aviso > span { flex: 1; min-width: 0; }
+html.rb-previa .rb-previa-aviso button { flex: none; margin-left: auto; min-width: 40px; min-height: 40px; border: 0; border-radius: 8px; background: transparent; color: #fff; font: inherit; font-size: 1.4rem; line-height: 1; cursor: pointer; }
+html.rb-previa .rb-previa-aviso button:hover { background: rgba(255, 255, 255, .12); }
 </style>
 </head>
 <body>
@@ -451,7 +503,7 @@ html.rb-previa .rb-previa-aviso a { color: var(--rs-amarelo); font-weight: 800; 
 <section class="rb-lanc" aria-labelledby="rb-lanc-titulo">
   <div class="rb-lanc-card">
     <a class="rb-lanc-marca" href="/" aria-label="Rede Bolha, página inicial">
-      <svg width="40" height="40" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="9" fill="#FFF500"/><circle cx="17" cy="8.5" r="2.7" fill="#050E22"/><path d="M15 12.5h4l-.6 6h5.2l2.6 6.8-2.2.8-2-5.1h-6.3z" fill="#050E22"/><path d="M13.6 15.6a6.7 6.7 0 1 0 8.9 8.7" fill="none" stroke="#050E22" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <svg class="ars-simbolo" width="40" height="40" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="9" fill="#FFF500"/><g transform="translate(5 5)" fill="none" stroke="#050E22" stroke-width="1.35" stroke-linecap="round"><circle cx="12" cy="12" r="9.65"/><path d="M2.6 9.8Q12 16.2 21.4 9.8M12 13 7.1 19.7M12 13l4.9 6.7"/><g fill="#1D6FE0" stroke-width="1.1"><circle cx="12" cy="6.9" r="2.7"/><circle cx="2.6" cy="9.8" r="1.45"/><circle cx="21.4" cy="9.8" r="1.45"/><circle cx="7.1" cy="19.7" r="1.45"/><circle cx="16.9" cy="19.7" r="1.45"/></g></g></svg>
       <span>Acessibilidade RS</span>
       <img src="/img/bandeira-rs.webp" width="30" height="21" alt="">
     </a>
@@ -468,13 +520,13 @@ html.rb-previa .rb-previa-aviso a { color: var(--rs-amarelo); font-weight: 800; 
     <p class="rb-lanc-assinatura">Uma iniciativa independente da Rede Bolha &middot; Por Adm. Romário Cruz</p>
   </div>
 </section>
-<div class="rb-previa-aviso" role="note"><b>Prévia da equipe.</b> O público vê a tela de lançamento. <a href="?previa=sair">Sair da prévia</a></div>
+<div class="rb-previa-aviso" role="note"><span><b>Prévia</b> &middot; Lançamento oficial em janeiro de 2027</span><button type="button" aria-label="Fechar aviso de prévia" onclick="this.parentNode.hidden=true">&times;</button></div>
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 
 <header class="top">
   <div class="wrap"><div class="inner bar">
     <a class="brand" href="#mapa">
-      <svg width="42" height="42" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="9" fill="#FFF500"/><circle cx="17" cy="8.5" r="2.7" fill="#050E22"/><path d="M15 12.5h4l-.6 6h5.2l2.6 6.8-2.2.8-2-5.1h-6.3z" fill="#050E22"/><path d="M13.6 15.6a6.7 6.7 0 1 0 8.9 8.7" fill="none" stroke="#050E22" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <svg class="ars-simbolo" width="42" height="42" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="9" fill="#FFF500"/><g transform="translate(5 5)" fill="none" stroke="#050E22" stroke-width="1.35" stroke-linecap="round"><circle cx="12" cy="12" r="9.65"/><path d="M2.6 9.8Q12 16.2 21.4 9.8M12 13 7.1 19.7M12 13l4.9 6.7"/><g fill="#1D6FE0" stroke-width="1.1"><circle cx="12" cy="6.9" r="2.7"/><circle cx="2.6" cy="9.8" r="1.45"/><circle cx="21.4" cy="9.8" r="1.45"/><circle cx="7.1" cy="19.7" r="1.45"/><circle cx="16.9" cy="19.7" r="1.45"/></g></g></svg>
       <div><b>Acessibilidade RS<img class="rs-flag" src="/img/bandeira-rs.webp" width="30" height="21" alt="" aria-hidden="true"></b><span>Encontre, avalie e divulgue · <em>Rede Bolha</em></span></div>
     </a>
     <div class="tools" role="group" aria-label="Ajustes de leitura">
@@ -502,11 +554,25 @@ html.rb-previa .rb-previa-aviso a { color: var(--rs-amarelo); font-weight: 800; 
 
 <!-- MAPA -->
 <section class="view" id="v-mapa" aria-labelledby="h-mapa">
+  <div class="hero-ars">
   <div class="intro">
     <p class="eyebrow">Rede colaborativa · Rio Grande do Sul · 7 regiões · 497 municípios</p>
     <h1 id="h-mapa">Encontre, avalie e divulgue lugares acessíveis no Rio Grande do Sul</h1>
     <p class="muted">Um espaço colaborativo que conecta pessoas com deficiência a estabelecimentos, serviços, turismo, cultura e lazer, com informação sobre acessibilidade feita junto com quem usa.</p>
     <div class="row"><a class="btn small" href="#avaliar">Avaliar um lugar</a><a class="btn small ghost" href="#cadastro">Cadastrar meu negócio</a></div>
+    <div class="apoio-band mini" role="group" aria-label="Apoio">
+      <p class="eyebrow">Apoio</p>
+      <ul class="apoio-logos">
+        <li><img src="/img/ars-apoio-coepede.png" width="190" height="190" alt="COEPEDE, Conselho Estadual dos Direitos das Pessoas com Deficiência" loading="lazy" decoding="async"></li>
+        <li><img src="/img/ars-apoio-faders.png" width="349" height="148" alt="FADERS Acessibilidade e Inclusão" loading="lazy" decoding="async"></li>
+      </ul>
+    </div>
+  </div>
+  <!-- Garoto-propaganda do Acessibilidade RS (foto da Rede Praia Acessível) -->
+  <figure class="garoto">
+    <span class="garoto-foto"><img src="/img/ars-praia-garoto-propaganda.jpg" width="400" height="300" alt="Homem sorridente sentado numa cadeira anfíbia azul na areia da praia, de camiseta amarela, ao lado de três guarda-vidas do Corpo de Bombeiros, num dia de sol." decoding="async"></span>
+    <figcaption><b>Rede Praia Acessível.</b> Banho de mar com cadeira anfíbia e guarda-vidas do CBMRS, de graça, no litoral, em rios, lagoas e piscinas do RS.</figcaption>
+  </figure>
   </div>
   <!-- MANCHETE: Rede Praia Acessível (temporada 2026/2027). Matéria completa na aba #praia. -->
   <article class="manchete" aria-labelledby="h-manchete">
@@ -514,8 +580,8 @@ html.rb-previa .rb-previa-aviso a { color: var(--rs-amarelo); font-weight: 800; 
     <div>
       <p class="eyebrow">Manchete · Verão 2026/2027</p>
       <h2 id="h-manchete"><a href="#praia">Rede Praia Acessível está em preparativos para a temporada de verão 2026/2027</a></h2>
-      <p class="muted">Banho de mar, rio, lago e piscina com segurança e dignidade para pessoas com deficiência e mobilidade reduzida. Na última temporada foram 61 guaritas, balneários e piscinas acessíveis. Os pontos da nova temporada serão anunciados em breve.</p>
-      <a class="btn small" href="#praia">Ler a matéria</a>
+      <p class="muted">Banho de mar, rio, lago e piscina com segurança e dignidade para pessoas com deficiência e mobilidade reduzida. Na última temporada foram 61 guaritas, balneários e piscinas acessíveis, e todas estão no mapa abaixo, com o símbolo do cadeirante. Os pontos da nova temporada serão anunciados em breve.</p>
+      <div class="row"><a class="btn small" href="#praia">Ler a matéria</a><a class="btn small ghost" href="#mapa" data-ver-praia>Ver as guaritas no mapa</a></div>
     </div>
   </article>
   <div class="stats" id="stats" aria-live="polite"></div>
@@ -533,6 +599,10 @@ html.rb-previa .rb-previa-aviso a { color: var(--rs-amarelo); font-weight: 800; 
         <div>
           <p class="eyebrow" id="lbl-dim" style="margin-bottom:.45rem">Preciso de acessibilidade</p>
           <div class="chips" id="f-dim" role="group" aria-labelledby="lbl-dim"></div>
+        </div>
+        <div>
+          <p class="eyebrow" id="lbl-praia" style="margin-bottom:.45rem">Rede Praia Acessível</p>
+          <div class="chips" role="group" aria-labelledby="lbl-praia"><button type="button" class="chip" id="f-praia" aria-pressed="true"><svg class="pr-ic" width="24" height="24" viewBox="-1.12 -1.12 2.24 2.24" aria-hidden="true"><rect x="-1" y="-1" width="2" height="2" rx=".38" fill="var(--praia)" stroke="#fff" stroke-width=".12"/><g transform="scale(.078) translate(-12 -11.8)" style="color:#fff"><circle cx="12" cy="4.2" r="2.2" fill="currentColor"/><path d="M10.6 7.5h3l-.5 5h4.6l2.2 5.7-1.9.7-1.7-4.3h-5.4z" fill="currentColor"/><path d="M9.4 10.2a5.6 5.6 0 1 0 7.5 7.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g></svg>Guaritas no mapa</button></div>
         </div>
         <details class="more">
           <summary>Tipo de lugar <span class="hint" id="cat-count"></span></summary>
@@ -637,10 +707,18 @@ html.rb-previa .rb-previa-aviso a { color: var(--rs-amarelo); font-weight: 800; 
       <li><span class="cat-ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M5.6 5.6l3.6 3.6M14.8 14.8l3.6 3.6M18.4 5.6l-3.6 3.6M9.2 14.8l-3.6 3.6"/></svg></span><h4>Equipe qualificada</h4><p>Os atendimentos são feitos por guarda-vidas do CBMRS capacitados previamente pela equipe da Faders - Acessibilidade e Inclusão. A formação, a capacitação e os treinamentos dos profissionais que atuam no programa são realizados pela Faders.</p></li>
     </ul>
     <p><b>As guaritas, balneários e piscinas que vão oferecer o serviço na temporada 2026/2027 serão anunciados em breve pelos canais oficiais da Faders Acessibilidade e Inclusão.</b></p>
+    <figure class="praia-fotos">
+      <img src="/img/ars-praia-cadeiras-anfibias.jpg" width="400" height="300" loading="lazy" decoding="async" alt="Fileira de cadeiras anfíbias azuis na calçada da orla, de frente para o mar, com bandeiras da Rede Praia Acessível e da FADERS ao lado.">
+      <figcaption>Cadeiras anfíbias da Rede Praia Acessível prontas para o banho assistido.</figcaption>
+    </figure>
+    <h3>Onde teve guarita acessível na temporada <span id="praia-temporada">2025/2026</span></h3>
+    <p>Todos estes pontos estão no mapa do guia, com o símbolo do cadeirante. Toque num deles para ver onde fica.</p>
+    <div class="praia-lista" id="praia-lista"><p class="muted">Carregando a lista…</p></div>
+    <p class="disque"><b>Disque Banho Assistido</b> (temporada 2025/2026): <a href="tel:+5551985945900">(51) 98594-5900</a>. Confirme horários e locais antes de ir.</p>
     <p class="credito">Texto: Ascom Faders · Edição: Ascom Casa Civil. Leia na fonte: <a href="https://operacaoveraototal.rs.gov.br/praia-acessivel" target="_blank" rel="noopener">operacaoveraototal.rs.gov.br/praia-acessivel</a></p>
     <aside class="nobox" aria-labelledby="h-nobox">
       <h3 id="h-nobox">No Acessibilidade RS</h3>
-      <p>Assim que a lista oficial for divulgada, as guaritas, balneários e piscinas da temporada 2026/2027 entram no mapa do guia, cada uma na sua cidade. Usou o serviço? Conte como foi: sua avaliação ajuda outras famílias a planejar o verão.</p>
+      <p>Os pontos da temporada 2025/2026 já estão no mapa, com o símbolo do cadeirante. Assim que a lista oficial de 2026/2027 for divulgada, o mapa é atualizado. Usou o serviço? Conte como foi: sua avaliação ajuda outras famílias a planejar o verão.</p>
       <div class="row"><a class="btn small" href="#avaliar">Avaliar um lugar</a><a class="btn small ghost" href="#mapa">Ver o mapa</a></div>
     </aside>
   </article>
@@ -789,7 +867,14 @@ html.rb-previa .rb-previa-aviso a { color: var(--rs-amarelo); font-weight: 800; 
 </main>
 
 <footer class="wrap"><div class="inner stack">
-  <p><b>Acessibilidade RS</b> <span class="tres" aria-hidden="true">∴</span><span class="sr">·</span> uma rede colaborativa da <a href="/">Rede Bolha</a><svg class="mio" width="17" height="17" viewBox="-9 -9 18 18" aria-hidden="true" focusable="false"><g fill="#7DB4FF" stroke="#4F86D9" stroke-width=".6"><circle cx="0.00" cy="-4.30" r="3.7"/><circle cx="4.09" cy="-1.33" r="3.7"/><circle cx="2.53" cy="3.48" r="3.7"/><circle cx="-2.53" cy="3.48" r="3.7"/><circle cx="-4.09" cy="-1.33" r="3.7"/></g><circle r="2.5" fill="#FFFFFF"/><circle r="1.5" fill="#FFF500"/></svg>. As informações do guia não são certificação nem vistoria técnica. O Selo Estadual de Acessibilidade da FADERS aparece à parte, como informação complementar.</p>
+  <div class="apoio-band" role="group" aria-label="Apoio">
+    <p class="eyebrow">Apoio</p>
+    <ul class="apoio-logos">
+      <li><img src="/img/ars-apoio-coepede.png" width="190" height="190" alt="COEPEDE, Conselho Estadual dos Direitos das Pessoas com Deficiência" loading="lazy" decoding="async"></li>
+      <li><img src="/img/ars-apoio-faders.png" width="349" height="148" alt="FADERS Acessibilidade e Inclusão" loading="lazy" decoding="async"></li>
+    </ul>
+  </div>
+  <p><svg class="ars-simbolo" width="26" height="26" viewBox="0 0 24 24" role="img" aria-label="Símbolo internacional de acessibilidade"><g fill="none" stroke="#FFFFFF" stroke-width="1.35" stroke-linecap="round"><circle cx="12" cy="12" r="9.65"/><path d="M2.6 9.8Q12 16.2 21.4 9.8M12 13 7.1 19.7M12 13l4.9 6.7"/><g fill="#5EA6FF" stroke-width="1.1"><circle cx="12" cy="6.9" r="2.7"/><circle cx="2.6" cy="9.8" r="1.45"/><circle cx="21.4" cy="9.8" r="1.45"/><circle cx="7.1" cy="19.7" r="1.45"/><circle cx="16.9" cy="19.7" r="1.45"/></g></g></svg><b>Acessibilidade RS</b> <span class="tres" aria-hidden="true">∴</span><span class="sr">·</span> uma rede colaborativa da <a href="/">Rede Bolha</a><svg class="mio" width="17" height="17" viewBox="-9 -9 18 18" aria-hidden="true" focusable="false"><g fill="#7DB4FF" stroke="#4F86D9" stroke-width=".6"><circle cx="0.00" cy="-4.30" r="3.7"/><circle cx="4.09" cy="-1.33" r="3.7"/><circle cx="2.53" cy="3.48" r="3.7"/><circle cx="-2.53" cy="3.48" r="3.7"/><circle cx="-4.09" cy="-1.33" r="3.7"/></g><circle r="2.5" fill="#FFFFFF"/><circle r="1.5" fill="#FFF500"/></svg>. As informações do guia não são certificação nem vistoria técnica. O Selo Estadual de Acessibilidade da FADERS aparece à parte, como informação complementar.</p>
   <p><b>Apoie a Acessibilidade RS:</b> contribua com um Pix de qualquer valor para <button class="pixlink" type="button" data-copiar="redebolhaoficial@gmail.com" aria-label="Copiar a chave Pix redebolhaoficial@gmail.com">redebolhaoficial@gmail.com</button>. É assim que o guia segue crescendo.</p>
   <p><a href="/contato/">Contato</a> · <a href="/politica-de-privacidade.html">Política de Privacidade</a> · <a href="/termos-de-uso.html">Termos de Uso</a></p>
 </div></footer>
