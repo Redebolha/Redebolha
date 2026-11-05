@@ -455,6 +455,8 @@ footer .ars-simbolo { display: inline-block; vertical-align: -6px; margin-right:
 .pl-grupo a > span { display: flex; flex-direction: column; line-height: 1.25; }
 .pl-grupo a b { font-weight: 800; }
 .pl-grupo a b + span { font-size: .85rem; color: var(--muted); }
+.praia-aviso { background: var(--surface); border: 2px solid var(--line); border-left: 8px solid var(--accent); border-radius: var(--radius); padding: .9rem 1.1rem; display: flex; flex-direction: column; gap: .5rem; }
+.praia-aviso p { margin: 0; }
 .disque { background: var(--surface); border: 2px solid var(--praia); border-radius: var(--radius); padding: .8rem 1rem; }
 @media (max-width: 640px) { .praia-lista { grid-template-columns: 1fr; } }
 
@@ -729,7 +731,10 @@ html.rb-previa .rb-previa-aviso button:hover { background: rgba(255, 255, 255, .
       <figcaption>Cadeiras anfíbias da Rede Praia Acessível prontas para o banho assistido.</figcaption>
     </figure>
     <h3>Onde teve guarita acessível na temporada <span id="praia-temporada">2025/2026</span></h3>
-    <p>Todos estes pontos estão no mapa do guia, com o símbolo do cadeirante. Toque num deles para ver onde fica.</p>
+    <div class="praia-aviso" role="note">
+      <p><b>Estes locais são da temporada anterior (2025/2026).</b> A lista oficial da temporada 2026/2027 será disponibilizada pela FADERS. Assim que for divulgada, o mapa e esta lista são atualizados.</p>
+      <p>Todos estes pontos estão no mapa do guia, com o símbolo do cadeirante. Toque num deles para ver onde fica.</p>
+    </div>
     <div class="praia-lista" id="praia-lista"><p class="muted">Carregando a lista…</p></div>
     <p class="disque"><b>Disque Banho Assistido</b> (temporada 2026/2027): <a href="tel:+5551984820292">(51) 98482-0292</a>. Confirme horários e locais antes de ir.</p>
     <p class="credito">Texto: Ascom Faders · Edição: Ascom Casa Civil. Leia na fonte: <a href="https://operacaoveraototal.rs.gov.br/praia-acessivel" target="_blank" rel="noopener">operacaoveraototal.rs.gov.br/praia-acessivel</a></p>
