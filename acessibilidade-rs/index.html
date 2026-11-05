@@ -443,6 +443,8 @@ footer { border-top: 2px solid var(--line); padding-block: 1.25rem 2rem; font-si
 .apoio-tarja { display: none; }
 html.rb-apoio-pendente .apoio-logos img { filter: grayscale(1); opacity: .35; }
 html.rb-apoio-pendente .apoio-tarja { display: block; position: absolute; left: -6px; right: -6px; top: 50%; transform: translateY(-50%) rotate(-4deg); padding: .3rem .6rem; background: #050E22; color: var(--rs-amarelo); border-block: 2px solid var(--rs-amarelo); font-size: .72rem; font-weight: 800; letter-spacing: .1em; line-height: 1.2; text-transform: uppercase; text-align: center; white-space: nowrap; box-shadow: 0 6px 16px rgba(0, 0, 0, .45); pointer-events: none; }
+.ajude-ars { display: flex; flex-direction: column; gap: .6rem; padding: .9rem 1rem; border: 2px solid var(--line); border-left: 8px solid var(--accent); border-radius: var(--radius); background: var(--surface); color: var(--ink); }
+.ajude-ars p { margin: 0; }
 footer .apoio-band { padding-bottom: 1rem; margin-bottom: .4rem; border-bottom: 1px solid var(--line); }
 footer .ars-simbolo { display: inline-block; vertical-align: -6px; margin-right: .4rem; }
 /* Rede Praia Acessível no painel e na aba Praia */
@@ -912,6 +914,11 @@ html.rb-previa .rb-previa-aviso button:hover { background: rgba(255, 255, 255, .
   </div>
   <p><svg class="ars-simbolo" width="26" height="26" viewBox="0 0 24 24" role="img" aria-label="Símbolo internacional de acessibilidade"><g fill="none" stroke="#FFFFFF" stroke-width="1.35" stroke-linecap="round"><circle cx="12" cy="12" r="9.65"/><path d="M2.6 9.8Q12 16.2 21.4 9.8M12 13 7.1 19.7M12 13l4.9 6.7"/><g fill="#5EA6FF" stroke-width="1.1"><circle cx="12" cy="6.9" r="2.7"/><circle cx="2.6" cy="9.8" r="1.45"/><circle cx="21.4" cy="9.8" r="1.45"/><circle cx="7.1" cy="19.7" r="1.45"/><circle cx="16.9" cy="19.7" r="1.45"/></g></g></svg><b>Acessibilidade RS</b> <span class="tres" aria-hidden="true">∴</span><span class="sr">·</span> uma rede colaborativa da <a href="/">Rede Bolha</a><svg class="mio" width="17" height="17" viewBox="-9 -9 18 18" aria-hidden="true" focusable="false"><g fill="#7DB4FF" stroke="#4F86D9" stroke-width=".6"><circle cx="0.00" cy="-4.30" r="3.7"/><circle cx="4.09" cy="-1.33" r="3.7"/><circle cx="2.53" cy="3.48" r="3.7"/><circle cx="-2.53" cy="3.48" r="3.7"/><circle cx="-4.09" cy="-1.33" r="3.7"/></g><circle r="2.5" fill="#FFFFFF"/><circle r="1.5" fill="#FFF500"/></svg>. As informações do guia não são certificação nem vistoria técnica. O Selo Estadual de Acessibilidade da FADERS aparece à parte, como informação complementar.</p>
   <p><b>Apoie a Acessibilidade RS:</b> contribua com um Pix de qualquer valor para <button class="pixlink" type="button" data-copiar="redebolhaoficial@gmail.com" aria-label="Copiar a chave Pix redebolhaoficial@gmail.com">redebolhaoficial@gmail.com</button>. É assim que o guia segue crescendo.</p>
+  <!-- Livros e indicação: quem compra o livro mantém o guia; quem não pode, indica -->
+  <div class="ajude-ars">
+    <p><b>Compre o livro ou o e-book e ajude a Rede Bolha a levar esta ideia mais longe.</b> Não pode comprar agora? Indique o site para alguém e ajude mais pessoas a terem acessibilidade.</p>
+    <div class="row"><a class="btn small" href="/livros/">Ver os livros</a><button type="button" class="btn small ghost" data-indicar>Indicar o site</button></div>
+  </div>
   <p><a href="/contato/">Contato</a> · <a href="/politica-de-privacidade.html">Política de Privacidade</a> · <a href="/termos-de-uso.html">Termos de Uso</a></p>
 </div></footer>
 
@@ -936,6 +943,17 @@ html.rb-previa .rb-previa-aviso button:hover { background: rgba(255, 255, 255, .
 <script src="/acessibilidade-rs/app.js"></script>
 <script src="/js/rb-lista.js"></script>
 <script>
+/* Indicar o site: compartilhar pelo celular ou copiar o link */
+document.addEventListener('click', function (e) {
+  var b = e.target.closest && e.target.closest('[data-indicar]');
+  if (!b) return;
+  var url = 'https://redebolha.com.br/acessibilidade-rs/', t = document.getElementById('toast');
+  var dados = { title: 'Acessibilidade RS', text: 'Antes de sair de casa, saiba onde dá para entrar: o guia de lugares acessíveis do Rio Grande do Sul.', url: url };
+  function aviso(m) { if (!t) return; t.textContent = m; t.hidden = false; clearTimeout(window.__indT); window.__indT = setTimeout(function () { t.hidden = true; }, 3800); }
+  if (navigator.share) { navigator.share(dados).catch(function () {}); return; }
+  if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(url).then(function () { aviso('Link copiado. Obrigado por indicar a Acessibilidade RS!'); }, function () { window.prompt('Copie o link:', url); });
+  else window.prompt('Copie o link:', url);
+});
 /* Copiar a chave Pix (botões com data-copiar) */
 document.addEventListener('click', function (e) {
   var b = e.target.closest && e.target.closest('[data-copiar]');
