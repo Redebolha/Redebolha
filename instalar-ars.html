@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Segurança: cabeçalhos via meta (complementar ao servidor) -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src 'self' 'unsafe-inline';">
+
+  <title>Instalar o app ARS | Rede Bolha</title>
+  <meta name="description" content="Instale o Acessibilidade RS no seu celular: acesso rápido ao mapa de lugares acessíveis no Rio Grande do Sul.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://redebolha.com.br/instalar-ars.html">
+
+  <!-- PWA -->
+  <link rel="manifest" href="/ars-manifest.json">
+  <meta name="theme-color" content="#0a1628">
+  <link rel="apple-touch-icon" href="/img/ars-icon-192.png">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Instalar o ARS — Acessibilidade RS">
+  <meta property="og:description" content="App gratuito para encontrar e avaliar lugares acessíveis no RS.">
+  <meta property="og:url" content="https://redebolha.com.br/instalar-ars.html">
+  <meta property="og:image" content="https://redebolha.com.br/img/ars-og.png">
+
+  <style>
+    /* ── Reset & Base ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #08142D;
+      --surface:   #0e1f42;
+      --accent:    #F5C518;
+      --accent2:   #3bba6e;
+      --text:      #e8eaf0;
+      --muted:     #8899b8;
+      --radius:    12px;
+      --max:       680px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── Header ───────────────────────────────────────────── */
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .site-header .logo {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 700;
+      font-size: .95rem;
+      letter-spacing: .03em;
+    }
+    .site-header .logo img { width: 36px; height: 36px; border-radius: 8px; }
+    .back-link {
+      font-size: .85rem;
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .back-link:hover { color: var(--accent); }
+
+    /* ── Hero ─────────────────────────────────────────────── */
+    .hero {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 3rem 1.5rem 1.5rem;
+      text-align: center;
+    }
+
+    .app-icon {
+      width: 100px;
+      height: 100px;
+      border-radius: 24px;
+      margin: 0 auto 1.5rem;
+      background: var(--surface);
+      border: 2px solid rgba(245,197,24,.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .app-icon img { width: 100%; height: 100%; object-fit: cover; }
+    .app-icon-fallback {
+      font-size: 2.8rem;
+      line-height: 1;
+    }
+
+    .eyebrow {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .6rem;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    h1 span { color: var(--accent); }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 480px;
+      margin: 0 auto 2rem;
+    }
+
+    /* ── Botão principal ──────────────────────────────────── */
+    #btn-install {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--accent);
+      color: #08142D;
+      font-weight: 800;
+      font-size: 1rem;
+      padding: .85rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: opacity .2s, transform .15s;
+      margin-bottom: .5rem;
+    }
+    #btn-install:hover { opacity: .88; transform: translateY(-1px); }
+    #btn-install svg { flex-shrink: 0; }
+
+    .btn-secondary {
+      display: inline-block;
+      font-size: .85rem;
+      color: var(--muted);
+      text-decoration: none;
+      margin-top: .4rem;
+    }
+    .btn-secondary:hover { color: var(--accent); }
+
+    /* ── Funcionalidades ──────────────────────────────────── */
+    .features {
+      max-width: var(--max);
+      margin: 2.5rem auto 0;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+    .feature-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 1.2rem 1rem;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,.06);
+    }
+    .feature-card .icon { font-size: 1.8rem; margin-bottom: .5rem; }
+    .feature-card h3 { font-size: .9rem; font-weight: 700; margin-bottom: .3rem; }
+    .feature-card p  { font-size: .8rem; color: var(--muted); line-height: 1.5; }
+
+    /* ── Instruções passo a passo ─────────────────────────── */
+    .install-guide {
+      max-width: var(--max);
+      margin: 2.5rem auto 0;
+      padding: 0 1.5rem;
+    }
+    .install-guide h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .steps {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 1.4rem;
+      border: 1px solid rgba(255,255,255,.06);
+      margin-bottom: 1rem;
+    }
+    .steps .platform {
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: .8rem;
+    }
+    .steps ol {
+      padding-left: 1.3rem;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+    .steps li { font-size: .92rem; line-height: 1.5; color: var(--muted); }
+    .steps li strong { color: var(--text); }
+
+    /* ── Nota de independência ────────────────────────────── */
+    .note-indep {
+      max-width: var(--max);
+      margin: 2rem auto 0;
+      padding: 0 1.5rem;
+    }
+    .note-indep p {
+      font-size: .8rem;
+      color: var(--muted);
+      line-height: 1.6;
+      border-left: 2px solid rgba(245,197,24,.4);
+      padding-left: .9rem;
+    }
+
+    /* ── Footer ───────────────────────────────────────────── */
+    footer {
+      max-width: var(--max);
+      margin: 3rem auto 0;
+      padding: 1.5rem;
+      text-align: center;
+      font-size: .78rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <!-- ── Cabeçalho ──────────────────────────────────────── -->
+  <header class="site-header">
+    <a class="logo" href="https://redebolha.com.br">
+      <img src="/icon-192.png" alt="Rede Bolha" width="36" height="36">
+      <span>Rede Bolha</span>
+    </a>
+    <a class="back-link" href="/acessibilidade-rs/">← Acessibilidade RS</a>
+  </header>
+
+  <!-- ── Hero ───────────────────────────────────────────── -->
+  <main>
+    <section class="hero">
+      <div class="app-icon">
+        <!-- Troque por: <img src="/img/ars-icon-192.png" alt="ARS"> -->
+        <span class="app-icon-fallback" aria-hidden="true">♿</span>
+      </div>
+
+      <p class="eyebrow">Aplicativo</p>
+      <h1>Instale o <span>ARS</span><br>no seu celular</h1>
+      <p class="hero-desc">
+        Mapa e guia de acessibilidade do Rio Grande do Sul direto na sua tela inicial.
+        Gratuito, sem cadastro, funciona com internet fraca.
+      </p>
+
+      <div>
+        <button id="btn-install" aria-label="Instalar o app ARS">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 16l-4-4 1.4-1.4L11 13.2V4h2v9.2l1.6-1.6L16 13z"/>
+            <path d="M20 18H4v2h16z"/>
+          </svg>
+          Instalar agora
+        </button>
+        <br>
+        <a class="btn-secondary" href="/acessibilidade-rs/">
+          Usar no navegador →
+        </a>
+      </div>
+    </section>
+
+    <!-- ── Funcionalidades ─────────────────────────────── -->
+    <section class="features" aria-label="O que o app oferece">
+      <div class="feature-card">
+        <div class="icon" aria-hidden="true">🗺️</div>
+        <h3>Mapa interativo</h3>
+        <p>Locais acessíveis em todo o RS marcados no mapa</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon" aria-hidden="true">⭐</div>
+        <h3>Avalie lugares</h3>
+        <p>Contribua com avaliações de acessibilidade</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon" aria-hidden="true">📶</div>
+        <h3>Offline</h3>
+        <p>Acesso mesmo com internet fraca ou sem sinal</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon" aria-hidden="true">🔒</div>
+        <h3>Sem rastreamento</h3>
+        <p>Nenhum dado pessoal coletado pelo app</p>
+      </div>
+    </section>
+
+    <!-- ── Instruções de instalação ───────────────────── -->
+    <section class="install-guide" aria-label="Como instalar">
+      <h2>Como instalar</h2>
+
+      <div class="steps">
+        <p class="platform">📱 Android — Chrome</p>
+        <ol>
+          <li>Toque em <strong>Instalar agora</strong> se o botão aparecer acima.</li>
+          <li>Se não aparecer: toque nos <strong>três pontinhos</strong> no canto superior direito do Chrome.</li>
+          <li>Escolha <strong>"Instalar app"</strong> ou <strong>"Adicionar à tela inicial"</strong>.</li>
+        </ol>
+      </div>
+
+      <div class="steps">
+        <p class="platform">🍎 iPhone — Safari</p>
+        <ol>
+          <li>Abra <strong>este endereço no Safari</strong> — pelo Chrome do iPhone não funciona.</li>
+          <li>Toque no ícone de <strong>compartilhar</strong> (quadrado com seta para cima).</li>
+          <li>Escolha <strong>"Adicionar à Tela de Início"</strong>.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ── Nota de independência ──────────────────────── -->
+    <div class="note-indep">
+      <p>
+        O <strong>ARS — Acessibilidade RS</strong> é uma iniciativa independente da
+        <strong>Rede Bolha</strong>. Não possui vínculo, parceria ou endosso de qualquer
+        órgão público ou privado. As informações sobre programas governamentais são de
+        caráter público, reproduzidas apenas para orientar leitores.
+      </p>
+    </div>
+  </main>
+
+  <!-- ── Rodapé ─────────────────────────────────────────── -->
+  <footer>
+    <p>
+      <a href="https://redebolha.com.br/acessibilidade-rs/">Acessibilidade RS</a>
+      · <a href="https://redebolha.com.br">Rede Bolha</a>
+      · Adm. Romário Cruz
+    </p>
+  </footer>
+
+  <!-- ── Service Worker + Botão de instalação ──────────── -->
+  <script>
+    // Registra o service worker do ARS
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/ars-sw.js', { scope: '/acessibilidade-rs/' })
+        .catch(() => {}); // falha silenciosa — não bloqueia a experiência
+    }
+
+    // Captura o evento de instalação do PWA
+    let deferredPrompt = null;
+    const btnInstall   = document.getElementById('btn-install');
+
+    window.addEventListener('beforeinstallprompt', e => {
+      e.preventDefault();
+      deferredPrompt = e;
+      btnInstall.style.display = 'inline-flex'; // garante visibilidade
+    });
+
+    btnInstall.addEventListener('click', async () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        deferredPrompt = null;
+        if (outcome === 'accepted') {
+          btnInstall.textContent = '✅ App instalado!';
+          btnInstall.disabled = true;
+        }
+      } else {
+        // Se não há prompt nativo, redireciona para o app
+        window.location.href = '/acessibilidade-rs/';
+      }
+    });
+
+    // Se já instalado, ajusta o botão
+    window.addEventListener('appinstalled', () => {
+      btnInstall.textContent = '✅ App instalado!';
+      btnInstall.disabled = true;
+    });
+  </script>
+</body>
+</html>

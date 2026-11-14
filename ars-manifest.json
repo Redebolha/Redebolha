@@ -1,0 +1,46 @@
+{
+  "name": "Acessibilidade RS",
+  "short_name": "ARS",
+  "description": "Encontre, avalie e divulgue lugares acessíveis no Rio Grande do Sul — Rede Bolha",
+  "lang": "pt-BR",
+  "start_url": "/acessibilidade-rs/?source=pwa",
+  "scope": "/acessibilidade-rs/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a1628",
+  "theme_color": "#0a1628",
+  "icons": [
+    {
+      "src": "/img/ars-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/ars-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/ars-icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Ver o mapa",
+      "url": "/acessibilidade-rs/#mapa",
+      "description": "Mapa de lugares acessíveis no RS"
+    },
+    {
+      "name": "Avaliar um lugar",
+      "url": "/acessibilidade-rs/#avaliar",
+      "description": "Envie sua avaliação de acessibilidade"
+    }
+  ],
+  "categories": ["accessibility", "social", "navigation"],
+  "prefer_related_applications": false
+}

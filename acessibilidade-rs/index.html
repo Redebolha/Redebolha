@@ -35,7 +35,7 @@
 </script>
 <title>Acessibilidade RS — encontre, avalie e divulgue lugares acessíveis no Rio Grande do Sul | Rede Bolha</title>
 <meta name="description" content="Rede colaborativa que conecta pessoas com deficiência a estabelecimentos, serviços, turismo, cultura e lazer no RS. Mapa por região, recursos por tipo de necessidade e avaliações de quem visitou. Cadastro gratuito.">
-<link rel="manifest" href="/manifest.json">
+<link rel="manifest" href="/ars-manifest.json">
 <meta name="theme-color" content="#050E22">
 <link rel="apple-touch-icon" href="/icon-192.png">
 <link rel="icon" href="/icon-192.png">
@@ -588,17 +588,7 @@ html.rb-previa .rb-previa-aviso button:hover { background: rgba(255, 255, 255, .
     <p class="eyebrow">Rede colaborativa · Rio Grande do Sul · 7 regiões · 497 municípios</p>
     <h1 id="h-mapa">Encontre, avalie e divulgue lugares acessíveis no Rio Grande do Sul</h1>
     <p class="muted">Um espaço colaborativo que conecta pessoas com deficiência a estabelecimentos, serviços, turismo, cultura e lazer, com informação sobre acessibilidade feita junto com quem usa.</p>
-    <div class="row"><a class="btn small" href="#avaliar">Avaliar um lugar</a><a class="btn small ghost" href="#cadastro">Cadastrar meu negócio</a></div>
-    <div class="apoio-band mini" role="group" aria-label="Apoio">
-      <p class="eyebrow">Apoio</p>
-      <div class="apoio-logos-wrap">
-        <ul class="apoio-logos">
-          <li><img src="/img/ars-apoio-coepede.png" width="190" height="190" alt="COEPEDE, Conselho Estadual dos Direitos das Pessoas com Deficiência" loading="lazy" decoding="async"></li>
-          <li><img src="/img/ars-apoio-faders.png" width="349" height="148" alt="FADERS Acessibilidade e Inclusão" loading="lazy" decoding="async"></li>
-        </ul>
-        <span class="apoio-tarja">Aguardando autorização</span>
-      </div>
-    </div>
+    <div class="row"><a class="btn small" href="#avaliar">Avaliar um lugar</a><a class="btn small ghost" href="#cadastro">Cadastrar meu negócio</a><a class="btn small ghost" href="/instalar-ars.html" id="btn-ars-install">📲 Instalar app</a></div>
   </div>
   <!-- Garoto-propaganda do Acessibilidade RS (foto da Rede Praia Acessível) -->
   <figure class="garoto">
@@ -902,16 +892,7 @@ html.rb-previa .rb-previa-aviso button:hover { background: rgba(255, 255, 255, .
 </main>
 
 <footer class="wrap"><div class="inner stack">
-  <div class="apoio-band" role="group" aria-label="Apoio">
-    <p class="eyebrow">Apoio</p>
-    <div class="apoio-logos-wrap">
-      <ul class="apoio-logos">
-        <li><img src="/img/ars-apoio-coepede.png" width="190" height="190" alt="COEPEDE, Conselho Estadual dos Direitos das Pessoas com Deficiência" loading="lazy" decoding="async"></li>
-        <li><img src="/img/ars-apoio-faders.png" width="349" height="148" alt="FADERS Acessibilidade e Inclusão" loading="lazy" decoding="async"></li>
-      </ul>
-      <span class="apoio-tarja">Aguardando autorização</span>
-    </div>
-  </div>
+  <p class="muted" style="font-size:.8rem;border-left:2px solid rgba(255,255,255,.18);padding-left:.85rem;line-height:1.5">O <b>Acessibilidade RS</b> é uma iniciativa independente da <b>Rede Bolha</b>, sem vínculo, parceria ou endosso de órgãos públicos ou privados. Informações sobre programas públicos (como os da FADERS) são de domínio público e reproduzidas apenas para orientar leitores.</p>
   <p><svg class="ars-simbolo" width="26" height="26" viewBox="0 0 24 24" role="img" aria-label="Símbolo internacional de acessibilidade"><g fill="none" stroke="#FFFFFF" stroke-width="1.35" stroke-linecap="round"><circle cx="12" cy="12" r="9.65"/><path d="M2.6 9.8Q12 16.2 21.4 9.8M12 13 7.1 19.7M12 13l4.9 6.7"/><g fill="#5EA6FF" stroke-width="1.1"><circle cx="12" cy="6.9" r="2.7"/><circle cx="2.6" cy="9.8" r="1.45"/><circle cx="21.4" cy="9.8" r="1.45"/><circle cx="7.1" cy="19.7" r="1.45"/><circle cx="16.9" cy="19.7" r="1.45"/></g></g></svg><b>Acessibilidade RS</b> <span class="tres" aria-hidden="true">∴</span><span class="sr">·</span> uma rede colaborativa da <a href="/">Rede Bolha</a><svg class="mio" width="17" height="17" viewBox="-9 -9 18 18" aria-hidden="true" focusable="false"><g fill="#7DB4FF" stroke="#4F86D9" stroke-width=".6"><circle cx="0.00" cy="-4.30" r="3.7"/><circle cx="4.09" cy="-1.33" r="3.7"/><circle cx="2.53" cy="3.48" r="3.7"/><circle cx="-2.53" cy="3.48" r="3.7"/><circle cx="-4.09" cy="-1.33" r="3.7"/></g><circle r="2.5" fill="#FFFFFF"/><circle r="1.5" fill="#FFF500"/></svg>. As informações do guia não são certificação nem vistoria técnica. O Selo Estadual de Acessibilidade da FADERS aparece à parte, como informação complementar.</p>
   <p><b>Apoie a Acessibilidade RS:</b> contribua com um Pix de qualquer valor para <button class="pixlink" type="button" data-copiar="redebolhaoficial@gmail.com" aria-label="Copiar a chave Pix redebolhaoficial@gmail.com">redebolhaoficial@gmail.com</button>. É assim que o guia segue crescendo.</p>
   <!-- Livros e indicação: quem compra o livro mantém o guia; quem não pode, indica -->
@@ -963,6 +944,41 @@ document.addEventListener('click', function (e) {
   function manual() { window.prompt('Copie a chave Pix:', v); }
   if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(v).then(ok, manual); else manual();
 });
+</script>
+<script>
+/* ARS PWA — service worker + install prompt */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/ars-sw.js', { scope: '/acessibilidade-rs/' }).catch(function () {});
+  });
+}
+(function () {
+  var deferredPrompt = null;
+  var btn = document.getElementById('btn-ars-install');
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault();
+    deferredPrompt = e;
+    /* já funciona como link; aqui apenas intercepta o clique p/ prompt nativo */
+  });
+  if (btn) {
+    btn.addEventListener('click', function (e) {
+      if (!deferredPrompt) return; /* deixa o link /instalar-ars.html abrir normalmente */
+      e.preventDefault();
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(function (r) {
+        deferredPrompt = null;
+        if (r.outcome === 'accepted') {
+          btn.textContent = '✅ App instalado!';
+          btn.removeAttribute('href');
+        }
+      });
+    });
+  }
+  window.addEventListener('appinstalled', function () {
+    if (btn) { btn.textContent = '✅ Instalado'; btn.removeAttribute('href'); }
+    deferredPrompt = null;
+  });
+})();
 </script>
 </body>
 </html>
