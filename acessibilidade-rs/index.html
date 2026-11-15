@@ -504,9 +504,9 @@ html.rb-aberto .rb-lanc { display: none; }
 .rb-lanc-contato { margin: 1.6rem 0 0; color: var(--ink); font-weight: 600; }
 .rb-lanc-acoes--contato { margin-top: .8rem; }
 .rb-lanc-acoes--contato .rb-lanc-btn { overflow-wrap: anywhere; }
-/* Abas "Avalie um lugar" e "Cadastre seu negócio": até o lançamento mostram a
-   mesma tela, inclusive na prévia (o formulário fica escondido). */
-html.rb-prelanc #v-avaliar > :not(.rb-lanc--aba), html.rb-prelanc #v-cadastro > :not(.rb-lanc--aba) { display: none !important; }
+/* Aba "Avalie um lugar": até o lançamento mostra só a tela de lançamento.
+   "Cadastre seu negócio" fica acessível via botão — pré-cadastro liberado. */
+html.rb-prelanc #v-avaliar > :not(.rb-lanc--aba) { display: none !important; }
 html.rb-aberto .rb-lanc.rb-lanc--aba { display: flex; }
 .rb-lanc--aba { min-height: 0; margin: .4rem 0 1rem; border: 2px solid var(--line); border-radius: var(--radius); padding: clamp(36px, 6vw, 64px) 16px clamp(28px, 5vw, 48px); }
 .rb-lanc-assinatura { margin: 2.2rem 0 0; color: var(--muted); font-size: .85rem; }
@@ -965,11 +965,12 @@ html.rb-previa .rb-previa-aviso button:hover { background: rgba(255, 255, 255, .
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-/* Até o lançamento: as abas com formulário mostram a tela de lançamento */
+/* Até o lançamento: a aba "Avalie um lugar" mostra a tela de lançamento.
+   "Cadastre seu negócio" já aceita pré-cadastros — formulário visível ao clicar. */
 (function () {
   if (!document.documentElement.classList.contains('rb-prelanc')) return;
   var base = document.querySelector('.rb-lanc'); if (!base) return;
-  ['v-avaliar', 'v-cadastro'].forEach(function (id) {
+  ['v-avaliar'].forEach(function (id) {
     var v = document.getElementById(id); if (!v) return;
     var c = base.cloneNode(true);
     c.classList.add('rb-lanc--aba'); c.removeAttribute('aria-labelledby');
