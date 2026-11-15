@@ -161,6 +161,8 @@
     VIEWS.forEach(function (n) { $('#v-' + n).hidden = n !== v; });
     $$('nav.tabs a[data-view]').forEach(function (a) { if (a.dataset.view === v) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
     if (v === 'mapa') requestAnimationFrame(updateMarkerScale);
+    /* Pré-lançamento: rb-cadastro exibe #conteudo quando o usuário vai para o formulário */
+    document.documentElement.classList.toggle('rb-cadastro', v === 'cadastro');
   }
   window.addEventListener('hashchange', function () {
     route();
@@ -633,6 +635,14 @@
   fillStatic();
   calcBox();
   route();
+  /* Se a página abre direto em #cadastro em modo pré-lançamento, rolar para o formulário */
+  (function () {
+    if (!document.documentElement.classList.contains('rb-prelanc')) return;
+    if (location.hash.slice(1) !== 'cadastro') return;
+    var el = document.getElementById('v-cadastro');
+    if (!el) return;
+    requestAnimationFrame(function () { window.scrollTo(0, el.offsetTop); });
+  })();
   fetch(BASE + 'mapa-rs.json').then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (m) {
     MAP = m; ASPECT = MAP.W / MAP.H;
     MUNS = Object.keys(MAP.mun).map(function (cod) { var o = { cod: cod }; var x = MAP.mun[cod]; for (var k in x) o[k] = x[k]; return o; }).sort(function (a, b) { return a.n.localeCompare(b.n, 'pt-BR'); });

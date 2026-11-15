@@ -475,6 +475,8 @@ footer .ars-simbolo { display: inline-block; vertical-align: -6px; margin-right:
    continua no código, pronto para janeiro). Designer: ajuste daqui até o fim
    do bloco; os textos ficam logo abaixo de <body>. */
 html:not(.rb-aberto) body > :not(.rb-lanc) { display: none !important; }
+/* Pré-cadastro: exibe #conteudo quando o usuário navega para o formulário */
+html.rb-prelanc.rb-cadastro #conteudo { display: block !important; }
 html.rb-aberto .rb-lanc { display: none; }
 .rb-lanc { position: relative; overflow: hidden; min-height: 100vh; min-height: 100svh; display: flex; align-items: center; justify-content: center; padding: clamp(40px, 7vw, 88px) 16px clamp(32px, 6vw, 64px);
   background:
