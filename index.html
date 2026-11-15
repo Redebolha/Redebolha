@@ -347,6 +347,11 @@
 .rb-nav a.lnk.rb-app{display:inline-flex;align-items:center;gap:6px;border:1px solid #2FBF6B;border-radius:3px;padding:5px 12px;color:#9CF2C0;text-decoration:none;transition:background .2s,color .2s}
 .rb-nav a.lnk.rb-app:hover,.rb-nav a.lnk.rb-app:focus-visible{background:#2FBF6B;color:#050E22}
 .rb-nav a.lnk.rb-app svg{flex:none;margin-top:-1px}
+/* Banner guia ARS — hover */
+.rb-destaque-card a:has(img[src*="guia-ars-divulgacao"]):hover img{
+  transform:translateY(-4px) scale(1.015);
+  box-shadow:0 28px 50px -18px rgba(0,0,0,.8),0 0 0 2px rgba(255,245,0,.35);
+}
 /* ===== LOGOMARCA REDE BOLHA - identidade visual (topo + rodapé) ===== */
 :root{--rb-logo:url("/logo-rede-bolha.png");--rb-blue:#12295a}
 .rb-nav .brand{display:inline-flex;align-items:center;gap:12px}
@@ -1288,6 +1293,20 @@
           <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
         </a>
         <a class="btn btn--lg btn--ghost" href="/acessibilidade-rs/#cadastro">Cadastrar meu negócio</a>
+      </div>
+      <!-- Banner do Guia Prático — imagem de divulgação -->
+      <div style="margin-top:2rem;text-align:center;">
+        <a href="/acessibilidade-rs/" title="Baixar o Guia Prático Acessibilidade para Negócios — Rede Bolha">
+          <img src="/img/guia-ars-divulgacao.png"
+               alt="Sua empresa mais acessível, mais oportunidades! — Guia Prático Acessibilidade para Negócios, Rede Bolha"
+               width="480" height="480"
+               loading="lazy"
+               decoding="async"
+               style="max-width:420px;width:100%;height:auto;border-radius:12px;
+                      box-shadow:0 20px 40px -16px rgba(0,0,0,.7),0 0 0 1px rgba(255,245,0,.18);
+                      display:inline-block;
+                      transition:transform .3s ease,box-shadow .3s ease;">
+        </a>
       </div>
     </div>
   </div>
