@@ -523,12 +523,22 @@ html.rb-previa .rb-previa-aviso button:hover { background: rgba(255, 255, 255, .
 .guia-banner { margin: 1.8rem 0; padding: 1.4rem 1.6rem; background: linear-gradient(135deg, var(--surface) 0%, #0a1c47 100%); border: 2px solid var(--accent); border-radius: 12px; }
 .guia-banner-inner { display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; }
 .guia-banner-ic { font-size: 2.4rem; line-height: 1; flex: none; }
+.guia-banner-ic img { display: block; width: 88px; height: 88px; object-fit: cover; border-radius: 8px; }
 .guia-banner-body { flex: 1; min-width: 200px; }
 .guia-banner-eyebrow { font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0 0 .3rem; }
 .guia-banner-title { font-size: 1.1rem; font-weight: 800; color: var(--ink); margin: 0 0 .4rem; }
 .guia-banner-desc { font-size: .88rem; color: var(--muted); margin: 0; line-height: 1.5; }
 .guia-banner-btns { display: flex; gap: .7rem; flex-wrap: wrap; align-items: center; }
-@media (max-width: 540px) { .guia-banner-ic { display: none; } .guia-banner-btns .btn { flex: 1; text-align: center; justify-content: center; } }
+.guia-banner-apoio { margin-top: 1rem; padding-top: .9rem; border-top: 1px solid rgba(255,255,255,.12); font-size: .85rem; color: var(--muted); }
+.guia-banner-apoio strong { color: var(--ink); }
+.guia-banner-apoio .guia-banner-btns { margin-top: .6rem; }
+@media (max-width: 540px) { .guia-banner-ic img { width: 60px; height: 60px; } .guia-banner-btns .btn { flex: 1; text-align: center; justify-content: center; } }
+/* rb-lanc: imagem de divulgação do guia */
+.rb-lanc-guia { margin: 1.8rem auto 0; max-width: 420px; width: 100%; }
+.rb-lanc-guia img { display: block; width: 100%; height: auto; border-radius: 14px; box-shadow: 0 10px 36px rgba(0,0,0,.45); }
+.rb-lanc-apoio { margin: 1.4rem auto 0; max-width: 54ch; padding: .9rem 1.3rem; background: rgba(255,255,255,.07); border: 1.5px solid rgba(75,224,140,.35); border-radius: 12px; color: var(--muted); font-size: .88rem; text-align: center; }
+.rb-lanc-apoio strong { color: #9CF2C0; }
+.rb-lanc-apoio .rb-lanc-acoes { margin-top: .8rem; }
 </style>
 </head>
 <body>
@@ -551,11 +561,26 @@ html.rb-previa .rb-previa-aviso button:hover { background: rgba(255, 255, 255, .
       <a class="rb-lanc-btn" href="/">Voltar para a Rede Bolha</a>
       <a class="rb-lanc-btn rb-lanc-btn--ghost" href="/guia-acessibilidade-negocios.pdf" download="Guia-Acessibilidade-Negocios-Rede-Bolha.pdf"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M8 11l4 4 4-4"/><rect x="4" y="17" width="16" height="4" rx="1.5"/></svg>⬇ Baixar Guia Prático (PDF)</a>
     </div>
+    <!-- Imagem de divulgação do Guia Prático -->
+    <figure class="rb-lanc-guia">
+      <img src="/img/guia-ars-divulgacao.png" alt="Infográfico: Sua empresa mais acessível, mais oportunidades! Guia Prático de Acessibilidade para Negócios — diagnóstico, checklist e plano de ações em 30 dias. Rede Bolha." width="480" height="480" loading="lazy">
+    </figure>
+    <!-- Botão de download repetido abaixo da imagem -->
+    <div class="rb-lanc-acoes">
+      <a class="rb-lanc-btn rb-lanc-btn--ghost" href="/guia-acessibilidade-negocios.pdf" download="Guia-Acessibilidade-Negocios-Rede-Bolha.pdf"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M8 11l4 4 4-4"/><rect x="4" y="17" width="16" height="4" rx="1.5"/></svg>⬇ Baixar Guia Prático (PDF)</a>
+    </div>
+    <!-- Mensagem de apoio à iniciativa -->
+    <div class="rb-lanc-apoio">
+      <p>Quer apoiar esta iniciativa? <strong>Compre um livro ou e-book</strong> do Romário Cruz e ajude o guia a crescer — ou faça um <strong>Pix de qualquer valor</strong> para <strong>redebolhaoficial@gmail.com</strong> e colabore com esta causa.</p>
+      <div class="rb-lanc-acoes">
+        <a class="rb-lanc-btn rb-lanc-btn--ghost" href="/livros/">📚 Ver os livros</a>
+      </div>
+    </div>
     <!-- Contato até o lançamento: só WhatsApp e e-mail -->
     <p class="rb-lanc-contato">Quer seu negócio no guia? Fale com a gente:</p>
     <div class="rb-lanc-acoes rb-lanc-acoes--contato">
       <a class="rb-lanc-btn rb-lanc-btn--ghost" href="https://wa.me/5551980482820?text=Ol%C3%A1!%20Quero%20meu%20neg%C3%B3cio%20no%20Acessibilidade%20RS." target="_blank" rel="noopener" aria-label="WhatsApp (51) 98048-2820 (abre em nova aba)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 18.8z"/><path d="M9.2 9.3c.2 2.4 2.9 5 5.4 5.4l1.2-1.3-1.9-1-1 .9c-.9-.4-1.8-1.3-2.2-2.2l.9-1-1-1.9z" fill="currentColor" stroke="none"/></svg>WhatsApp (51) 98048-2820</a>
-      <a class="rb-lanc-btn rb-lanc-btn--ghost" href="mailto:admromariocruz@gmail.com?subject=Acessibilidade%20RS"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg>admromariocruz@gmail.com</a>
+      <a class="rb-lanc-btn rb-lanc-btn--ghost" href="mailto:redebolhaoficial@gmail.com?subject=Acessibilidade%20RS"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg>redebolhaoficial@gmail.com</a>
     </div>
     <p class="rb-lanc-assinatura">Uma iniciativa independente da Rede Bolha &middot; Por Adm. Romário Cruz</p>
   </div>
@@ -610,7 +635,9 @@ html.rb-previa .rb-previa-aviso button:hover { background: rgba(255, 255, 255, .
   <!-- GUIA PRÁTICO: faixa de download — visível quando a página estiver aberta (rb-aberto) -->
   <aside class="guia-banner" aria-label="Download do Guia Prático de Acessibilidade para Negócios">
     <div class="guia-banner-inner">
-      <span class="guia-banner-ic" aria-hidden="true">📄</span>
+      <figure class="guia-banner-ic" aria-hidden="true">
+        <img src="/img/guia-ars-divulgacao.png" alt="" width="88" height="88" loading="lazy">
+      </figure>
       <div class="guia-banner-body">
         <p class="guia-banner-eyebrow">Recurso gratuito · Rede Bolha</p>
         <p class="guia-banner-title">Guia Prático Acessibilidade para Negócios</p>
@@ -619,6 +646,13 @@ html.rb-previa .rb-previa-aviso button:hover { background: rgba(255, 255, 255, .
       <div class="guia-banner-btns">
         <a class="btn" href="/guia-acessibilidade-negocios.pdf" download="Guia-Acessibilidade-Negocios-Rede-Bolha.pdf">⬇ Baixar PDF</a>
         <a class="btn ghost small" href="/guia-acessibilidade-negocios.html" target="_blank" rel="noopener">Ler online</a>
+      </div>
+    </div>
+    <div class="guia-banner-apoio">
+      <p>Quer apoiar esta iniciativa? <strong>Compre um livro ou e-book</strong> do Romário Cruz — ou faça um <strong>Pix de qualquer valor</strong> para <strong>redebolhaoficial@gmail.com</strong> e colabore com esta causa.</p>
+      <div class="guia-banner-btns">
+        <a class="btn small" href="/livros/">📚 Ver os livros</a>
+        <button type="button" class="btn small ghost" data-copiar="redebolhaoficial@gmail.com" aria-label="Copiar chave Pix redebolhaoficial@gmail.com">Copiar chave Pix</button>
       </div>
     </div>
   </aside>
