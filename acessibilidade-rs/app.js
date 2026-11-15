@@ -162,7 +162,18 @@
     $$('nav.tabs a[data-view]').forEach(function (a) { if (a.dataset.view === v) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
     if (v === 'mapa') requestAnimationFrame(updateMarkerScale);
   }
-  window.addEventListener('hashchange', function () { route(); $('#conteudo').focus({ preventScroll: true }); window.scrollTo(0, 0); });
+  window.addEventListener('hashchange', function () {
+    route();
+    $('#conteudo').focus({ preventScroll: true });
+    /* Em pré-lançamento a seção rb-lanc fica no topo (>1800px);
+       rolar para a view correta em vez de ir ao topo da página. */
+    if (document.documentElement.classList.contains('rb-prelanc')) {
+      var vn = location.hash.slice(1);
+      var vEl = document.getElementById('v-' + vn) || document.getElementById('v-mapa');
+      if (vEl) { window.scrollTo(0, vEl.offsetTop); return; }
+    }
+    window.scrollTo(0, 0);
+  });
 
   /* ---------- Conteúdo fixo ---------- */
   function recFieldsets(pre, named) {
