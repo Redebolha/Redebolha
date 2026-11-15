@@ -70,7 +70,8 @@
     '.rb-lateral-ctl button:hover{background:rgba(255,223,0,.12)}',
     '.rb-lateral button:focus-visible,.rb-lateral-slide:focus-visible{outline:3px solid #FFDF00;outline-offset:2px}',
     '@media(prefers-reduced-motion:reduce){.rb-lateral,.rb-lateral.anima .rb-lateral-slide.ativo{transition:none;animation:none}}',
-    '@media print{.rb-lateral{display:none!important}}'
+    '@media print{.rb-lateral{display:none!important}}',
+    '@media(max-width:1299px){.rb-lateral{display:none!important}}'
   ].join('\n');
 
   var ICO = {
@@ -224,7 +225,7 @@
       if (!box.isConnected) return;
       box.hidden = true;
       var vw = window.innerWidth, vh = window.innerHeight;
-      if (vw < 1180 || vh < 600) { cabe = false; atualizar(); return; }
+      if (vw < 1300 || vh < 600) { cabe = false; atualizar(); return; }
       var borda = bordaDoConteudo();
       var livre = vw - borda;
       cabe = livre >= LARG + FOLGA * 2;
