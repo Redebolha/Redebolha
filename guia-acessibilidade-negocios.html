@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guia Prático Acessibilidade para Negócios — Rede Bolha</title>
+<style>
+:root {
+  --navy:#1e3464; --navy2:#243e76;
+  --teal:#0a7a8a; --teal-dk:#085e6b; --teal-lt:#e4f3f6;
+  --yellow:#f5b800; --gold:#b8841e; --gold-bg:#fff8e0;
+  --white:#fff; --light:#f5f7fa; --text:#2c3e50; --muted:#546e7a;
+  --border:#cddae5;
+}
+@page{size:A4;margin:0;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Arial,Helvetica,sans-serif;font-size:10.5pt;color:var(--text);background:#dde3ea;line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.page{width:210mm;min-height:297mm;background:white;position:relative;display:flex;flex-direction:column;page-break-after:always;margin:0 auto 28px;box-shadow:0 4px 20px rgba(0,0,0,.18);}
+.page:last-child{page-break-after:auto;}
+@media print{body{background:white;}
+.page{margin:0;box-shadow:none;}}
+
+/* bars */
+.topbar{background:var(--navy);color:white;display:flex;justify-content:space-between;align-items:center;padding:6px 18mm;font-size:8pt;flex-shrink:0;}
+.topbar b{letter-spacing:.4px;}
+.topbar a,.topbar span.url{color:#a8c8e8;text-decoration:none;}
+.botbar{background:var(--navy);color:rgba(255,255,255,.65);display:flex;justify-content:space-between;align-items:center;padding:6px 18mm;font-size:8pt;flex-shrink:0;}
+.content{flex:1;padding:12mm 18mm 10mm;}
+
+/* type */
+h2{font-size:17pt;font-weight:bold;color:var(--navy);border-bottom:2.5px solid var(--teal);padding-bottom:6px;margin-bottom:9px;}
+h3{font-size:11.5pt;font-weight:bold;color:var(--teal);margin:10px 0 6px;}
+h4{font-size:10.5pt;font-weight:bold;color:var(--teal-dk);margin:8px 0 5px;}
+p{margin-bottom:7px;}
+ul{margin:5px 0 9px 17px;}
+li{margin-bottom:4px;}
+a{color:var(--teal);}
+.lead{font-size:11pt;color:var(--muted);}
+
+/* callouts */
+.box{border-left:4px solid var(--teal);background:var(--teal-lt);padding:9px 13px;margin:9px 0;border-radius:0 4px 4px 0;}
+.box-title{font-weight:bold;color:var(--teal-dk);font-size:10pt;margin-bottom:5px;}
+.box.yellow{border-left-color:var(--yellow);background:var(--gold-bg);}
+.box.yellow .box-title{color:var(--gold);}
+.box.navy{background:var(--navy);color:white;border-left:none;border-radius:5px;}
+.box.navy .box-title{color:var(--yellow);}
+.box.navy p,.box.navy li{color:#d0dff0;}
+
+/* table */
+table{width:100%;border-collapse:collapse;margin:9px 0;font-size:10pt;}
+th{background:var(--teal-dk);color:white;padding:7px 10px;text-align:left;font-size:10pt;}
+td{padding:6px 10px;border-bottom:1px solid var(--border);vertical-align:top;}
+tr:nth-child(even) td{background:var(--light);}
+
+/* highlights */
+.hl-navy{background:var(--navy);color:white;border-radius:6px;padding:12px 16px;margin:10px 0;text-align:center;}
+.hl-navy .hl-title{font-size:13pt;font-weight:bold;color:var(--yellow);margin-bottom:5px;}
+.hl-teal{background:var(--teal);color:white;border-radius:6px;padding:10px 14px;margin:10px 0;}
+.hl-teal .hl-url{font-size:11pt;font-weight:bold;color:var(--yellow);}
+
+/* gold / ouro */
+.ouro-box{background:linear-gradient(135deg,#1e1200 0%,#3c2400 50%,#1e1200 100%);border:2.5px solid var(--gold);border-radius:8px;padding:14px 20px;margin:12px 0;text-align:center;color:white;}
+.ouro-box .trophy{font-size:28pt;margin-bottom:6px;}
+.ouro-box .ot{font-size:10pt;color:#d4b070;text-transform:uppercase;letter-spacing:1px;}
+.ouro-box .city{font-size:22pt;font-weight:bold;color:white;margin:3px 0;}
+.ouro-box .sub{font-size:9.5pt;color:#c8a060;}
+
+/* seal levels */
+.seals{display:flex;gap:9px;margin:10px 0;}
+.seal{flex:1;border-radius:6px;padding:9px;text-align:center;}
+.seal .ico{font-size:20pt;margin-bottom:3px;}
+.seal .nm{font-weight:bold;font-size:9.5pt;margin-bottom:3px;}
+.seal .ds{font-size:8.5pt;}
+.s-bronze{background:#f5ebe0;border:2px solid #cd7f32;color:#6b3a1f;}
+.s-prata{background:#f0f0f0;border:2px solid #9e9e9e;color:#333;}
+.s-ouro{background:#fff8e1;border:2px solid var(--gold);color:#4a2e00;}
+
+/* steps */
+.steps .step{display:flex;gap:11px;margin-bottom:9px;align-items:flex-start;}
+.snum{background:var(--teal);color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:9.5pt;flex-shrink:0;margin-top:1px;}
+
+/* two col */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:9px 0;}
+
+/* checklist */
+.ck{display:flex;gap:7px;padding:5px 0;border-bottom:1px solid var(--border);align-items:flex-start;font-size:10pt;}
+.ck .cb{width:14px;height:14px;border:1.5px solid var(--teal);border-radius:2px;flex-shrink:0;margin-top:2px;}
+
+/* action lines */
+.act-row{display:grid;grid-template-columns:2.5fr 1.5fr 1fr;gap:8px;align-items:end;margin-bottom:7px;}
+.act-lbl{font-size:8.5pt;color:var(--teal-dk);font-weight:bold;margin-bottom:2px;}
+.act-line{border-bottom:1.5px solid var(--teal);min-height:18px;}
+
+blockquote{border-left:4px solid var(--yellow);background:var(--gold-bg);padding:9px 13px;margin:9px 0;border-radius:0 4px 4px 0;font-style:italic;color:#3a2200;}
+.small{font-size:8.5pt;color:var(--muted);}
+hr{border:none;border-top:1px solid var(--border);margin:11px 0;}
+
+/* ===== COVER pages ===== */
+.cover-page .topbar,.cover-lead .topbar{display:none;}
+.cover-page,.cover-lead{background:var(--navy);}
+.cover-page .content,.cover-lead .content{color:white;padding:0;display:flex;flex-direction:column;}
+
+/* lead capture cover */
+.lc-top{background:var(--navy);padding:14mm 18mm 8mm;flex:1;display:flex;flex-direction:column;justify-content:center;}
+.lc-logo{font-size:11pt;font-weight:bold;letter-spacing:.5px;color:var(--yellow);margin-bottom:18px;display:flex;align-items:center;gap:8px;}
+.lc-logo .dot{width:10px;height:10px;border-radius:50%;background:var(--yellow);display:inline-block;}
+.lc-eyebrow{font-size:9pt;text-transform:uppercase;letter-spacing:2px;color:#8ab0d0;margin-bottom:10px;}
+.lc-h1{font-size:22pt;font-weight:bold;color:white;line-height:1.25;margin-bottom:10px;}
+.lc-h1 span{color:var(--yellow);}
+.lc-lead{font-size:11.5pt;color:#b0ccdf;margin-bottom:16px;line-height:1.5;}
+.lc-cta{background:var(--teal);border-radius:6px;padding:12px 16px;margin:12px 0;}
+.lc-cta .cta-t{font-size:12pt;font-weight:bold;color:var(--yellow);margin-bottom:5px;}
+.lc-cta .cta-b{font-size:9.5pt;color:#cde8f0;}
+.lc-wpp{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);border-radius:6px;padding:12px 16px;margin:12px 0;}
+.lc-wpp .wpp-t{font-size:9.5pt;font-weight:bold;color:var(--yellow);margin-bottom:7px;}
+.lc-wpp .wpp-msg{font-size:9.5pt;color:#ccdde8;font-style:italic;line-height:1.5;}
+.lc-footer{background:rgba(0,0,0,.2);padding:8px 18mm;font-size:8.5pt;color:#8ab0d0;display:flex;justify-content:space-between;}
+
+/* cover main */
+.cv-inner{padding:14mm 18mm;flex:1;display:flex;flex-direction:column;justify-content:space-between;}
+.cv-tag{font-size:9pt;text-transform:uppercase;letter-spacing:2px;color:var(--yellow);margin-bottom:8px;font-weight:bold;}
+.cv-h1{font-size:30pt;font-weight:bold;color:white;line-height:1.2;margin-bottom:10px;}
+.cv-sub{font-size:11.5pt;color:#b0ccdf;margin-bottom:14px;}
+.cv-invite{background:rgba(255,255,255,.08);border:1px solid rgba(245,184,0,.3);border-radius:6px;padding:10px 14px;margin:12px 0;}
+.cv-invite b{color:var(--yellow);}
+.cv-url{color:#a8c8e8;font-size:9.5pt;}
+.cv-motto{font-size:9pt;color:#8ab0d0;font-style:italic;margin-top:8px;}
+.cv-badges{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+.cv-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:4px 12px;font-size:9pt;color:#cde8f0;}
+
+/* faders seal page accent */
+.faders-header{background:linear-gradient(135deg,var(--navy) 0%,#0a3060 100%);padding:10px 18mm 8px;border-bottom:3px solid var(--gold);}
+.faders-header .fh-title{font-size:14pt;font-weight:bold;color:var(--yellow);}
+.faders-header .fh-sub{font-size:9pt;color:#a0c0d8;}
+
+/* locations list */
+.loc-list{margin:8px 0;}
+.loc-item{display:flex;align-items:center;gap:9px;padding:6px 0;border-bottom:1px solid var(--border);}
+.loc-icon{color:var(--teal);font-size:12pt;width:18px;text-align:center;flex-shrink:0;}
+.loc-name{font-weight:bold;font-size:10.5pt;}
+.loc-type{font-size:8.5pt;color:var(--muted);}
+.placeholder{color:#a0a0a0;font-style:italic;}
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- PAGE 1 · CAPA PRINCIPAL                                      -->
+<!-- ============================================================ -->
+<div class="page cover-page">
+  <div class="content">
+    <div class="cv-inner">
+      <div>
+        <div style="display:flex;justify-content:flex-end;margin-bottom:20px;">
+          <div style="background:var(--teal);border-radius:6px;padding:6px 12px;text-align:center;">
+            <div style="font-weight:bold;font-size:10.5pt;color:white;">Acessibilidade RS 🌐</div>
+            <div style="font-size:8pt;color:#cde8f0;">Encontre, avalie e divulgue · <strong>Rede Bolha</strong></div>
+          </div>
+        </div>
+        <div class="cv-tag">Guia Prático</div>
+        <div class="cv-h1">Acessibilidade<br>para Negócios</div>
+        <div class="cv-sub">Ações simples para acolher melhor, informar com clareza e ampliar a participação de todas as pessoas.</div>
+        <div class="cv-invite">
+          <b>UM CONVITE PARA FAZER PARTE DO ACESSIBILIDADE RS</b><br>
+          <span style="color:#b0ccdf;font-size:9.5pt;">Conteúdo educativo e mobilizador da Rede Bolha</span>
+        </div>
+        <div class="cv-badges">
+          <span class="cv-badge">Observe</span>
+          <span class="cv-badge">Escute</span>
+          <span class="cv-badge">Melhore</span>
+          <span class="cv-badge">Compartilhe</span>
+        </div>
+      </div>
+      <div>
+        <hr style="border-color:rgba(255,255,255,.15);margin:14px 0 10px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <div class="cv-url">redebolha.com.br/acessibilidade-rs/</div>
+        </div>
+        <div class="cv-motto"><svg width="13" height="13" viewBox="0 0 24 24" style="display:inline-block;vertical-align:middle;margin-right:5px;opacity:0.8;" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="2.8" ry="4" fill="#a8d4f0"/><ellipse cx="12" cy="5.5" rx="2.8" ry="4" fill="#a8d4f0" transform="rotate(72 12 12)"/><ellipse cx="12" cy="5.5" rx="2.8" ry="4" fill="#a8d4f0" transform="rotate(144 12 12)"/><ellipse cx="12" cy="5.5" rx="2.8" ry="4" fill="#a8d4f0" transform="rotate(216 12 12)"/><ellipse cx="12" cy="5.5" rx="2.8" ry="4" fill="#a8d4f0" transform="rotate(288 12 12)"/><circle cx="12" cy="12" r="2.8" fill="#f5c430"/><circle cx="12" cy="12" r="1.3" fill="#fffde0" opacity="0.8"/></svg>Conhecimento, trabalho e fraternidade em favor da inclusão</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 2 · ANTES DE COMEÇAR                                    -->
+<!-- ============================================================ -->
+<div class="page">
+  <div class="topbar"><b>REDE BOLHA · ACESSIBILIDADE RS</b> <span class="url">redebolha.com.br/acessibilidade-rs/</span></div>
+  <div class="content">
+    <h2>Antes de começar</h2>
+    <p class="lead">Acessibilidade é uma prática contínua, construída com pessoas e não apenas para pessoas.</p>
+    <p>Este guia foi criado para proprietários, gestores e equipes de negócios que desejam receber melhor seus clientes e participar de uma rede colaborativa de acessibilidade no Rio Grande do Sul. Ele oferece um primeiro diagnóstico, melhorias de baixo custo e um caminho de colaboração com o projeto Acessibilidade RS. Não substitui avaliação técnica nem a legislação aplicável.</p>
+
+    <div class="box">
+      <div class="box-title">IDENTIDADE REDE BOLHA</div>
+      <p><strong>Comunicação direta, informação útil e autonomia.</strong> O material adota características do site Rede Bolha: fundo azul-marinho, amarelo de alto contraste, branco, referências ao Rio Grande do Sul, linguagem clara e convites objetivos à participação. A proposta combina conteúdo educativo, serviço gratuito e colaboração comunitária, sem transformar relatos em certificação técnica.</p>
+    </div>
+
+    <div class="box yellow">
+      <div class="box-title">Objetivo</div>
+      <p>Transformar a leitura em relacionamento: identificar barreiras, registrar avanços, compartilhar informações úteis e aproximar negócios, pessoas com deficiência, entidades e apoiadores do Acessibilidade RS.</p>
+    </div>
+
+    <div class="box" style="border-left-color:#c62828;background:#fff5f5;">
+      <div class="box-title" style="color:#c62828;">ℹ️ Independência editorial</div>
+      <p>A Rede Bolha é uma plataforma de comunicação independente, sem convênio, parceria ou endosso oficial da FADERS, do Estado do Rio Grande do Sul ou de qualquer órgão público. As referências ao Selo de Acessibilidade da FADERS neste guia são de caráter informativo, baseadas em dados de acesso público disponíveis em <strong>faders.rs.gov.br</strong>.</p>
+    </div>
+
+    <h3>Como usar</h3>
+    <div class="steps">
+      <div class="step"><div class="snum">1</div><div>Faça o diagnóstico do negócio.</div></div>
+      <div class="step"><div class="snum">2</div><div>Escolha três melhorias para os próximos 30 dias.</div></div>
+      <div class="step"><div class="snum">3</div><div>Escute clientes e pessoas com deficiência.</div></div>
+      <div class="step"><div class="snum">4</div><div>Registre recursos e limitações com transparência.</div></div>
+      <div class="step"><div class="snum">5</div><div>Acesse o projeto para indicar locais, divulgar ou propor parceria.</div></div>
+    </div>
+
+    <h3>Conteúdo</h3>
+    <div class="two-col">
+      <ul>
+        <li>Experiência acessível em seis dimensões</li>
+        <li>Diagnóstico da jornada do cliente</li>
+        <li>Checklist do estabelecimento</li>
+        <li>Atendimento e comunicação</li>
+      </ul>
+      <ul>
+        <li>Plano de ação de 30 dias</li>
+        <li><strong>Selo de Acessibilidade FADERS</strong></li>
+        <li>Formas de contribuir com o Acessibilidade RS</li>
+        <li>Aplicativo ARS (janeiro de 2027)</li>
+      </ul>
+    </div>
+
+    <div class="hl-teal" style="display:flex;align-items:center;gap:12px;">
+      <div style="font-size:22pt;">🌐</div>
+      <div>
+        <div class="hl-url">redebolha.com.br</div>
+        <div style="font-size:9pt;color:#cde8f0;">Acesse a aba <strong>Acessibilidade RS</strong> para conhecer o projeto, indicar locais e contribuir</div>
+        <div style="font-size:9pt;color:#f5e090;margin-top:4px;font-weight:bold;">📱 App ARS disponível em janeiro de 2027 · redebolha.com.br/instalar-ars.html</div>
+      </div>
+    </div>
+  </div>
+  <div class="botbar"><span>REDE BOLHA · ACESSIBILIDADE RS</span><span>redebolha.com.br/acessibilidade-rs/</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 3 · 1. ACESSIBILIDADE É EXPERIÊNCIA COMPLETA            -->
+<!-- ============================================================ -->
+<div class="page">
+  <div class="topbar"><b>REDE BOLHA · ACESSIBILIDADE RS</b> <span class="url">redebolha.com.br/acessibilidade-rs/</span></div>
+  <div class="content">
+    <h2>1. Acessibilidade é experiência completa</h2>
+    <p class="lead">A pessoa precisa encontrar, chegar, entrar, circular, compreender, comprar e pedir ajuda com autonomia e segurança.</p>
+
+    <div class="box">
+      <div class="box-title">Definição prática</div>
+      <p>A Lei Brasileira de Inclusão trata acessibilidade como a possibilidade e a condição de utilizar, com segurança e autonomia, espaços, mobiliários, transportes, informação, comunicação, tecnologias e serviços.</p>
+    </div>
+
+    <table>
+      <tr><th>Dimensão</th><th>O que observar</th></tr>
+      <tr><td><strong>Física</strong></td><td>Entrada, rota, circulação, balcão, mesas, sanitário e saída.</td></tr>
+      <tr><td><strong>Comunicacional</strong></td><td>Linguagem clara, contraste, legenda, descrição e alternativas.</td></tr>
+      <tr><td><strong>Digital</strong></td><td>Site, redes sociais, cardápio e WhatsApp utilizáveis.</td></tr>
+      <tr><td><strong>Atitudinal</strong></td><td>Equipe respeitosa, disponível e preparada para perguntar como ajudar.</td></tr>
+      <tr><td><strong>Sensorial</strong></td><td>Iluminação, ruído, odores, previsibilidade e possibilidade de pausa.</td></tr>
+      <tr><td><strong>Operacional</strong></td><td>Reserva, fila, pagamento, emergência, reclamação e melhoria contínua.</td></tr>
+    </table>
+
+    <h3>Transparência gera confiança</h3>
+    <ul>
+      <li>Evite declarar "100% acessível" sem avaliação abrangente.</li>
+      <li>Descreva fatos: entrada sem degrau, banheiro acessível, ambiente com música, atendimento por texto.</li>
+      <li>Informe também limitações existentes e alternativas disponíveis.</li>
+    </ul>
+
+    <div class="box yellow" style="margin-top:14px;">
+      <div class="box-title">💡 Informação pública: Selo de Acessibilidade FADERS</div>
+      <p>A FADERS emite um Selo de Acessibilidade para estabelecimentos que avançam em práticas inclusivas. Esta é uma informação pública disponível em faders.rs.gov.br. Veja mais na seção informativa deste guia. <em>Rede Bolha é independente e não possui relação institucional com a FADERS.</em></p>
+    </div>
+  </div>
+  <div class="botbar"><span>REDE BOLHA · ACESSIBILIDADE RS</span><span>redebolha.com.br/acessibilidade-rs/</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 4 · 2. DIAGNÓSTICO DA JORNADA                           -->
+<!-- ============================================================ -->
+<div class="page">
+  <div class="topbar"><b>REDE BOLHA · ACESSIBILIDADE RS</b> <span class="url">redebolha.com.br/acessibilidade-rs/</span></div>
+  <div class="content">
+    <h2>2. Diagnóstico da jornada</h2>
+    <p class="lead">Avalie antes, durante e depois da visita.</p>
+
+    <h3>Antes da visita</h3>
+    <div class="ck"><div class="cb"></div><div>Contato e endereço atualizados</div></div>
+    <div class="ck"><div class="cb"></div><div>Informações sobre entrada, banheiro, estacionamento e ruído</div></div>
+    <div class="ck"><div class="cb"></div><div>Fotos atuais da entrada e circulação</div></div>
+
+    <h3>Chegada e entrada</h3>
+    <div class="ck"><div class="cb"></div><div>Calçada e rota desobstruídas</div></div>
+    <div class="ck"><div class="cb"></div><div>Capachos, cabos, vasos e expositores fora da passagem</div></div>
+    <div class="ck"><div class="cb"></div><div>Campainha, interfone e maçaneta alcançáveis</div></div>
+
+    <h3>Circulação e permanência</h3>
+    <div class="ck"><div class="cb"></div><div>Passagens livres</div></div>
+    <div class="ck"><div class="cb"></div><div>Espaço de aproximação no atendimento</div></div>
+    <div class="ck"><div class="cb"></div><div>Assento disponível e iluminação adequada</div></div>
+
+    <h3>Comunicação e compra</h3>
+    <div class="ck"><div class="cb"></div><div>Equipe pergunta antes de ajudar</div></div>
+    <div class="ck"><div class="cb"></div><div>Alternativa por fala, escrita ou mensagem</div></div>
+    <div class="ck"><div class="cb"></div><div>Maquininha aproximada do cliente com privacidade</div></div>
+
+    <h3>Saída e retorno</h3>
+    <div class="ck"><div class="cb"></div><div>Saída clara e desobstruída</div></div>
+    <div class="ck"><div class="cb"></div><div>Procedimento de emergência inclusivo</div></div>
+    <div class="ck"><div class="cb"></div><div>Canal de feedback e resposta registrada</div></div>
+
+    <div class="box" style="margin-top:12px;">
+      <div class="box-title">Escute quem vive a experiência</div>
+      <p>Convide uma pessoa com deficiência, cliente ou organização parceira para percorrer a jornada. Uma rampa isolada não resolve informação ausente, atendimento inadequado ou rota interna bloqueada.</p>
+    </div>
+  </div>
+  <div class="botbar"><span>REDE BOLHA · ACESSIBILIDADE RS</span><span>redebolha.com.br/acessibilidade-rs/</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 5 · 3. CHECKLIST DO ESTABELECIMENTO                     -->
+<!-- ============================================================ -->
+<div class="page">
+  <div class="topbar"><b>REDE BOLHA · ACESSIBILIDADE RS</b> <span class="url">redebolha.com.br/acessibilidade-rs/</span></div>
+  <div class="content">
+    <h2>3. Checklist do estabelecimento</h2>
+    <p class="lead">Marque S, P, N ou NA. Depois, defina responsável e prazo.</p>
+
+    <table>
+      <tr><th>Verificação</th><th>S/P/N/NA</th><th>Prazo</th></tr>
+      <tr><td>Divulga recursos e limitações com objetividade.</td><td>____</td><td>____</td></tr>
+      <tr><td>Mostra fotos atuais da entrada e circulação.</td><td>____</td><td>____</td></tr>
+      <tr><td>Mantém a rota de entrada estável e desobstruída.</td><td>____</td><td>____</td></tr>
+      <tr><td>Mantém móveis e mercadorias fora das passagens.</td><td>____</td><td>____</td></tr>
+      <tr><td>Oferece ponto de atendimento utilizável e opção de assento.</td><td>____</td><td>____</td></tr>
+      <tr><td>Usa textos legíveis e não depende apenas de cor.</td><td>____</td><td>____</td></tr>
+      <tr><td>A equipe oferece ajuda sem tocar sem permissão.</td><td>____</td><td>____</td></tr>
+      <tr><td>Existe alternativa de comunicação por texto.</td><td>____</td><td>____</td></tr>
+      <tr><td>Vídeos têm legenda e imagens relevantes têm descrição.</td><td>____</td><td>____</td></tr>
+      <tr><td>A maquininha pode ser aproximada do cliente.</td><td>____</td><td>____</td></tr>
+      <tr><td>O sanitário acessível, quando existente, permanece funcional.</td><td>____</td><td>____</td></tr>
+      <tr><td>Há responsável e prazo para cada melhoria.</td><td>____</td><td>____</td></tr>
+      <tr><td>Clientes podem enviar sugestões por canal acessível.</td><td>____</td><td>____</td></tr>
+    </table>
+
+    <div class="box yellow">
+      <div class="box-title">Quando chamar profissional habilitado</div>
+      <p>Rampas, escadas, corrimãos, sanitários, plataformas, elevadores, sinalização tátil, rotas e saídas exigem verificação técnica. A ABNT NBR 9050 estabelece critérios e parâmetros para edificações, mobiliário, espaços e equipamentos urbanos.</p>
+    </div>
+  </div>
+  <div class="botbar"><span>REDE BOLHA · ACESSIBILIDADE RS</span><span>redebolha.com.br/acessibilidade-rs/</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 6 · 4. ATENDIMENTO E COMUNICAÇÃO                        -->
+<!-- ============================================================ -->
+<div class="page">
+  <div class="topbar"><b>REDE BOLHA · ACESSIBILIDADE RS</b> <span class="url">redebolha.com.br/acessibilidade-rs/</span></div>
+  <div class="content">
+    <h2>4. Atendimento e comunicação</h2>
+    <p class="lead">Respeito, escuta e autonomia devem aparecer em cada contato.</p>
+
+    <div class="two-col">
+      <div>
+        <h3>✅ Faça</h3>
+        <ul>
+          <li>Fale diretamente com a pessoa.</li>
+          <li>Pergunte: "Você gostaria de apoio? Como prefere?"</li>
+          <li>Dê tempo para comunicação e decisão.</li>
+          <li>Descreva o ambiente ou procedimento quando for útil.</li>
+          <li>Ofereça alternativas equivalentes sem custo adicional.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>❌ Evite</h3>
+        <ul>
+          <li>Tocar, empurrar ou mover a pessoa ou seu recurso sem autorização.</li>
+          <li>Falar alto automaticamente.</li>
+          <li>Usar o acompanhante como interlocutor sem necessidade.</li>
+          <li>Prometer estrutura que o local não possui.</li>
+          <li>Tratar acessibilidade como favor.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="box" style="margin-top:4px;">
+      <div class="box-title">Frases para a equipe</div>
+      <p>"Como podemos tornar seu atendimento mais confortável?" | "Qual é a melhor forma de ajudar?" | "Hoje temos esta barreira; posso explicar as alternativas?" | "Obrigado pela sugestão; vamos registrar e retornar até [data]."</p>
+    </div>
+
+    <h3>Presença digital</h3>
+    <ul>
+      <li>Informe entrada, circulação, sanitário, estacionamento e ambiente sensorial.</li>
+      <li>Inclua texto alternativo em imagens e legendas em vídeos.</li>
+      <li>Use linguagem direta e bom contraste.</li>
+      <li>Mantenha WhatsApp, endereço e horários atualizados.</li>
+    </ul>
+
+    <div class="hl-teal" style="display:flex;align-items:center;gap:12px;margin-top:12px;">
+      <div style="font-size:18pt;">🌐</div>
+      <div>
+        <div class="hl-url">redebolha.com.br → Acessibilidade RS</div>
+        <div style="font-size:9pt;color:#cde8f0;">Divulgue seu negócio, atualize informações e conecte-se ao projeto</div>
+      </div>
+    </div>
+  </div>
+  <div class="botbar"><span>REDE BOLHA · ACESSIBILIDADE RS</span><span>redebolha.com.br/acessibilidade-rs/</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 7 · 5. PLANO DE AÇÃO 30 DIAS                            -->
+<!-- ============================================================ -->
+<div class="page">
+  <div class="topbar"><b>REDE BOLHA · ACESSIBILIDADE RS</b> <span class="url">redebolha.com.br/acessibilidade-rs/</span></div>
+  <div class="content">
+    <h2>5. Plano de ação de 30 dias</h2>
+    <p class="lead">Priorize segurança, autonomia, informação e impacto.</p>
+
+    <div class="box"><div class="box-title">Semana 1: observar</div><p>Percorra a jornada, fotografe barreiras, aplique o checklist e escolha um responsável.</p></div>
+    <div class="box yellow"><div class="box-title">Semana 2: corrigir</div><p>Remova obstáculos, atualize informações e reorganize o atendimento.</p></div>
+    <div class="box"><div class="box-title">Semana 3: escutar</div><p>Converse com clientes e pessoas com deficiência; registre aprendizados.</p></div>
+    <div class="box navy"><div class="box-title">Semana 4: conectar</div><p>Divulgue avanços e limitações com transparência e conecte o negócio ao <strong style="color:var(--yellow)">Acessibilidade RS</strong> em <strong style="color:var(--yellow)">redebolha.com.br/acessibilidade-rs/</strong></p></div>
+
+    <h3>Minhas três ações</h3>
+    <div class="act-row"><div><div class="act-lbl">1. Ação</div><div class="act-line"></div></div><div><div class="act-lbl">Responsável</div><div class="act-line"></div></div><div><div class="act-lbl">Prazo</div><div class="act-line"></div></div></div>
+    <div class="act-row"><div><div class="act-lbl">2. Ação</div><div class="act-line"></div></div><div><div class="act-lbl">Responsável</div><div class="act-line"></div></div><div><div class="act-lbl">Prazo</div><div class="act-line"></div></div></div>
+    <div class="act-row"><div><div class="act-lbl">3. Ação</div><div class="act-line"></div></div><div><div class="act-lbl">Responsável</div><div class="act-line"></div></div><div><div class="act-lbl">Prazo</div><div class="act-line"></div></div></div>
+
+    <div class="box" style="margin-top:12px;">
+      <div class="box-title">Indicadores mensais</div>
+      <p>Barreiras removidas; equipe orientada; informações atualizadas; sugestões respondidas; relatos de maior autonomia; locais e parceiros indicados ao projeto.</p>
+    </div>
+  </div>
+  <div class="botbar"><span>REDE BOLHA · ACESSIBILIDADE RS</span><span>redebolha.com.br/acessibilidade-rs/</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 8 · NOVO — SELO DE ACESSIBILIDADE FADERS                -->
+<!-- ============================================================ -->
+<div class="page">
+  <div class="topbar"><b>REDE BOLHA · ACESSIBILIDADE RS</b> <span class="url">redebolha.com.br/acessibilidade-rs/</span></div>
+  <div class="faders-header">
+    <div class="fh-title">🏅 Selo de Acessibilidade FADERS</div>
+    <div class="fh-sub">Informação de acesso público · Site oficial: faders.rs.gov.br</div>
+  </div>
+  <div class="content" style="padding-top:10mm;">
+    <div class="box" style="border-left-color:#c62828;background:#fff5f5;margin-bottom:12px;">
+      <div class="box-title" style="color:#c62828;">ℹ️ Nota de independência</div>
+      <p>Rede Bolha é uma plataforma independente, sem convênio ou parceria com a FADERS ou o Estado do RS. As informações a seguir são de acesso público, disponíveis em <strong>faders.rs.gov.br</strong>. Para certificação oficial, consulte a FADERS diretamente.</p>
+    </div>
+    <p>A <strong>FADERS</strong> (Fundação de Articulação e Desenvolvimento de Políticas Públicas para Pessoas com Deficiência e com Altas Habilidades no Rio Grande do Sul) é referência estadual em inclusão. O <strong>Selo de Acessibilidade FADERS</strong> reconhece formalmente estabelecimentos, empresas e espaços que adotam práticas acessíveis verificadas (informação pública disponível em faders.rs.gov.br).</p>
+
+    <h3>Níveis do Selo</h3>
+    <div class="seals">
+      <div class="seal s-bronze"><div class="ico">🥉</div><div class="nm">Selo Bronze</div><div class="ds">Início da jornada. Primeiras ações de acessibilidade implementadas.</div></div>
+      <div class="seal s-prata"><div class="ico">🥈</div><div class="nm">Selo Prata</div><div class="ds">Avanços significativos. Barreiras reduzidas em várias dimensões.</div></div>
+      <div class="seal s-ouro"><div class="ico">🥇</div><div class="nm">Selo Ouro</div><div class="ds">Referência de excelência. Padrão elevado de inclusão verificado.</div></div>
+    </div>
+
+    <h3>Destaques públicos — Locais com Selo FADERS</h3>
+    <div class="loc-list">
+      <div class="loc-item"><div class="loc-icon">🥇</div><div><div class="loc-name">Faculdade CESURG — Marau</div><div class="loc-type">Educação Superior · Primeiro Selo Ouro do RS</div></div></div>
+      <div class="loc-item"><div class="loc-icon">📍</div><div><div class="loc-name">UETI — União das Etnias de Ijuí</div><div class="loc-type">Associação cultural · Primeiro local certificado em Ijuí</div></div></div>
+      <div class="loc-item"><div class="loc-icon">🥉</div><div><div class="loc-name">Centro de Compras Farroupilha — Farroupilha</div><div class="loc-type">Comércio · Selo Bronze</div></div></div>
+      <div class="loc-item"><div class="loc-icon">📍</div><div><div class="loc-name">Vinícola Aurora — Bento Gonçalves</div><div class="loc-type">Turismo e cultura · Primeira vinícola da cidade com Selo</div></div></div>
+      <div class="loc-item"><div class="loc-icon">📍</div><div><div class="loc-name">Canoas — 19 estabelecimentos</div><div class="loc-type">Setor público e privado, incluindo Sesc Canoas</div></div></div>
+      <div class="loc-item"><div class="loc-icon">📍</div><div><div class="loc-name">Clube Cantegril — Bagé</div><div class="loc-type">Lazer e esporte</div></div></div>
+    </div>
+    <p class="small">ℹ️ Informação de acesso público · Lista completa em <strong>faders.rs.gov.br</strong></p>
+
+    <div class="ouro-box">
+      <div class="trophy">🥇</div>
+      <div class="ot">Marco Histórico · Rio Grande do Sul</div>
+      <div class="city">Marau</div>
+      <div style="font-size:11pt;color:var(--yellow);font-weight:bold;margin:4px 0;">Primeiro Selo Ouro do RS — Faculdade CESURG</div>
+      <div class="sub">A Faculdade CESURG foi pioneira ao conquistar o nível máximo da certificação, tornando Marau a primeira cidade do RS a receber o Selo Ouro de Acessibilidade.</div>
+    </div>
+
+    <div class="box yellow">
+      <div class="box-title">Como o seu negócio pode conquistar o Selo</div>
+      <p>Aplique este guia, registre seus avanços e contribua com o mapeamento colaborativo do projeto Acessibilidade RS em <strong>redebolha.com.br/acessibilidade-rs/</strong>. Para informações sobre o processo oficial de certificação pelo Selo, consulte a FADERS diretamente em faders.rs.gov.br.</p>
+    </div>
+  </div>
+  <div class="botbar"><span>REDE BOLHA · ACESSIBILIDADE RS</span><span>redebolha.com.br/acessibilidade-rs/</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 9 · 6. COMO CONTRIBUIR                                  -->
+<!-- ============================================================ -->
+<div class="page">
+  <div class="topbar"><b>REDE BOLHA · ACESSIBILIDADE RS</b> <span class="url">redebolha.com.br/acessibilidade-rs/</span></div>
+  <div class="content">
+    <h2>6. Como contribuir com o Acessibilidade RS</h2>
+    <p class="lead">O projeto cresce quando informação, experiência e compromisso circulam.</p>
+
+    <table>
+      <tr><th>Como contribuir</th><th>O que fazer</th></tr>
+      <tr><td><strong>Indicar locais</strong></td><td>Compartilhe estabelecimentos, serviços e espaços com recursos de acessibilidade.</td></tr>
+      <tr><td><strong>Atualizar informações</strong></td><td>Ajude a corrigir dados e descrever recursos e limitações.</td></tr>
+      <tr><td><strong>Convidar negócios</strong></td><td>Envie este guia e proponha o plano de 30 dias.</td></tr>
+      <tr><td><strong>Compartilhar experiência</strong></td><td>Relate facilitadores e barreiras com informações verificáveis.</td></tr>
+      <tr><td><strong>Divulgar</strong></td><td>Publique nas redes e encaminhe a entidades e grupos pertinentes.</td></tr>
+      <tr><td><strong>Propor parceria</strong></td><td>Ofereça apoio institucional, técnico, comunicacional, voluntário ou financeiro.</td></tr>
+      <tr><td><strong>Buscar o Selo FADERS</strong></td><td>Documente seus avanços e solicite avaliação para o Selo de Acessibilidade.</td></tr>
+    </table>
+
+    <h3>Acesse e participe</h3>
+    <div class="two-col">
+      <div>
+        <div style="background:var(--light);border:1px solid var(--border);border-radius:6px;padding:12px;text-align:center;">
+          <div style="font-size:11pt;font-weight:bold;color:var(--navy);margin-bottom:5px;">Conheça, compartilhe e participe</div>
+          <div style="font-size:9pt;color:var(--muted);margin-bottom:8px;">Abra a página para conhecer os canais e as formas atuais de contribuição.</div>
+          <div style="font-size:11pt;font-weight:bold;color:var(--teal);">redebolha.com.br</div>
+          <div style="font-size:9.5pt;color:var(--teal-dk);font-weight:bold;">aba Acessibilidade RS</div>
+        </div>
+      </div>
+      <div>
+        <div class="box navy" style="height:100%;display:flex;flex-direction:column;justify-content:center;">
+          <div class="box-title">🏅 Selo FADERS (info pública)</div>
+          <p>O Selo de Acessibilidade é emitido pela FADERS (faders.rs.gov.br). Negócios certificados podem compartilhar essa conquista com a comunidade do Acessibilidade RS.</p>
+          <p><em style="color:#a8c8e8;">Marau está em destaque como referência em acessibilidade no RS.</em></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="box" style="margin-top:8px;">
+      <div class="box-title">Transparência</div>
+      <p>Ao indicar um local, descreva o que foi observado e a data da visita. Não transforme uma experiência individual em certificação definitiva.</p>
+    </div>
+
+    <div class="box navy" style="margin-top:14px;">
+      <div class="box-title" style="font-size:11.5pt;">📱 Aplicativo ARS — Janeiro de 2027</div>
+      <p style="font-size:10pt;color:#d0dff0;">A Rede Bolha lança em janeiro de 2027 o <strong style="color:var(--yellow);">Aplicativo Acessibilidade RS</strong> — uma ferramenta colaborativa para encontrar, avaliar e divulgar lugares acessíveis nos <strong style="color:var(--yellow);">497 municípios</strong> do Rio Grande do Sul. A iniciativa reúne, em um único ambiente, o mapeamento de estabelecimentos, as avaliações de quem vive a experiência e as informações produzidas pela rede.</p>
+      <ul style="color:#cde8f0;font-size:9.5pt;margin:8px 0 10px 16px;">
+        <li><strong style="color:white;">Mapa interativo</strong> — localize espaços acessíveis por região ou tipo de necessidade</li>
+        <li><strong style="color:white;">Avaliações reais</strong> — feitas por pessoas com deficiência, visitantes e estabelecimentos</li>
+        <li><strong style="color:white;">Notícias e atualizações</strong> — acompanhe o movimento de acessibilidade no RS</li>
+        <li><strong style="color:white;">Cadastro gratuito</strong> — para negócios, serviços, entidades e espaços públicos</li>
+        <li><strong style="color:white;">Rede Praia Acessível</strong> — pontos com cadeira anfíbia e guarda-vidas em praias, rios e piscinas</li>
+      </ul>
+      <p style="font-size:9pt;color:#a8c8e8;border-top:1px solid rgba(255,255,255,.15);padding-top:7px;">ℹ️ Plataforma independente da Rede Bolha, sem vínculo com órgãos públicos. As informações não substituem avaliação técnica ou certificação oficial.</p>
+      <p style="font-size:10pt;margin-top:6px;">▶ Instale agora: <strong style="color:var(--yellow);">redebolha.com.br/instalar-ars.html</strong></p>
+    </div>
+  </div>
+  <div class="botbar"><span>REDE BOLHA · ACESSIBILIDADE RS</span><span>redebolha.com.br/acessibilidade-rs/</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 10 · REFERÊNCIAS E COMPROMISSO                          -->
+<!-- ============================================================ -->
+<div class="page">
+  <div class="topbar"><b>REDE BOLHA · ACESSIBILIDADE RS</b> <span class="url">redebolha.com.br/acessibilidade-rs/</span></div>
+  <div class="content">
+    <h2>Referências e compromisso</h2>
+    <p class="lead">Consulte as versões vigentes das normas e a legislação local.</p>
+
+    <ul>
+      <li><a href="#">Lei Brasileira de Inclusão — Lei nº 13.146/2015</a></li>
+      <li><a href="#">Governo Digital — legislação de acessibilidade</a></li>
+      <li><a href="#">ABNT NBR 9050:2020, versão corrigida 2021</a></li>
+      <li><a href="#">Sebrae — turismo acessível e pequenos negócios</a></li>
+      <li><a href="#">FADERS — Fundação de Articulação e Desenvolvimento de Políticas Públicas para Pessoas com Deficiência e com Altas Habilidades no Rio Grande do Sul</a></li>
+      <li><a href="https://redebolha.com.br/acessibilidade-rs/">Acessibilidade RS — Rede Bolha</a></li>
+    </ul>
+
+    <div class="box yellow" style="margin-top:10px;">
+      <div class="box-title">Nota técnica</div>
+      <p>Material educativo e mobilizador. Para verificar conformidade, dimensões, inclinações, sinalização, sanitários, equipamentos e intervenções construtivas, consulte a norma vigente, a legislação aplicável e profissionais habilitados.</p>
+    </div>
+
+    <h3>Compromisso do negócio</h3>
+    <p>Nos próximos 30 dias, nosso negócio se compromete a:</p>
+    <div style="margin:10px 0;">
+      <div style="margin-bottom:8px;"><span style="font-weight:bold;color:var(--teal);">1. </span><span style="border-bottom:1.5px solid var(--teal);display:inline-block;width:85%;min-height:18px;"></span></div>
+      <div style="margin-bottom:8px;"><span style="font-weight:bold;color:var(--teal);">2. </span><span style="border-bottom:1.5px solid var(--teal);display:inline-block;width:85%;min-height:18px;"></span></div>
+      <div style="margin-bottom:8px;"><span style="font-weight:bold;color:var(--teal);">3. </span><span style="border-bottom:1.5px solid var(--teal);display:inline-block;width:85%;min-height:18px;"></span></div>
+    </div>
+    <div style="display:flex;gap:12px;margin-top:8px;">
+      <div style="flex:1;"><div class="act-lbl">Nome</div><div class="act-line"></div></div>
+      <div style="flex:1;"><div class="act-lbl">Negócio</div><div class="act-line"></div></div>
+      <div style="flex:.7;"><div class="act-lbl">Data</div><div class="act-line"></div></div>
+    </div>
+
+    <div class="box navy" style="margin-top:16px;text-align:center;">
+      <div class="box-title" style="font-size:12pt;">Acessibilidade se constrói em rede</div>
+      <p>Comece com uma melhoria concreta. Registre o que aprendeu. Compartilhe informação responsável. Convide mais uma pessoa ou negócio para participar.</p>
+      <p style="margin-top:8px;font-style:italic;color:#a8c8e8;">◆ Conhecimento, trabalho e fraternidade em favor da inclusão ◆</p>
+    </div>
+
+    <div style="text-align:center;margin-top:12px;">
+      <a href="https://redebolha.com.br/acessibilidade-rs/" style="font-weight:bold;font-size:11pt;color:var(--teal);">Participar do Acessibilidade RS → redebolha.com.br/acessibilidade-rs/</a>
+    </div>
+  </div>
+  <div class="botbar"><span>REDE BOLHA · ACESSIBILIDADE RS</span><span>redebolha.com.br/acessibilidade-rs/</span></div>
+</div>
+
+</body>
+</html>

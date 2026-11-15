@@ -519,6 +519,16 @@ html.rb-previa .rb-previa-aviso { flex-wrap: nowrap; }
 html.rb-previa .rb-previa-aviso > span { flex: 1; min-width: 0; }
 html.rb-previa .rb-previa-aviso button { flex: none; margin-left: auto; min-width: 40px; min-height: 40px; border: 0; border-radius: 8px; background: transparent; color: #fff; font: inherit; font-size: 1.4rem; line-height: 1; cursor: pointer; }
 html.rb-previa .rb-previa-aviso button:hover { background: rgba(255, 255, 255, .12); }
+/* Guia Prático: faixa de download destacada */
+.guia-banner { margin: 1.8rem 0; padding: 1.4rem 1.6rem; background: linear-gradient(135deg, var(--surface) 0%, #0a1c47 100%); border: 2px solid var(--accent); border-radius: 12px; }
+.guia-banner-inner { display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; }
+.guia-banner-ic { font-size: 2.4rem; line-height: 1; flex: none; }
+.guia-banner-body { flex: 1; min-width: 200px; }
+.guia-banner-eyebrow { font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0 0 .3rem; }
+.guia-banner-title { font-size: 1.1rem; font-weight: 800; color: var(--ink); margin: 0 0 .4rem; }
+.guia-banner-desc { font-size: .88rem; color: var(--muted); margin: 0; line-height: 1.5; }
+.guia-banner-btns { display: flex; gap: .7rem; flex-wrap: wrap; align-items: center; }
+@media (max-width: 540px) { .guia-banner-ic { display: none; } .guia-banner-btns .btn { flex: 1; text-align: center; justify-content: center; } }
 </style>
 </head>
 <body>
@@ -539,6 +549,7 @@ html.rb-previa .rb-previa-aviso button:hover { background: rgba(255, 255, 255, .
     <p class="rb-lanc-texto">Antes de sair de casa, saiba onde dá para entrar. Estamos preparando o mapa e cadastrando mais lugares acessíveis nas sete regiões do Rio Grande do Sul. <strong>Em janeiro, o guia abre para todo mundo.</strong></p>
     <div class="rb-lanc-acoes">
       <a class="rb-lanc-btn" href="/">Voltar para a Rede Bolha</a>
+      <a class="rb-lanc-btn rb-lanc-btn--ghost" href="/guia-acessibilidade-negocios.pdf" download="Guia-Acessibilidade-Negocios-Rede-Bolha.pdf"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M8 11l4 4 4-4"/><rect x="4" y="17" width="16" height="4" rx="1.5"/></svg>⬇ Baixar Guia Prático (PDF)</a>
     </div>
     <!-- Contato até o lançamento: só WhatsApp e e-mail -->
     <p class="rb-lanc-contato">Quer seu negócio no guia? Fale com a gente:</p>
@@ -596,6 +607,21 @@ html.rb-previa .rb-previa-aviso button:hover { background: rgba(255, 255, 255, .
     <figcaption><b>Rede Praia Acessível.</b> Banho de mar com cadeira anfíbia e guarda-vidas do CBMRS, de graça, no litoral, em rios, lagoas e piscinas do RS.</figcaption>
   </figure>
   </div>
+  <!-- GUIA PRÁTICO: faixa de download — visível quando a página estiver aberta (rb-aberto) -->
+  <aside class="guia-banner" aria-label="Download do Guia Prático de Acessibilidade para Negócios">
+    <div class="guia-banner-inner">
+      <span class="guia-banner-ic" aria-hidden="true">📄</span>
+      <div class="guia-banner-body">
+        <p class="guia-banner-eyebrow">Recurso gratuito · Rede Bolha</p>
+        <p class="guia-banner-title">Guia Prático Acessibilidade para Negócios</p>
+        <p class="guia-banner-desc">Checklists, diagnóstico, plano de 30 dias e comunicação inclusiva — um guia prático para tornar seu estabelecimento mais acessível.</p>
+      </div>
+      <div class="guia-banner-btns">
+        <a class="btn" href="/guia-acessibilidade-negocios.pdf" download="Guia-Acessibilidade-Negocios-Rede-Bolha.pdf">⬇ Baixar PDF</a>
+        <a class="btn ghost small" href="/guia-acessibilidade-negocios.html" target="_blank" rel="noopener">Ler online</a>
+      </div>
+    </div>
+  </aside>
   <!-- MANCHETE: Rede Praia Acessível (temporada 2026/2027). Matéria completa na aba #praia. -->
   <article class="manchete" aria-labelledby="h-manchete">
     <span class="cat-ic"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11.5a8.5 8.5 0 0 1 17 0z"/><path d="M12 11.5v6.5M12 3v1"/><path d="M2.5 20.5c1.6 0 1.6-1 3.2-1s1.6 1 3.2 1 1.6-1 3.1-1 1.6 1 3.2 1 1.6-1 3.2-1 1.6 1 3.1 1"/></svg></span>
