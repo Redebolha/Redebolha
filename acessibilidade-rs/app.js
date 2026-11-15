@@ -172,7 +172,7 @@
     if (document.documentElement.classList.contains('rb-prelanc')) {
       var vn = location.hash.slice(1);
       var vEl = document.getElementById('v-' + vn) || document.getElementById('v-mapa');
-      if (vEl) { window.scrollTo(0, vEl.offsetTop); return; }
+      if (vEl) { requestAnimationFrame(function () { requestAnimationFrame(function () { window.scrollTo(0, vEl.offsetTop); }); }); return; }
     }
     window.scrollTo(0, 0);
   });
@@ -641,7 +641,7 @@
     if (location.hash.slice(1) !== 'cadastro') return;
     var el = document.getElementById('v-cadastro');
     if (!el) return;
-    requestAnimationFrame(function () { window.scrollTo(0, el.offsetTop); });
+    requestAnimationFrame(function () { requestAnimationFrame(function () { window.scrollTo(0, el.offsetTop); }); });
   })();
   fetch(BASE + 'mapa-rs.json').then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (m) {
     MAP = m; ASPECT = MAP.W / MAP.H;
