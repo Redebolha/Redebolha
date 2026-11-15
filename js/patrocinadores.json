@@ -38,6 +38,13 @@
       "selo": "Em breve",
       "pre_lancamento": true,
       "_nota": "Pre-lancamento: a unidade nao vende, captura. O destino e a publicacao no Beehiiv, que e onde a lista de espera realmente vive."
+    },
+    "kit": {
+      "titulo": "Kit Natal Transformador",
+      "capa": "/img/kit-natal-transformador.jpg",
+      "destino": "/livros/kit-natal-transformador.html",
+      "acao": "Quero o kit",
+      "selo": "🎄 Natal"
     }
   },
   "temas": {
@@ -64,6 +71,16 @@
     "rotulo": "Livros de Adm. Romário Cruz",
     "intervalo_segundos": 6,
     "itens": [
+      {
+        "livro": "kit",
+        "formato": "Kit Digital",
+        "preco": "R$ 24,90",
+        "frase": "Três livros de transformação num presente só.",
+        "capa": "/img/vitrine-kit.webp",
+        "destino": "/livros/kit-natal-transformador.html",
+        "acao": "Ver o kit",
+        "selo": "🎄 Natal"
+      },
       {
         "livro": "hvnr",
         "formato": "E-book",
@@ -105,6 +122,16 @@
     "rotulo": "Livros de Adm. Romário Cruz",
     "intervalo_segundos": 7,
     "itens": [
+      {
+        "livro": "kit",
+        "formato": "Kit Digital",
+        "preco": "R$ 24,90",
+        "extra": "3 livros · entrega imediata",
+        "capa": "/img/lateral-kit.webp",
+        "destino": "/livros/kit-natal-transformador.html",
+        "acao": "Ver o kit",
+        "selo": "🎄 Natal"
+      },
       {
         "livro": "hvnr",
         "formato": "E-book",
