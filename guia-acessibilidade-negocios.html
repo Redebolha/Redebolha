@@ -145,39 +145,133 @@ hr{border:none;border-top:1px solid var(--border);margin:11px 0;}
 <body>
 
 <!-- ============================================================ -->
-<!-- PAGE 1 · CAPA PRINCIPAL                                      -->
+<!-- PAGE 1 · CAPA PRINCIPAL — NOVO DESIGN                       -->
 <!-- ============================================================ -->
 <div class="page cover-page">
   <div class="content">
-    <div class="cv-inner">
-      <div>
-        <div style="display:flex;justify-content:flex-end;margin-bottom:20px;">
-          <div style="background:var(--teal);border-radius:6px;padding:6px 12px;text-align:center;">
-            <div style="font-weight:bold;font-size:10.5pt;color:white;">Acessibilidade RS 🌐</div>
-            <div style="font-size:8pt;color:#cde8f0;">Encontre, avalie e divulgue · <strong>Rede Bolha</strong></div>
-          </div>
-        </div>
-        <div class="cv-tag">Guia Prático</div>
-        <div class="cv-h1">Acessibilidade<br>para Negócios</div>
-        <div class="cv-sub">Ações simples para acolher melhor, informar com clareza e ampliar a participação de todas as pessoas.</div>
-        <div class="cv-invite">
-          <b>UM CONVITE PARA FAZER PARTE DO ACESSIBILIDADE RS</b><br>
-          <span style="color:#b0ccdf;font-size:9.5pt;">Conteúdo educativo e mobilizador da Rede Bolha</span>
-        </div>
-        <div class="cv-badges">
-          <span class="cv-badge">Observe</span>
-          <span class="cv-badge">Escute</span>
-          <span class="cv-badge">Melhore</span>
-          <span class="cv-badge">Compartilhe</span>
-        </div>
+    <div style="background:var(--navy);flex:1;display:flex;flex-direction:column;width:100%;min-height:297mm;">
+
+      <!-- Brand strip top -->
+      <div style="background:var(--teal);padding:7px 18mm;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;">
+        <div style="font-weight:bold;font-size:9.5pt;color:white;letter-spacing:.8px;">REDE BOLHA</div>
+        <div style="font-size:8.5pt;color:rgba(255,255,255,.85);">redebolha.com.br</div>
       </div>
-      <div>
-        <hr style="border-color:rgba(255,255,255,.15);margin:14px 0 10px;">
-        <div style="display:flex;justify-content:space-between;align-items:center;">
-          <div class="cv-url">redebolha.com.br/acessibilidade-rs/</div>
+
+      <!-- Main content area -->
+      <div style="flex:1;padding:11mm 18mm 8mm;display:flex;flex-direction:column;justify-content:space-between;">
+
+        <!-- Title block -->
+        <div style="margin-bottom:8mm;">
+          <div style="font-size:8.5pt;text-transform:uppercase;letter-spacing:2.5px;color:var(--yellow);font-weight:bold;margin-bottom:9px;">Guia Prático</div>
+          <div style="font-size:28pt;font-weight:bold;color:white;line-height:1.15;margin-bottom:9px;">ACESSIBILIDADE<br>PARA EMPRESAS<br><span style="color:var(--yellow);">E ESTABELECIMENTOS</span></div>
+          <div style="font-size:10.5pt;color:#9abcd4;line-height:1.5;">Ações simples para acolher melhor, informar com clareza e ampliar a participação de todas as pessoas.</div>
         </div>
+
+        <!-- 4 icon tiles — 2×2 grid -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:8mm;">
+
+          <!-- Tile 1: Mobilidade / Cadeirante -->
+          <div style="background:#0a5a7a;border-radius:10px;padding:16px 18px;display:flex;align-items:center;gap:14px;">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- head -->
+              <circle cx="22" cy="9" r="4.5" fill="white"/>
+              <!-- torso -->
+              <line x1="22" y1="14" x2="22" y2="27" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              <!-- arm extended -->
+              <line x1="22" y1="20" x2="34" y2="20" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              <!-- upper leg -->
+              <line x1="22" y1="27" x2="22" y2="35" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              <!-- lower leg to footrest -->
+              <line x1="22" y1="35" x2="16" y2="35" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              <!-- wheelchair back -->
+              <path d="M14 20 L14 36" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              <!-- seat -->
+              <line x1="14" y1="27" x2="22" y2="27" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              <!-- big wheel -->
+              <circle cx="16" cy="38" r="6.5" stroke="white" stroke-width="2.5" fill="none"/>
+              <!-- small front wheel -->
+              <circle cx="29" cy="38" r="3" stroke="white" stroke-width="2.5" fill="none"/>
+              <!-- push rim arc -->
+              <path d="M34 20 L34 36 Q34 38 32 38" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
+            </svg>
+            <div>
+              <div style="font-weight:bold;font-size:11.5pt;color:white;">Mobilidade</div>
+              <div style="font-size:8.5pt;color:#90cce0;margin-top:2px;">Acesso físico e cadeirantes</div>
+            </div>
+          </div>
+
+          <!-- Tile 2: Comunicação / Auditivo -->
+          <div style="background:#0d4a6a;border-radius:10px;padding:16px 18px;display:flex;align-items:center;gap:14px;">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- ear outline -->
+              <path d="M18 10 C12 10 10 16 10 22 C10 28 14 30 16 32 C18 34 18 38 22 38 C25 38 26 36 26 34 C26 32 24 31 23 29" stroke="white" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M18 10 C24 10 28 14 28 20 C28 26 24 28 22 28 C20 28 18 26 18 24 C18 22 20 20 22 20 C24 20 24 22 23 24" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <!-- sound waves -->
+              <path d="M34 16 C37 19 37 25 34 28" stroke="var(--yellow)" stroke-width="2.3" fill="none" stroke-linecap="round"/>
+              <path d="M38 12 C43 17 43 27 38 32" stroke="var(--yellow)" stroke-width="2.3" fill="none" stroke-linecap="round"/>
+            </svg>
+            <div>
+              <div style="font-weight:bold;font-size:11.5pt;color:white;">Comunicação</div>
+              <div style="font-size:8.5pt;color:#90cce0;margin-top:2px;">Libras e deficiência auditiva</div>
+            </div>
+          </div>
+
+          <!-- Tile 3: Visão -->
+          <div style="background:#1a3a7a;border-radius:10px;padding:16px 18px;display:flex;align-items:center;gap:14px;">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- person with cane -->
+              <circle cx="26" cy="9" r="4.5" fill="white"/>
+              <!-- torso -->
+              <line x1="26" y1="14" x2="26" y2="29" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              <!-- arms -->
+              <line x1="18" y1="21" x2="34" y2="21" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              <!-- leg left -->
+              <line x1="26" y1="29" x2="20" y2="42" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              <!-- leg right -->
+              <line x1="26" y1="29" x2="32" y2="42" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              <!-- cane from hand -->
+              <line x1="34" y1="21" x2="40" y2="44" stroke="var(--yellow)" stroke-width="2.5" stroke-linecap="round"/>
+              <!-- cane tip arc -->
+              <path d="M38 44 Q40 46 42 44" stroke="var(--yellow)" stroke-width="2" fill="none" stroke-linecap="round"/>
+            </svg>
+            <div>
+              <div style="font-weight:bold;font-size:11.5pt;color:white;">Visão</div>
+              <div style="font-size:8.5pt;color:#90c0e8;margin-top:2px;">Deficiência visual e braille</div>
+            </div>
+          </div>
+
+          <!-- Tile 4: Neurodiversidade / Autismo -->
+          <div style="background:#7a5200;border-radius:10px;padding:16px 18px;display:flex;align-items:center;gap:14px;">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- puzzle piece 1 (top-left) -->
+              <path d="M8 8 L24 8 L24 15 C26 13 28 13 29 15 C30 17 29 19 27 19 L24 19 L24 36 L8 36 L8 29 C10 31 12 31 13 29 C14 27 13 25 11 25 L8 25 Z" fill="white" opacity="0.92"/>
+              <!-- puzzle piece 2 (top-right) -->
+              <path d="M24 8 L44 8 L44 24 L37 24 C39 26 39 28 37 29 C35 30 33 29 33 27 L33 24 L24 24 Z" fill="var(--yellow)" opacity="0.88"/>
+              <!-- puzzle piece 3 (bottom-right) -->
+              <path d="M33 24 L44 24 L44 44 L28 44 L28 37 C30 39 32 39 33 37 C34 35 33 33 31 33 L28 33 L28 24 Z" fill="white" opacity="0.70"/>
+            </svg>
+            <div>
+              <div style="font-weight:bold;font-size:11.5pt;color:white;">Neurodiversidade</div>
+              <div style="font-size:8.5pt;color:#e8d080;margin-top:2px;">Autismo e inclusão cognitiva</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Tagline -->
+        <div style="text-align:center;padding:6px 0 2px;">
+          <div style="font-size:14.5pt;font-weight:bold;color:var(--yellow);letter-spacing:.3px;">Pequenas atitudes.</div>
+          <div style="font-size:14.5pt;font-weight:bold;color:white;letter-spacing:.3px;">Grandes transformações.</div>
+        </div>
+
+      </div>
+
+      <!-- Footer strip -->
+      <div style="border-top:1px solid rgba(255,255,255,.15);padding:7px 18mm;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;">
+        <div style="font-size:8.5pt;color:#7aaccb;">redebolha.com.br/acessibilidade-rs/</div>
         <div class="cv-motto"><svg width="13" height="13" viewBox="0 0 24 24" style="display:inline-block;vertical-align:middle;margin-right:5px;opacity:0.8;" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="2.8" ry="4" fill="#a8d4f0"/><ellipse cx="12" cy="5.5" rx="2.8" ry="4" fill="#a8d4f0" transform="rotate(72 12 12)"/><ellipse cx="12" cy="5.5" rx="2.8" ry="4" fill="#a8d4f0" transform="rotate(144 12 12)"/><ellipse cx="12" cy="5.5" rx="2.8" ry="4" fill="#a8d4f0" transform="rotate(216 12 12)"/><ellipse cx="12" cy="5.5" rx="2.8" ry="4" fill="#a8d4f0" transform="rotate(288 12 12)"/><circle cx="12" cy="12" r="2.8" fill="#f5c430"/><circle cx="12" cy="12" r="1.3" fill="#fffde0" opacity="0.8"/></svg>Conhecimento, trabalho e fraternidade em favor da inclusão</div>
       </div>
+
     </div>
   </div>
 </div>
@@ -598,6 +692,20 @@ hr{border:none;border-top:1px solid var(--border);margin:11px 0;}
     <div style="text-align:center;margin-top:12px;">
       <a href="https://redebolha.com.br/acessibilidade-rs/" style="font-weight:bold;font-size:11pt;color:var(--teal);">Participar do Acessibilidade RS → redebolha.com.br/acessibilidade-rs/</a>
     </div>
+  </div>
+  <div class="botbar"><span>REDE BOLHA · ACESSIBILIDADE RS</span><span>redebolha.com.br/acessibilidade-rs/</span></div>
+</div>
+
+
+<!-- ============================================================ -->
+<!-- PAGE 11 · DIVULGAÇÃO — IMAGEM DE CAMPANHA                   -->
+<!-- ============================================================ -->
+<div class="page" style="page-break-after:auto;">
+  <div class="topbar"><b>REDE BOLHA · ACESSIBILIDADE RS</b> <span class="url">redebolha.com.br/acessibilidade-rs/</span></div>
+  <div class="content" style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8mm 12mm;">
+    <img src="img/guia-ars-divulgacao.png"
+         alt="Sua empresa mais acessível, mais oportunidades! — Guia Prático Acessibilidade para Negócios, Rede Bolha"
+         style="width:100%;max-width:170mm;height:auto;border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.18);display:block;margin:0 auto;">
   </div>
   <div class="botbar"><span>REDE BOLHA · ACESSIBILIDADE RS</span><span>redebolha.com.br/acessibilidade-rs/</span></div>
 </div>
