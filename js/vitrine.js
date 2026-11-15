@@ -18,7 +18,6 @@
 (function () {
   'use strict';
 
-  if (location.pathname === '/' || location.pathname === '/index.html') return;
   if (document.querySelector('.rb-vitrine')) return;
 
   var DADOS = '/js/patrocinadores.json';
