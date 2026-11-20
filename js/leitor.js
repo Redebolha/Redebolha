@@ -143,7 +143,7 @@
       caixa.appendChild(a);
     });
     document.getElementById('lt-restantes').textContent =
-      Math.max(0, (dados.livro.total_capitulos || 0) - 1);
+      Math.max(0, (dados.livro.total_capitulos || 0) - 2);
   }
 
   // ------------------------------------------------------------ ligacao --
